@@ -1,0 +1,64 @@
+.wallet-sub-nav-wrapper {
+    background-color: #102d61;
+    clear: both;
+    display: block;
+    margin-top: 12px;
+    padding: 15px 0;
+    font-family: Open Sans;
+    font-size: 12px;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #585656;
+}
+.wallet-sub-nav li {
+    display: inline-block;
+    list-style: none;
+    margin-right: 15px;
+}
+.wallet-sub-nav li a {
+    text-decoration: none;
+    font-size: 12px;
+    color: #fff;
+    letter-spacing: 0;
+}
+.wallet-panels-menu li {
+    display: inline-block;
+}
+.wallet-panels-menu li a {
+/* Live Upcoming: */
+font-family: .SFNSDisplay;
+font-size: 27px;
+color: #919BB0;
+letter-spacing: 0;
+}
+.wallet-panels-menu li a.active {
+    text-decoration: none;
+}
+
+.wallet-main-panels {
+    background: #f6f8fd;
+}
+.item-wrapper {
+    text-align: center;
+    background: #fff;
+    margin-top: 75px;
+}
+.item-wrapper .item-thumbnail {
+    border-radius: 99px;
+    margin-top: -50px;
+}
+.item-wrapper h3 {
+    text-align: center;
+}
+.details-list {
+    padding: 0px;
+    margin: 0px auto;
+}
+.details-list li {
+    display: inline-block;
+    list-style: none;
+    text-align: center;
+}
