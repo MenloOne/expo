@@ -17,10 +17,11 @@ class Discover extends Component {
 	        </button>
 	        <div className="collapse navbar-collapse" id="navbarResponsive">
 	            <ul className="navbar-nav main ml-auto">
-	                <li className="nav-item"><a href="#" title="Explore">Explore</a></li>
-	                <li className="nav-item"><a href="#" title="Discovery">Discovery</a></li>
-	                <li className="nav-item"><a href="#" title="Connections">Connections</a></li>
-	            </ul>
+		                <li className="nav-item"><a href="/" title="Explore">Discover</a></li>
+		                <li className="nav-item"><a href="/guild/" title="Discovery">Guild</a></li>
+		                <li className="nav-item"><a href="/profile/" title="Connections">Profile</a></li>
+		                <li className="nav-item"><a href="/wallet/" title="Connections">Wallet</a></li>
+		            </ul>
 	            <ul className="navbar-nav ml-auto">
 	                <li className="nav-item">
 	                    <form className="form-inline my-2 my-lg-0 mr-lg-2">

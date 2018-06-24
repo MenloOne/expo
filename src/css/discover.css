@@ -35,7 +35,7 @@
 }
 .header { background: #E8F5FB; padding: 50px 0px; }
 .main-card-header {
-    /*background: url('../images/discover/card.png');*/
+    background: url('../images/discover/card.png');
     width: 473px;
     height: 281px;
     overflow: hidden;

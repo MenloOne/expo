@@ -1,15 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Discover from './Discover';
 import Wallet from './Wallet';
-import './App.css';
+import Guild from './Guild';
+import Profile from './Profile';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <Wallet />
-      </div>
-    );
-  }
-}
-
-export default App;
+export default () =>
+(<BrowserRouter>
+	<Switch>
+	<Route path="/" exact component={Discover}/>
+	<Route path="/wallet" exact component={Wallet}/>
+	<Route path="/guild" exact component={Guild}/>
+	<Route path="/profile" exact component={Profile}/>
+	</Switch>
+</BrowserRouter>);
