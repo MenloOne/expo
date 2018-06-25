@@ -62,3 +62,19 @@ letter-spacing: 0;
     list-style: none;
     text-align: center;
 }
+.chartjs-render-monitor {
+    background: #d9dee9;
+}
+.subChart { height: 70px; background: #d9dee9; padding: 0px 50px; }
+.subChart h2 { float: left; line-height: 70px; margin: 0px; color: #fff; }
+.subChartmenu { float: right; margin: 0px; }
+.subChartmenu li {
+    list-style: none;
+    display: inline-block;
+    margin: 0px 20px;
+}
+.subChartmenu li a {
+    text-decoration: none;
+    color: blue;
+    line-height: 70px;
+}
