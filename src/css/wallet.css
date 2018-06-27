@@ -62,9 +62,11 @@ letter-spacing: 0;
     list-style: none;
     text-align: center;
 }
-.chartjs-render-monitor {
+.charohlc {
     background: #d9dee9;
 }
+.charohlc > div:nth-child(1) > label { display: none; }
+.charohlc > div:nth-child(1) > select { display: none; }
 .subChart { height: 70px; background: #d9dee9; padding: 0px 50px; }
 .subChart h2 { float: left; line-height: 70px; margin: 0px; color: #fff; }
 .subChartmenu { float: right; margin: 0px; }
