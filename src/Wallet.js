@@ -185,7 +185,7 @@ class Wallet extends Component {
 			</ul>
 			<div className="clearfix"></div>
 		</div>
-		<Line data={this.state.cd} options={options} />
+		<Line data={this.state.cd} options={options} height={100}/>
 		<ul className="wallet-panels-menu">
 		    <li><a href="#" className="active">Live</a></li>
 		    <li><a href="#">Upcoming</a></li>
