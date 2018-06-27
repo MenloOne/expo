@@ -8,7 +8,7 @@ const logo = require('./images/logo.jpg');
 const userIm = require('./images/user-1.png');
 const smallImroot = require('./images/small-img.png');
 
-const data = {
+var dataOne = {
   labels: [
     "January",
     "February",
@@ -53,8 +53,38 @@ const options = {
     ]
   }
 }
-
 class Wallet extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+    	cd:{
+    		labels:['One','Two','Three'],
+    		datasets:[
+    		{
+    			label:'Population',
+    			data:[0.1,0.2,0.3]
+    		}
+    		]
+    	},
+    	datatwo:[]
+    }
+  }
+
+  componentDidMount() {
+    fetch("https://api.binance.com/api/v1/klines?symbol=ETHUSDT&interval=1w")
+      .then(response => response.json())
+      .then(dataResp => this.setState({    	cd:{
+    		labels:['Open','High','Low','Close'],
+    		datasets:[
+    		{
+    			label:'Population',
+    			data:[parseInt(dataResp[0][1]),parseInt(dataResp[0][2]),parseInt(dataResp[0][3]),parseInt(dataResp[0][4])]
+    		}
+    		]
+    	}}));
+  }
+
   render() {
     return (
     	<div>
@@ -143,7 +173,7 @@ class Wallet extends Component {
 		        </ul>
 		    </div>
 		</div>
-		<div class="subChart">
+		<div className="subChart">
 			<h2>$11,662.82</h2>
 			<ul className="subChartmenu">
 				<li><a href="#">HOUR</a></li>
@@ -155,7 +185,7 @@ class Wallet extends Component {
 			</ul>
 			<div className="clearfix"></div>
 		</div>
-		<Line data={data} options={options} />
+		<Line data={this.state.cd} options={options} />
 		<ul className="wallet-panels-menu">
 		    <li><a href="#" className="active">Live</a></li>
 		    <li><a href="#">Upcoming</a></li>
