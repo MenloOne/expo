@@ -23,9 +23,8 @@ class TopNav extends Component {
 		        <div className="collapse navbar-collapse" id="navbarResponsive">
 		            <ul className="navbar-nav main ml-auto">
 		                <li className="nav-item"><a href="/" title="Explore">Discover</a></li>
-		                <li className="nav-item"><a href="/guild/" title="Discovery">Guild</a></li>
-		                <li className="nav-item"><a href="/profile/" title="Connections">Profile</a></li>
-		                <li className="nav-item"><a href="/wallet/" title="Connections">Wallet</a></li>
+		                <li className="nav-item"><a href="/guild/" title="Discovery">Guilds</a></li>
+		                <li className="nav-item"><a href="/wallet/" title="Connections">My Wallet</a></li>
 		            </ul>
 		            <ul className="navbar-nav ml-auto">
 		                <li className="nav-item">

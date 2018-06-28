@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TopNav from './TopNav.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/sb-admin.css';
+import countdown from 'countdown'
 
 const logo = require('./images/logo.jpg');
 const userIm = require('./images/user-1.png');
@@ -11,7 +12,77 @@ const smallImroot = require('./images/small-img.png');
 const whitePaperIm = require('./images/white-paper.png');
 
 class Profile extends Component {
-  render() {
+
+	state = {
+		eth: 1,
+		tokens: 0,
+		days: '--',
+		hours: '--',
+		minutes: '--',
+		seconds: '--',
+	}
+
+    constructor() {
+        super()
+
+        this.date = new Date(2018, 6, 15, 12 + 7) // year, month, day, hour
+        this.tick = this.tick.bind(this)
+		this.onEditEth = this.onEditEth.bind(this)
+		this.onEditTokens = this.onEditTokens.bind(this)
+    }
+
+    componentDidMount() {
+        this.tick()
+		this.onEditEth(null)
+        this.loop = setInterval(this.tick, 1000)
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.loop)
+    }
+
+    tick() {
+        const timespan = countdown(this.date)
+        let daysUntil = countdown(this.date, null, countdown.DAYS).days
+
+        daysUntil = daysUntil < 1 ? '00' : daysUntil
+        timespan.hours = timespan.hours < 1 ? '00' : timespan.hours
+        timespan.minutes = timespan.minutes < 1 ? '00' : timespan.minutes
+        timespan.seconds = timespan.seconds < 1 ? '00' : timespan.seconds
+        daysUntil = daysUntil < 10 && daysUntil !== '00' ? `0${daysUntil}` : daysUntil
+        timespan.hours =
+            timespan.hours < 10 && timespan.hours !== '00' ? `0${timespan.hours}` : timespan.hours
+        timespan.minutes =
+            timespan.minutes < 10 && timespan.minutes !== '00' ? `0${timespan.minutes}` : timespan.minutes
+        timespan.seconds =
+            timespan.seconds < 10 && timespan.seconds !== '00' ? `0${timespan.seconds}` : timespan.seconds
+
+        const newState = {
+            days: daysUntil,
+            hours: timespan.hours,
+            minutes: timespan.minutes,
+            seconds: timespan.seconds
+        }
+
+        this.setState(Object.assign({}, this.state, newState))
+    }
+
+    onEditEth(evt) {
+		let eth = 1
+		if (evt) {
+			eth = evt.target.value
+		}
+		const tokens = Math.round((eth * 347 * 1.3) * 100) / 100
+		this.setState({ eth: eth, tokens: tokens })
+	}
+
+    onEditTokens(evt) {
+        let tokens = evt.target.value
+		let eth = Math.round((tokens / (347 * 1.3)) * 100) / 100
+        this.setState({ eth: eth, tokens: tokens })
+    }
+
+    render() {
     return (
     	<div>
     	<TopNav />
@@ -234,13 +305,13 @@ class Profile extends Component {
 		                    <div className="green-bg">
 		                        <div className="start-in">STARTS IN</div>
 		                        <div className="time-watch">
-		                            <div>24<span>Days</span></div>
+		                            <div>{this.state.days}<span>Days</span></div>
 		                            <div className="dots">:</div>
-		                            <div>12<span>Hours</span></div>
+		                            <div>{this.state.hours}<span>Hours</span></div>
 		                            <div className="dots">:</div>
-		                            <div>09<span>Minutes</span></div>
+		                            <div>{this.state.minutes}<span>Minutes</span></div>
 		                            <div className="dots">:</div>
-		                            <div>22<span>Seconds</span></div>
+		                            <div>{this.state.seconds}<span>Seconds</span></div>
 		                        </div>
 		                        <div className="sold-range">
 		                            <div className="who-and-how">
@@ -259,7 +330,7 @@ class Profile extends Component {
 		                            <div className="menlo-token">
 		                                <div className="name-token">Menlo Token (MET)</div>
 		                                <div className="tex-field">
-		                                    <input type="text" value="12"/>
+		                                    <input type="text" value={this.state.eth} onChange={this.onEditEth}/>
 		                                    <span>ETH</span>
 		                                </div>
 		                                <div className="offer">Approx. $391.20</div>
@@ -268,7 +339,7 @@ class Profile extends Component {
 		                            <div className="bitkitties">
 		                                <div className="name-token">BitKitties (BTK)</div>
 		                                <div className="tex-field">
-		                                    <input type="text" value="5,500"/>
+		                                    <input type="text" value={this.state.tokens} onChange={this.onEditTokens}/>
 		                                    <span>BTK</span>
 		                                </div>
 		                                <div className="offer">Including 30% discount</div>
