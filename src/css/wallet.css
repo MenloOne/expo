@@ -24,8 +24,13 @@
     color: #fff;
     letter-spacing: 0;
 }
+.wallet-panels-menu {
+    margin: 0px;
+    padding: 35px;
+}
 .wallet-panels-menu li {
     display: inline-block;
+    margin-right: 25px;
 }
 .wallet-panels-menu li a {
 /* Live Upcoming: */
@@ -49,6 +54,7 @@ letter-spacing: 0;
 .item-wrapper .item-thumbnail {
     border-radius: 99px;
     margin-top: -50px;
+    border: 20px solid #fff;
 }
 .item-wrapper h3 {
     text-align: center;
@@ -79,4 +85,17 @@ letter-spacing: 0;
     text-decoration: none;
     color: blue;
     line-height: 70px;
+}
+.item-wrapper-foot {
+    background: #eaf0f7;
+    padding-top: 15px;
+}
+.timestep {
+    font-size: 45px;
+    display: inline-block;
+}
+.timetag {
+    display: block;
+    font-size: 12px;
+    text-align: left;
 }

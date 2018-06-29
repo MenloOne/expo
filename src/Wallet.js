@@ -143,34 +143,41 @@ class Wallet extends Component {
 		                </ul>
 		                <div className="item-wrapper-foot">
 		                    <p className="wrapper-foot-title">TOKEN LOCKUP ENDS</p>
-		                    <p className="time">04:12:09:22</p>
+		                    <p className="time">
+		                    	<p className="timestep">
+		                    		04:
+		                    		<span className="timetag">
+		                    			Days
+		                    		</span>
+		                    	</p>
+		                    	<p className="timestep">
+		                    		12:
+		                    		<span className="timetag">
+		                    			Hours
+		                    		</span>
+		                    	</p>
+		                    	<p className="timestep">
+		                    		09:
+		                    		<span className="timetag">
+		                    			Minutes
+		                    		</span>
+		                    	</p>
+		                    	<p className="timestep">
+		                    		22
+		                    		<span className="timetag">
+		                    			Seconds
+		                    		</span>
+		                    	</p>
+		                    </p>
 		                </div>
 		            </div>
 		            <div className="col-md-4 item-wrapper">
 		                <img src={smallImroot} className="item-thumbnail" />
-		                <h3>LocoCoin</h3>
+		                <h3>BitKitties</h3>
 		                <ul className="details-list">
 		                    <li>
 		                        <span>TOKENS</span>
-		                        <p>827 LCC</p>
-		                    </li>
-		                    <li>
-		                        <span>PRICE</span>
-		                        <p>0.05 ETH</p>
-		                    </li>
-		                    <li>
-		                        <span>DISCOUNT</span>
-		                        <p>15%</p>
-		                    </li>
-		                </ul>
-		            </div>
-		            <div className="col-md-4 item-wrapper">
-		                <img src={smallImroot} className="item-thumbnail" />
-		                <h3>Kapital</h3>
-		                <ul className="details-list">
-		                    <li>
-		                        <span>TOKENS</span>
-		                        <p>1,211 KAP</p>
+		                        <p>50 BTK</p>
 		                    </li>
 		                    <li>
 		                        <span>PRICE</span>
@@ -178,9 +185,85 @@ class Wallet extends Component {
 		                    </li>
 		                    <li>
 		                        <span>DISCOUNT</span>
-		                        <p>75%</p>
+		                        <p>50%</p>
 		                    </li>
 		                </ul>
+		                <div className="item-wrapper-foot">
+		                    <p className="wrapper-foot-title">TOKEN LOCKUP ENDS</p>
+		                    <p className="time">
+		                    	<p className="timestep">
+		                    		04:
+		                    		<span className="timetag">
+		                    			Days
+		                    		</span>
+		                    	</p>
+		                    	<p className="timestep">
+		                    		12:
+		                    		<span className="timetag">
+		                    			Hours
+		                    		</span>
+		                    	</p>
+		                    	<p className="timestep">
+		                    		09:
+		                    		<span className="timetag">
+		                    			Minutes
+		                    		</span>
+		                    	</p>
+		                    	<p className="timestep">
+		                    		22
+		                    		<span className="timetag">
+		                    			Seconds
+		                    		</span>
+		                    	</p>
+		                    </p>
+		                </div>
+		            </div>
+		            <div className="col-md-4 item-wrapper">
+		                <img src={smallImroot} className="item-thumbnail" />
+		                <h3>BitKitties</h3>
+		                <ul className="details-list">
+		                    <li>
+		                        <span>TOKENS</span>
+		                        <p>50 BTK</p>
+		                    </li>
+		                    <li>
+		                        <span>PRICE</span>
+		                        <p>0.01 ETH</p>
+		                    </li>
+		                    <li>
+		                        <span>DISCOUNT</span>
+		                        <p>50%</p>
+		                    </li>
+		                </ul>
+		                <div className="item-wrapper-foot">
+		                    <p className="wrapper-foot-title">TOKEN LOCKUP ENDS</p>
+		                    <p className="time">
+		                    	<p className="timestep">
+		                    		04:
+		                    		<span className="timetag">
+		                    			Days
+		                    		</span>
+		                    	</p>
+		                    	<p className="timestep">
+		                    		12:
+		                    		<span className="timetag">
+		                    			Hours
+		                    		</span>
+		                    	</p>
+		                    	<p className="timestep">
+		                    		09:
+		                    		<span className="timetag">
+		                    			Minutes
+		                    		</span>
+		                    	</p>
+		                    	<p className="timestep">
+		                    		22
+		                    		<span className="timetag">
+		                    			Seconds
+		                    		</span>
+		                    	</p>
+		                    </p>
+		                </div>
 		            </div>
 		        </div>
 		    </div>
