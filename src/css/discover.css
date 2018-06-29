@@ -152,20 +152,20 @@
 .main-content-networks {
     padding: 0px 50px;
 }
+.main-content-networks-title { padding: 35px 0px; }
 .main-content-networks-title h2 {
-    /* Token Networks: */
     font-weight: 600;
     font-size: 29px;
     color: #2E4168;
     letter-spacing: 1px;
-    /* Shape: 
-    opacity: 0.23;
-    background: #0942AA;
-    border: 1px solid #003EB1;
-    /* Shape Copy: 
-    background: #2E4168;
-    border: 1px solid #2E4168;  */
     float: left;
+}
+.featured-guilds-wrapper h2 {
+    font-weight: 600;
+    font-size: 29px;
+    color: #2E4168;
+    letter-spacing: 1px;
+    padding: 35px 0px;
 }
 .main-content-networks-title .nav-arrows {
     float: right;
@@ -232,11 +232,15 @@
     min-height: 70px;
     display: inline-block;
     list-style: none;
-    width: 33%;
+    width: 31%;
     background: #FFFFFF;
     border: 1px solid #EDEDED;
     box-shadow: 0 4px 12px 0 rgba(217,217,217,0.50);
     border-radius: 12px;
+    margin-right: 2%; 
+}
+.featured-guilds-wrapper-list li:nth-child(3) {
+    margin-right: 0px !important;
 }
 .featured-guilds-wrapper-list li h4{
     font-size: 16px;
@@ -260,6 +264,10 @@
 .featured-guilds-wrapper-list li .follow-foot {
     height: 35px;
     padding: 0px 15px;
+    border-top: 1px solid #f2f2f2;
+    padding-top: 5px;
+    width: 90%;
+    margin: 0px auto;
 }
 .featured-guilds-wrapper-list li .follow-foot span {
     font-size: 14px;
@@ -315,7 +323,15 @@
     height: 55px;
     line-height: 55px;
     display: inline-block;
+    padding: 0px 25px;
 }
+.radio-sel {
+    padding: 0px 15px;
+    height: 55px;
+    line-height: 55px;
+    border: 1px solid #E3E5EB;
+}
+.radio-sel input { margin-right: 10px; }
 .main-input-items .sort-menu { float: left; }
 .main-input-items .right-params { float: right; }
 .main-input-items .right-params li { 
@@ -325,3 +341,13 @@
 
 
 .total-comments { padding-top: 0px; }
+
+.main-list-items {
+    padding: 0px 50px;
+}
+.main-list-items .game-token {
+    background-color: #ffffff;
+    border: solid 1px #ececed;
+    padding: 25px 25px;
+    margin-bottom: 25px;
+}

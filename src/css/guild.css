@@ -1,6 +1,9 @@
 .left-side {
     border-radius: 6px 6px 0px 0px;
 }
+.members-main-wrapper {
+    margin-top: 50px;
+}
 .members-top-title h2 {
 	/* Members (12): */
 	font-family: .SFNSDisplay;
@@ -124,4 +127,13 @@
     padding-top: 22px;
     margin-top: 32px;
     width: 80%;
+}
+.main-bottom-list-wrapper {
+    margin-top: 50px;
+}
+.main-bottom-list-wrapper .game-token {
+    background-color: #ffffff;
+    border: solid 1px #ececed;
+    padding: 25px 25px;
+    margin-bottom: 25px;
 }

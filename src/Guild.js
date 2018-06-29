@@ -12,6 +12,15 @@ const iconIm = require('./images/icon.png');
 const starsIm = require('./images/guild/stars.png');
 const smallImroot = require('./images/small-img.png');
 
+// USER IMAGES 
+const imuser1 = require('./images/guild/members/mem1.png');
+const imuser2 = require('./images/guild/members/mem2.png');
+const imuser3 = require('./images/guild/members/mem3.png');
+const imuser4 = require('./images/guild/members/mem4.png');
+const imuser5 = require('./images/guild/members/mem5.png');
+const imuser6 = require('./images/guild/members/mem6.png');
+const imuser7 = require('./images/guild/members/mem7.png');
+
 class Guild extends Component {
   render() {
     return (
@@ -46,78 +55,78 @@ class Guild extends Component {
 		<div className="content-wrapper">
 		    <div className="container">
 		        <div className="row">
-		            <div className="col-md-12">
+		            <div className="col-md-12 members-main-wrapper">
 		                <div className="left-side">
 		                    <div className="members-top-title">
 		                        <h2>Members (12)</h2>
 		                        <a href="#" className="more-members-cto">See All Members</a>
 		                        <div className="clearfix"></div>
 		                    </div>
-		                    <ul className="members-list">
-		                        <li>
-		                            <div className="im-holder"></div>
-		                            <span className="member-name">@matta</span>
-		                            <p>
-		                                0x92763
-		                                <br />
-		                                Rep: 1,248
-		                            </p>
-		                        </li>
-		                        <li>
-		                            <div className="im-holder"></div>
-		                            <span className="member-name">@matta</span>
-		                            <p>
-		                                0x92763
-		                                <br />
-		                                Rep: 1,248
-		                            </p>
-		                        </li>
-		                        <li>
-		                            <div className="im-holder"></div>
-		                            <span className="member-name">@matta</span>
-		                            <p>
-		                                0x92763
-		                                <br />
-		                                Rep: 1,248
-		                            </p>
-		                        </li>
-		                        <li>
-		                            <div className="im-holder"></div>
-		                            <span className="member-name">@matta</span>
-		                            <p>
-		                                0x92763
-		                                <br />
-		                                Rep: 1,248
-		                            </p>
-		                        </li>
-		                        <li>
-		                            <div className="im-holder"></div>
-		                            <span className="member-name">@matta</span>
-		                            <p>
-		                                0x92763
-		                                <br />
-		                                Rep: 1,248
-		                            </p>
-		                        </li>
-		                        <li>
-		                            <div className="im-holder"></div>
-		                            <span className="member-name">@matta</span>
-		                            <p>
-		                                0x92763
-		                                <br />
-		                                Rep: 1,248
-		                            </p>
-		                        </li>
-		                        <li>
-		                            <div className="im-holder"></div>
-		                            <span className="member-name">@matta</span>
-		                            <p>
-		                                0x92763
-		                                <br />
-		                                Rep: 1,248
-		                            </p>
-		                        </li>
-		                    </ul>
+						<ul className="members-list">
+                        <li>
+                            <div className="im-holder" style={{background: 'url("'+imuser1+'")'}}></div>
+                            <span className="member-name">@matta</span>
+                            <p>
+                                0x92763
+                                <br/>
+                                Rep: 1,248
+                            </p>
+                        </li>
+                        <li>
+                            <div className="im-holder" style={{background: 'url("'+imuser2+'")'}}></div>
+                            <span className="member-name">@matta</span>
+                            <p>
+                                0x92763
+                                <br/>
+                                Rep: 1,248
+                            </p>
+                        </li>
+                        <li>
+                            <div className="im-holder" style={{background: 'url("'+imuser3+'")'}}></div>
+                            <span className="member-name">@matta</span>
+                            <p>
+                                0x92763
+                                <br/>
+                                Rep: 1,248
+                            </p>
+                        </li>
+                        <li>
+                            <div className="im-holder" style={{background: 'url("'+imuser4+'")'}}></div>
+                            <span className="member-name">@matta</span>
+                            <p>
+                                0x92763
+                                <br/>
+                                Rep: 1,248
+                            </p>
+                        </li>
+                        <li>
+                            <div className="im-holder" style={{background: 'url("'+imuser5+'")'}}></div>
+                            <span className="member-name">@matta</span>
+                            <p>
+                                0x92763
+                                <br/>
+                                Rep: 1,248
+                            </p>
+                        </li>
+                        <li>
+                            <div className="im-holder" style={{background: 'url("'+imuser6+'")'}}></div>
+                            <span className="member-name">@matta</span>
+                            <p>
+                                0x92763
+                                <br/>
+                                Rep: 1,248
+                            </p>
+                        </li>
+                        <li>
+                            <div className="im-holder" style={{background: 'url("'+imuser7+'")'}}></div>
+                            <span className="member-name">@matta</span>
+                            <p>
+                                0x92763
+                                <br/>
+                                Rep: 1,248
+                            </p>
+                        </li>
+                    </ul>
 		                    
 		                </div>
 		                <div className="members-bottom-sec">
@@ -144,7 +153,7 @@ class Guild extends Component {
 
 		                </div>
 		            </div>
-		            <div className="col-md-12">
+		            <div className="col-md-12 main-bottom-list-wrapper">
 		                 <ul className="top-panels-menu">
 		                    <li><a href="#" className="active">Open Sales (3)</a></li>
 		                    <li><a href="#">Past (234)</a></li>
