@@ -1,94 +1,96 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { withEth } from './EthContext'
+import Message from './messaging/Message'
+import MessageForm from './messaging/MessageForm'
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/sb-admin.css';
 
-const userIm = require('./images/user-1.png');
-const user2Im = require('./images/user-2.png');
+
 
 class ReviewBoard extends Component {
 
-    state = {
-    }
-
+    state = { 
+        messages: [], 
+        topFive: false 
+    };
+    
     constructor() {
         super()
 
+        this.refreshMessages = this.refreshMessages.bind(this)
+        this.onSubmitMessage = this.onSubmitMessage.bind(this)
     }
 
     componentDidMount() {
+        this.props.eth.client.subscribeMessages(this.refreshMessages);
+        this.refreshMessages();
     }
-
+    
     componentWillUnmount() {
     }
 
+    refreshMessages() {
+        this.props.eth.client.getLocalMessages()
+            .then(messages => this.setState({ messages }));
+    }
+
+    onSubmitMessage(messageBody) {
+        return this.props.eth.client.createMessage(messageBody);
+    }
+
+    topFiveMessages() {
+        return this.state.messages.filter(m => this.props.eth.client.topicOffset(m.hash) > this.props.eth.client.epoch)
+            .sort((a, b) => {
+                if(this.props.eth.client.getVotes(a.hash) > this.props.eth.client.getVotes(b.hash)) {
+                    return -1;
+                }
+
+                if(this.props.eth.client.getVotes(a.hash) < this.props.eth.client.getVotes(b.hash)) {
+                    return 1;
+                }
+
+                return 0;
+            })
+            .slice(0, 5)
+    }
+
+    renderMessagesFilterButton() {
+        if(this.state.topFive) {
+            return (<button onClick={() => this.setState({topFive: false})}>View All Messages</button>)
+        } else {
+            return (<button onClick={() => this.setState({topFive: true})}>View Top Five Messages</button>)
+        }
+    }
+
+    renderMessages() {
+        if (this.state.messages.length === 0) return (<p>There are no messages.</p>);
+
+        const messages = this.state.topFive ? this.topFiveMessages() : this.state.messages;
+
+        return messages.map((message, index) => {
+            return (
+                <Message key={`${index}-${message.hash}`}
+                         hash={message.hash}
+                         votes={this.props.eth.client.getVotes(message.hash)}
+                         type={"parent"}
+                         client={this.props.eth.client}
+                         body={message.body}/>);
+        });
+    }
+
+
     render() {
         return (
-
             <div className="expert-reviews-1 left-side">
                 <div className="comments">
                     <ul>
-                        <li className="borderis">
-                            <div className="icon"><img src={userIm} alt=""/></div>
-                            <div className="content">
-                                <h3 className="tag-name">@wethefuture <span className="points">255 points </span> <span
-                                    className="time">15 hours ago</span> <span
-                                    className="btn">Team</span></h3>
-                                <div className="comments-text">Many meows ago, we had this idea – what if we built a
-                                    game on the blockchain. We had no idea what
-                                    tho. You’re probably like, ‘you got to be kitten me’, but really - we just knew we
-                                    wanted a game! So here we are. Hope
-                                    you have fun! Live long and prospurr.
-                                </div>
-                                <div className="comments-review">
-                                    <span><i className="fa fa-caret-up"></i> Upvote (12)</span>
-                                    <span><i className="fa fa-caret-down"></i> Downvote </span>
-                                    <span>Reply</span>
-                                    <span>Permalink</span>
-                                    <span>Report</span>
-                                </div>
-                            </div>
+                        { this.renderMessages() }
 
-                            <ul>
-                                <li>
-                                    <div className="icon"><img src={user2Im} alt=""/></div>
-                                    <div className="content">
-                                        <h3 className="tag-name">@s0l0 <span className="points">12 points </span> <span
-                                            className="time">22 hours ago </span></h3>
-                                        <div className="comments-text">I think this project is an interesting use of
-                                            blockchain technology and who doesn’t lo…
-                                        </div>
-                                        <div className="comments-review">
-                                            <span><em className="blue"><i className="fa fa-caret-up"></i> Upvote </em>(12)</span>
-                                            <span><i className="fa fa-caret-down"></i> Downvote </span>
-                                            <span>Reply</span>
-                                            <span>Permalink</span>
-                                            <span>Report</span>
-                                        </div>
-                                        <div className="comments-review">
-                                            <em className="blue">Load More Comments </em>(122 replies)
-                                        </div>
-                                        <textarea name="" className="field" id="" cols="30" rows="10"></textarea>
-                                        <input type="submit" className="submit-btn"/>
-                                        <a href="" className="cancle-btn">Cancle</a>
-                                    </div>
-                                </li>
-
-                            </ul>
-                        </li>
                         <li>
-                            <div className="icon"><img src={userIm} alt=""/></div>
-                            <div className="content">
-                                <h3 className="tag-name">@gabbym <span className="points">255 points </span> <span
-                                    className="time">15 hours ago</span></h3>
-                                <div className="comments-text">CUUUUUUTE! Nice job guys! Can’t wait to try this out.
-                                </div>
-                                <div className="comments-review">
-                                    <span><i className="fa fa-caret-up"></i> Upvote (12)</span>
-                                    <span><i className="fa fa-caret-down"></i> Downvote </span>
-                                    <span>Reply</span>
-                                    <span>Permalink</span>
-                                    <span>Report</span>
-                                </div>
+                            <div className='content'>
+                                <MessageForm onSubmit={this.onSubmitMessage} />
                             </div>
                         </li>
                     </ul>
@@ -98,4 +100,5 @@ class ReviewBoard extends Component {
     }
 }
 
-export default ReviewBoard
+export default withEth(ReviewBoard)
+

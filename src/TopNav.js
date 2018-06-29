@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { withEth } from './EthContext'
+
 import './css/sb-admin.css';
 
 const smallIm = require('./images/guild/small-img.png');
@@ -22,20 +24,23 @@ class TopNav extends Component {
 		        </button>
 		        <div className="collapse navbar-collapse" id="navbarResponsive">
 		            <ul className="navbar-nav main ml-auto">
-		                <li className="nav-item"><a href="/" title="Explore">Discover</a></li>
-		                <li className="nav-item"><a href="/guild/" title="Discovery">Guilds</a></li>
-		                <li className="nav-item"><a href="/wallet/" title="Connections">My Wallet</a></li>
+		                <li className="nav-item"><a href="/" title="Discover">Discover</a></li>
+		                <li className="nav-item"><a href="/guild/" title="Guilds">Guilds</a></li>
+		                <li className="nav-item"><a href="/wallet/" title="Wallet">Wallet</a></li>
 		            </ul>
 		            <ul className="navbar-nav ml-auto">
 		                <li className="nav-item">
 		                    <form className="form-inline my-2 my-lg-0 mr-lg-2">
+                                <ul className="navbar-nav main ml-auto">
+                                    <li className="nav-item"><a href="/wallet/" title="Wallet">${this.props.eth.account} ${this.props.eth.balance} MET</a></li>
+								</ul>
 		                        <div className="input-group">
 		                            <input className="form-control" type="text" placeholder="Search for..." />
-		              <span className="input-group-append">
-		                <button className="btn btn-primary" type="button">
-		                    <i className="fa fa-search"></i>
-		                </button>
-		              </span>
+									<span className="input-group-append">
+										<button className="btn btn-primary" type="button">
+											<i className="fa fa-search"></i>
+										</button>
+									</span>
 		                        </div>
 		                    </form>
 		                </li>
@@ -89,4 +94,4 @@ class TopNav extends Component {
   }
 }
 
-export default TopNav;
+export default withEth(TopNav)

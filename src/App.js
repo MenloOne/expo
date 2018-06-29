@@ -4,13 +4,59 @@ import Discover from './Discover';
 import Wallet from './Wallet';
 import Guild from './Guild';
 import Profile from './Profile';
+import { client, EthContext } from './EthContext'
 
-export default () =>
-(<BrowserRouter>
-	<Switch>
-	<Route path="/" exact component={Discover}/>
-	<Route path="/wallet" exact component={Wallet}/>
-	<Route path="/guild" exact component={Guild}/>
-	<Route path="/profile" exact component={Profile}/>
-	</Switch>
-</BrowserRouter>);
+class App extends React.Component {
+
+	state = {
+		ethContext: {
+            client,
+            account: '',
+            balance: '-',
+			isAuthenticated: false,
+			isLoading: true,
+			refreshAccount: () => {}
+		}
+	}
+
+	constructor() {
+		super()
+
+		this.refreshAccount = this.refreshAccount.bind(this)
+	}
+
+	refreshAccount() {
+		this.props.client.getAccountDetails()
+			.then(({ account, balance }) => this.setState({
+                client,
+				account,
+				balance,
+                isAuthenticated: true,
+				isLoading: false,
+				refreshAccount: this.refreshAccount
+			}))
+			.catch(() => this.setState({
+                client,
+                isAuthenticated: false,
+				isLoading: false,
+                refreshAccount: this.refreshAccount
+			}));
+    }
+
+    render() {
+        return (
+            <EthContext.Provider value={this.state.ethContext}>
+                <BrowserRouter>
+                    <Switch>
+                        <Route path="/" exact component={Discover}/>
+                        <Route path="/wallet" exact component={Wallet}/>
+                        <Route path="/guild" exact component={Guild}/>
+                        <Route path="/profile" exact component={Profile}/>
+                    </Switch>
+                </BrowserRouter>
+            </EthContext.Provider>
+        )
+    }
+}
+
+export default App

@@ -8,7 +8,7 @@ class Discover extends Component {
   render() {
     return (
     	<div>
-    	<TopNav />
+		<TopNav/>
 		<div className="content-wrapper ">
 			<div className="row">
 				<div className="col-md-3 discover-sidebar">

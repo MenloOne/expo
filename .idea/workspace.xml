@@ -2,14 +2,229 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ac300f01-e258-487d-8ecc-b03467632b9a" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/townhall-ui.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/townhall-ui.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.env.development" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/Chrome.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/contracts/AppToken.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/contracts/Forum.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/contracts/Lottery.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/contracts/Migrations.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/contracts/Redeemer.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/contracts/Sponsored.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/contracts/Token.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/contracts/abi/AppToken.abi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/contracts/abi/Forum.abi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/contracts/abi/Lottery.abi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/ds-auth/auth.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/ds-math/math.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/ds-note/note.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/ds-stop/stop.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/ds-token/base.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/ds-token/factory.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/ds-token/token.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/erc20/erc20.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/.babelrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/.jshintrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/.solcover.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/.soliumignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/.soliumrc.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/CONTRIBUTING.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/audit/ZeppelinAudit.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/Bounty.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/DayLimit.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/ECRecovery.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/LimitBalance.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/MerkleProof.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/ReentrancyGuard.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/crowdsale/CappedCrowdsale.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/crowdsale/Crowdsale.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/crowdsale/FinalizableCrowdsale.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/crowdsale/RefundVault.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/crowdsale/RefundableCrowdsale.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/examples/SampleCrowdsale.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/examples/SimpleToken.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/lifecycle/Destructible.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/lifecycle/Migrations.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/lifecycle/Pausable.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/lifecycle/TokenDestructible.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/math/Math.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/math/SafeMath.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/ownership/CanReclaimToken.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/ownership/Claimable.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/ownership/Contactable.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/ownership/DelayedClaimable.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/ownership/HasNoContracts.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/ownership/HasNoEther.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/ownership/HasNoTokens.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/ownership/NoOwner.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/ownership/Ownable.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/payment/PullPayment.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/token/BasicToken.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/token/BurnableToken.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/token/ERC20.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/token/ERC20Basic.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/token/LimitedTransferToken.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/token/MintableToken.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/token/PausableToken.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/token/SafeERC20.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/token/StandardToken.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/token/TokenTimelock.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/contracts/token/VestedToken.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/docs/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/docs/source/basictoken.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/docs/source/bounty.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/docs/source/claimable.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/docs/source/conf.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/docs/source/contract-security-patterns.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/docs/source/developer-resources.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/docs/source/ecrecovery.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/docs/source/getting-started.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/docs/source/index.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/docs/source/killable.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/docs/source/license.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/docs/source/limitbalance.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/docs/source/math.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/docs/source/merkleproof.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/docs/source/migrations.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/docs/source/ownable.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/docs/source/pausable.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/docs/source/pullpayment.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/docs/source/safemath.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/docs/source/standardtoken.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/ethpm.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/migrations/1_initial_migration.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/migrations/2_deploy_contracts.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/scripts/coverage.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/scripts/test.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/BasicToken.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/Bounty.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/BurnableToken.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/CanReclaimToken.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/CappedCrowdsale.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/Claimable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/Contactable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/Crowdsale.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/DayLimit.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/DelayedClaimble.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/Destructible.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/ECRecovery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/FinalizableCrowdsale.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/HasNoContracts.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/HasNoEther.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/HasNoTokens.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/LimitBalance.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/MerkleProof.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/MintableToken.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/Ownable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/Pausable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/PausableToken.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/PullPayment.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/ReentrancyGuard.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/RefundVault.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/RefundableCrowdsale.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/SafeERC20.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/SafeMath.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/SampleCrowdsale.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/StandardToken.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/TokenDestructible.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/TokenTimelock.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/VestedToken.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/helpers/BasicTokenMock.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/helpers/BurnableTokenMock.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/helpers/CappedCrowdsaleImpl.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/helpers/DayLimitMock.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/helpers/ERC23TokenMock.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/helpers/EVMThrow.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/helpers/FinalizableCrowdsaleImpl.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/helpers/ForceEther.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/helpers/HasNoEtherTest.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/helpers/InsecureTargetBounty.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/helpers/LimitBalanceMock.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/helpers/PausableMock.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/helpers/PausableTokenMock.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/helpers/PullPaymentMock.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/helpers/ReentrancyAttack.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/helpers/ReentrancyMock.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/helpers/RefundableCrowdsaleImpl.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/helpers/SafeERC20Helper.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/helpers/SafeMathMock.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/helpers/SecureTargetBounty.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/helpers/StandardTokenMock.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/helpers/VestedTokenMock.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/helpers/advanceToBlock.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/helpers/assertJump.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/helpers/ether.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/helpers/expectThrow.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/helpers/hashMessage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/helpers/increaseTime.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/helpers/latestTime.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/helpers/merkleTree.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/helpers/timer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/helpers/toPromise.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/test/helpers/transactionMined.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/truffle-config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/yarn.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/1_initial_migration.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/2_deploy_token_contract.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/3_deploy_forum_contract.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/4_deploy_lottery_contract.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/5_fund_poster.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/5_personal_account.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ngrok.tls.config" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/create-accounts.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/install-ipfs.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/menlo-parity-start.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/menlo-setup.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/parity-unlocked-dev.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/parity.passwords" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shipitfile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Client.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Client.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/EthContext.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/HashUtils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/HashUtils.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/MessageBoardError.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/contracts/EthereumForum.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/contracts/EthereumLottery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/contracts/Forum.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/contracts/MemoryContract.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/contracts/MemoryForum.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/messaging/AccountDetails.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/messaging/AccountDetails.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/messaging/App.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/messaging/Message.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/messaging/Message.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/messaging/Message.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/messaging/MessageForm.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/messaging/MessageForm.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/messaging/MessagesContainer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/messaging/MessagesContainer.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/messaging/PayoutsContainer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/setupTests.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/storage/JavascriptIPFSStorage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/storage/MessageBoardGraph.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/storage/MessageBoardGraph.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/storage/RemoteIPFSStorage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/web3_override.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/startngrok" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/truffle.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ChartComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChartComponent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Discover.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Discover.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Profile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Wallet.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Wallet.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ReviewBoard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/ReviewBoard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TopNav.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/TopNav.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/css/sb-admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/sb-admin.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registerServiceWorker.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registerServiceWorker.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,68 +235,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Wallet.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Wallet.js">
+      <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1410">
-              <caret line="94" column="18" selection-start-line="94" selection-start-column="18" selection-end-line="94" selection-end-column="18" />
+            <state relative-caret-position="284">
+              <caret line="38" column="22" selection-start-line="38" selection-start-column="22" selection-end-line="38" selection-end-column="22" />
               <folding>
-                <element signature="e#0#41#0" expanded="true" />
+                <element signature="e#0#26#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ChartComponent.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ChartComponent.js">
+      <file leaf-file-name="EthereumForum.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/contracts/EthereumForum.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" selection-start-line="5" selection-end-line="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="network.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/internals/config/network.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" selection-start-line="7" selection-end-line="7" />
-              <folding>
-                <element signature="e#16#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="utils.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/utils.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="29" column="18" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
-              <folding>
-                <element signature="e#0#45#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Profile.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Profile.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="467">
-              <caret line="82" column="5" lean-forward="true" selection-start-line="82" selection-start-column="5" selection-end-line="82" selection-end-column="5" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.d.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/react-chartjs-2/index.d.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+            <state relative-caret-position="442">
+              <caret line="63" column="26" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="26" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -89,25 +259,92 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="package-lock.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/package-lock.json">
+      <file leaf-file-name="Discover.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Discover.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+            <state relative-caret-position="229">
+              <caret line="227" column="64" selection-start-line="227" selection-start-column="64" selection-end-line="227" selection-end-column="64" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/package.json">
-          <provider selected="true" editor-type-id="text-editor" />
+      <file leaf-file-name="sb-admin.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/css/sb-admin.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="236">
+              <caret line="29" column="1" lean-forward="true" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
+            </state>
+          </provider>
         </entry>
       </file>
-      <file leaf-file-name="wallet.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/css/wallet.css">
+      <file leaf-file-name="TopNav.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/TopNav.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+            <state relative-caret-position="388">
+              <caret line="96" column="19" selection-start-line="96" selection-start-column="19" selection-end-line="96" selection-end-column="19" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EthContext.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/EthContext.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="87">
+              <caret line="17" column="15" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReviewBoard.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ReviewBoard.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="223">
+              <caret line="92" column="41" lean-forward="true" selection-start-line="92" selection-start-column="41" selection-end-line="92" selection-end-column="41" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MessageForm.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/messaging/MessageForm.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="327">
+              <caret line="59" column="48" selection-start-line="59" selection-start-column="48" selection-end-line="59" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Profile.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Profile.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="11" column="44" lean-forward="true" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EthereumLottery.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/contracts/EthereumLottery.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="343">
+              <caret line="94" column="31" lean-forward="true" selection-start-line="94" selection-start-column="31" selection-end-line="94" selection-end-column="31" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -116,8 +353,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>&lt;chart</find>
-      <find>LineChart</find>
       <find>&quot;</find>
       <find>linechart</find>
       <find>Line</find>
@@ -133,9 +368,25 @@
       <find>getdata</find>
       <find>ETH</find>
       <find>onediteth</find>
+      <find>onedittok</find>
+      <find>kitt</find>
+      <find>bitk</find>
+      <find>i think this pro</find>
+      <find>view</find>
+      <find>Forum</find>
+      <find>epoch</find>
+      <find>.then(</find>
+      <find>eth.</find>
+      <find>ethcli</find>
+      <find>recommended-for-you</find>
+      <find>segoe ui</find>
+      <find>-appl</find>
+      <find>game-detail</find>
+      <find>this.eth</find>
     </findStrings>
     <replaceStrings>
       <replace>'</replace>
+      <replace>this.props.eth.client</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -151,7 +402,21 @@
         <option value="$PROJECT_DIR$/src/ChartComponent.js" />
         <option value="$PROJECT_DIR$/src/internals/config/network.js" />
         <option value="$PROJECT_DIR$/src/utils.js" />
+        <option value="$PROJECT_DIR$/src/index.js" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/src/messaging/MessageForm.js" />
+        <option value="$PROJECT_DIR$/src/messaging/Message.js" />
+        <option value="$PROJECT_DIR$/src/messaging/AccountDetails.js" />
+        <option value="$PROJECT_DIR$/src/storage/JavascriptIPFSStorage.js" />
+        <option value="$PROJECT_DIR$/src/contracts/EthereumForum.js" />
+        <option value="$PROJECT_DIR$/src/contracts/EthereumLottery.js" />
+        <option value="$PROJECT_DIR$/src/Discover.js" />
+        <option value="$PROJECT_DIR$/src/TopNav.js" />
+        <option value="$PROJECT_DIR$/src/EthContext.js" />
+        <option value="$PROJECT_DIR$/src/App.js" />
+        <option value="$PROJECT_DIR$/src/ReviewBoard.js" />
         <option value="$PROJECT_DIR$/src/Profile.js" />
+        <option value="$PROJECT_DIR$/src/css/sb-admin.css" />
       </list>
     </option>
   </component>
@@ -166,6 +431,7 @@
   </component>
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths>
+      <path value="$PROJECT_DIR$/installed_contracts/zeppelin-solidity/package.json" />
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
@@ -183,9 +449,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
       <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -196,7 +462,24 @@
             <path>
               <item name="townhall-ui" type="b2602c69:ProjectViewProjectNode" />
               <item name="townhall-ui" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="townhall-ui" type="b2602c69:ProjectViewProjectNode" />
+              <item name="townhall-ui" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+              <item name="runConfigurations" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="townhall-ui" type="b2602c69:ProjectViewProjectNode" />
+              <item name="townhall-ui" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="townhall-ui" type="b2602c69:ProjectViewProjectNode" />
+              <item name="townhall-ui" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="contracts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="townhall-ui" type="b2602c69:ProjectViewProjectNode" />
@@ -208,20 +491,13 @@
               <item name="townhall-ui" type="b2602c69:ProjectViewProjectNode" />
               <item name="townhall-ui" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
+              <item name="messaging" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="townhall-ui" type="b2602c69:ProjectViewProjectNode" />
               <item name="townhall-ui" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="internals" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="townhall-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="townhall-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="internals" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="storage" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -230,11 +506,11 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="dis&#9;null&#9;null&#10;nav&#9;FILE&#9;file:///Users/dave/Code/townhall-ui/src/TopNav.js&#10;network.j&#9;FILE&#9;file:///Users/dave/Code/townhall-ui/src/internals/config/network.js&#10;c&#9;FILE&#9;file:///Users/dave/Code/townhall-ui/src/ChartComponent.js&#10;chartcom&#9;null&#9;null&#10;wallet&#9;FILE&#9;file:///Users/dave/Code/townhall-ui/src/Wallet.js" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/dave/Code/townhall-ui/src/css/sb-admin.css&#10;re&#9;FILE&#9;file:///Users/dave/Code/townhall-ui/src/ReviewBoard.js&#10;sb-&#9;FILE&#9;file:///Users/dave/Code/townhall-ui/src/css/sb-admin.css&#10;disc&#9;FILE&#9;file:///Users/dave/Code/townhall-ui/src/Discover.js&#10;prof&#9;FILE&#9;file:///Users/dave/Code/townhall-ui/src/Profile.js&#10;rev&#9;FILE&#9;file:///Users/dave/Code/townhall-ui/src/ReviewBoard.js&#10;app.&#9;FILE&#9;file:///Users/dave/Code/townhall-ui/src/App.js&#10;review&#9;FILE&#9;file:///Users/dave/Code/townhall-ui/src/ReviewBoard.js&#10;topn&#9;FILE&#9;file:///Users/dave/Code/townhall-ui/src/TopNav.js&#10;dis&#9;FILE&#9;file:///Users/dave/Code/townhall-ui/src/Discover.js&#10;app&#9;FILE&#9;file:///Users/dave/Code/townhall-ui/src/App.js&#10;Ethe&#9;FILE&#9;file:///Users/dave/Code/townhall-ui/src/contracts/EthereumForum.js&#10;disco&#9;FILE&#9;file:///Users/dave/Code/townhall-ui/src/Discover.js&#10;java&#9;null&#9;null&#10;Disco&#9;FILE&#9;file:///Users/dave/Code/townhall-ui/src/Discover.js&#10;chrome.x&#9;FILE&#9;file:///Users/dave/Code/townhall-ui/.idea/runConfigurations/Chrome.xml&#10;ind&#9;FILE&#9;file:///Users/dave/Code/townhall-ui/src/index.js&#10;ethcon&#9;FILE&#9;file:///Users/dave/Code/townhall-ui/src/EthContext.js&#10;Mes&#9;FILE&#9;file:///Users/dave/Code/townhall-ui/src/messaging/Message.js&#10;App&#9;FILE&#9;file:///Users/dave/Code/townhall-ui/src/App.js&#10;Re&#9;FILE&#9;file:///Users/dave/Code/townhall-ui/src/ReviewBoard.js&#10;App.js&#9;FILE&#9;file:///Users/dave/Code/townhall-ui/src/App.js&#10;topnav&#9;FILE&#9;file:///Users/dave/Code/townhall-ui/src/TopNav.js&#10;nav.j&#9;FILE&#9;file:///Users/dave/Code/townhall-ui/src/TopNav.js&#10;profil&#9;FILE&#9;file:///Users/dave/Code/townhall-ui/src/Profile.js&#10;pac&#9;FILE&#9;file:///Users/dave/Code/townhall-ui/package.json&#10;nav&#9;FILE&#9;file:///Users/dave/Code/townhall-ui/src/TopNav.js&#10;network.j&#9;FILE&#9;file:///Users/dave/Code/townhall-ui/src/internals/config/network.js&#10;c&#9;FILE&#9;file:///Users/dave/Code/townhall-ui/src/ChartComponent.js&#10;chartcom&#9;null&#9;null&#10;wallet&#9;FILE&#9;file:///Users/dave/Code/townhall-ui/src/Wallet.js" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -268,6 +544,7 @@
       </option>
       <patterns />
     </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" engineId="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" uri="http://localhost:3000" />
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -303,12 +580,15 @@
       <updated>1530078157442</updated>
       <workItem from="1530078162785" duration="2311000" />
       <workItem from="1530081107908" duration="955000" />
-      <workItem from="1530172450920" duration="4903000" />
+      <workItem from="1530172450920" duration="6087000" />
+      <workItem from="1530203682808" duration="6396000" />
+      <workItem from="1530249805855" duration="254000" />
+      <workItem from="1530250104197" duration="1338000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8169000" />
+    <option name="totallyTimeSpent" value="17341000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="132" y="23" width="1400" height="1027" extended-state="0" />
@@ -322,23 +602,23 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
-      <window_info anchor="bottom" id="TypeScript" order="7" />
       <window_info id="Designer" order="2" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32948583" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.39979014" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TypeScript" order="7" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -350,14 +630,93 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="8" />
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/node_modules/react-dom/cjs/react-dom.development.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197955">
+          <caret line="13197" column="5" lean-forward="true" selection-start-line="13197" selection-start-column="5" selection-end-line="13197" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Wallet.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1305">
+          <caret line="93" column="18" selection-start-line="93" selection-start-column="18" selection-end-line="93" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ChartComponent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/internals/config/network.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="29" column="18" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Profile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1215">
+          <caret line="85" column="12" lean-forward="true" selection-end-line="85" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TopNav.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1140">
+          <caret line="78" column="63" selection-start-line="78" selection-start-column="63" selection-end-line="78" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Discover.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="18" column="39" lean-forward="true" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-chartjs-2/index.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package-lock.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ReviewBoard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Wallet.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -375,9 +734,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="645">
           <caret line="43" column="13" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -405,9 +761,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/css/wallet.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -424,11 +777,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/react-chartjs-2/index.d.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
+        <state relative-caret-position="225">
           <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -441,11 +791,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Wallet.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1410">
-          <caret line="94" column="18" selection-start-line="94" selection-start-column="18" selection-end-line="94" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1305">
+          <caret line="93" column="18" selection-start-line="93" selection-start-column="18" selection-end-line="93" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -457,15 +804,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/internals/config/private.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/internals/config/private.js" />
     <entry file="file://$PROJECT_DIR$/src/ChartComponent.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -475,31 +814,187 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/internals/config/network.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
+        <state relative-caret-position="90">
           <caret line="7" selection-start-line="7" selection-end-line="7" />
-          <folding>
-            <element signature="e#16#41#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/utils.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
+        <state relative-caret-position="390">
           <caret line="29" column="18" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/messaging/AccountDetails.test.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/messaging/Message.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Client.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/messaging/App.js" />
+    <entry file="file://$PROJECT_DIR$/src/messaging/App.test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
           <folding>
-            <element signature="e#0#45#0" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/runConfigurations/Chrome.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="12" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/contracts/Forum.test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/messaging/AccountDetails.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/storage/JavascriptIPFSStorage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="53" selection-start-line="53" selection-end-line="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-dom/cjs/react-dom.development.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="13203" column="21" selection-start-line="13203" selection-start-column="21" selection-end-line="13203" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/contracts/EthereumForum.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="63" column="26" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="26" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/contracts/EthereumLottery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="94" column="31" lean-forward="true" selection-start-line="94" selection-start-column="31" selection-end-line="94" selection-end-column="31" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TopNav.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="96" column="19" selection-start-line="96" selection-start-column="19" selection-end-line="96" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EthContext.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="87">
+          <caret line="17" column="15" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="38" column="22" selection-start-line="38" selection-start-column="22" selection-end-line="38" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Profile.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
-          <caret line="82" column="5" lean-forward="true" selection-start-line="82" selection-start-column="5" selection-end-line="82" selection-end-column="5" />
+        <state relative-caret-position="136">
+          <caret line="11" column="44" lean-forward="true" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Discover.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="227" column="64" selection-start-line="227" selection-start-column="64" selection-end-line="227" selection-end-column="64" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ReviewBoard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="92" column="41" lean-forward="true" selection-start-line="92" selection-start-column="41" selection-end-line="92" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/messaging/MessageForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="59" column="48" selection-start-line="59" selection-start-column="48" selection-end-line="59" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/css/sb-admin.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="29" column="1" lean-forward="true" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
         </state>
       </provider>
     </entry>

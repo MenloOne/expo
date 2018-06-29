@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import TopNav from './TopNav.js';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './css/sb-admin.css';
 import countdown from 'countdown'
 import ReviewBoard from './ReviewBoard'
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './css/sb-admin.css'
 
 const logo = require('./images/logo.jpg');
 const userIm = require('./images/user-1.png');
