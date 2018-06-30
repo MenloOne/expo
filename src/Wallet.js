@@ -169,6 +169,22 @@ class Wallet extends Component {
 		                    		</span>
 		                    	</p>
 		                    </p>
+		                    <p className="wrapper-foot-title title-to-left">TRADE THE MOMENT IT GOES LIVE</p>
+		                    <ul className="btn-sec">
+		                    	<li><a href="#" className="blue-btn">ETHERDELTA</a></li>
+		                    	<li><a href="#" className="blue-btn">AIRSWAP</a></li>
+		                    </ul>
+		                    
+		                    <ul className="trade-r-now-items">
+		                    	<li>
+		                    		<p className="wrapper-foot-title title-to-left">TRADE RIGHT NOW</p>
+		                    		<p className="foot-sub-title">FOMO OFFERS (7)</p>
+		                    	</li>
+		                    	<li>
+		                    		<p className="wrapper-foot-title title-to-left">PROFIT</p>
+		                    		<p className="foot-sub-title">23%</p>
+		                    	</li>
+		                    </ul>
 		                </div>
 		            </div>
 		            <div className="col-md-4 item-wrapper">
@@ -216,6 +232,22 @@ class Wallet extends Component {
 		                    		</span>
 		                    	</p>
 		                    </p>
+		                    <p className="wrapper-foot-title title-to-left">TRADE THE MOMENT IT GOES LIVE</p>
+		                    <ul className="btn-sec">
+		                    	<li><a href="#" className="blue-btn">ETHERDELTA</a></li>
+		                    	<li><a href="#" className="blue-btn">AIRSWAP</a></li>
+		                    </ul>
+		                    
+		                    <ul className="trade-r-now-items">
+		                    	<li>
+		                    		<p className="wrapper-foot-title title-to-left">TRADE RIGHT NOW</p>
+		                    		<p className="foot-sub-title">FOMO OFFERS (7)</p>
+		                    	</li>
+		                    	<li>
+		                    		<p className="wrapper-foot-title title-to-left">PROFIT</p>
+		                    		<p className="foot-sub-title">23%</p>
+		                    	</li>
+		                    </ul>
 		                </div>
 		            </div>
 		            <div className="col-md-4 item-wrapper">
@@ -263,6 +295,22 @@ class Wallet extends Component {
 		                    		</span>
 		                    	</p>
 		                    </p>
+		                    <p className="wrapper-foot-title title-to-left">TRADE THE MOMENT IT GOES LIVE</p>
+		                    <ul className="btn-sec">
+		                    	<li><a href="#" className="blue-btn">ETHERDELTA</a></li>
+		                    	<li><a href="#" className="blue-btn">AIRSWAP</a></li>
+		                    </ul>
+		                    
+		                    <ul className="trade-r-now-items">
+		                    	<li>
+		                    		<p className="wrapper-foot-title title-to-left">TRADE RIGHT NOW</p>
+		                    		<p className="foot-sub-title">FOMO OFFERS (7)</p>
+		                    	</li>
+		                    	<li>
+		                    		<p className="wrapper-foot-title title-to-left">PROFIT</p>
+		                    		<p className="foot-sub-title">23%</p>
+		                    	</li>
+		                    </ul>
 		                </div>
 		            </div>
 		        </div>
