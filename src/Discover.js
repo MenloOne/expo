@@ -3,10 +3,15 @@ import TopNav from './TopNav.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/sb-admin.css';
 import './css/discover.css';
+import './vendor/font-awesome/css/font-awesome.min.css';
 
 const euth_icon = require('./images/euth_icon.png');
 const hash_icon = require('./images/hash_icon.png');
 const image_trans = require('./images/image_trans.png');
+const userIm = require('./images/user-1.png');
+const user2Im = require('./images/user-2.png');
+const iconIm = require('./images/icon.png');
+const smallImroot = require('./images/small-img.png');
 
 class Discover extends Component {
   render() {
@@ -236,19 +241,19 @@ class Discover extends Component {
 									<div className="game-token shadow-sm">
 										<a href='/profile/'>
 									    <div className="container">
-									        <span className="game-img"><img src="images/small-img.png" alt="" /></span>
+									        <span className="game-img"><img src={smallImroot} alt="" /></span>
 												<div className="game-detail">
 													<h2>BitKitties</h2>
 													<p>A game where users win tokens for catching mice</p>
 													<div className="tw">
-														<span className="user-img"><img src="images/user-1.png" title="user" alt="user" /></span>
-														<span className="user-img"><img src="images/user-2.png" title="user" alt="user" /></span>
-														<span className="user-img"><img src="images/user-1.png" title="user" alt="user" /></span>
+														<span className="user-img"><img src={userIm} title="user" alt="user" /></span>
+														<span className="user-img"><img src={user2Im} title="user" alt="user" /></span>
+														<span className="user-img"><img src={userIm} title="user" alt="user" /></span>
 														<a href="#">6 friends</a> and 1,353 others committed to buying when sale opens
 													</div>
 												</div>
 												<div className="btn-top-right">
-													<a href="#" className="circle-btn" title=""><img src="images/icon.png" alt="" /></a>
+													<a href="#" className="circle-btn" title=""><img src={iconIm} alt="" /></a>
 													<a href="#" className="btn border-button" title="Watch">Allocated</a>
 												</div>
 											</div>

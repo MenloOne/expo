@@ -63,7 +63,7 @@ letter-spacing: 0;
 .item-wrapper .item-thumbnail {
     border-radius: 99px;
     margin-top: -50px;
-    border: 20px solid #fff;
+    border: 20px solid #F9FBFF;
 }
 .item-wrapper h3 {
     text-align: center;
@@ -188,6 +188,7 @@ letter-spacing: 0;
 .trade-r-now-items {
     margin: 0px;
     padding: 0px;
+    padding-bottom: 25px;
 }
 .trade-r-now-items li {
     list-style: none;

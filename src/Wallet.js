@@ -123,7 +123,7 @@ class Wallet extends Component {
 		</ul>
 		<div className="wallet-main-panels">
 		    <div className="container">
-		        <div className="row">
+		        <div className="row justify-content-md-center">
 		            <div className="col-md-4 item-wrapper">
 		                <img src={smallImroot} className="item-thumbnail" />
 		                <h3>BitKitties</h3>
