@@ -13,7 +13,7 @@ let trustee3 = web3.eth.accounts.create();
 let poster = web3.eth.accounts.create();
 
 let geth_dev = ''
-let parity_dev = '0x00a329c0648769a73afac7f9381e08fb43dbea72'
+let parity_dev = '0x004ccE088463Eb2DC7ab23952d5744413C60A5e3'
 
 
 var tx = web3.eth.sendTransaction({from: parity_dev,

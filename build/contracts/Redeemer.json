@@ -53,19 +53,19 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity^0.4.19;\n\nimport \"./AppToken.sol\";\n// assumption: token upgrades through DappHub, such as https://etherscan.io/address/0x642ae78fafbb8032da552d619ad43f1d81e4dd7c#code\n// assumption: token upgrades are 1:1\ninterface Redeemer {\n    function redeem() external;\n    function undo() external;\n    function to() external view returns (AppToken);\n    function from() external view returns (AppToken);\n}\n",
-  "sourcePath": "/Users/dave/Code/townhall/contracts/Redeemer.sol",
+  "sourcePath": "/Users/dave/Code/townhall-ui/contracts/Redeemer.sol",
   "ast": {
-    "absolutePath": "/Users/dave/Code/townhall/contracts/Redeemer.sol",
+    "absolutePath": "/Users/dave/Code/townhall-ui/contracts/Redeemer.sol",
     "exportedSymbols": {
       "Redeemer": [
-        1467
+        1410
       ]
     },
-    "id": 1468,
+    "id": 1411,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1449,
+        "id": 1392,
         "literals": [
           "solidity",
           "^",
@@ -73,16 +73,16 @@
           ".19"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:4"
+        "src": "0:23:3"
       },
       {
-        "absolutePath": "/Users/dave/Code/townhall/contracts/AppToken.sol",
+        "absolutePath": "/Users/dave/Code/townhall-ui/contracts/AppToken.sol",
         "file": "./AppToken.sol",
-        "id": 1450,
+        "id": 1393,
         "nodeType": "ImportDirective",
-        "scope": 1468,
+        "scope": 1411,
         "sourceUnit": 516,
-        "src": "25:24:4",
+        "src": "25:24:3",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -92,9 +92,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 1467,
+        "id": 1410,
         "linearizedBaseContracts": [
-          1467
+          1410
         ],
         "name": "Redeemer",
         "nodeType": "ContractDefinition",
@@ -102,7 +102,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1453,
+            "id": 1396,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -110,20 +110,20 @@
             "name": "redeem",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1451,
+              "id": 1394,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "260:2:4"
+              "src": "260:2:3"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1452,
+              "id": 1395,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "271:0:4"
+              "src": "271:0:3"
             },
-            "scope": 1467,
-            "src": "245:27:4",
+            "scope": 1410,
+            "src": "245:27:3",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -131,7 +131,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1456,
+            "id": 1399,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -139,20 +139,20 @@
             "name": "undo",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1454,
+              "id": 1397,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "290:2:4"
+              "src": "290:2:3"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1455,
+              "id": 1398,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "301:0:4"
+              "src": "301:0:3"
             },
-            "scope": 1467,
-            "src": "277:25:4",
+            "scope": 1410,
+            "src": "277:25:3",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -160,7 +160,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1461,
+            "id": 1404,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -168,23 +168,23 @@
             "name": "to",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1457,
+              "id": 1400,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "318:2:4"
+              "src": "318:2:3"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1460,
+              "id": 1403,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1459,
+                  "id": 1402,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1461,
-                  "src": "344:8:4",
+                  "scope": 1404,
+                  "src": "344:8:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -193,11 +193,11 @@
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 1458,
+                    "id": 1401,
                     "name": "AppToken",
                     "nodeType": "UserDefinedTypeName",
                     "referencedDeclaration": 515,
-                    "src": "344:8:4",
+                    "src": "344:8:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_contract$_AppToken_$515",
                       "typeString": "contract AppToken"
@@ -207,10 +207,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "343:10:4"
+              "src": "343:10:3"
             },
-            "scope": 1467,
-            "src": "307:47:4",
+            "scope": 1410,
+            "src": "307:47:3",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -218,7 +218,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1466,
+            "id": 1409,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -226,23 +226,23 @@
             "name": "from",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1462,
+              "id": 1405,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "372:2:4"
+              "src": "372:2:3"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1465,
+              "id": 1408,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1464,
+                  "id": 1407,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1466,
-                  "src": "398:8:4",
+                  "scope": 1409,
+                  "src": "398:8:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -251,11 +251,11 @@
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 1463,
+                    "id": 1406,
                     "name": "AppToken",
                     "nodeType": "UserDefinedTypeName",
                     "referencedDeclaration": 515,
-                    "src": "398:8:4",
+                    "src": "398:8:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_contract$_AppToken_$515",
                       "typeString": "contract AppToken"
@@ -265,33 +265,33 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "397:10:4"
+              "src": "397:10:3"
             },
-            "scope": 1467,
-            "src": "359:49:4",
+            "scope": 1410,
+            "src": "359:49:3",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 1468,
-        "src": "220:190:4"
+        "scope": 1411,
+        "src": "220:190:3"
       }
     ],
-    "src": "0:411:4"
+    "src": "0:411:3"
   },
   "legacyAST": {
-    "absolutePath": "/Users/dave/Code/townhall/contracts/Redeemer.sol",
+    "absolutePath": "/Users/dave/Code/townhall-ui/contracts/Redeemer.sol",
     "exportedSymbols": {
       "Redeemer": [
-        1467
+        1410
       ]
     },
-    "id": 1468,
+    "id": 1411,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1449,
+        "id": 1392,
         "literals": [
           "solidity",
           "^",
@@ -299,16 +299,16 @@
           ".19"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:4"
+        "src": "0:23:3"
       },
       {
-        "absolutePath": "/Users/dave/Code/townhall/contracts/AppToken.sol",
+        "absolutePath": "/Users/dave/Code/townhall-ui/contracts/AppToken.sol",
         "file": "./AppToken.sol",
-        "id": 1450,
+        "id": 1393,
         "nodeType": "ImportDirective",
-        "scope": 1468,
+        "scope": 1411,
         "sourceUnit": 516,
-        "src": "25:24:4",
+        "src": "25:24:3",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -318,9 +318,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 1467,
+        "id": 1410,
         "linearizedBaseContracts": [
-          1467
+          1410
         ],
         "name": "Redeemer",
         "nodeType": "ContractDefinition",
@@ -328,7 +328,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1453,
+            "id": 1396,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -336,20 +336,20 @@
             "name": "redeem",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1451,
+              "id": 1394,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "260:2:4"
+              "src": "260:2:3"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1452,
+              "id": 1395,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "271:0:4"
+              "src": "271:0:3"
             },
-            "scope": 1467,
-            "src": "245:27:4",
+            "scope": 1410,
+            "src": "245:27:3",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -357,7 +357,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1456,
+            "id": 1399,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -365,20 +365,20 @@
             "name": "undo",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1454,
+              "id": 1397,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "290:2:4"
+              "src": "290:2:3"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1455,
+              "id": 1398,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "301:0:4"
+              "src": "301:0:3"
             },
-            "scope": 1467,
-            "src": "277:25:4",
+            "scope": 1410,
+            "src": "277:25:3",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -386,7 +386,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1461,
+            "id": 1404,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -394,23 +394,23 @@
             "name": "to",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1457,
+              "id": 1400,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "318:2:4"
+              "src": "318:2:3"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1460,
+              "id": 1403,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1459,
+                  "id": 1402,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1461,
-                  "src": "344:8:4",
+                  "scope": 1404,
+                  "src": "344:8:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -419,11 +419,11 @@
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 1458,
+                    "id": 1401,
                     "name": "AppToken",
                     "nodeType": "UserDefinedTypeName",
                     "referencedDeclaration": 515,
-                    "src": "344:8:4",
+                    "src": "344:8:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_contract$_AppToken_$515",
                       "typeString": "contract AppToken"
@@ -433,10 +433,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "343:10:4"
+              "src": "343:10:3"
             },
-            "scope": 1467,
-            "src": "307:47:4",
+            "scope": 1410,
+            "src": "307:47:3",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -444,7 +444,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1466,
+            "id": 1409,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -452,23 +452,23 @@
             "name": "from",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1462,
+              "id": 1405,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "372:2:4"
+              "src": "372:2:3"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1465,
+              "id": 1408,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1464,
+                  "id": 1407,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1466,
-                  "src": "398:8:4",
+                  "scope": 1409,
+                  "src": "398:8:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -477,11 +477,11 @@
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 1463,
+                    "id": 1406,
                     "name": "AppToken",
                     "nodeType": "UserDefinedTypeName",
                     "referencedDeclaration": 515,
-                    "src": "398:8:4",
+                    "src": "398:8:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_contract$_AppToken_$515",
                       "typeString": "contract AppToken"
@@ -491,26 +491,26 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "397:10:4"
+              "src": "397:10:3"
             },
-            "scope": 1467,
-            "src": "359:49:4",
+            "scope": 1410,
+            "src": "359:49:3",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 1468,
-        "src": "220:190:4"
+        "scope": 1411,
+        "src": "220:190:3"
       }
     ],
-    "src": "0:411:4"
+    "src": "0:411:3"
   },
   "compiler": {
     "name": "solc",
-    "version": "0.4.21+commit.dfe3193c.Emscripten.clang"
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "2.0.0",
-  "updatedAt": "2018-05-24T19:17:42.464Z"
+  "schemaVersion": "2.0.1",
+  "updatedAt": "2018-06-30T07:53:20.496Z"
 }

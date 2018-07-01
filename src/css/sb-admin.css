@@ -808,8 +808,8 @@ span.location {
     /*display:flex;*/
 }
 
-iframe {
-    border: none;
+.screenshot {
+    border: 1px solid #888;
     outline: none;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -1054,9 +1054,7 @@ body {
 .time-watch div.dots {
     color: #cfd5e4;
     width: 16px;
-    margin-left: -11px;
-    margin-top: -6px;
-
+    margin: -6px 10px 0 0;
 }
 
 .time-watch div span {

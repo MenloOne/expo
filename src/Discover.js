@@ -222,9 +222,9 @@ class Discover extends Component {
 								</div>
 								<div className="main-list-items">
 									<div className="game-token shadow-sm">
-										<a href='/profile/'>
-									    <div className="container">
-									        <span className="game-img"><img src="images/small-img.png" alt="" /></span>
+										<div className="container">
+                                            <a href='/profile/'>
+									        	<span className="game-img"><img src="images/small-img.png" alt="" /></span>
 												<div className="game-detail">
 													<h2>BitKitties</h2>
 													<p>A game where users win tokens for catching mice</p>
@@ -232,16 +232,16 @@ class Discover extends Component {
 														<span className="user-img"><img src="images/user-1.png" title="user" alt="user" /></span>
 														<span className="user-img"><img src="images/user-2.png" title="user" alt="user" /></span>
 														<span className="user-img"><img src="images/user-1.png" title="user" alt="user" /></span>
-														<a href="#">6 friends</a> and 1,353 others committed to buying when sale opens
+														<span style={{textDecoration: 'underline'}}>6 friends</span> and 1,353 others committed to buying when sale opens
 													</div>
 												</div>
-												<div className="btn-top-right">
-													<a href="#" className="circle-btn" title=""><img src="images/icon.png" alt="" /></a>
-													<a href="#" className="btn border-button" title="Watch">Allocated</a>
-												</div>
+											</a>
+											<div className="btn-top-right">
+												<a href="#" className="circle-btn" title=""><img src="images/icon.png" alt="" /></a>
+												<a href="#" className="btn border-button" title="Watch">Allocated</a>
 											</div>
-										</a>
-									</div>
+										</div>
+								</div>
 								</div>
 							</div>
 
