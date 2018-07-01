@@ -4,6 +4,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/sb-admin.css';
 import './css/discover.css';
 
+const euth_icon = require('./images/euth_icon.png');
+const hash_icon = require('./images/hash_icon.png');
+const image_trans = require('./images/image_trans.png');
+
 class Discover extends Component {
   render() {
     return (
@@ -116,26 +120,34 @@ class Discover extends Component {
 									<ul className="ex-networks">
 										<li>
 											<img className="shadow" src="images/discover/network-ex-eth.png" />
-											<img className="bg" src="images/discover/network-ex-eth.png" />
+											{/*<img className="bg" src="images/discover/network-ex-eth.png" />*/}
 											<div className="main-content-list">
 												<h4>Ethereum</h4>
+												<img className="iconToright" src={euth_icon} />
 												<span className="trend-tag">TRENDING</span>
+												<h5>Dogecoin</h5>
+												<p>Such Doge, such memecoin.</p>
 											</div>
 										</li>
 										<li>
 											<img className="shadow" src="images/discover/network-ex-eos.png" />
-											<img className="bg" src="images/discover/network-ex-eos.png" />
+											{/*<img className="bg" src={image_trans} />*/}
 											<div className="main-content-list">
 												<h4>EOS</h4>
 												<span className="trend-tag">TRENDING</span>
+												<h5>Moonrock</h5>
+												<p>A lunar rock backed stable coin.</p>
 											</div>
 										</li>
 										<li>
 											<img className="shadow" src="images/discover/network-ex-hashgraph.png" />
-											<img className="bg" src="images/discover/network-ex-hashgraph.png" />
+											{/*<img className="bg" src="images/discover/network-ex-hashgraph.png" />*/}
 											<div className="main-content-list">
 												<h4>Hashgraph</h4>
+												<img className="iconToright" src={hash_icon} />
 												<span className="trend-tag">TRENDING</span>
+												<h5>AwesomeChain</h5>
+												<p>AwesomeChain</p>
 											</div>
 										</li>
 									</ul>
@@ -222,9 +234,9 @@ class Discover extends Component {
 								</div>
 								<div className="main-list-items">
 									<div className="game-token shadow-sm">
-										<div className="container">
-                                            <a href='/profile/'>
-									        	<span className="game-img"><img src="images/small-img.png" alt="" /></span>
+										<a href='/profile/'>
+									    <div className="container">
+									        <span className="game-img"><img src="images/small-img.png" alt="" /></span>
 												<div className="game-detail">
 													<h2>BitKitties</h2>
 													<p>A game where users win tokens for catching mice</p>
@@ -232,16 +244,16 @@ class Discover extends Component {
 														<span className="user-img"><img src="images/user-1.png" title="user" alt="user" /></span>
 														<span className="user-img"><img src="images/user-2.png" title="user" alt="user" /></span>
 														<span className="user-img"><img src="images/user-1.png" title="user" alt="user" /></span>
-														<span style={{textDecoration: 'underline'}}>6 friends</span> and 1,353 others committed to buying when sale opens
+														<a href="#">6 friends</a> and 1,353 others committed to buying when sale opens
 													</div>
 												</div>
-											</a>
-											<div className="btn-top-right">
-												<a href="#" className="circle-btn" title=""><img src="images/icon.png" alt="" /></a>
-												<a href="#" className="btn border-button" title="Watch">Allocated</a>
+												<div className="btn-top-right">
+													<a href="#" className="circle-btn" title=""><img src="images/icon.png" alt="" /></a>
+													<a href="#" className="btn border-button" title="Watch">Allocated</a>
+												</div>
 											</div>
-										</div>
-								</div>
+										</a>
+									</div>
 								</div>
 							</div>
 
