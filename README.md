@@ -65,6 +65,24 @@ Set the network in MetaMask to `http://127.0.0.1:9545/`, add a Custom RPC if tha
 ![MetaMaskNetwork](https://www.dropbox.com/s/gtjut6mz97owleo/MetaMaskNetwork.png?raw=1)
 
 
+### Other Blockchain Environments
+
+If for some reason Truffle doesn't work for you or you want a different environment the first thing you will
+need is to fill out the `.env` file with the following accounts that you create in your chain.  For Ganache, 
+you can just copy some of the precreated accounts:
+
+
+    - MENLO_PERSONAL: Address of pre-configured account on chain.
+
+Menlo Personal should be the first created account w/ some ETH which we can then use to
+create the accounts below on chains such as Parity.
+     
+    - MENLO_TENET_1: Address for first tenet account.
+    - MENLO_TENET_2: Address for second tenet account.
+    - MENLO_TENET_3: Address for third tenet account.
+    - MENLO_POSTER: Address for the account used to interact with town hall.
+
+
 #### Ganache
 
 For a light, easy to use private chain with a visual and cli interface,
@@ -82,14 +100,6 @@ you will have to redeploy the contracts and redo any needed transactions.
 For a persistent local testing environment to test before deploying to
 testnet or mainnet, use a Dev chain with Parity or Geth.
 
-You can set the following environment variables in your local `.env` file to
-run against a local dev chain if you already have Parity or Geth configured or set
-with needed accounts:
-
-    - MENLO_TENET_1: Address for first tenet account.
-    - MENLO_TENET_2: Address for second tenet account.
-    - MENLO_TENET_3: Address for third tenet account.
-    - MENLO_POSTER: Address for the account used to interact with town hall.
 
 ### Parity
 
@@ -105,9 +115,13 @@ Installing Parity:
 
 #### Run unlocked dev chain
 
-Assuming a default Parity setup, the initial dev account address is static:
+Create an account on Parity.  For dev you can use:
 
-       0x00a329c0648769A73afAc7F9381E08FB43dBEA72
+    parity account new --chain dev --keys-path /Users/dave/Library/Application\ Support/io.parity.ethereum/keys
+
+Take the resulting account number and add it as personal in your `.env`
+
+    MENLO_PERSONAL=0xaddress
 
 You need to unlock your dev account to be able to run Truffle migrations easily.
 The following script runs parity with an unlocked dev account, it will need
@@ -119,7 +133,7 @@ to be modified if you've changed the default dev account:
 
 Create the needed Menlo accounts:
 
-        yarn run truffle menlo:create-integration-accounts
+        yarn run truffle menlo:create-integration-accounts --network integration 
 
 After running the account creation, a set of accounts will be displayed to
 add to your `.env` file.

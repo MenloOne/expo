@@ -25,8 +25,12 @@ class App extends React.Component {
 		this.refreshAccount = this.refreshAccount.bind(this)
 	}
 
+	componentWillMount() {
+	    this.refreshAccount()
+    }
+
 	refreshAccount() {
-		this.props.client.getAccountDetails()
+		this.state.ethContext.client.getAccountDetails()
 			.then(({ account, balance }) => this.setState({
                 client,
 				account,

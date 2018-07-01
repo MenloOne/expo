@@ -6,7 +6,7 @@ import ReviewBoard from './ReviewBoard'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/sb-admin.css'
 
-const logo = require('./images/logo.jpg');
+const screenshot = require('./images/screenshot.png');
 const userIm = require('./images/user-1.png');
 const user2Im = require('./images/user-2.png');
 const iconIm = require('./images/icon.png');
@@ -155,7 +155,8 @@ class Profile extends Component {
 		                    <h2>About BITKITTIES</h2>
 		                    <p>Collect and trade BitKitties in one of the world's first blockchain games. Breed your rarest kitties to create the top mice catcher. Live
 		                        long and prospurr.</p>
-		                    <iframe src="#" width="100%" height="441px"></iframe>
+
+		                    <img className='screenshot' src={screenshot} width="100%" height="441px"/>
 
 		                    <hr/>
 
