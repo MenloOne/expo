@@ -157,7 +157,7 @@ class Guild extends Component {
 		                 <ul className="top-panels-menu">
 		                    <li><a href="#" className="active">Open Sales (3)</a></li>
 		                    <li><a href="#">Past (234)</a></li>
-		                    <li><a href="#">Scam List (18)g</a></li>
+		                    <li><a href="#">Scam List (18)</a></li>
 		                </ul>
 		                <div className="game-token shadow-sm">
 		                <div className="container">

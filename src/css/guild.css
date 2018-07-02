@@ -63,7 +63,7 @@
 .members-list li .im-holder {
     width: 100%;
     padding-top: 100%;
-    border-radius: 99px;
+    border-radius: 999px;
     background-position: center !important;
     background-size: cover !important;
 }
@@ -136,4 +136,7 @@
     border: solid 1px #ececed;
     padding: 25px 25px;
     margin-bottom: 25px;
+}
+.container {
+    max-width: none !important;
 }

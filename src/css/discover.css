@@ -249,6 +249,10 @@
     letter-spacing: 1px;
     font-weight: 400; 
 }
+.ex-networks .main-content-list p {
+    font-size: 18px;
+    color: #FFFFFF;
+}
 .ex-networks .main-content-list span {
     /* TRENDING: */
     opacity: 0.65;
