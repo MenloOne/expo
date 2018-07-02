@@ -365,6 +365,13 @@
     line-height: 55px;
     display: inline-block;
     padding: 0px 25px;
+    -webkit-appearance: none;
+    background: url('../images/dropdown-triag.png');
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: calc(100% - 15px);
+    padding-right: 55px;
+
 }
 .sort-menu {
     border: 1px solid #E3E5EB !important;
@@ -374,6 +381,11 @@
     height: 55px;
     line-height: 55px;
     border: none;
+}
+.radio-sel label {
+    font-size: 12px;
+    color: #2E4168;
+    letter-spacing: 0.8px;
 }
 .radio-sel input { margin-right: 10px; }
 .main-input-items .sort-menu { float: left; }
@@ -399,3 +411,42 @@
     padding: 25px 25px;
     margin-bottom: 25px;
 }
+.blue-color-btn, .blue-color-btn:hover {
+    background-color: #1b6dff;
+    color: #fff;
+    font-weight: 400;
+}
+.btn-top-right {
+    text-align: right;
+}
+.btn-top-right p {
+    font-size: 13px;
+    color: #6b768e;
+    letter-spacing: 0;
+    margin-bottom: 0px;
+}
+.btn-top-right p span {
+    color: #50BB00;
+    margin-right: 15px; 
+}
+.btn-top-right .prog-bar-wrap {
+    display: inline-block;
+    height: 5px;
+    background: #b0de8d;
+    width: 100%;
+    position: relative;
+    border-radius: 99px;
+}
+.btn-top-right .prog-bar {
+    display: inline-block;
+    height: 5px;
+    background: #50BB00;
+    width: 80%;
+    position: absolute;
+    left: 0px;
+    border-radius: 99px;
+}
+.btn-top-right .disc-wrap {
+    margin-bottom: 45px;
+}
+

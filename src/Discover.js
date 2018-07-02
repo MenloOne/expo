@@ -12,6 +12,8 @@ const userIm = require('./images/user-1.png');
 const user2Im = require('./images/user-2.png');
 const iconIm = require('./images/icon.png');
 const smallImroot = require('./images/small-img.png');
+const smallImroot2 = require('./images/small-img2.png');
+const smallImroot3 = require('./images/small-img3.png');
 
 class Discover extends Component {
   render() {
@@ -245,7 +247,7 @@ class Discover extends Component {
 												<div className="game-detail">
 													<h2>BitKitties</h2>
 													<p>A game where users win tokens for catching mice</p>
-													<div className="tw">
+													<div className="total-comments">
 														<span className="user-img"><img src={userIm} title="user" alt="user" /></span>
 														<span className="user-img"><img src={user2Im} title="user" alt="user" /></span>
 														<span className="user-img"><img src={userIm} title="user" alt="user" /></span>
@@ -253,8 +255,74 @@ class Discover extends Component {
 													</div>
 												</div>
 												<div className="btn-top-right">
+													<p>
+														<span>Starts in 17 days</span>
+														| 90% pre-sold
+													</p>
+													<div className="prog-bar-wrap">
+														<span className="prog-bar"></span>
+													</div>
+													<p className="disc-wrap">Discount: 25%</p>
 													<a href="#" className="circle-btn" title=""><img src={iconIm} alt="" /></a>
-													<a href="#" className="btn border-button" title="Watch">Allocated</a>
+													<a href="#" className="btn border-button blue-color-btn" title="Watch">Allocated</a>
+												</div>
+											</div>
+										</a>
+									</div>
+									<div className="game-token shadow-sm">
+										<a href='/profile/'>
+									    <div className="container">
+									        <span className="game-img"><img src={smallImroot2} alt="" /></span>
+												<div className="game-detail">
+													<h2>AutoChain</h2>
+													<p>Pay for car insurance only when youʼre behind the wheel.</p>
+													<div className="total-comments">
+														<span className="user-img"><img src={userIm} title="user" alt="user" /></span>
+														<span className="user-img"><img src={user2Im} title="user" alt="user" /></span>
+														<span className="user-img"><img src={userIm} title="user" alt="user" /></span>
+														<a href="#">6 friends</a> and 1,353 others committed to buying when sale opens
+													</div>
+												</div>
+												<div className="btn-top-right">
+													<p>
+														<span>Starts in 17 days</span>
+														| 90% pre-sold
+													</p>
+													<div className="prog-bar-wrap">
+														<span className="prog-bar"></span>
+													</div>
+													<p className="disc-wrap">Discount: 25%</p>
+													<a href="#" className="circle-btn" title=""><img src={iconIm} alt="" /></a>
+													<a href="#" className="btn border-button blue-color-btn" title="Watch">Allocated</a>
+												</div>
+											</div>
+										</a>
+									</div>
+									<div className="game-token shadow-sm">
+										<a href='/profile/'>
+									    <div className="container">
+									        <span className="game-img"><img src={smallImroot3} alt="" /></span>
+												<div className="game-detail">
+													<h2>GamerCoin</h2>
+													<p>Livestreaming for gamers.</p>
+													<div className="total-comments">
+														<span className="user-img"><img src={userIm} title="user" alt="user" /></span>
+														<span className="user-img"><img src={user2Im} title="user" alt="user" /></span>
+														<span className="user-img"><img src={userIm} title="user" alt="user" /></span>
+														<a href="#">6 friends</a> and 1,353 others committed to buying when sale opens
+													</div>
+												</div>
+												<div className="btn-top-right">
+													<p>
+														<span>Starts in 17 days</span>
+														| 90% pre-sold
+													</p>
+													<div className="prog-bar-wrap">
+														<span className="prog-bar"></span>
+													</div>
+													<p className="disc-wrap">Discount: 25%</p>
+													<a href="#" className="circle-btn" title=""><img src={iconIm} alt="" /></a>
+													<a href="#" className="btn border-button" title="Watch">Watch</a>
 												</div>
 											</div>
 										</a>

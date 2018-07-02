@@ -165,7 +165,7 @@ class Guild extends Component {
 		                <div className="game-detail">
 		                <h2>BitKitties</h2>
 		                <p>A game where users win tokens for catching mice</p>
-		                <div className="tw">
+		                <div className="total-comments">
 		                <span className="user-img"><img src={userIm} title="user" alt="user" /></span>
 		                <span className="user-img"><img src={user2Im} title="user" alt="user" /></span>
 		                <span className="user-img"><img src={userIm} title="user" alt="user" /></span>
