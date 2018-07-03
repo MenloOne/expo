@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import {Line} from 'react-chartjs-2';
 import axios from 'axios';
-
+import config from './internals/config/private';
 
 var dataOne = {
     labels: [
