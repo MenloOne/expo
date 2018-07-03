@@ -15,7 +15,7 @@ function parseData(parse) {
     };
 }
 function convertData(data) {
-    const keys = ['date','open','close','hight','low','volume'],
+    var keys = ['date','open','close','hight','low','volume'],
         i = 0, k = 0,
         obj = null,
         output = [];
