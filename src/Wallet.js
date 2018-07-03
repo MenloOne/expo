@@ -57,8 +57,8 @@ const options = {
 }
 
 class Wallet extends Component {
-    var state = {
-        cd:{}
+    state = {
+        cd: {}
     }
 
     constructor(props) {
