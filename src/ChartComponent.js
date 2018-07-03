@@ -53,7 +53,7 @@ const options = {
 class ChartComponent extends React.Component {
 
   componentDidMount() {
-    fetch("https://api.binance.com/api/v1/klines?symbol=ETHUSDT&interval=1w")
+    fetch("${config.apiURL}/red/chart?symbol=${symbol ? symbol : 'ETHUSDT'}&interval=1w")
       .then(response => response.json())
       .then(dataResp => this.setState({     cd:{
             labels:['Open','High','Low','Close'],
