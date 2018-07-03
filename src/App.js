@@ -12,7 +12,7 @@ class App extends React.Component {
 		ethContext: {
             client: fakeClient,
             account: '',
-            balance: '...',
+            balance: '3,089',
 			isAuthenticated: false,
 			isLoading: true,
 			refreshAccount: () => {}
