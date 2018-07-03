@@ -60,18 +60,36 @@ const options = {
 }
 
 class Wallet extends Component {
-    state = {
-        cd: {}
+  constructor(props) {
+    super(props);
+
+    this.state = {
+        cd:{
+            labels:['One','Two','Three'],
+            datasets:[
+            {
+                label:'Data',
+                data:[0.1,0.2,0.3]
+            }
+            ]
+        },
+        datatwo:[]
     }
+  }
 
-    constructor(props) {
-        super(props);
-
-    }
-
-    componentDidMount() {
-
-    }
+  componentDidMount() {
+    fetch("${config.apiURL}/red/chart?symbol=${symbol ? symbol : 'ETHUSDT'}&interval=1w")
+      .then(response => response.json())
+      .then(dataResp => this.setState({     cd:{
+            labels:['Open','High','Low','Close'],
+            datasets:[
+            {
+                label:'Data',
+                data:[parseInt(dataResp[0][1]),parseInt(dataResp[0][2]),parseInt(dataResp[0][3]),parseInt(dataResp[0][4])]
+            }
+            ]
+        }}));
+  }
 
     render() {
         return (
@@ -102,7 +120,8 @@ class Wallet extends Component {
                     </ul>
                     <div className="clearfix"></div>
                 </div>
-                <ChartComponent />
+                <Line data={this.state.cd} options={options} />
+                {/*<ChartComponent />*/}
                 <ul className="wallet-panels-menu">
                     <li><a href="#" className="active">Live</a></li>
                     <li><a href="#">Upcoming</a></li>
