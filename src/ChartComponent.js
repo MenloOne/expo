@@ -71,7 +71,7 @@ function convertData(data) {
 class ChartComponent extends React.Component {
 
   componentDidMount() {
-    const promiseMSFT = axios.get(`${config.apiURL}/red/chart?symbol=${symbol ? symbol : 'ETHUSDT'}&interval=1w`, //`${config.apiURL}/newsletter`,
+    const promiseMSFT = axios.get("${config.apiURL}/red/chart?symbol=${symbol ? symbol : 'ETHUSDT'}&interval=1w", //`${config.apiURL}/newsletter`,
         {
             'Content-Type': 'application/json'
         }
