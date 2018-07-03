@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import {Line} from 'react-chartjs-2';
+import axios from 'axios';
 
 
 var dataOne = {
@@ -50,20 +51,36 @@ const options = {
     }
 }
 
+function convertData(data) {
+    var keys = ['date','open','close','hight','low','volume'],
+        i = 0, k = 0,
+        obj = null,
+        output = [];
+
+    for (i = 0; i < data.length; i++) {
+        obj = {};
+        obj[keys[0]] = new Date(data[i][0]);
+        for (k = 1; k < keys.length; k++) {
+            obj[keys[k]] = parseInt(data[i][k]);
+        }
+        output.push(obj);
+    }
+    return output;
+}
+
 class ChartComponent extends React.Component {
 
   componentDidMount() {
-    fetch("${config.apiURL}/red/chart?symbol=${symbol ? symbol : 'ETHUSDT'}&interval=1w")
-      .then(response => response.json())
-      .then(dataResp => this.setState({     cd:{
-            labels:['Open','High','Low','Close'],
-            datasets:[
-            {
-                label:'Data',
-                data:[parseInt(dataResp[0][1]),parseInt(dataResp[0][2]),parseInt(dataResp[0][3]),parseInt(dataResp[0][4])]
-            }
-            ]
-        }}));
+    const promiseMSFT = axios.get(`${config.apiURL}/red/chart?symbol=${symbol ? symbol : 'ETHUSDT'}&interval=1w`, //`${config.apiURL}/newsletter`,
+        {
+            'Content-Type': 'application/json'
+        }
+    ).then(json => {
+        const data = json.data.chart.data[0];
+        return convertData(data);
+    });
+    console.log(promiseMSFT);
+    this.setState({     cd:promiseMSFT});
   }
 	render() {
 		if (this.state == null) {
