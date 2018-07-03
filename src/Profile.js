@@ -161,10 +161,10 @@ class Profile extends Component {
                                         </div>
                                     </div>
                                     <div className="team-member">
-                                        <span className="user-img"><img src={userIm} title="user" alt="user"/></span>
+                                        <span className="user-img"><img src={user2Im} title="user" alt="user"/></span>
                                         <div className="user-detail">
-                                            <div className="team-member-name"><a href="#">@wethefuture</a></div>
-                                            <div className="designation">CTO</div>
+                                            <div className="team-member-name"><a href="#">@greatthings</a></div>
+                                            <div className="designation">COO</div>
                                         </div>
                                     </div>
                                 </div>

@@ -4,15 +4,15 @@ import Discover from './Discover';
 import Wallet from './Wallet';
 import Guild from './Guild';
 import Profile from './Profile';
-import { client, EthContext } from './EthContext'
+import { client, EthContext, fakeClient } from './EthContext'
 
 class App extends React.Component {
 
 	state = {
 		ethContext: {
-            client,
+            client: fakeClient,
             account: '',
-            balance: '-',
+            balance: '...',
 			isAuthenticated: false,
 			isLoading: true,
 			refreshAccount: () => {}
@@ -32,7 +32,7 @@ class App extends React.Component {
 	refreshAccount() {
 		this.state.ethContext.client.getAccountDetails()
 			.then(({ account, balance }) => this.setState({
-                client,
+                client: client,
 				account,
 				balance,
                 isAuthenticated: true,
@@ -40,7 +40,9 @@ class App extends React.Component {
 				refreshAccount: this.refreshAccount
 			}))
 			.catch(() => this.setState({
-                client,
+                client: fakeClient,
+                account: '',
+                balance: '3,089',
                 isAuthenticated: false,
 				isLoading: false,
                 refreshAccount: this.refreshAccount

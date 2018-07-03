@@ -1565,6 +1565,7 @@ span.sold {
 
 .comments-review em {
     font-style: normal;
+    cursor: pointer;
 }
 
 .comments-review .blue {

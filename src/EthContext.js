@@ -5,7 +5,7 @@ import RemoteIPFSStorage from './storage/RemoteIPFSStorage'
 import EthereumForum from './contracts/EthereumForum'
 import EthereumLottery from './contracts/EthereumLottery'
 import MessageBoardGraph from './storage/MessageBoardGraph'
-import Client from './Client'
+import Client, { FakeClient } from './Client'
 
 const remoteStorage = new RemoteIPFSStorage(process.env.REACT_APP_REMOTE_IPFS)
 const localStorage = new JavascriptIPFSStorage()
@@ -18,7 +18,7 @@ const graph = new MessageBoardGraph()
 const EthContext = React.createContext({})
 
 const client = new Client(graph, forum, lottery, localStorage, remoteStorage)
-
+const fakeClient = new FakeClient()
 
 function withEth(Component) {
 
@@ -37,5 +37,6 @@ function withEth(Component) {
 export {
     EthContext,
     withEth,
-    client
+    client,
+    fakeClient
 }

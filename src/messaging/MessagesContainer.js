@@ -63,10 +63,10 @@ class MessagesContainer extends React.Component {
         return messages.map((message, index) => {
             return (
                 <Message key={`${index}-${message.hash}`}
+                         client={this.props.client}
                          hash={message.hash}
                          votes={this.props.client.getVotes(message.hash)}
-                         type={"parent"}
-                         client={this.props.client}
+                         type={message.type}
                          body={message.body}/>);
         });
     }

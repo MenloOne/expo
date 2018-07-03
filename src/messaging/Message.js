@@ -19,6 +19,7 @@ import MessageForm from './MessageForm';
 import './Message.css';
 
 const userIm = require('../images/user-1.png');
+const user2Im = require('../images/user-2.png');
 
 class Message extends React.Component {
     constructor(props) {
@@ -115,7 +116,7 @@ class Message extends React.Component {
     render() {
         return (
             <li className="borderis">
-                <div className="icon"><img src={userIm} alt=""/></div>
+                <div className="icon"><img src={Math.random() < 0.5 ? userIm : user2Im} alt=""/></div>
                 <div className="content">
                     <h3 className="tag-name">@wethefuture <span className="points">255 points </span> <span
                         className="time">15 hours ago</span> <span
@@ -135,9 +136,9 @@ class Message extends React.Component {
                         <a className="reply" onClick={this.showReplyForm.bind(this)}><span>Reply</span></a>}
                     </div>
                     <div className="comments-review">
-                        {' '}{this.props.type === "parent" && this.countReplies() > 0 &&
-                    <a onClick={() => this.showReplies(!this.state.showReplies)}>{this.countReplies()} <em
-                        className="blue">Load More Comments </em> ({this.countReplies()})</a>}
+                        {' '}{this.props.type === "parent" && !this.state.showReplies && this.countReplies() > 0 &&
+                        <a onClick={() => this.showReplies(!this.state.showReplies)}>{this.countReplies()} <em
+                            className="blue">Load More Comments </em> ({this.countReplies()})</a>}
                     </div>
                     {this.state.showReplies && this.state.children}
                     {this.state.showReplyForm && <MessageForm onSubmit={(message) => this.reply(message)}/>}
