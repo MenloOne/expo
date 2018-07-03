@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import {Line} from 'react-chartjs-2';
 import axios from 'axios';
 import config from './internals/config/private';
+import { getTickerHistory } from "./utils"
 
 var dataOne = {
     labels: [
@@ -52,39 +53,28 @@ const options = {
 }
 
 function convertData(data) {
-    var keys = ['date','open','close','hight','low','volume'],
-        i = 0, k = 0,
-        obj = null,
-        output = [];
-
-    for (i = 0; i < data.length; i++) {
-        obj = {};
-        obj[keys[0]] = new Date(data[i][0]);
-        for (k = 1; k < keys.length; k++) {
-            obj[keys[k]] = parseInt(data[i][k]);
-        }
-        output.push(obj);
-    }
-    return output;
+    var obj = {}
+    return obj;
 }
 
 class ChartComponent extends React.Component {
 
-  componentDidMount() {
-    const promiseMSFT = axios.get("${config.apiURL}/red/chart?symbol=${symbol ? symbol : 'ETHUSDT'}&interval=1w", //`${config.apiURL}/newsletter`,
-        {
-            'Content-Type': 'application/json'
-        }
-    ).then(json => {
-        const data = json.data.chart.data[0];
-        return convertData(data);
-    });
-    console.log(promiseMSFT);
-    this.setState({     cd:promiseMSFT});
+componentDidMount() {
+    getTickerHistory().then(data => {
+            this.setState({     cd:{
+            labels:['Open','High','Low','Close'],
+            datasets:[
+            {
+                label:'Open time: '+new Date(data[0])+' Close time: '+new Date(data[6]),
+                data:[parseInt(data[1]),parseInt(data[2]),parseInt(data[3]),parseInt(data[4])]
+            }
+            ]
+        }})
+        })
   }
 	render() {
 		if (this.state == null) {
-			return <div className='loading-chart'>Loading...</div>
+			return <div className='loading-chart charted'>Loading...</div>
 		}
 		return (
 			<div className="charohlc">
