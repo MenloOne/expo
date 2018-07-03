@@ -1,7 +1,7 @@
-import { tsvParse, csvParse } from  "d3-dsv";
-import { timeParse } from "d3-time-format";
-import axios from 'axios'
-import config from './internals/config/private'
+import { tsvParse, csvParse } from  'd3-dsv';
+import { timeParse } from 'd3-time-format';
+import axios from 'axios';
+import config from './internals/config/private';
 
 function parseData(parse) {
     return function(d) {
@@ -15,10 +15,11 @@ function parseData(parse) {
     };
 }
 function convertData(data) {
-    var keys = ["date","open","close","hight","low","volume"],
+    const keys = ['date','open','close','hight','low','volume'],
         i = 0, k = 0,
         obj = null,
         output = [];
+
     for (i = 0; i < data.length; i++) {
         obj = {};
         obj[keys[0]] = new Date(data[i][0]);
@@ -29,16 +30,19 @@ function convertData(data) {
     }
     return output;
 }
-const parseDate = timeParse("%Y-%m-%d");
+const parseDate = timeParse('%Y-%m-%d');
 
 export function getTickerHistory(symbol, interval) {
-    const promiseMSFT = axios.get(`https://api.binance.com/api/v1/klines?symbol=${symbol ? symbol : 'ETHUSDT'}&interval=1w`, //`${config.apiURL}/newsletter`,
+    const promiseMSFT = axios.get(`https://api-staging.menlo.one/red/chart?symbol=${symbol ? symbol : 'ETHUSDT'}&interval=1w`, //`${config.apiURL}/newsletter`,
         {
             'Content-Type': 'application/json'
         }
     )
-		.then(response => response.json())
-        .then(data => convertData(data));
+        .then(response => response.json())
+        .then(json => {
+            const data = json.chart[0].data;
+            return convertData(data);
+        });
 
     return promiseMSFT;
 }
