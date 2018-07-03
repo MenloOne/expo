@@ -47,24 +47,26 @@ class JavascriptIPFSStorage {
     this.ipfs.on('ready', () => {
       try {
           new Promise((resolve, reject) => {
-              remote.connection.id((err, result) => {
-                  if (err) {
-                      reject(err);
-                      return
-                  }
+            try {
+                remote.connection.id((err, result) => {
+                    if (err) {
+                        reject(err);
+                        return
+                    }
 
-                  let wsAddress = result.addresses.find(a => a.includes('/ws/'));
-                  this.ipfs.swarm.connect(wsAddress, (connectErr, connectResult) => {
-                      if (connectErr) {
-                          reject(connectErr);
-                      } else {
-                          this.connectedToPeer = true;
-                          resolve();
-                      }
-                  })
-              })
+                    let wsAddress = result.addresses.find(a => a.includes('/ws/'));
+                    this.ipfs.swarm.connect(wsAddress, (connectErr, connectResult) => {
+                        if (connectErr) {
+                            reject(connectErr);
+                        } else {
+                            this.connectedToPeer = true;
+                            resolve();
+                        }
+                    })
+                })
+            } catch (e => {})
           })
-      } catch {}
+      } catch(e => {})
     })
   }
 
