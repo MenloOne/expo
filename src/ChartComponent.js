@@ -24,6 +24,7 @@ var dataOne = {
 
 const options = {
     responsive: true,
+    maintainAspectRatio: false,
     title: {
         display: false
     },
@@ -50,25 +51,9 @@ const options = {
 }
 
 class ChartComponent extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-        cd:{
-            labels:['One','Two','Three'],
-            datasets:[
-            {
-                label:'Data',
-                data:[0.1,0.2,0.3]
-            }
-            ]
-        },
-        datatwo:[]
-    }
-  }
 
   componentDidMount() {
-    fetch("${config.apiURL}/red/chart?symbol=${symbol ? symbol : 'ETHUSDT'}&interval=1w")
+    fetch("https://api.binance.com/api/v1/klines?symbol=ETHUSDT&interval=1w")
       .then(response => response.json())
       .then(dataResp => this.setState({     cd:{
             labels:['Open','High','Low','Close'],
@@ -86,7 +71,7 @@ class ChartComponent extends React.Component {
 		}
 		return (
 			<div className="charohlc">
-				<Line data={this.state.cd} options={options} />
+				<Line data={this.state.cd} height={200} options={options} />
 			</div>
 		)
 	}

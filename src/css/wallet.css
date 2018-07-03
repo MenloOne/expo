@@ -91,6 +91,7 @@ letter-spacing: 0;
 }
 .charohlc {
     background: #d9dee9;
+    max-height: 200px;
 }
 .charohlc > div:nth-child(1) > label { display: none; }
 .charohlc > div:nth-child(1) > select { display: none; }
