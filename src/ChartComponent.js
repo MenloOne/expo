@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { render } from 'react-dom';
 import Chart from './Chart';
@@ -15,12 +14,12 @@ class ChartComponent extends React.Component {
 	}
 	render() {
 		if (this.state == null) {
-			return <div>Loading...</div>
+			return <div className='loading-chart'>Loading...</div>
 		}
 		return (
 			<div className="charohlc">
 			<TypeChooser>
-				{type => <Chart type={type} data={this.state.data} />}
+				{type => <Chart type={type} data={this.state.data} height={ 200 }/>}
 			</TypeChooser>
 			</div>
 		)

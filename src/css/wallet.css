@@ -1,3 +1,14 @@
+.loading-chart {
+    height: 200px;
+    text-align: center;
+    vertical-align: middle;
+    flex: 1;
+    display: flex;
+}
+.chart-title {
+    padding-top: 1em;
+    text-transform: uppercase;
+}
 .wallet-sub-nav-wrapper {
     background-color: #102d61;
     clear: both;
@@ -83,8 +94,14 @@ letter-spacing: 0;
 }
 .charohlc > div:nth-child(1) > label { display: none; }
 .charohlc > div:nth-child(1) > select { display: none; }
-.subChart { height: 70px; background: #d9dee9; padding: 0px 50px; }
-.subChart h2 { float: left; line-height: 70px; margin: 0px; color: #fff; }
+.subChart { height: 90px; background: #d9dee9; padding: 0px 50px; }
+.subChart h2 {
+    float: left;
+    line-height: 45px;
+    margin: 0px;
+    color: #fff;
+    font-weight: 300;
+}
 .subChartmenu { float: right; margin: 0px; }
 .subChartmenu li {
     list-style: none;

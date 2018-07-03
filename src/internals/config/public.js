@@ -4,7 +4,7 @@ const port = parseInt(PORT, 10)
 const config = {
 
   default: {
-    apiURL: 'http://localhost:3005',
+    apiURL: 'http://localhost:8088',
     port,
     locales: [ 'en', 'ko', 'ja', 'zh' ]
   },
@@ -13,7 +13,7 @@ const config = {
   },
 
   staging: {
-    apiURL: 'http://api.staging.menlo.one'
+    apiURL: 'http://api-staging.menlo.one'
   },
 
   production: {
@@ -21,7 +21,6 @@ const config = {
   },
 
   notbrowser: {
-    apiURL: `http://localhost:${port}`
   }
 }
 

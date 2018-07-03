@@ -33,16 +33,15 @@ function convertData(data) {
 const parseDate = timeParse('%Y-%m-%d');
 
 export function getTickerHistory(symbol, interval) {
-    const promiseMSFT = axios.get(`https://api-staging.menlo.one/red/chart?symbol=${symbol ? symbol : 'ETHUSDT'}&interval=1w`, //`${config.apiURL}/newsletter`,
+
+    const promiseMSFT = axios.get(`${config.apiURL}/red/chart?symbol=${symbol ? symbol : 'ETHUSDT'}&interval=1w`, //`${config.apiURL}/newsletter`,
         {
             'Content-Type': 'application/json'
         }
-    )
-        .then(response => response.json())
-        .then(json => {
-            const data = json.chart[0].data;
-            return convertData(data);
-        });
+    ).then(json => {
+        const data = json.data.chart.data[0];
+        return convertData(data);
+    });
 
     return promiseMSFT;
 }
