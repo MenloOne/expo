@@ -77,16 +77,22 @@ class Wallet extends Component {
   componentDidMount() {
     fetch("https://api-staging.menlo.one/red/chart?symbol=ETHUSDT&interval=1w")
       .then(response => response.json())
-      .then(dataResp => this.setState({
-		  cd:{
-    		labels:['Open','High','Low','Close'],
-    		datasets:[
-    		{
-    			label:'Price',
-    			data:[parseInt(dataResp[0][1]),parseInt(dataResp[0][2]),parseInt(dataResp[0][3]),parseInt(dataResp[0][4])]
-    		}
-    		]
-    	}}));
+        .then(dataResp => {
+                var chart = dataResp.chart[0].data;
+
+                this.setState({
+                    cd: {
+                        labels: ['Open', 'High', 'Low', 'Close'],
+                        datasets: [
+                            {
+                                label: 'Price',
+                                data: [parseInt(chart[0][1]), parseInt(chart[0][2]), parseInt(chart[0][3]), parseInt(chart[0][4])]
+                            }
+                        ]
+                    }
+                });
+            }
+		);
   }
 
   render() {
