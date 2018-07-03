@@ -75,13 +75,14 @@ class Wallet extends Component {
   }
 
   componentDidMount() {
-    fetch("https://api.binance.com/api/v1/klines?symbol=ETHUSDT&interval=1w")
+    fetch("https://api-staging.menlo.one/red/chart?symbol=ETHUSDT&interval=1w")
       .then(response => response.json())
-      .then(dataResp => this.setState({    	cd:{
+      .then(dataResp => this.setState({
+		  cd:{
     		labels:['Open','High','Low','Close'],
     		datasets:[
     		{
-    			label:'Population',
+    			label:'Price',
     			data:[parseInt(dataResp[0][1]),parseInt(dataResp[0][2]),parseInt(dataResp[0][3]),parseInt(dataResp[0][4])]
     		}
     		]
