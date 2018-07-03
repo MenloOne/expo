@@ -34,14 +34,12 @@ const parseDate = timeParse('%Y-%m-%d');
 
 export function getTickerHistory(symbol, interval) {
 
-    const promiseMSFT = axios.get(`${config.apiURL}/red/chart?symbol=${symbol ? symbol : 'ETHUSDT'}&interval=1w`, //`${config.apiURL}/newsletter`,
-        {
-            'Content-Type': 'application/json'
-        }
-    ).then(json => {
-        const data = json.data.chart.data[0];
-        return convertData(data);
-    });
+    const promiseMSFT =    fetch(`${config.apiURL}/red/chart?symbol=${symbol ? symbol : 'ETHUSDT'}&interval=1w`)
+      .then(response => response.json())
+      .then(dataResp => {
+        const data = dataResp['chart']['data'][0];
+        return data;
+      });
 
     return promiseMSFT;
 }
