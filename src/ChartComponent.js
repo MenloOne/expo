@@ -4,7 +4,6 @@ import {Line} from 'react-chartjs-2';
 import axios from 'axios';
 import config from './internals/config/private';
 import { getTickerHistory } from "./utils"
-var format = require('date-format');
 
 
 var dataOne = {
