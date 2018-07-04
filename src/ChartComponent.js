@@ -6,25 +6,6 @@ import config from './internals/config/private';
 import { getTickerHistory } from "./utils"
 
 
-var dataOne = {
-    labels: [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July"
-    ],
-    datasets: [
-        {
-            label: "My Second dataset",
-            backgroundColor: "rgba(255,0,0,0.1)",
-            data: [5, 6.0, 12.5, 6.0, 8.5, 11.0, 11.0]
-        }
-    ]
-}
-
 const options = {
     responsive: true,
     maintainAspectRatio: false,
