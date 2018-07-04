@@ -160,7 +160,9 @@ class Guild extends Component {
 		                    <li><a href="#">Scam List (18)</a></li>
 		                </ul>
 		                <div className="game-token shadow-sm">
-		                <div className="container">
+                            <a href='/profile/'>
+
+							<div className="container">
 		                <span className="game-img"><img src={smallImroot} alt="" /></span>
 		                <div className="game-detail">
 		                <h2>BitKitties</h2>
@@ -178,7 +180,7 @@ class Guild extends Component {
 		                </div>
 
 
-		                </div>
+							</div></a>
 		                </div> 
 		            </div>   
 		        </div>

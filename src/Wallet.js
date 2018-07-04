@@ -55,6 +55,8 @@ class Wallet extends Component {
                     <div className="container">
                         <div className="row justify-content-md-center">
                             <div className="col-md-4 item-wrapper">
+                                <a href='/profile/'>
+
                                 <img src={smallImroot} className="item-thumbnail" />
                                 <h3>BitKitties</h3>
                                 <ul className="details-list">
@@ -71,6 +73,7 @@ class Wallet extends Component {
                                         <p>50%</p>
                                     </li>
                                 </ul>
+                                </a>
                                 <div className="item-wrapper-foot">
                                     <p className="wrapper-foot-title">TOKEN LOCKUP ENDS</p>
                                     <CountdownTimer date={ new Date(2018, 7, 1, 7) }/>
