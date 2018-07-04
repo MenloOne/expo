@@ -74,9 +74,13 @@ class ChartComponent extends React.Component {
     }
 
     getLabels(data) {
+        var i = 0
         return data.map(d => {
 
-            console.log(d)
+            if (i++ % 2 == 0) {
+                return ''
+            }
+
             return new Intl.DateTimeFormat('en-US', {
                 month: 'short',
                 day: '2-digit'
