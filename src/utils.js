@@ -34,11 +34,10 @@ const parseDate = timeParse('%Y-%m-%d');
 
 export function getTickerHistory(symbol, interval) {
 
-    const promiseMSFT =    fetch(`${config.apiURL}/red/chart?symbol=${symbol ? symbol : 'ETHUSDT'}&interval=1w`)
+    const promiseMSFT = fetch(`${config.apiURL}/red/chart?symbol=${symbol ? symbol : 'ETHUSDT'}&interval=1w`)
       .then(response => response.json())
       .then(dataResp => {
-        const data = dataResp['chart']['data'][0];
-        return data;
+        return dataResp.chart;
       });
 
     return promiseMSFT;

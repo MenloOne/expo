@@ -4,6 +4,8 @@ import {Line} from 'react-chartjs-2';
 import axios from 'axios';
 import config from './internals/config/private';
 import { getTickerHistory } from "./utils"
+var format = require('date-format');
+
 
 var dataOne = {
     labels: [
@@ -59,29 +61,54 @@ function convertData(data) {
 
 class ChartComponent extends React.Component {
 
-componentDidMount() {
-    getTickerHistory().then(data => {
-            this.setState({     cd:{
-            labels:['Open','High','Low','Close'],
+    state = {
+        cd:{
+            labels: ['-', '-'],
             datasets:[
-            {
-                label:'Open time: '+new Date(data[0])+' Close time: '+new Date(data[6]),
-                data:[parseInt(data[1]),parseInt(data[2]),parseInt(data[3]),parseInt(data[4])]
-            }
+                {
+                    label:'Loading...',
+                    data: [0,0]
+                }
             ]
-        }})
+        }
+    }
+
+    getLabels(data) {
+        return data.map(d => {
+
+            console.log(d)
+            return new Intl.DateTimeFormat('en-US', {
+                month: 'short',
+                day: '2-digit'
+            }).format(d[0])
         })
-  }
-	render() {
-		if (this.state == null) {
-			return <div className='loading-chart charted'>Loading...</div>
-		}
-		return (
-			<div className="charohlc">
-				<Line data={this.state.cd} height={200} options={options} />
-			</div>
-		)
-	}
+    }
+
+    getClose(data) {
+        return data.map(d => d[4])
+    }
+
+    componentDidMount() {
+        getTickerHistory().then(chart => {
+            this.setState({
+                cd:{
+                    labels: this.getLabels(chart.data),
+                    datasets:[
+                        {
+                            label:'Last 6 months',
+                            data: this.getClose(chart.data)
+                        }
+                    ]
+                }})
+        })
+    }
+    render() {
+        return (
+            <div className="charohlc">
+                <Line data={this.state.cd} height={200} options={options} />
+            </div>
+        )
+    }
 }
 
 export default ChartComponent;
