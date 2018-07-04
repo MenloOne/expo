@@ -74,12 +74,13 @@ class ChartComponent extends React.Component {
 
     componentDidMount() {
         getTickerHistory().then(chart => {
+            console.log(chart)
             this.setState({
                 cd:{
                     labels: this.getLabels(chart.data),
                     datasets:[
                         {
-                            label:'Last 6 months',
+                            label: chart.symbol,
                             data: this.getClose(chart.data)
                         }
                     ]
