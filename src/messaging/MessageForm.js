@@ -14,53 +14,53 @@
  * limitations under the License.
  */
 
-import React from 'react';
+import React from 'react'
 
 class MessageForm extends React.Component {
-    state = {
-        message: '',
-        disabled: false
-    };
+  state = {
+    message: '',
+    disabled: false
+  }
 
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props)
 
-        this.onChange = this.onChange.bind(this)
-        this.onCancel = this.onCancel.bind(this)
-        this.onSubmit = this.onSubmit.bind(this)
-    }
+    this.onChange = this.onChange.bind(this)
+    this.onCancel = this.onCancel.bind(this)
+    this.onSubmit = this.onSubmit.bind(this)
+  }
 
-    onSubmit(event) {
-        event.preventDefault();
-        this.setState({disabled: true});
+  onSubmit(event) {
+    event.preventDefault()
+    this.setState({disabled: true})
 
-        this.props.onSubmit(this.state.message)
-            .then(() => {
-                if (this.props.type !== "Response") this.setState({message: '', disabled: false, error: null});
-            })
-            .catch(error => this.setState({error: error.message}));
-    }
+    this.props.onSubmit(this.state.message)
+      .then(() => {
+        if (this.props.type !== 'Response') this.setState({message: '', disabled: false, error: null})
+      })
+      .catch(error => this.setState({error: error.message}))
+  }
 
-    onChange(event) {
-        this.setState({message: event.target.value});
-    }
+  onChange(event) {
+    this.setState({message: event.target.value})
+  }
 
-    onCancel() {
-        this.setState({message: ""})
-    }
+  onCancel() {
+    this.setState({message: ''})
+  }
 
-    render() {
-        return (
+  render() {
+    return (
 
-            <form onSubmit={this.onSubmit}>
+      <form onSubmit={this.onSubmit}>
                 <textarea name="" className="field" id="" cols="30" rows="10" value={this.state.message}
                           onChange={this.onChange}></textarea>
-                <input type="submit" className="submit-btn" disabled={this.state.disabled}/>
-                <a href="" className="cancle-btn" onClick={this.onCancel}>Cancel</a>
-                {this.state.error && <p className="error">{this.state.error}</p>}
-            </form>
-        );
-    }
+        <input type="submit" className="submit-btn" disabled={this.state.disabled}/>
+        <a href="" className="cancle-btn" onClick={this.onCancel}>Cancel</a>
+        {this.state.error && <p className="error">{this.state.error}</p>}
+      </form>
+    )
+  }
 }
 
-export default MessageForm;
+export default MessageForm

@@ -1,5 +1,5 @@
 /*
- * 
+ *
  *
  * Licensed under the Apache License, Version 2.0 (the “License”);
  * you may not use this file except in compliance with the License.
@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import ipfsAPI from 'ipfs-api';
+import ipfsAPI from 'ipfs-api'
 
 class RemoteIPFSStorage {
   constructor(connectionOptions) {
-    this.connectionOptions = connectionOptions;
-    this.connection = ipfsAPI(connectionOptions);
+    this.connectionOptions = connectionOptions
+    this.connection = ipfsAPI(connectionOptions)
   }
 
   pin(hash) {
     return this.connection.pin.add(hash).then(result => {
-      if (result && result.length > 0) return hash;
+      if (result && result.length > 0) return hash
 
-      return Promise.reject();
+      return Promise.reject()
     })
   }
 }
 
-export default RemoteIPFSStorage;
+export default RemoteIPFSStorage

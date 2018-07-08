@@ -1,4 +1,4 @@
-const { BROWSER, NODE_ENV, PORT = 3000 } = process.env
+const {BROWSER, NODE_ENV, PORT = 3000} = process.env
 
 const port = parseInt(PORT, 10)
 const config = {
@@ -6,11 +6,10 @@ const config = {
   default: {
     apiURL: 'https://api-staging.menlo.one', // 'http://localhost:8088',
     port,
-    locales: [ 'en', 'ko', 'ja', 'zh' ]
+    locales: ['en', 'ko', 'ja', 'zh']
   },
 
-  development: {
-  },
+  development: {},
 
   staging: {
     apiURL: 'http://api-staging.menlo.one'
@@ -20,8 +19,7 @@ const config = {
     apiURL: 'https://api.menlo.one'
   },
 
-  notbrowser: {
-  }
+  notbrowser: {}
 }
 
 if (BROWSER) {
@@ -29,6 +27,6 @@ if (BROWSER) {
 }
 
 export default config[NODE_ENV] ?
-  { ...config.default, ...config[NODE_ENV], ...config.nobrowser } :
-  { ...config.default, ...config.development, ...config.nobrowser }
+  {...config.default, ...config[NODE_ENV], ...config.nobrowser} :
+  {...config.default, ...config.development, ...config.nobrowser}
 

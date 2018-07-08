@@ -1,5 +1,5 @@
 /*
- * 
+ *
  *
  * Licensed under the Apache License, Version 2.0 (the “License”);
  * you may not use this file except in compliance with the License.
@@ -14,31 +14,37 @@
  * limitations under the License.
  */
 
-import multihash from 'multihashes';
-import multihashing from 'multihashing-async';
-import CID from 'cids';
-import ipldDagCbor from 'ipld-dag-cbor';
-import waterfall  from 'async/waterfall';
+import multihash from 'multihashes'
+import multihashing from 'multihashing-async'
+import CID from 'cids'
+import ipldDagCbor from 'ipld-dag-cbor'
+import waterfall from 'async/waterfall'
 
-let thisExport = {};
+let thisExport = {}
 
 thisExport.cidToSolidityHash = (cid) => {
-  if(cid === '0x0') { return '0x0000000000000000000000000000000000000000000000000000000000000000' };
+  if (cid === '0x0') {
+    return '0x0000000000000000000000000000000000000000000000000000000000000000'
+  }
 
-  return '0x' + multihash.decode(new CID(cid).multihash).digest.toString('hex');
+
+  return '0x' + multihash.decode(new CID(cid).multihash).digest.toString('hex')
 }
 
 thisExport.solidityHashToCid = (hash) => {
-  if(hash === '0x0000000000000000000000000000000000000000000000000000000000000000') { return '0x0' };
-
-  let theHash = hash;
-
-  if(hash.length === 66) {
-    theHash = hash.slice(2, 66);
+  if (hash === '0x0000000000000000000000000000000000000000000000000000000000000000') {
+    return '0x0'
   }
 
-  let encodedHash = multihash.encode(multihash.fromHexString(theHash), 'keccak-256');
-  return new CID(1, 'dag-cbor', encodedHash).toBaseEncodedString();
+
+  let theHash = hash
+
+  if (hash.length === 66) {
+    theHash = hash.slice(2, 66)
+  }
+
+  let encodedHash = multihash.encode(multihash.fromHexString(theHash), 'keccak-256')
+  return new CID(1, 'dag-cbor', encodedHash).toBaseEncodedString()
 }
 
 thisExport.nodeToCID = (node, callback) => {
@@ -49,4 +55,4 @@ thisExport.nodeToCID = (node, callback) => {
   ], callback)
 }
 
-export default thisExport;
+export default thisExport

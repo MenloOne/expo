@@ -5,7 +5,7 @@ import debug from 'debug'
 
 const filepath = path.resolve(__dirname, '../../../server/webpack-stats.json')
 
-export default function(stats) {
+export default function (stats) {
   const publicPath = this.options.output.publicPath
   const json = stats.toJson()
 
@@ -15,7 +15,7 @@ export default function(stats) {
 
     // a chunk could be a string or an array, so make sure it is an array
     if (!(Array.isArray(chunks))) {
-      chunks = [ chunks ]
+      chunks = [chunks]
     }
 
     return chunks
@@ -33,9 +33,9 @@ export default function(stats) {
   const images = json.modules
     .filter((module) => imagesRegex.test(module.name))
     .map((image) =>
-      ({ original: image.name, compiled: `${publicPath}${image.assets[0]}` }))
+      ({original: image.name, compiled: `${publicPath}${image.assets[0]}`}))
 
-  const content = { script, style, images }
+  const content = {script, style, images}
 
   fs.writeFileSync(filepath, JSON.stringify(content))
   debug('dev')('`webpack-stats.json` updated')

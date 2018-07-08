@@ -14,59 +14,63 @@
  * limitations under the License.
  */
 
-import web3 from '../web3_override';
-import TruffleContract from 'truffle-contract';
-import ForumContract from '../truffle_artifacts/contracts/Forum.json';
-import HashUtils from '../HashUtils';
+import web3 from '../web3_override'
+import TruffleContract from 'truffle-contract'
+import ForumContract from '../truffle_artifacts/contracts/Forum.json'
+import HashUtils from '../HashUtils'
 
 class EthereumForum {
-    constructor() {
-        this.topicOffsetCounter = 0;
-        this.topicOffsets = {};
+  post = async (hash, parentHash) => {
+    hash = HashUtils.cidToSolidityHash(hash)
+    if (parentHash !== '0x0') {
+      parentHash = HashUtils.cidToSolidityHash(parentHash)
+    }
 
-        this.forum = TruffleContract(ForumContract);
+    return web3.eth.getAccounts().then(async (accounts) => {
+      let account = accounts[0]
 
-        if (web3) {
-            this.forum.setProvider(web3.currentProvider);
+      return this.forum.deployed()
+        .then(i => {
+          return i.post(parentHash, hash, {from: account})
+        })
+    }).catch(e => {
+    })
+  }
+
+  constructor() {
+    this.topicOffsetCounter = 0
+    this.topicOffsets = {}
+
+    this.forum = TruffleContract(ForumContract)
+
+    if (web3) {
+      this.forum.setProvider(web3.currentProvider)
+    }
+  }
+
+  subscribeMessages(callback) {
+    if (!this.forum) {
+      return
+    }
+
+    this.forum.deployed().then(f => {
+      f.Topic({}, {fromBlock: 0}).watch((error, result) => {
+        const parentHash = HashUtils.solidityHashToCid(result.args._parentHash)
+        const messageHash = HashUtils.solidityHashToCid(result.args.contentHash)
+
+        if (!this.topicOffsets[messageHash]) { // sometimes we get the same topic twice...
+          this.topicOffsets[messageHash] = this.topicOffsetCounter
+          this.topicOffsetCounter = this.topicOffsetCounter + 1
+          callback(messageHash, parentHash)
         }
-    }
+      })
+    }).catch(e => {
+    })
+  }
 
-    post = async (hash, parentHash) => {
-        hash = HashUtils.cidToSolidityHash(hash);
-        if (parentHash !== '0x0') {
-            parentHash = HashUtils.cidToSolidityHash(parentHash);
-        }
-
-        return web3.eth.getAccounts().then(async (accounts) => {
-            let account = accounts[0];
-
-            return this.forum.deployed()
-                .then(i => {
-                    return i.post(parentHash, hash, {from: account})
-                })
-        }).catch(e => {});
-    }
-
-    subscribeMessages(callback) {
-        if (!this.forum) { return }
-
-        this.forum.deployed().then(f => {
-            f.Topic({}, {fromBlock: 0}).watch((error, result) => {
-                const parentHash = HashUtils.solidityHashToCid(result.args._parentHash);
-                const messageHash = HashUtils.solidityHashToCid(result.args.contentHash);
-
-                if (!this.topicOffsets[messageHash]) { // sometimes we get the same topic twice...
-                    this.topicOffsets[messageHash] = this.topicOffsetCounter;
-                    this.topicOffsetCounter = this.topicOffsetCounter + 1;
-                    callback(messageHash, parentHash);
-                }
-            });
-        }).catch(e => {});
-    }
-
-    topicOffset(hash) {
-        return this.topicOffsets[hash];
-    }
+  topicOffset(hash) {
+    return this.topicOffsets[hash]
+  }
 }
 
-export default EthereumForum;
+export default EthereumForum

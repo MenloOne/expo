@@ -1,25 +1,22 @@
 import cfg from './public'
 import './network'
 
-const { NODE_ENV } = process.env
+const {NODE_ENV} = process.env
 
 const config = {
 
   default: {
-    locales: [ 'en', 'ko', 'ja', 'zh' ]
+    locales: ['en', 'ko', 'ja', 'zh']
   },
 
-  development: {
-  },
+  development: {},
 
-  staging: {
-  },
+  staging: {},
 
-  production: {
-  }
+  production: {}
 }
 
 
 export default config[NODE_ENV] ?
-  { ...cfg, ...config.default, ...config[NODE_ENV] } :
-  { ...cfg, ...config.default, ...config.development }
+  {...cfg, ...config.default, ...config[NODE_ENV]} :
+  {...cfg, ...config.default, ...config.development}

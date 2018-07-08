@@ -1,5 +1,5 @@
 /*
- * 
+ *
  *
  * Licensed under the Apache License, Version 2.0 (the “License”);
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,9 @@
 
 class MessageBoardError extends Error {
   constructor(...args) {
-    super(...args);
-    this.name = 'MessageBoardError';
+    super(...args)
+    this.name = 'MessageBoardError'
   }
 }
 
-export default MessageBoardError;
+export default MessageBoardError

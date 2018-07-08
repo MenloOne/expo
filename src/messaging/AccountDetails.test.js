@@ -1,5 +1,5 @@
 /*
- * 
+ *
  *
  * Licensed under the Apache License, Version 2.0 (the “License”);
  * you may not use this file except in compliance with the License.
@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-import React from 'react';
-import {shallow} from 'enzyme';
-import AccountDetails from './AccountDetails';
+import React from 'react'
+import {shallow} from 'enzyme'
+import AccountDetails from './AccountDetails'
 
 describe('AccountDetails', () => {
-    it('renders the account hash and balance', () => {
-        const accountDetails = shallow(<AccountDetails account={'someHash'} balance={'someBalance'}/>);
+  it('renders the account hash and balance', () => {
+    const accountDetails = shallow(<AccountDetails account={'someHash'} balance={'someBalance'}/>)
 
-        expect(accountDetails.text()).toEqual('someHash (someBalance MET)');
-    });
-});
+    expect(accountDetails.text()).toEqual('someHash (someBalance MET)')
+  })
+})

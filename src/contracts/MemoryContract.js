@@ -1,5 +1,5 @@
 /*
- * 
+ *
  *
  * Licensed under the Apache License, Version 2.0 (the “License”);
  * you may not use this file except in compliance with the License.
@@ -15,9 +15,9 @@
  */
 
 class MemoryContract {
-    createMessage(hash, parentHash) {
-        return Promise.resolve(true);
-    }
+  createMessage(hash, parentHash) {
+    return Promise.resolve(true)
+  }
 }
 
-export default MemoryContract;
+export default MemoryContract

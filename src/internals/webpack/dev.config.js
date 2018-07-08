@@ -1,11 +1,11 @@
 import webpack from 'webpack'
 import path from 'path'
-import { isArray } from 'lodash'
+import {isArray} from 'lodash'
 
 import baseConfig from './base.config'
 import startKoa from './utils/start-koa'
 
-const { VIRTUAL_HOST, C9_HOSTNAME } = process.env
+const {VIRTUAL_HOST, C9_HOSTNAME} = process.env
 
 const LOCAL_IP = require('dev-ip')()
 
@@ -39,9 +39,9 @@ export default {
     context: path.join(__dirname, '..', '..'),
     devtool: 'cheap-module-source-map',
     entry: {
-      app: [ `webpack-hot-middleware/client?path=//${HOST}:${PORT}/__webpack_hmr`, './app/index.js' ]
+      app: [`webpack-hot-middleware/client?path=//${HOST}:${PORT}/__webpack_hmr`, './app/index.js']
     },
-    output: { ...baseConfig.output, publicPath: PUBLIC_PATH },
+    output: {...baseConfig.output, publicPath: PUBLIC_PATH},
     module: {
       ...baseConfig.module,
       rules: [
@@ -72,10 +72,10 @@ export default {
               loader: 'postcss-loader',
               options: {
                 plugins: (webpackInstance) => [
-                  require('postcss-import')({ addDependencyTo: webpackInstance }),
+                  require('postcss-import')({addDependencyTo: webpackInstance}),
                   require('postcss-url')(),
                   require('precss')(),
-                  require('autoprefixer')({ browsers: [ 'last 2 versions' ] })
+                  require('autoprefixer')({browsers: ['last 2 versions']})
                 ]
               }
             }

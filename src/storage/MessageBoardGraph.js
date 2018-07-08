@@ -1,5 +1,5 @@
 /*
- * 
+ *
  *
  * Licensed under the Apache License, Version 2.0 (the “License”);
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ class MessageBoardGraph {
   constructor() {
     this.nodes = {}
 
-    this.addNode('0x0');
+    this.addNode('0x0')
   }
 
   children(nodeID) {
@@ -26,20 +26,24 @@ class MessageBoardGraph {
   }
 
   addNode(nodeID, parentID) {
-    if(!this.nodes[nodeID]) { this.nodes[nodeID] = [] }
+    if (!this.nodes[nodeID]) {
+      this.nodes[nodeID] = []
+    }
 
-    if(parentID) {
+    if (parentID) {
       this.addNode(parentID)
-      if(parentID !== nodeID && !this.nodes[parentID].includes(nodeID)) {
+      if (parentID !== nodeID && !this.nodes[parentID].includes(nodeID)) {
         this.nodes[parentID].push(nodeID)
       }
     }
 
-    if(this.callback) { this.callback(); }
+    if (this.callback) {
+      this.callback()
+    }
   }
 
   subscribeMessages(callback) {
-    this.callback = callback;
+    this.callback = callback
   }
 }
 

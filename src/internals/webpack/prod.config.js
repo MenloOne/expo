@@ -53,10 +53,10 @@ export default {
               loader: 'postcss-loader',
               options: {
                 plugins: (webpackInstance) => [
-                  require('postcss-import')({ addDependencyTo: webpackInstance }),
+                  require('postcss-import')({addDependencyTo: webpackInstance}),
                   require('postcss-url')(),
                   require('precss')(),
-                  require('autoprefixer')({ browsers: [ 'last 2 versions' ] })
+                  require('autoprefixer')({browsers: ['last 2 versions']})
                 ]
               }
             }
@@ -111,10 +111,10 @@ export default {
         cacheId: `${appName}-sw`,
         filename: 'serviceWorker.js',
         maximumFileSizeToCacheInBytes: 4194304,
-        runtimeCaching: [ {
+        runtimeCaching: [{
           urlPattern: /\//,
           handler: 'fastest'
-        } ]
+        }]
       }
     ),
 

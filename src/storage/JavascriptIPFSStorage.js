@@ -14,63 +14,63 @@
  * limitations under the License.
  */
 
-import IPFS from 'ipfs';
-import HashUtils from 'HashUtils';
+import IPFS from 'ipfs'
+import HashUtils from 'HashUtils'
 
 class JavascriptIPFSStorage {
-    constructor() {
-        this.ipfs = new IPFS();
-        this.messagesList = [];
-        this.connectedToPeer = false;
-    }
+  constructor() {
+    this.ipfs = new IPFS()
+    this.messagesList = []
+    this.connectedToPeer = false
+  }
 
-    createMessage(message) {
-        return new Promise((resolve, reject) => {
-            HashUtils.nodeToCID(message, (cidErr, cid) => {
-                this.ipfs.dag.put(message, {cid: cid}, (putErr, result) => {
-                    this.messagesList.push(message);
-                    resolve(result.toBaseEncodedString());
-                })
-            })
+  createMessage(message) {
+    return new Promise((resolve, reject) => {
+      HashUtils.nodeToCID(message, (cidErr, cid) => {
+        this.ipfs.dag.put(message, {cid: cid}, (putErr, result) => {
+          this.messagesList.push(message)
+          resolve(result.toBaseEncodedString())
         })
-    }
+      })
+    })
+  }
 
-    findMessage(hash) {
-        return new Promise((resolve, reject) => {
-            this.ipfs.dag.get(hash, (err, result) => {
-                result ? resolve({...result.value, hash: hash}) : resolve(null)
-            })
+  findMessage(hash) {
+    return new Promise((resolve, reject) => {
+      this.ipfs.dag.get(hash, (err, result) => {
+        result ? resolve({...result.value, hash: hash}) : resolve(null)
+      })
+    })
+  }
+
+  connectPeer(remote) {
+    return // DD: TEMP
+
+    this.ipfs.on('ready', () => {
+      new Promise((resolve, reject) => {
+        remote.connection.id((err, result) => {
+          if (err) {
+            reject(err)
+            return
+          }
+
+          let wsAddress = result.addresses.find(a => a.includes('/ws/'))
+          this.ipfs.swarm.connect(wsAddress, (connectErr, connectResult) => {
+            if (connectErr) {
+              reject(connectErr)
+            } else {
+              this.connectedToPeer = true
+              resolve()
+            }
+          })
         })
-    }
+      })
+    })
+  }
 
-    connectPeer(remote) {
-        return; // DD: TEMP
-
-        this.ipfs.on('ready', () => {
-            new Promise((resolve, reject) => {
-                remote.connection.id((err, result) => {
-                    if (err) {
-                        reject(err);
-                        return
-                    }
-
-                    let wsAddress = result.addresses.find(a => a.includes('/ws/'));
-                    this.ipfs.swarm.connect(wsAddress, (connectErr, connectResult) => {
-                        if (connectErr) {
-                            reject(connectErr);
-                        } else {
-                            this.connectedToPeer = true;
-                            resolve();
-                        }
-                    })
-                })
-            })
-        })
-    }
-
-    isOnline() {
-        return this.ipfs.isOnline() && this.connectedToPeer;
-    }
+  isOnline() {
+    return this.ipfs.isOnline() && this.connectedToPeer
+  }
 }
 
-export default JavascriptIPFSStorage;
+export default JavascriptIPFSStorage

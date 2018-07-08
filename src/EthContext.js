@@ -5,7 +5,7 @@ import RemoteIPFSStorage from './storage/RemoteIPFSStorage'
 import EthereumForum from './contracts/EthereumForum'
 import EthereumLottery from './contracts/EthereumLottery'
 import MessageBoardGraph from './storage/MessageBoardGraph'
-import Client, { FakeClient } from './Client'
+import Client, {FakeClient} from './Client'
 
 const remoteStorage = new RemoteIPFSStorage(process.env.REACT_APP_REMOTE_IPFS)
 const localStorage = new JavascriptIPFSStorage()
@@ -22,21 +22,21 @@ const fakeClient = new FakeClient()
 
 function withEth(Component) {
 
-    // ...and returns another component...
-    return function EthContextComponent(props) {
-        // ... and renders the wrapped component with the context theme!
-        // Notice that we pass through any additional props as well
-        return (
-            <EthContext.Consumer>
-                {context => <Component {...props} eth={context} />}
-            </EthContext.Consumer>
-        );
-    };
+  // ...and returns another component...
+  return function EthContextComponent(props) {
+    // ... and renders the wrapped component with the context theme!
+    // Notice that we pass through any additional props as well
+    return (
+      <EthContext.Consumer>
+        {context => <Component {...props} eth={context}/>}
+      </EthContext.Consumer>
+    )
+  }
 }
 
 export {
-    EthContext,
-    withEth,
-    client,
-    fakeClient
+  EthContext,
+  withEth,
+  client,
+  fakeClient
 }

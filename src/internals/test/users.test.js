@@ -2,7 +2,7 @@
 import defer from 'lodash/defer'
 
 import test from 'ava'
-import chai, { expect } from 'chai'
+import chai, {expect} from 'chai'
 import chaiEnzyme from 'chai-enzyme'
 import fauxJax from 'faux-jax'
 
@@ -22,7 +22,7 @@ test.beforeEach.cb((t) => {
   const respond = (request) => {
     request.respond(
       responseCode,
-      { 'Content-Type': 'application/json' },
+      {'Content-Type': 'application/json'},
       responseBody
     )
     fauxJax.restore()
@@ -38,18 +38,18 @@ test.beforeEach.cb((t) => {
 test.afterEach((t) => t.context.data.wrapper.unmount())
 
 test.serial('it should render users after request', (t) => {
-  const { wrapper } = t.context.data
+  const {wrapper} = t.context.data
   expect(wrapper).to.have.exactly(1).descendants('.user--row')
 })
 
 test.serial('it should remove an user', (t) => {
-  const { wrapper } = t.context.data
+  const {wrapper} = t.context.data
   wrapper.find('.user--remove').first().simulate('click')
   expect(wrapper).to.not.have.descendants('.user--row')
 })
 
 test.serial('it should handle errors', (t) => {
-  const { flux } = t.context.data
-  const { error } = flux.getStore('users').getState()
+  const {flux} = t.context.data
+  const {error} = flux.getStore('users').getState()
   t.is(error.error, 'foobar')
 })

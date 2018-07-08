@@ -56,7 +56,7 @@ export default {
     }
   ],
   resolve: {
-    extensions: [ '.js', '.json', '.jsx', '.es6', '.babel' ],
-    modules: [ 'app', 'node_modules' ]
+    extensions: ['.js', '.json', '.jsx', '.es6', '.babel'],
+    modules: ['app', 'node_modules']
   }
 }

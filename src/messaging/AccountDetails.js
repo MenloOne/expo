@@ -1,5 +1,5 @@
 /*
- * 
+ *
  *
  * Licensed under the Apache License, Version 2.0 (the “License”);
  * you may not use this file except in compliance with the License.
@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-import React from 'react';
+import React from 'react'
 
 function AccountDetails(props) {
-    return (
-        <div>
-            {`${props.account} (${props.balance} MET)`}
-        </div>
-    );
+  return (
+    <div>
+      {`${props.account} (${props.balance} MET)`}
+    </div>
+  )
 }
 
-export default AccountDetails;
+export default AccountDetails
