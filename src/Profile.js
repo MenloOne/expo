@@ -221,7 +221,7 @@ class Profile extends Component {
 
                   <div className="green-bg">
                     <div className="start-in">STARTS IN</div>
-                    <CountdownTimer date={new Date(2018, 8, 15, 12 + 7)}/>
+                    <CountdownTimer date={new Date().addDays(120)}/>
                     <div className="sold-range">
                       <div className="who-and-how">
                         <span className="sold-amount">$9,239,190</span>

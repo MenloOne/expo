@@ -74,7 +74,7 @@ class Wallet extends Component {
                 </a>
                 <div className="item-wrapper-foot">
                   <p className="wrapper-foot-title">TOKEN LOCKUP ENDS</p>
-                  <CountdownTimer date={new Date(2018, 7, 1, 7)}/>
+                  <CountdownTimer date={new Date().addDays(20)}/>
                   <p className="wrapper-foot-title title-to-left">TRADE THE MOMENT IT GOES LIVE</p>
                   <ul className="btn-sec">
                     <li><a href="#" className="blue-btn">ETHERDELTA</a></li>
@@ -112,7 +112,7 @@ class Wallet extends Component {
                 </ul>
                 <div className="item-wrapper-foot">
                   <p className="wrapper-foot-title">TOKEN LOCKUP ENDS</p>
-                  <CountdownTimer date={new Date(2018, 8, 5, 2 + 7)}/>
+                  <CountdownTimer date={new Date().addDays(25)}/>
 
                   <p className="wrapper-foot-title title-to-left">TRADE THE MOMENT IT GOES LIVE</p>
                   <ul className="btn-sec">
@@ -151,7 +151,7 @@ class Wallet extends Component {
                 </ul>
                 <div className="item-wrapper-foot">
                   <p className="wrapper-foot-title">TOKEN LOCKUP ENDS</p>
-                  <CountdownTimer date={new Date(2018, 9, 1, 2 + 7)}/>
+                  <CountdownTimer date={new Date().addDays(30)}/>
 
                   <p className="wrapper-foot-title title-to-left">TRADE THE MOMENT IT GOES LIVE</p>
                   <ul className="btn-sec">

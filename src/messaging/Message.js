@@ -23,6 +23,8 @@ const user2Im = require('../images/user-2.png')
 
 class Message extends React.Component {
   reply = async (messageBody) => {
+    this.setState({showReplyForm: false})
+
     return this.props.client.createMessage(messageBody, this.props.hash)
       .then(async messageHash => {
         const child = (
@@ -37,24 +39,10 @@ class Message extends React.Component {
         this.setState({children: [...this.state.children, child], showReplyForm: false})
       })
   }
+
   showReplies = async (show) => {
-    if (!show) {
-      this.setState({showReplies: false})
-      return
-    }
-
-    await this.props.client.getLocalMessages(this.props.hash).then(replies => {
-      const replyItems = replies.map(r => {
-        return <Message key={r.hash}
-                        hash={r.hash}
-                        votes={this.props.client.getVotes(r.hash)}
-                        type={'child'}
-                        client={this.props.client}
-                        body={r.body}/>
-      })
-
-      this.setState({children: replyItems, showReplies: true})
-    })
+    this.setState({showReplies: show})
+    this.refreshMessages()
   }
 
   constructor(props) {
@@ -68,6 +56,26 @@ class Message extends React.Component {
       upvote: 0,
       downvote: 0
     }
+  }
+
+  componentDidMount() {
+    this.props.client.subscribeMessages(this.refreshMessages.bind(this))
+    this.refreshMessages()
+  }
+
+  refreshMessages() {
+    this.props.client.getLocalMessages(this.props.hash).then(replies => {
+      const replyItems = replies.map(r => {
+        return <Message key={r.hash}
+                        hash={r.hash}
+                        votes={this.props.client.getVotes(r.hash)}
+                        type={'child'}
+                        client={this.props.client}
+                        body={r.body}/>
+      })
+
+      this.setState({children: replyItems})
+    })
   }
 
   showReplyForm() {
@@ -135,9 +143,13 @@ class Message extends React.Component {
             <a className="reply" onClick={this.showReplyForm.bind(this)}><span>Reply</span></a>}
           </div>
           <div className="comments-review">
-            {' '}{this.props.type === 'parent' && !this.state.showReplies && this.countReplies() > 0 &&
-          <a onClick={() => this.showReplies(!this.state.showReplies)}>{this.countReplies()} <em
-            className="blue">Load More Comments </em> ({this.countReplies()})</a>}
+            {' '}
+            {this.props.type === 'parent' && this.countReplies() > 0 &&
+              <span>
+                { this.state.showReplies && <a onClick={() => this.showReplies(!this.state.showReplies)}> <em className="blue">Hide Replies </em></a> }
+                { !this.state.showReplies && <a onClick={() => this.showReplies(!this.state.showReplies)}> <em className="blue">Load More Comments </em> ({this.countReplies()})</a> }
+              </span>
+            }
           </div>
           {this.state.showReplies && this.state.children}
           {this.state.showReplyForm && <MessageForm onSubmit={(message) => this.reply(message)}/>}

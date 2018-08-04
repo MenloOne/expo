@@ -6,11 +6,17 @@ import Guild from './Guild'
 import Profile from './Profile'
 import {client, EthContext, fakeClient} from './EthContext'
 
+Date.prototype.addDays = function(days) {
+  var date = new Date(this.valueOf());
+  date.setDate(date.getDate() + days);
+  return date;
+}
+
 class App extends React.Component {
 
   state = {
     ethContext: {
-      client: fakeClient,
+      client: client,
       account: '',
       balance: '3,089',
       isAuthenticated: false,
@@ -32,21 +38,25 @@ class App extends React.Component {
 
   refreshAccount() {
     this.state.ethContext.client.getAccountDetails()
-      .then(({account, balance}) => this.setState({
-        client: client,
-        account,
-        balance,
-        isAuthenticated: true,
-        isLoading: false,
-        refreshAccount: this.refreshAccount
-      }))
-      .catch(() => this.setState({
-        client: fakeClient,
-        account: '',
-        balance: '3,089',
-        isAuthenticated: false,
-        isLoading: false,
-        refreshAccount: this.refreshAccount
+      .then(({account, balance}) => {
+        this.setState({ ethContext: {
+            client: client,
+            account,
+            balance: balance.toFormat(0),
+            isAuthenticated: true,
+            isLoading: false,
+            refreshAccount: this.refreshAccount
+          }
+        })
+      })
+      .catch(() => this.setState({ ethContext: {
+          client: fakeClient,
+          account: '',
+          balance: '3,089',
+          isAuthenticated: false,
+          isLoading: false,
+          refreshAccount: this.refreshAccount
+        }
       }))
   }
 

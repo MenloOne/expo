@@ -34,8 +34,7 @@ class TopNav extends Component {
               <li className="nav-item">
                 <form className="form-inline my-2 my-lg-0 mr-lg-2">
                   <ul className="navbar-nav main ml-auto">
-                    <li className="nav-item"><a href="/wallet/"
-                                                title="Wallet">{this.props.eth.account} {this.props.eth.balance} MET</a>
+                    <li className="nav-item"><a href="/wallet/" title="Wallet">{this.props.eth.balance} MET</a>
                     </li>
                   </ul>
                   <div className="input-group">
