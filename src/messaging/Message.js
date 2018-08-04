@@ -75,6 +75,8 @@ class Message extends React.Component {
       })
 
       this.setState({children: replyItems})
+    }).catch(error => {
+      this.setState({children: null})
     })
   }
 

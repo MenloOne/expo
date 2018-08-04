@@ -37,7 +37,7 @@ class App extends React.Component {
   }
 
   refreshAccount() {
-    this.state.ethContext.client.getAccountDetails()
+    client.getAccountDetails()
       .then(({account, balance}) => {
         this.setState({ ethContext: {
             client: client,

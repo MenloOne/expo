@@ -30,7 +30,7 @@ class ReviewBoard extends Component {
 
   refreshMessages() {
     this.props.eth.client.getLocalMessages()
-      .then(messages => this.setState({messages}))
+      .then(messages => this.setState({ messages }))
   }
 
   onSubmitMessage(messageBody) {

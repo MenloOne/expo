@@ -206,7 +206,7 @@ class Profile extends Component {
 
                   </div>
                   <div className="awesome-product-aw">
-                    “Awesome product, awesome team. I’d back anything these guys do.” <br/>
+                    “Love what these guys are doing.” <br/>
                     <span className="name">- Blockchain Architect Guild</span>
                   </div>
 
