@@ -11,12 +11,17 @@ module.exports = {
       port: 7545,
       network_id: 5777
     },
-    integration: {
+    ropsten: {
+      host: "localhost",
+      port:  8545,
+      gas:   2900000,
+      network_id: '3',
+    },
+    kovan: {
       host: "127.0.0.1",
       port: 8545,
-      gas: 4700000,
-      gasPrice: 0,
-      network_id: 17
+      network_id: 42,
+      gas: 4700000
     },
     rinkeby: {
       host: "127.0.0.1",

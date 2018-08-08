@@ -31,12 +31,12 @@
   },
   "scripts": {
     "start": "NODE_PATH=./src  react-scripts start",
+    "create-accounts": "node scripts/create-accounts.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "menlo:deploy": "yarn run shipit staging deploy",
-    "menlo:create-integration-accounts": "node scripts/create-accounts.js",
-    "menlo:setup": "./scripts/menlo-setup.sh",
+    "menlo:install-ipfs": "./scripts/install-ipfs.sh",
     "menlo:parity-dev-chain": "./scripts/menlo-parity-start.sh"
   },
   "devDependencies": {
@@ -45,6 +45,6 @@
     "dotenv": "^5.0.1",
     "shipit-cli": "^4.0.2",
     "shipit-deploy": "^4.0.2",
-    "truffle": "^4.1.5"
+    "truffle": "^4.1.13"
   }
 }

@@ -13511,6 +13511,202 @@
     "version": "0.4.24+commit.e67f0147.Emscripten.clang"
   },
   "networks": {
+    "42": {
+      "events": {
+        "0x6985a02210a168e66602d3235cb6db0e70f92b3ba4d376a33c0f3d9434bff625": {
+          "anonymous": false,
+          "inputs": [],
+          "name": "Pause",
+          "type": "event"
+        },
+        "0x7805862f689e2f13df9f062ff482ad3ad112aca9e0847911ed832e158c525b33": {
+          "anonymous": false,
+          "inputs": [],
+          "name": "Unpause",
+          "type": "event"
+        },
+        "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "previousOwner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "OwnershipTransferred",
+          "type": "event"
+        },
+        "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "owner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "spender",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "value",
+              "type": "uint256"
+            }
+          ],
+          "name": "Approval",
+          "type": "event"
+        },
+        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "from",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "to",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "value",
+              "type": "uint256"
+            }
+          ],
+          "name": "Transfer",
+          "type": "event"
+        },
+        "0x80ab95d1965a5efca6615e2000b9fe318d405ac21a211df480ff08d7290a4f07": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "app",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "approver",
+              "type": "address"
+            }
+          ],
+          "name": "StartRequest",
+          "type": "event"
+        },
+        "0x07fb6870e0f01ad7e4f2d6b1bcfc72edd0d1d8c4982569c8cb8bd79b9c087674": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "app",
+              "type": "address"
+            }
+          ],
+          "name": "Installed",
+          "type": "event"
+        },
+        "0x907c0e95d6f0f3011107f134bdbb16d2933db6d8708df09e79318ea9629429fe": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "app",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "stopper",
+              "type": "address"
+            }
+          ],
+          "name": "StopRequest",
+          "type": "event"
+        },
+        "0x9cb86cc95d6eac716bbb27ee1a1d43a60e71c7965292b8da04a923e29ed93c62": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "app",
+              "type": "address"
+            }
+          ],
+          "name": "Uninstalled",
+          "type": "event"
+        },
+        "0x178407cae5375558cd8030fb8b73bfce971b88244c1990eb3eee1cd7cb9441c6": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "board",
+              "type": "address"
+            }
+          ],
+          "name": "Board",
+          "type": "event"
+        },
+        "0xb6fa8b8bd5eab60f292eca876e3ef90722275b785309d84b1de113ce0b8c4e74": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "board",
+              "type": "address"
+            }
+          ],
+          "name": "Revoked",
+          "type": "event"
+        },
+        "0x3ce7d0c04d2ef9adf7825b41aa982b376bd65267c91603077653811dcce94b74": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "nominee",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "nominator",
+              "type": "address"
+            }
+          ],
+          "name": "Nominated",
+          "type": "event"
+        },
+        "0x55faf8e51ab442f8d8510476317b2e313144c3db60adc284affef64140fe8552": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "denouncee",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "denouncer",
+              "type": "address"
+            }
+          ],
+          "name": "Denounced",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x482387289c732ddfe6a094371a4993cf60dce943",
+      "transactionHash": "0xe258c264d685b24cea6749c8e0bd5c1cfbc95448057845843cec69ccc58d421d"
+    },
     "4447": {
       "events": {
         "0x6985a02210a168e66602d3235cb6db0e70f92b3ba4d376a33c0f3d9434bff625": {
@@ -13704,10 +13900,10 @@
         }
       },
       "links": {},
-      "address": "0x8065f4c7b8c2bf53561af92d9da2ea022a0b28ca",
-      "transactionHash": "0x853d5e124bd2630a93fa550ad3255b485dde8fe2365da4bac9a6f6140f686ce5"
+      "address": "0xeec918d74c746167564401103096d45bbd494b74",
+      "transactionHash": "0x94266fdede9184a7777290aa098140987fc4e7ec3c2db79f560396baaec4077c"
     }
   },
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-08-04T09:26:59.409Z"
+  "updatedAt": "2018-08-08T23:01:25.362Z"
 }

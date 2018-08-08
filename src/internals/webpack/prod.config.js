@@ -73,7 +73,7 @@ export default {
       allChunks: true
     }),
 
-    // set env
+    // set kovan.env
     new webpack.DefinePlugin({
       'process.env': {
         BROWSER: JSON.stringify(true),

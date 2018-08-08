@@ -19,7 +19,7 @@ const startServer = () => {
     return startServer()
   }
 
-  // merge env for the new process
+  // merge kovan.env for the new process
   const env = {...process.env, NODE_ENV: 'development', BABEL_ENV: 'server'}
   // start the server procress
   server = cp.fork(KOA_PATH, {env})
