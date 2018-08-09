@@ -7,7 +7,7 @@ module.exports = (deployer, network) => {
   require('dotenv').config({ path: dotEnv })
   let root = process.env.MENLO_ROOT
 
-  // Fund personal account with MET
+  // Fund personal account with ONE
   let amount = 10000000000000000000000;
   AppToken.deployed().then(token => {
     token.transfer(root, amount);

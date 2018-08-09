@@ -53,7 +53,7 @@ class PayoutsContainer extends React.Component {
         <li key={i}>
           {account}
           {' '}
-          <button onClick={() => this.claim(i)}>Claim {this.state.rewards[i]} MET</button>
+          <button onClick={() => this.claim(i)}>Claim {this.state.rewards[i]} ONE</button>
         </li>
       )
     }

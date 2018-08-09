@@ -237,7 +237,7 @@ class Profile extends Component {
                     <h3>BitKitties</h3>
                     <div className="token-cal">
                       <div className="menlo-token">
-                        <div className="name-token">Menlo Token (MET)</div>
+                        <div className="name-token">Menlo Token (ONE)</div>
                         <div className="tex-field">
                           <input type="text" value={this.state.eth}
                                  onChange={this.onEditEth}/>

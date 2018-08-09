@@ -22,6 +22,6 @@ describe('AccountDetails', () => {
   it('renders the account hash and balance', () => {
     const accountDetails = shallow(<AccountDetails account={'someHash'} balance={'someBalance'}/>)
 
-    expect(accountDetails.text()).toEqual('someHash (someBalance MET)')
+    expect(accountDetails.text()).toEqual('someHash (someBalance ONE)')
   })
 })

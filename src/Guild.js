@@ -143,7 +143,7 @@ class Guild extends Component {
                         <li><h4>Guild Stats</h4></li>
                         <li><p>Reivews: 237</p></li>
                         <li><p>Avg Grade: 72%</p></li>
-                        <li><p>Avg Payout: 42 MET</p></li>
+                        <li><p>Avg Payout: 42 ONE</p></li>
                       </ul>
                       <ul className="guild-stats stats-right">
                         <li><p>Rep:<img src={starsIm}/></p></li>

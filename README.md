@@ -264,7 +264,7 @@ Now you are ready to deploy contracts and test:
 
 Go to the faucet to get some free Ether: [Rinkeby Faucet](https://faucet.rinkeby.io/)
 
-Give your Mist account some TK/MET tokens:
+Give your Mist account some TK/ONE tokens:
 
         yarn run truffle console --network rinkeby
 
