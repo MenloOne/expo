@@ -44,7 +44,6 @@ class JavascriptIPFSStorage {
   }
 
   connectPeer(remote) {
-    return // DD: TEMP
 
     this.ipfs.on('ready', () => {
       new Promise((resolve, reject) => {
