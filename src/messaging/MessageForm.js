@@ -19,7 +19,7 @@ import React from 'react'
 class MessageForm extends React.Component {
   state = {
     message: '',
-    disabled: false
+    submitting: false
   }
 
   constructor(props) {
@@ -32,13 +32,20 @@ class MessageForm extends React.Component {
 
   onSubmit(event) {
     event.preventDefault()
-    this.setState({disabled: true})
+    this.setState({submitting: true})
 
     this.props.onSubmit(this.state.message)
       .then(() => {
-        if (this.props.type !== 'Response') this.setState({message: '', disabled: false, error: null})
+        if (this.props.type !== 'Response') this.setState({
+          message: '',
+          submitting: false,
+          error: null
+        })
       })
-      .catch(error => this.setState({error: error.message}))
+      .catch(error => this.setState({
+        error: error.message,
+        submitting: false,
+      }))
   }
 
   onChange(event) {
@@ -55,7 +62,7 @@ class MessageForm extends React.Component {
       <form onSubmit={this.onSubmit}>
                 <textarea name="" className="field" id="" cols="30" rows="10" value={this.state.message}
                           onChange={this.onChange}></textarea>
-        <input type="submit" className="submit-btn" disabled={this.state.disabled}/>
+        <input type="submit" className="submit-btn" disabled={this.state.submitting}/>
         <a href="" className="cancle-btn" onClick={this.onCancel}>Cancel</a>
         {this.state.error && <p className="error">{this.state.error}</p>}
       </form>

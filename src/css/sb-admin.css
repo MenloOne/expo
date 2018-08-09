@@ -1621,6 +1621,10 @@ span.sold {
   margin-left: 19px;
 }
 
+.submit-btn[disabled] {
+  background-color: #a3b1db;
+}
+
 .cancle-btn {
   float: right;
   vertical-align: middle;
