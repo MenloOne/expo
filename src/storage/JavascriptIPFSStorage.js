@@ -56,14 +56,17 @@ class JavascriptIPFSStorage {
           console.log('Found IFPS addresses ' + result.addresses)
 
           let wsAddress = result.addresses.find(a => a.includes('/ws/'))
+          if (!wsAddress) {
+            // HACK
+            console.log('Ignoring no IPFS Swarm WS address')
+            this.connectedToPeer = true
+            resolve()
+            return
+          }
+
           this.ipfs.swarm.connect(wsAddress, (connectErr, connectResult) => {
             if (connectErr) {
-              console.log('Ignoring error connecting to IPFS Swarm: ' + connectErr)
-
-              this.connectedToPeer = true
-              resolve()
-//              This should be reject
-//              reject(connectErr)
+              reject(connectErr)
             } else {
               this.connectedToPeer = true
               resolve()
