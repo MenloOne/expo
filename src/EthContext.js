@@ -7,8 +7,9 @@ import EthereumLottery from './contracts/EthereumLottery'
 import MessageBoardGraph from './storage/MessageBoardGraph'
 import Client, {FakeClient} from './Client'
 
-const remoteStorage = new RemoteIPFSStorage({host: 'ipfs.infura.io', port: '5001', protocol: 'https'})
+// const remoteStorage = new RemoteIPFSStorage({host: 'ipfs.infura.io', port: '5001', protocol: 'https'})
 // const remoteStorage = new RemoteIPFSStorage('/ip4/127.0.0.1/tcp/5001')
+const remoteStorage = new RemoteIPFSStorage({host: 'ipfs.menlo.one', port: '443', protocol: 'https'})
 const localStorage = new JavascriptIPFSStorage()
 localStorage.connectPeer(remoteStorage)
 
