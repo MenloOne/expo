@@ -9,7 +9,7 @@ import Client, {FakeClient} from './Client'
 
 // const remoteStorage = new RemoteIPFSStorage({host: 'ipfs.infura.io', port: '5001', protocol: 'https'})
 // const remoteStorage = new RemoteIPFSStorage('/ip4/127.0.0.1/tcp/5001')
-const remoteStorage = new RemoteIPFSStorage('/ip4/18.216.45.165/https/443')
+const remoteStorage = new RemoteIPFSStorage({host: '18.216.45.165', port: '443', protocol: 'https'})
 const localStorage = new JavascriptIPFSStorage()
 localStorage.connectPeer(remoteStorage)
 
