@@ -137,11 +137,12 @@ class Client {
     const messageHash = await this.localStorage.createMessage(message)
       .catch(() => Promise.reject(new MessageBoardError('An error occurred saving the message to your local IPFS.')))
 
-    await this.forum.post(messageHash, message.parent)
+    return this.forum.post(messageHash, message.parent)
       .catch(() => Promise.reject(new MessageBoardError('An error occurred verifying the message.')))
 
-    return this.remoteStorage.pin(messageHash)
-      .catch(() => Promise.reject(new MessageBoardError('An error occurred saving the message to Menlo IPFS.')))
+    //Need pining
+    //return this.remoteStorage.pin(messageHash)
+    //  .catch(() => Promise.reject(new MessageBoardError('An error occurred saving the message to Menlo IPFS.')))
   }
 
   topicOffset(messageHash) {
