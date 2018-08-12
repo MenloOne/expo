@@ -17,9 +17,8 @@
 import ipfsAPI from 'ipfs-api'
 
 class RemoteIPFSStorage {
-  constructor(connectionOptions) {
-    this.connectionOptions = connectionOptions
-    this.connection = ipfsAPI(connectionOptions)
+  constructor(host, port, connectionOptions) {
+    this.connection = ipfsAPI(host, port, connectionOptions)
   }
 
   pin(hash) {
