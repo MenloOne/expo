@@ -44,7 +44,6 @@ class JavascriptIPFSStorage {
   }
 
   connectPeer(remote) {
-
     this.ipfs.on('ready', () => {
       new Promise((resolve, reject) => {
         remote.connection.id((err, result) => {
@@ -57,16 +56,9 @@ class JavascriptIPFSStorage {
 
           let wsAddress = result.addresses.find(a => a.includes('/ws/'))
           if (!wsAddress) {
-            let nonLocalAddress = result.addresses[result.addresses.length-1]
-
-            this.ipfs.swarm.connect(nonLocalAddress, (connectErr, connectResult) => {
-              if (connectErr) {
-                console.log("WARNING!  Ignoring no successful swarm connection")
-              }
-
-              this.connectedToPeer = true
-              resolve()
-            })
+            console.log("WARNING!  Ignoring no successful swarm connection")
+            this.connectedToPeer = true
+            resolve()
 
             return
           }
