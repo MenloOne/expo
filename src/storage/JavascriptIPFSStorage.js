@@ -61,7 +61,7 @@ class JavascriptIPFSStorage {
             return
           }
 
-          this.ipfs.swarm.connect('/ip4/172.31.83.95/tcp/4002/ws', (connectErr, connectResult) => {
+          this.ipfs.swarm.connect('/ip4/172.31.83.95/tcp/4002/wss/ipfs/QmQP5wZGuFEF5Vxb6UmvwKuS9DVNCGz975aRXVLFHK1z3s', (connectErr, connectResult) => {
             if (connectErr) {
               reject(connectErr)
             } else {
