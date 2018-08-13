@@ -52,19 +52,16 @@ class JavascriptIPFSStorage {
             return
           }
 
-          console.log('Found IFPS addresses ' + result.addresses)
+          console.log('Found IPFS addresses ' + result.addresses)
 
           // Must find websocket based address to connect to as we're in browser
           let wsAddress = result.addresses.find(a => a.includes('/ws/'))
           if (!wsAddress) {
-            console.log("WARNING!  Ignoring no successful swarm connection")
-            this.connectedToPeer = true
-            resolve()
-
+            reject('No Websocket connection exposed by ipfs.menlo.one')
             return
           }
 
-          this.ipfs.swarm.connect(wsAddress, (connectErr, connectResult) => {
+          this.ipfs.swarm.connect('/ip4/172.31.83.95/tcp/4002/ws', (connectErr, connectResult) => {
             if (connectErr) {
               reject(connectErr)
             } else {
