@@ -55,13 +55,14 @@ class JavascriptIPFSStorage {
           console.log('Found IPFS addresses ' + result.addresses)
 
           // Must find websocket based address to connect to as we're in browser
-          let wsAddress = result.addresses.find(a => a.includes('/ws/'))
+          let wsAddress = result.addresses.find(a => a.includes('8081/ws/'))
           if (!wsAddress) {
             reject('No Websocket connection exposed by ipfs.menlo.one')
             return
           }
 
-          this.ipfs.swarm.connect('/ip4/172.31.83.95/tcp/4002/wss/ipfs/QmQP5wZGuFEF5Vxb6UmvwKuS9DVNCGz975aRXVLFHK1z3s', (connectErr, connectResult) => {
+          // The Menlo NGINX proxy converts WSS:4002 to WS:8081
+          this.ipfs.swarm.connect('/dns4/ipfs.menlo.one/wss/QmQP5wZGuFEF5Vxb6UmvwKuS9DVNCGz975aRXVLFHK1z3s'), (connectErr, connectResult) => {
             if (connectErr) {
               reject(connectErr)
             } else {
