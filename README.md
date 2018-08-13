@@ -272,14 +272,121 @@ Run the Town Hall and browse in Mist to [http://localhost:3000](http://localhost
 
 ### Kovan
 
-TBD
+#### Installing an IPFS box on AWS
 
-        parity --chain kovan
+* Launch an EC2 box with Ubuntu
 
-## Production and Mainnet
+##### Install Golang and IPFS
 
-...
+```sudo yum update -y
+   sudo yum install -y golang
+   
+   wget https://dist.ipfs.io/go-ipfs/v0.4.15/go-ipfs_v0.4.15_linux-amd64.tar.gz
+   tar -xvf go-ipfs_v0.4.15_linux-amd64.tar.gz
+```
+   
+##### Move executable to your bin path
 
-## Overriding the default configuration
+```
+sudo mv go-ipfs/ipfs /usr/local/bin
+``` 
 
-This repo uses [create-react-app environment variables](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-development-environment-variables-in-env).
+#### Run IPFS daemon on start
+
+```
+sudo vi /etc/systemd/system/ipfs.service
+```
+
+#### Initialize IPFS
+
+```
+ipfs init
+```
+
+#### Copy and paste unit file definition
+
+```
+[Unit]
+Description=IPFS Daemon
+After=syslog.target network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/ipfs daemon --enable-namesys-pubsub
+User=ubuntu
+
+[Install]
+WantedBy=multi-user.target
+```
+   
+#### Start IPFS
+
+```
+sudo systemctl daemon-reload
+sudo systemctl enable ipfs
+sudo systemctl start ipfs
+```
+
+You can now reboot your instance and make sure IPFS is running by:
+
+```
+sudo systemctl status ipfs
+```
+
+#### Get Certbot to get an SSL Cert
+
+From [https://certbot.eff.org/](https://certbot.eff.org/)
+
+```
+sudo apt-get update
+sudo apt-get install software-properties-common
+sudo add-apt-repository ppa:certbot/certbot
+sudo apt-get update
+sudo apt-get install python-certbot-nginx
+```
+
+#### Use CertBot to get your SSL
+
+First point ipfs.menlo.one (or your domain) to your AWS box.  Then:
+
+```
+sudo certbot --nginx -d ipfs.menlo.one
+```
+
+#### Setup automatic SSL renewals
+
+``` 
+```
+
+#### Configure NGINGX
+
+```
+vi /etc/nginx/sites-available/default
+```
+
+and add this to the END of the file:
+
+``` 
+server {
+    listen [::]:5002 ssl ipv6only=on; # managed by Certbot
+    listen 5002 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/ipfs.menlo.one/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/ipfs.menlo.one/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+    server_name ipfs.menlo.one;
+location / {
+        proxy_pass http://localhost:5001;
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+     }
+}
+```
+
+#### Restart NGINX
+
+``` 
+sudo systemctl restart nginx
+```
+
+

@@ -54,6 +54,7 @@ class JavascriptIPFSStorage {
 
           console.log('Found IFPS addresses ' + result.addresses)
 
+          // Must find websocket based address to connect to as we're in browser
           let wsAddress = result.addresses.find(a => a.includes('/ws/'))
           if (!wsAddress) {
             console.log("WARNING!  Ignoring no successful swarm connection")
