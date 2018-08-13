@@ -7,12 +7,9 @@ import EthereumLottery from './contracts/EthereumLottery'
 import MessageBoardGraph from './storage/MessageBoardGraph'
 import Client, {FakeClient} from './Client'
 
-// const remoteStorage = new RemoteIPFSStorage('/ip4/127.0.0.1/tcp/5001')
 
 const remoteStorage = new RemoteIPFSStorage('ipfs.menlo.one', '443', {protocol: 'https'})
-
-// Infura doesn't support Websocket peer connections
-// const remoteStorage = new RemoteIPFSStorage('ipfs.infura.io', '5001', { protocol: 'https' })
+// const remoteStorage = new RemoteIPFSStorage('/ip4/127.0.0.1/tcp/5001')
 
 const localStorage = new JavascriptIPFSStorage()
 localStorage.connectPeer(remoteStorage)

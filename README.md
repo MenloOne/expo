@@ -2,12 +2,12 @@
 
 Find out about Menlo One: [https://www.menlo.one/](https://www.menlo.one/)
 
-Townhall Information: [https://www.menlo.one/#/townhall](https://www.menlo.one/#/townhall)
+Core Townhall Libraries: [https://www.menlo.one/#/townhall](https://www.menlo.one/#/townhall)
 
-Expo Repo: [https://www.github.com/menloone/expo-demo](https://www.github.com/menloone/expo-demo)
+Expo Demo Site including Townhall use: [https://www.github.com/menloone/expo-demo](https://www.github.com/menloone/expo-demo)
+
 
 ## Local "Develop" Environment
-
 
 To develop and run Expo locally, install the following prerequisites and
 dependencies before running the app.
@@ -35,27 +35,39 @@ Metamask should be used for interacting with the town hall dApp.
 Install Metamask extensions into your browser of choice, Chrome or Brave supported: [http://metamask.io](http://metamask.io)
 
 
-#### Import development chain account
+### Install app and dependencies
+
+1. Install nvm and node: `brew install nvm && nvm install`
+2. Clone the repo: `git clone git@github.com:MenloOne/expo-demo.git`
+3. Install dependencies: `cd expo-demo && nvm use && yarn install`
+
+### Run the application
+
+Run a local dev blockchain in a separate window:
+
+```yarn run truffle develop```
+
+Run IPFS daemon in a separate window: 
+
+```ipfs daemon```
+
+Deploy the contracts: 
+
+```yarn run truffle deploy --network develop --reset```
+
+Run the app: 
+
+```yarn start```
+
+### Interact with Metamask
 
 Import this private key into MetaMask for use with `truffle develop`:
 
         388c684f0ba1ef5017716adb5d21a053ea8e90277d0868337519f97bede61418
 
-
 ![MetaMask Import](https://www.dropbox.com/s/aqmmv5xk67haqwn/import-account.png?raw=1)
 
-### Install app and dependencies
-
-1. Install nvm and node: `brew install nvm && nvm install`
-2. Clone the repo: `git clone git@github.com:MenloOne/townhall.git`
-3. Install dependencies: `cd townhall && nvm use && yarn install`
-
-### Run the application
-
-1. Run a local dev blockchain in a separate window: `yarn run truffle develop`
-2. Run IPFS daemon in a separate window: `ipfs daemon`
-3. Now, deploy the contracts: `yarn run truffle deploy --network deploy`
-4. Run the app: `yarn start`
+If you see in the Chrome Console Metamask RPC Errors - it means your contract deploys didn't work.
 
 ### Interact with Expo
 
@@ -69,11 +81,24 @@ Add a Custom RPC in MetaMask with URL `http://127.0.0.1:9545/`:
 
 
 
-## Using the Ropsten Network 
+# Using other Environments
 
-We have already deployed the contracts included in this repo to the Ropsten network.  
-To use the network just run the site pointing at the Ropsten build contracts and 
-use Metamask against Kovan.
+If for some reason Truffle doesn't work for you or you want a different environment the first thing you will
+need is to fill out the `.env` file with the following accounts that you create in your chain.  For Ganache, 
+you can just copy some of the precreated accounts:
+
+
+    - MENLO_ROOT: Address of pre-configured account on chain.
+
+Menlo Root should be the first created account w/ some ETH which we can then use to
+create the accounts below on chains such as Parity.
+     
+    - MENLO_TENET_1: Address for first tenet account.
+    - MENLO_TENET_2: Address for second tenet account.
+    - MENLO_TENET_3: Address for third tenet account.
+    - MENLO_ROOT: Address for the account used to interact with town hall.
+
+
 
 ### Getting ETH
 
@@ -106,24 +131,6 @@ To get ETH in your account once on Ropsten, go to the [Ropsten ETH Faucet](http:
       
       
 
-## Using other Environments
-
-If for some reason Truffle doesn't work for you or you want a different environment the first thing you will
-need is to fill out the `.env` file with the following accounts that you create in your chain.  For Ganache, 
-you can just copy some of the precreated accounts:
-
-
-    - MENLO_ROOT: Address of pre-configured account on chain.
-
-Menlo Root should be the first created account w/ some ETH which we can then use to
-create the accounts below on chains such as Parity.
-     
-    - MENLO_TENET_1: Address for first tenet account.
-    - MENLO_TENET_2: Address for second tenet account.
-    - MENLO_TENET_3: Address for third tenet account.
-    - MENLO_ROOT: Address for the account used to interact with town hall.
-
-
 #### Ganache
 
 For a light, easy to use private chain with a visual and cli interface,
@@ -154,54 +161,6 @@ Installing Parity:
         brew install parity
 
 
-#### Run unlocked dev chain
-
-Create an account on Parity.  For dev you can use:
-
-    parity account new --chain dev --keys-path /Users/dave/Library/Application\ Support/io.parity.ethereum/keys
-
-Take the resulting account number and add it as personal in your `.env`
-
-    MENLO_ROOT=0xaddress
-
-You need to unlock your dev account to be able to run Truffle migrations easily.
-The following script runs parity with an unlocked dev account, it will need
-to be modified if you've changed the default dev account:
-
-        ./scripts/parity-unlocked-dev.sh
-
-#### Set up Menlo accounts
-
-Create the needed Menlo accounts:
-
-        yarn run truffle menlo:create-accounts --network integration 
-
-After running the account creation, a set of accounts will be displayed to
-add to your `.env` file.
-
-Add `MENLO_TENET_1`, `MENLO_TENET_2`, `MENLO_TENET_3`, and `MENLO_ROOT` to you `.env`.
-
-#### Deploy Contracts
-
-Once you add the environment variables to your account, rerun parity with the
-helper script:
-
-        yarn run menlo:parity-dev-chain
-
-Now deploy the contracts, use the `integration` network defined in `truffle.js` when using parity.
-
-        yarn run truffle deploy --network integration
-
-Your contracts will live between parity dev runs, you can check the contracts addresses to watch with `truffle network`.
-
-Browse [http://localhost:8180](http://localhost:8180) to interact with the Parity wallet.
-
-Parity has a lot of config and features: [Read the effin manual](https://wiki.parity.io/Private-development-chain)
-
-#### Subsequent runs
-
-        yarn run menlo:parity-dev-chain
-
 ### Testing
 
 For testing the TownHall dapp:
@@ -224,51 +183,7 @@ Deploy to server using `shipit`:
 
       yarn run menlo:deploy
 
-## Staging and Testnet
-
-### Rinkeby & Mist
-
-MetaMask can be used with a Rinkeby account to test against.
-
-The [Mist](https://github.com/ethereum/mist/releases) browser can be used to test the Rinkeby testnet.
-
-Mist uses [Geth](https://github.com/ethereum/go-ethereum) underneath:
-
-        brew install geth
-
-Run Geth against Rinkeby with the Apis needed by Truffle:
-
-        geth --rinkeby --rpc --rpcapi db,eth,net,web3,root --rpccorsdomain http://localhost:3000
-
-Now, run Mist against your local instance of Geth:
-
-        /Applications/Mist.app/Contents/MacOS/Mist --rpc http://127.0.0.1:8545
-
-**Wait for the blocks to sync** , (go for a walk and enjoy the sunshine).
-
-After the blocks sycn, note your account hash in the Mist Wallet, you'll need it later.
-
-Close Mist, Stop Geth.
-
-Now, run Geth with the account you noted above unlocked:
-
-        geth --rinkeby --rpc --rpcapi db,eth,net,web3,root --unlock="0x4B71d4020a69902E6cB1d9a387a03cF0a839d33b" --rpccorsdomain http://localhost:3000
-
-Run Mist again:
-
-        /Applications/Mist.app/Contents/MacOS/Mist --rpc http://127.0.0.1:8545
-
-Now you are ready to deploy contracts and test:
-
-        yarn run truffle deploy --network rinkeby
-
-Go to the faucet to get some free Ether: [Rinkeby Faucet](https://faucet.rinkeby.io/)
-
-Give your Mist account some TK/ONE tokens:
-
-        yarn run truffle console --network rinkeby
-
-Run the Town Hall and browse in Mist to [http://localhost:3000](http://localhost:3000).
+## Testnet
 
 ### Kovan
 
@@ -322,6 +237,12 @@ ipfs config --json API.HTTPHeaders.Access-Control-Allow-Origin '["*"]'
 ipfs config --json API.HTTPHeaders.Access-Control-Allow-Methods '["PUT", "GET", "POST"]'
 ipfs config --json Addresses.Swarm '["/ip4/0.0.0.0/tcp/4001", "/ip4/0.0.0.0/tcp/8081/ws", "/ip6/::/tcp/4001"]' 
 ipfs config --bool Swarm.EnableRelayHop true
+```
+
+#### To surface the gateway over HTTP
+
+``` 
+ipfs config Addresses.Gateway /ip4/0.0.0.0/tcp/8080
 ```
 
 #### Copy and paste unit file definition
