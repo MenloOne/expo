@@ -62,7 +62,7 @@ class JavascriptIPFSStorage {
           }
 
           // The Menlo NGINX proxy converts WSS:4002 to WS:8081
-          this.ipfs.swarm.connect('/dns4/ipfs.menlo.one/wss/QmQP5wZGuFEF5Vxb6UmvwKuS9DVNCGz975aRXVLFHK1z3s'), (connectErr, connectResult) => {
+          this.ipfs.swarm.connect(('/dns4/ipfs.menlo.one/wss/QmQP5wZGuFEF5Vxb6UmvwKuS9DVNCGz975aRXVLFHK1z3s'), (connectErr, connectResult) => {
             if (connectErr) {
               reject(connectErr)
             } else {
