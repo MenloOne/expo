@@ -275,6 +275,10 @@ Run the Town Hall and browse in Mist to [http://localhost:3000](http://localhost
 #### Installing an IPFS box on AWS
 
 * Launch an EC2 box with Ubuntu
+* Setup security groups appropriately
+
+You can follow the [IPFS AWS Tutorial](https://medium.com/textileio/tutorial-setting-up-an-ipfs-peer-part-i-de48239d82e0)
+
 
 ##### Install Golang and IPFS
 
@@ -289,6 +293,7 @@ Run the Town Hall and browse in Mist to [http://localhost:3000](http://localhost
 
 ```
 sudo mv go-ipfs/ipfs /usr/local/bin
+rm -rf go-ipfs
 ``` 
 
 #### Run IPFS daemon on start
@@ -297,39 +302,56 @@ sudo mv go-ipfs/ipfs /usr/local/bin
 sudo vi /etc/systemd/system/ipfs.service
 ```
 
-#### Initialize IPFS
+#### Initialize IPFS 
 
 ```
-ipfs init
+echo 'export IPFS_PATH=/data/ipfs' >>~/.bash_profile
+source ~/.bash_profile
+sudo mkdir -p $IPFS_PATH
+sudo chown ubuntu:ubuntu $IPFS_PATH
+ipfs init -p server
+```
+
+
+#### Configure IPFS Limits & CORS
+
+```
+ipfs config Datastore.StorageMax 20GB
+ipfs config Addresses.API /ip4/127.0.0.1/tcp/8081/ws
+ipfs config --json API.HTTPHeaders.Access-Control-Allow-Origin '["*"]'
+ipfs config --json API.HTTPHeaders.Access-Control-Allow-Methods '["PUT", "GET", "POST"]'
 ```
 
 #### Copy and paste unit file definition
 
-```
+``` 
+sudo bash -c 'cat >/lib/systemd/system/ipfs.service <<EOL
 [Unit]
-Description=IPFS Daemon
-After=syslog.target network.target remote-fs.target nss-lookup.target
-
+Description=ipfs daemon
 [Service]
-Type=simple
-ExecStart=/usr/local/bin/ipfs daemon --enable-namesys-pubsub
+ExecStart=/usr/local/bin/ipfs daemon --enable-gc
+Restart=always
 User=ubuntu
-
+Group=ubuntu
+Environment="IPFS_PATH=/data/ipfs"
 [Install]
 WantedBy=multi-user.target
+EOL'
 ```
+
    
 #### Start IPFS
 
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable ipfs
-sudo systemctl start ipfs
+sudo systemctl start ipfs.service
 ```
 
 You can now reboot your instance and make sure IPFS is running by:
 
 ```
+sudo systemctl restart ipfs
 sudo systemctl status ipfs
 ```
 
@@ -361,27 +383,25 @@ sudo certbot --nginx -d ipfs.menlo.one
 #### Configure NGINGX
 
 ```
-vi /etc/nginx/sites-available/default
-```
-
-and add this to the END of the file:
-
-``` 
+sudo bash -c 'cat >/etc/nginx/sites-available/default <<EOL 
 server {
-    listen [::]:5002 ssl ipv6only=on; # managed by Certbot
-    listen 5002 ssl; # managed by Certbot
+    listen [::]:443 ssl ipv6only=on; # managed by Certbot
+    listen 443 ssl; # managed by Certbot
     ssl_certificate /etc/letsencrypt/live/ipfs.menlo.one/fullchain.pem; # managed by Certbot
     ssl_certificate_key /etc/letsencrypt/live/ipfs.menlo.one/privkey.pem; # managed by Certbot
     include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
     server_name ipfs.menlo.one;
-location / {
-        proxy_pass http://localhost:5001;
-        proxy_set_header Host $host;
-        proxy_cache_bypass $http_upgrade;
+    
+    location / {
+        proxy_pass http://localhost:8081;
+        proxy_set_header Host \$host;
+        proxy_cache_bypass \$http_upgrade;
      }
 }
+EOL'
 ```
+
 
 #### Restart NGINX
 
