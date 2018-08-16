@@ -1,30 +1,54 @@
+
+// var HDWalletProvider = require('truffle-hdwallet-provider');
+// require('dotenv').config({ path: './.mnemonic.env' })
+// const mnemonic = process.env.MNEMONIC
+
+var HDWalletProvider = require('truffle-hdwallet-provider-privkey');
+var keys = []
+keys.push(require('./chain/root.json'))
+keys.push(require('./chain/tenet1.json'))
+keys.push(require('./chain/tenet2.json'))
+keys.push(require('./chain/tenet3.json'))
+var privKeys = keys.map((js) => js.privateKey.substr(2) /* Skip 0x */)
+
+
 module.exports = {
-  migrations_directory: "./migrations",
+  migrations_directory: './migrations',
   networks: {
+    live: {
+      provider: function() {
+        return new HDWalletProvider(privKeys, 'https://mainnet.infura.io/v3/1b81fcc6e29d459ca28861e0901aba99')
+      },
+      network_id: '1',
+      gas: 4700000,
+    },
     develop: {
-      host: "127.0.0.1",
+      host: '127.0.0.1',
       port: 9545,
-      network_id: "*"
+      network_id: '*'
     },
     ganache: {
-      host: "127.0.0.1",
+      host: '127.0.0.1',
       port: 7545,
       network_id: 5777
     },
     ropsten: {
-      host: "localhost",
-      port:  8545,
-      gas:   2900000,
+      provider: function() {
+        return new HDWalletProvider(privKeys, 'https://ropsten.infura.io/v3/1b81fcc6e29d459ca28861e0901aba99')
+      },
       network_id: '3',
+      gas: 4700000,
     },
     kovan: {
-      host: "127.0.0.1",
-      port: 8545,
+      provider: function() {
+        return new HDWalletProvider(privKeys, 'https://kovan.infura.io/v3/1b81fcc6e29d459ca28861e0901aba99')
+      },
       network_id: 42,
-      gas: 4700000
+      gas: 4700000,
+      gasPrice: 150000000000
     },
     rinkeby: {
-      host: "127.0.0.1",
+      host: '127.0.0.1',
       port: 8545,
       gas: 4612388,
       network_id: 4,
@@ -33,7 +57,7 @@ module.exports = {
   solc: {
     optimizer: {
       enabled: true,
-      runs: 500
+      runs: 0
     }
   }
 }

@@ -15,7 +15,7 @@
 */
 pragma solidity^0.4.18;
 
-import 'zeppelin-solidity/contracts/token/PausableToken.sol';
+import 'openzeppelin-solidity/contracts/token/ERC20/PausableToken.sol';
 /*
 / installed apps are cheaper on gas than approve/transferFrom because they require fewer SSTOREs
 /
@@ -73,18 +73,18 @@ contract AppToken is AppTokenEvents,PausableToken {
 
         balances[_from] = balances[_from].sub(_value);
         balances[_to] = balances[_to].add(_value);
-        Transfer(_from, _to, _value);
+        emit Transfer(_from, _to, _value);
     }
 
-    function AppToken(address trustee1, address trustee2, address trustee3) public {
+    constructor(address trustee1, address trustee2, address trustee3) public {
         accounts[trustee1].permissions = BOARD;
         accounts[trustee2].permissions = BOARD;
         accounts[trustee3].permissions = BOARD;
-        Board(trustee1);
-        Board(trustee2);
-        Board(trustee3);
-        totalSupply = 1000000000 ether;
-        balances[msg.sender] = totalSupply;
+        emit Board(trustee1);
+        emit Board(trustee2);
+        emit Board(trustee3);
+        totalSupply_ = 1000000000 ether;
+        balances[msg.sender] = totalSupply_;
     }
 
     function installed(address _app) public view returns (bool) {
@@ -109,13 +109,13 @@ contract AppToken is AppTokenEvents,PausableToken {
         if (nominee.nominator == msg.sender) {
             return;
         }
-        Nominated(_board, msg.sender);
+        emit Nominated(_board, msg.sender);
         if (accounts[nominee.nominator].permissions & BOARD == 0) {
             nominee.nominator = msg.sender;
             return;
         }
         nominee.permissions |= BOARD;
-        Board(_board);
+        emit Board(_board);
     }
 
     function revoke(address _board) external onlyBoard {
@@ -129,13 +129,13 @@ contract AppToken is AppTokenEvents,PausableToken {
         if (denounced.denouncer == msg.sender) {
             return;
         }
-        Denounced(_board, msg.sender);
+        emit Denounced(_board, msg.sender);
         if (accounts[denounced.denouncer].permissions & BOARD == 0) {
             denounced.denouncer = msg.sender;
             return;
         }
         denounced.permissions &= ~BOARD;
-        Revoked(_board);
+        emit Revoked(_board);
     }
 
     function install(address _app) external onlyBoard {
@@ -146,7 +146,7 @@ contract AppToken is AppTokenEvents,PausableToken {
         if (application.installer == msg.sender) {
             return;
         }
-        StartRequest(_app, msg.sender);
+        emit StartRequest(_app, msg.sender);
         if (accounts[application.installer].permissions & BOARD == 0) {
             application.installer = msg.sender;
             return;
@@ -157,7 +157,7 @@ contract AppToken is AppTokenEvents,PausableToken {
         }
         require(size > 0);
         application.permissions |= INSTALLED;
-        Installed(_app);
+        emit Installed(_app);
     }
     function uninstall(address _app) external onlyBoard {
         Account storage application = accounts[_app];
@@ -170,12 +170,12 @@ contract AppToken is AppTokenEvents,PausableToken {
         if (application.stopper == msg.sender) {
             return;
         }
-        StopRequest(_app, msg.sender);
+        emit StopRequest(_app, msg.sender);
         if (accounts[application.stopper].permissions & BOARD == 0) {
             application.stopper = msg.sender;
             return;
         }
         application.permissions &= ~INSTALLED;
-        Uninstalled(_app);
+        emit Uninstalled(_app);
     }
 }

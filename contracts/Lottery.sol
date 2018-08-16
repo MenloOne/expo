@@ -42,7 +42,7 @@ contract Lottery is Beneficiary, Sponsored {
     uint256 public rewardPool;
     address[5] public payouts;
 
-    function Lottery(AppToken _token, Forum _forum) public {
+  constructor(AppToken _token, Forum _forum) public {
         token = _token;
         forum = _forum;
         owner = msg.sender;

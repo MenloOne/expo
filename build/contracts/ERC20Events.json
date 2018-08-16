@@ -46,8 +46,8 @@
       "type": "event"
     }
   ],
-  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3006080604052600080fd00a165627a7a72305820ea9cb2f1d9f883a941467ca2e1af00cbb3052d6299e0f074b49af6176f0ed7440029",
-  "deployedBytecode": "0x6080604052600080fd00a165627a7a72305820ea9cb2f1d9f883a941467ca2e1af00cbb3052d6299e0f074b49af6176f0ed7440029",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3006080604052600080fd00a165627a7a7230582006215c781f93e8c946258554e6620aca4de2fed001247c59e4bad77841e55cd30029",
+  "deployedBytecode": "0x6080604052600080fd00a165627a7a7230582006215c781f93e8c946258554e6620aca4de2fed001247c59e4bad77841e55cd30029",
   "sourceMap": "318:168:13:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;318:168:13;;;;;;;",
   "deployedSourceMap": "318:168:13:-;;;;;",
   "source": "/// erc20.sol -- API for the ERC20 token standard\n\n// See <https://github.com/ethereum/EIPs/issues/20>.\n\n// This file likely does not meet the threshold of originality\n// required for copyright to apply.  As a result, this is free and\n// unencumbered software belonging to the public domain.\n\npragma solidity ^0.4.8;\n\ncontract ERC20Events {\n    event Approval(address indexed src, address indexed guy, uint wad);\n    event Transfer(address indexed src, address indexed dst, uint wad);\n}\n\ncontract ERC20 is ERC20Events {\n    function totalSupply() public view returns (uint);\n    function balanceOf(address guy) public view returns (uint);\n    function allowance(address src, address guy) public view returns (uint);\n\n    function approve(address guy, uint wad) public returns (bool);\n    function transfer(address dst, uint wad) public returns (bool);\n    function transferFrom(\n        address src, address dst, uint wad\n    ) public returns (bool);\n}\n",
@@ -1810,5 +1810,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-08-08T17:50:46.672Z"
+  "updatedAt": "2018-08-16T13:08:38.737Z"
 }

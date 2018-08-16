@@ -39,8 +39,8 @@
       "type": "event"
     }
   ],
-  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3006080604052600080fd00a165627a7a72305820835feebfbb1a7bf2ffd8e9fade47ee78f4c23204d239211975eafd282517e1bb0029",
-  "deployedBytecode": "0x6080604052600080fd00a165627a7a72305820835feebfbb1a7bf2ffd8e9fade47ee78f4c23204d239211975eafd282517e1bb0029",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3006080604052600080fd00a165627a7a72305820705b65887c047df3fa9ec9cb040742500670eb2b90e787c256c2d1d1ee1f09fa0029",
+  "deployedBytecode": "0x6080604052600080fd00a165627a7a72305820705b65887c047df3fa9ec9cb040742500670eb2b90e787c256c2d1d1ee1f09fa0029",
   "sourceMap": "735:492:9:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;735:492:9;;;;;;;",
   "deployedSourceMap": "735:492:9:-;;;;;",
   "source": "/// note.sol -- the `note' modifier, for logging calls as events\n\n// This program is free software: you can redistribute it and/or modify\n// it under the terms of the GNU General Public License as published by\n// the Free Software Foundation, either version 3 of the License, or\n// (at your option) any later version.\n\n// This program is distributed in the hope that it will be useful,\n// but WITHOUT ANY WARRANTY; without even the implied warranty of\n// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n// GNU General Public License for more details.\n\n// You should have received a copy of the GNU General Public License\n// along with this program.  If not, see <http://www.gnu.org/licenses/>.\n\npragma solidity ^0.4.13;\n\ncontract DSNote {\n    event LogNote(\n        bytes4   indexed  sig,\n        address  indexed  guy,\n        bytes32  indexed  foo,\n        bytes32  indexed  bar,\n        uint              wad,\n        bytes             fax\n    ) anonymous;\n\n    modifier note {\n        bytes32 foo;\n        bytes32 bar;\n\n        assembly {\n            foo := calldataload(4)\n            bar := calldataload(36)\n        }\n\n        LogNote(msg.sig, msg.sender, foo, bar, msg.value, msg.data);\n\n        _;\n    }\n}\n",
@@ -370,7 +370,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3399,
+                          "referencedDeclaration": 3466,
                           "src": "1155:3:9",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -399,7 +399,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3399,
+                          "referencedDeclaration": 3466,
                           "src": "1164:3:9",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -454,7 +454,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3399,
+                          "referencedDeclaration": 3466,
                           "src": "1186:3:9",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -483,7 +483,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3399,
+                          "referencedDeclaration": 3466,
                           "src": "1197:3:9",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -913,7 +913,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3399,
+                          "referencedDeclaration": 3466,
                           "src": "1155:3:9",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -942,7 +942,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3399,
+                          "referencedDeclaration": 3466,
                           "src": "1164:3:9",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -997,7 +997,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3399,
+                          "referencedDeclaration": 3466,
                           "src": "1186:3:9",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -1026,7 +1026,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3399,
+                          "referencedDeclaration": 3466,
                           "src": "1197:3:9",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -1137,5 +1137,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-08-08T17:50:46.670Z"
+  "updatedAt": "2018-08-16T13:08:38.734Z"
 }

@@ -2,7 +2,6 @@ var AppToken = artifacts.require("./AppToken.sol");
 var Forum = artifacts.require("./Forum.sol");
 
 module.exports = (deployer, network) => {
-
   let dotEnv = './chain/' + network + '.env'
   require('dotenv').config({ path: dotEnv })
   let root = process.env.MENLO_ROOT

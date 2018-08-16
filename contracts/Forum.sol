@@ -35,9 +35,9 @@ contract Forum is ForumEvents {
     Beneficiary public beneficiary;
     address public owner;
 
-    function Forum() public {
+  constructor() public {
         owner = msg.sender;
-        Topic(0, 0);
+        emit Topic(0, 0);
     }
 
     modifier onlyOwner {
@@ -54,12 +54,12 @@ contract Forum is ForumEvents {
     }
 
     function post(bytes32 _parentHash, bytes32 _contentHash) external {
-        Topic(_parentHash, _contentHash);
+        emit Topic(_parentHash, _contentHash);
         beneficiary.onPost(msg.sender);
     }
 
     function postAndUpvote(bytes32 _parentHash, bytes32 _contentHash) external {
-        Topic(_parentHash, _contentHash);
+        emit Topic(_parentHash, _contentHash);
         beneficiary.onPostUpvote(msg.sender);
     }
 }

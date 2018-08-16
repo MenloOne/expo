@@ -1282,7 +1282,6 @@ span.sold {
 
 /*Raheel css*/
 .expert-reviews {
-  width: 851px;
   border-radius: 6px;
   background-color: #ffffff;
   border: solid 1px #ececed;
@@ -1295,17 +1294,14 @@ span.sold {
   border-radius: 6px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  width: 851px;
   background-color: #ffffff;
   border: solid 1px #ececed;
-  padding: 50px 50px 50px 18px;
+  padding: 50px 18px 50px 18px;
 }
 
 .Expert-Reviews {
   height: 116px;
-  width: 72%;
   width: 69%;
-  /*width: 572px;*/
   display: inline-block;
 
   border-right: 3px solid #ececed;
@@ -1507,7 +1503,7 @@ span.sold {
   display: inline-block;
   vertical-align: top;
   width: 700px;
-  width: 89%;
+  width: 100%;
   margin-bottom: 50px;
 }
 

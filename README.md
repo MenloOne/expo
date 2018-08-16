@@ -26,7 +26,7 @@ TownHall uses [IPFS](https://ipfs.io/) for storage of messages.
 
 Menlo specific setup of IPFS can be installed and configured via:
 
-        yarn run menlo:setup
+        ./scripts/install-ipfs.sh
 
 #### Metamask
 
@@ -45,7 +45,7 @@ Install Metamask extensions into your browser of choice, Chrome or Brave support
 
 Run a local dev blockchain in a separate window:
 
-```yarn run truffle develop```
+```truffle develop```
 
 Run IPFS daemon in a separate window: 
 
@@ -53,7 +53,7 @@ Run IPFS daemon in a separate window:
 
 Deploy the contracts: 
 
-```yarn run truffle deploy --network develop --reset```
+```truffle deploy --network develop --reset```
 
 Run the app: 
 
@@ -123,11 +123,11 @@ To get ETH in your account once on Ropsten, go to the [Ropsten ETH Faucet](http:
 
 6. Create Kovan accounts for use in contracts.  
 
-     `yarn run create-accounts kovan` 
+     `node scripts/create-accounts kovan` 
 
 7. Deploy the contracts
 
-      `yarn run truffle deploy --network kovan`
+      `truffle deploy --network kovan`
       
       
 
@@ -138,7 +138,7 @@ try [Ganache](http://truffleframework.com/ganache/).
 
 You can deploy and test using network ganache:
 
-    yarn run truffle deploy --network ganache
+    truffle deploy --network ganache
 
 **Note**: Ganache and truffle develop are transitory. Once you shut them down,
 you will have to redeploy the contracts and redo any needed transactions.
@@ -181,7 +181,7 @@ Set the following environment variables:
 
 Deploy to server using `shipit`:
 
-      yarn run menlo:deploy
+      node scripts/shipit staging deploy
 
 ## Testnet
 
@@ -301,6 +301,11 @@ sudo certbot --nginx -d ipfs.menlo.one
 #### Setup automatic SSL renewals
 
 ``` 
+sudo bash -c 'cat >/etc/console-setup/renew-cert <<EOL
+#!/bin/bash
+certbot renew --noninteractive
+EOL'
+sudo chmod +x /etc/console-setup/renew-cert
 ```
 
 #### Configure NGINGX
@@ -364,6 +369,16 @@ http://0.0.0.0:5001/api/v0/swarm/peers; echo
 
 ``` 
 sudo systemctl restart nginx
+```
+
+
+## Embark as a tool
+
+### Install on MacOS
+
+```
+brew tap ethereum/ethereum
+brew install ethereum
 ```
 
 

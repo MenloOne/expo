@@ -43,9 +43,9 @@ fs.appendFileSync(envFile,
   'MENLO_TENET_3=' + trustee3.address + '\n'
 )
 
-fs.writeFileSync('./chain/' + chain + '.tenet.1.json', JSON.stringify(trustee1) + '\n')
-fs.writeFileSync('./chain/' + chain + '.tenet.2.json', JSON.stringify(trustee2) + '\n')
-fs.writeFileSync('./chain/' + chain + '.tenet.3.json', JSON.stringify(trustee3) + '\n')
+fs.writeFileSync('./chain/' + 'tenet.1.json', JSON.stringify(trustee1) + '\n')
+fs.writeFileSync('./chain/' + 'tenet.2.json', JSON.stringify(trustee2) + '\n')
+fs.writeFileSync('./chain/' + 'tenet.3.json', JSON.stringify(trustee3) + '\n')
 
 console.log('The following accounts have been added to ' + envFile);
 
