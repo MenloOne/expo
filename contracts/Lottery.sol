@@ -205,5 +205,5 @@ contract Lottery is Beneficiary, Sponsored {
         _;
     }
     function onPostUpvote(address _poster) sponsored external onlyForum vote(_poster, posters.length, 1) transfersToken(_poster) pushPoster(_poster) {}
-    function onPost(address _poster) external onlyForum transfersToken(_poster) pushPoster(_poster) {}
+    function onPost(address _poster) external transfersToken(_poster) pushPoster(_poster) {}
 }

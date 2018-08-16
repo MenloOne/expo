@@ -6,7 +6,8 @@ function getBalance (address) {
       if (error) {
         reject(error);
       } else {
-        resolve(result.c[0]);
+        console.log('getBalance for '+ address +': ',result);
+        resolve(result);
       }
     })
   })
@@ -18,10 +19,10 @@ module.exports = (deployer, network) => {
   let dotEnv = './chain/' + network + '.env'
   require('dotenv').config({ path: dotEnv })
 
-  root = process.env.MENLO_ROOT
-  trustee1 = process.env.MENLO_TENET_1
-  trustee2 = process.env.MENLO_TENET_2
-  trustee3 = process.env.MENLO_TENET_3
+  root = process.env.MENLO_ROOT.toLowerCase()
+  trustee1 = process.env.MENLO_TENET_1.toLowerCase()
+  trustee2 = process.env.MENLO_TENET_2.toLowerCase()
+  trustee3 = process.env.MENLO_TENET_3.toLowerCase()
 
   console.log(dotEnv + ': ' + trustee1 + ',' + trustee2 + ',' + trustee3)
 
@@ -29,26 +30,44 @@ module.exports = (deployer, network) => {
     .then(() => {
       let nominalEth = web3.toWei(0.3, "ether")
 
+      var promises = []
+
+      promises.push(new Promise(function(resolve, reject) {
+        const resolve1 = resolve
+      }))
+
+      promises.push(new Promise(function(resolve, reject) {
+        const resolve2 = resolve
+      }))
+
+      promises.push(new Promise(function(resolve, reject) {
+        const resolve3 = resolve
+      }))
+
       getBalance(trustee1).then((result) => {
-        console.log('getBalance',result);
-        if (result.compareTo(nominalEth) == -1) {
+        if (result.comparedTo(nominalEth) === -1) {
+          console.log('Funding tenet 1')
           web3.eth.sendTransaction({from: root, to:trustee1, value:nominalEth})
+            .on('confirmation', (confNo, receipt) => resolve1())
         }
       });
 
       getBalance(trustee2).then((result) => {
-        console.log('getBalance',result);
-        if (result.compareTo(nominalEth) == -1) {
+        if (result.comparedTo(nominalEth) === -1) {
+          console.log('Funding tenet 2')
           web3.eth.sendTransaction({from: root, to:trustee2, value:nominalEth})
+            .on('confirmation', (confNo, receipt) => resolve3())
         }
       });
 
       getBalance(trustee3).then((result) => {
-        console.log('getBalance',result);
-        if (result.compareTo(nominalEth) == -1) {
+        if (result.comparedTo(nominalEth) === -1) {
+          console.log('Funding tenet 3')
           web3.eth.sendTransaction({from: root, to:trustee3, value:nominalEth})
+            .on('confirmation', (confNo, receipt) => resolve3())
         }
       });
 
+      Promise.all(promises).then((values) => { process.exit() })
     });
 }

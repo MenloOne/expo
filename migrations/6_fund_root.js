@@ -4,7 +4,7 @@ var Forum = artifacts.require("./Forum.sol");
 module.exports = (deployer, network) => {
   let dotEnv = './chain/' + network + '.env'
   require('dotenv').config({ path: dotEnv })
-  let root = process.env.MENLO_ROOT
+  let root = process.env.MENLO_ROOT.toLowerCase()
 
   // Fund personal account with ONE
   let amount = 10000000000000000000000;
