@@ -28,7 +28,7 @@ module.exports = (deployer, network) => {
 
   return deployer.deploy(AppToken, trustee1, trustee2, trustee3)
     .then(() => {
-      let nominalEth = web3.toWei(0.3, "ether")
+      let nominalEth = web3.toWei(0.2, "ether")
 
       var promises = []
 
