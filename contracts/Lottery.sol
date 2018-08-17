@@ -47,8 +47,8 @@ contract Lottery is Beneficiary, Sponsored {
         forum = _forum;
         owner = msg.sender;
         posters.push(0); // no author for root post 0
-        postCost = 20 finney;
-        nextPostCost = 20 finney;
+        postCost = 20;
+        nextPostCost = 20;
     }
 
     modifier vote(address _voter, uint256 _offset, int8 _direction) {
@@ -205,5 +205,5 @@ contract Lottery is Beneficiary, Sponsored {
         _;
     }
     function onPostUpvote(address _poster) sponsored external onlyForum vote(_poster, posters.length, 1) transfersToken(_poster) pushPoster(_poster) {}
-    function onPost(address _poster) external transfersToken(_poster) pushPoster(_poster) {}
+    function onPost(address _poster) external onlyForum transfersToken(_poster) pushPoster(_poster) {}
 }

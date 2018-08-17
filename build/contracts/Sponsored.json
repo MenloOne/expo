@@ -21,14 +21,14 @@
     "absolutePath": "/Users/dave/Code/expo-demo/contracts/Sponsored.sol",
     "exportedSymbols": {
       "Sponsored": [
-        1494
+        1496
       ]
     },
-    "id": 1495,
+    "id": 1497,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1410,
+        "id": 1412,
         "literals": [
           "solidity",
           "^",
@@ -44,19 +44,19 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 1494,
+        "id": 1496,
         "linearizedBaseContracts": [
-          1494
+          1496
         ],
         "name": "Sponsored",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 1413,
+            "id": 1415,
             "name": "wastedSpace",
             "nodeType": "VariableDeclaration",
-            "scope": 1494,
+            "scope": 1496,
             "src": "80:21:4",
             "stateVariable": true,
             "storageLocation": "default",
@@ -66,7 +66,7 @@
             },
             "typeName": {
               "baseType": {
-                "id": 1411,
+                "id": 1413,
                 "name": "uint256",
                 "nodeType": "ElementaryTypeName",
                 "src": "80:7:4",
@@ -75,7 +75,7 @@
                   "typeString": "uint256"
                 }
               },
-              "id": 1412,
+              "id": 1414,
               "length": null,
               "nodeType": "ArrayTypeName",
               "src": "80:9:4",
@@ -89,21 +89,21 @@
           },
           {
             "body": {
-              "id": 1451,
+              "id": 1453,
               "nodeType": "Block",
               "src": "135:185:4",
               "statements": [
                 {
                   "assignments": [
-                    1417
+                    1419
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 1417,
+                      "id": 1419,
                       "name": "len",
                       "nodeType": "VariableDeclaration",
-                      "scope": 1452,
+                      "scope": 1454,
                       "src": "145:11:4",
                       "stateVariable": false,
                       "storageLocation": "default",
@@ -112,7 +112,7 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 1416,
+                        "id": 1418,
                         "name": "uint256",
                         "nodeType": "ElementaryTypeName",
                         "src": "145:7:4",
@@ -125,23 +125,23 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 1420,
+                  "id": 1422,
                   "initialValue": {
                     "argumentTypes": null,
                     "expression": {
                       "argumentTypes": null,
-                      "id": 1418,
+                      "id": 1420,
                       "name": "wastedSpace",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1413,
+                      "referencedDeclaration": 1415,
                       "src": "159:11:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_array$_t_uint256_$dyn_storage",
                         "typeString": "uint256[] storage ref"
                       }
                     },
-                    "id": 1419,
+                    "id": 1421,
                     "isConstant": false,
                     "isLValue": true,
                     "isPure": false,
@@ -161,7 +161,7 @@
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1427,
+                    "id": 1429,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -170,18 +170,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1421,
+                        "id": 1423,
                         "name": "wastedSpace",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1413,
+                        "referencedDeclaration": 1415,
                         "src": "187:11:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_array$_t_uint256_$dyn_storage",
                           "typeString": "uint256[] storage ref"
                         }
                       },
-                      "id": 1423,
+                      "id": 1425,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
@@ -203,18 +203,18 @@
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       },
-                      "id": 1426,
+                      "id": 1428,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "leftExpression": {
                         "argumentTypes": null,
-                        "id": 1424,
+                        "id": 1426,
                         "name": "len",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1417,
+                        "referencedDeclaration": 1419,
                         "src": "208:3:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -226,7 +226,7 @@
                       "rightExpression": {
                         "argumentTypes": null,
                         "hexValue": "33",
-                        "id": 1425,
+                        "id": 1427,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -253,14 +253,14 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 1428,
+                  "id": 1430,
                   "nodeType": "ExpressionStatement",
                   "src": "187:28:4"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1433,
+                    "id": 1435,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -269,25 +269,25 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 1429,
+                        "id": 1431,
                         "name": "wastedSpace",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1413,
+                        "referencedDeclaration": 1415,
                         "src": "225:11:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_array$_t_uint256_$dyn_storage",
                           "typeString": "uint256[] storage ref"
                         }
                       },
-                      "id": 1431,
+                      "id": 1433,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 1430,
+                        "id": 1432,
                         "name": "len",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1417,
+                        "referencedDeclaration": 1419,
                         "src": "237:3:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -310,7 +310,7 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "31",
-                      "id": 1432,
+                      "id": 1434,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -331,14 +331,14 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 1434,
+                  "id": 1436,
                   "nodeType": "ExpressionStatement",
                   "src": "225:20:4"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1441,
+                    "id": 1443,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -347,36 +347,36 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 1435,
+                        "id": 1437,
                         "name": "wastedSpace",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1413,
+                        "referencedDeclaration": 1415,
                         "src": "255:11:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_array$_t_uint256_$dyn_storage",
                           "typeString": "uint256[] storage ref"
                         }
                       },
-                      "id": 1439,
+                      "id": 1441,
                       "indexExpression": {
                         "argumentTypes": null,
                         "commonType": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         },
-                        "id": 1438,
+                        "id": 1440,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "argumentTypes": null,
-                          "id": 1436,
+                          "id": 1438,
                           "name": "len",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1417,
+                          "referencedDeclaration": 1419,
                           "src": "267:3:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -388,7 +388,7 @@
                         "rightExpression": {
                           "argumentTypes": null,
                           "hexValue": "31",
-                          "id": 1437,
+                          "id": 1439,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -425,7 +425,7 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "31",
-                      "id": 1440,
+                      "id": 1442,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -446,14 +446,14 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 1442,
+                  "id": 1444,
                   "nodeType": "ExpressionStatement",
                   "src": "255:24:4"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1449,
+                    "id": 1451,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -462,36 +462,36 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 1443,
+                        "id": 1445,
                         "name": "wastedSpace",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1413,
+                        "referencedDeclaration": 1415,
                         "src": "289:11:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_array$_t_uint256_$dyn_storage",
                           "typeString": "uint256[] storage ref"
                         }
                       },
-                      "id": 1447,
+                      "id": 1449,
                       "indexExpression": {
                         "argumentTypes": null,
                         "commonType": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         },
-                        "id": 1446,
+                        "id": 1448,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "argumentTypes": null,
-                          "id": 1444,
+                          "id": 1446,
                           "name": "len",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1417,
+                          "referencedDeclaration": 1419,
                           "src": "301:3:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -503,7 +503,7 @@
                         "rightExpression": {
                           "argumentTypes": null,
                           "hexValue": "32",
-                          "id": 1445,
+                          "id": 1447,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -540,7 +540,7 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "31",
-                      "id": 1448,
+                      "id": 1450,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -561,14 +561,14 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 1450,
+                  "id": 1452,
                   "nodeType": "ExpressionStatement",
                   "src": "289:24:4"
                 }
               ]
             },
             "documentation": null,
-            "id": 1452,
+            "id": 1454,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -576,19 +576,19 @@
             "name": "sponsor",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1414,
+              "id": 1416,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "123:2:4"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1415,
+              "id": 1417,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "135:0:4"
             },
-            "scope": 1494,
+            "scope": 1496,
             "src": "107:213:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -596,26 +596,26 @@
           },
           {
             "body": {
-              "id": 1492,
+              "id": 1494,
               "nodeType": "Block",
               "src": "347:245:4",
               "statements": [
                 {
-                  "id": 1454,
+                  "id": 1456,
                   "nodeType": "PlaceholderStatement",
                   "src": "357:1:4"
                 },
                 {
                   "assignments": [
-                    1456
+                    1458
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 1456,
+                      "id": 1458,
                       "name": "len",
                       "nodeType": "VariableDeclaration",
-                      "scope": 1493,
+                      "scope": 1495,
                       "src": "370:11:4",
                       "stateVariable": false,
                       "storageLocation": "default",
@@ -624,7 +624,7 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 1455,
+                        "id": 1457,
                         "name": "uint256",
                         "nodeType": "ElementaryTypeName",
                         "src": "370:7:4",
@@ -637,23 +637,23 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 1459,
+                  "id": 1461,
                   "initialValue": {
                     "argumentTypes": null,
                     "expression": {
                       "argumentTypes": null,
-                      "id": 1457,
+                      "id": 1459,
                       "name": "wastedSpace",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1413,
+                      "referencedDeclaration": 1415,
                       "src": "384:11:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_array$_t_uint256_$dyn_storage",
                         "typeString": "uint256[] storage ref"
                       }
                     },
-                    "id": 1458,
+                    "id": 1460,
                     "isConstant": false,
                     "isLValue": true,
                     "isPure": false,
@@ -677,18 +677,18 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 1462,
+                    "id": 1464,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "argumentTypes": null,
-                      "id": 1460,
+                      "id": 1462,
                       "name": "len",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1456,
+                      "referencedDeclaration": 1458,
                       "src": "416:3:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -700,7 +700,7 @@
                     "rightExpression": {
                       "argumentTypes": null,
                       "hexValue": "30",
-                      "id": 1461,
+                      "id": 1463,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -722,18 +722,18 @@
                     }
                   },
                   "falseBody": null,
-                  "id": 1491,
+                  "id": 1493,
                   "nodeType": "IfStatement",
                   "src": "412:171:4",
                   "trueBody": {
-                    "id": 1490,
+                    "id": 1492,
                     "nodeType": "Block",
                     "src": "426:157:4",
                     "statements": [
                       {
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1468,
+                          "id": 1470,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -742,21 +742,21 @@
                             "argumentTypes": null,
                             "baseExpression": {
                               "argumentTypes": null,
-                              "id": 1463,
+                              "id": 1465,
                               "name": "wastedSpace",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1413,
+                              "referencedDeclaration": 1415,
                               "src": "440:11:4",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_array$_t_uint256_$dyn_storage",
                                 "typeString": "uint256[] storage ref"
                               }
                             },
-                            "id": 1466,
+                            "id": 1468,
                             "indexExpression": {
                               "argumentTypes": null,
-                              "id": 1465,
+                              "id": 1467,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -767,11 +767,11 @@
                               "src": "452:5:4",
                               "subExpression": {
                                 "argumentTypes": null,
-                                "id": 1464,
+                                "id": 1466,
                                 "name": "len",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 1456,
+                                "referencedDeclaration": 1458,
                                 "src": "454:3:4",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_uint256",
@@ -799,7 +799,7 @@
                           "rightHandSide": {
                             "argumentTypes": null,
                             "hexValue": "30",
-                            "id": 1467,
+                            "id": 1469,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -820,14 +820,14 @@
                             "typeString": "uint256"
                           }
                         },
-                        "id": 1469,
+                        "id": 1471,
                         "nodeType": "ExpressionStatement",
                         "src": "440:22:4"
                       },
                       {
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1475,
+                          "id": 1477,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -836,21 +836,21 @@
                             "argumentTypes": null,
                             "baseExpression": {
                               "argumentTypes": null,
-                              "id": 1470,
+                              "id": 1472,
                               "name": "wastedSpace",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1413,
+                              "referencedDeclaration": 1415,
                               "src": "476:11:4",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_array$_t_uint256_$dyn_storage",
                                 "typeString": "uint256[] storage ref"
                               }
                             },
-                            "id": 1473,
+                            "id": 1475,
                             "indexExpression": {
                               "argumentTypes": null,
-                              "id": 1472,
+                              "id": 1474,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -861,11 +861,11 @@
                               "src": "488:5:4",
                               "subExpression": {
                                 "argumentTypes": null,
-                                "id": 1471,
+                                "id": 1473,
                                 "name": "len",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 1456,
+                                "referencedDeclaration": 1458,
                                 "src": "490:3:4",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_uint256",
@@ -893,7 +893,7 @@
                           "rightHandSide": {
                             "argumentTypes": null,
                             "hexValue": "30",
-                            "id": 1474,
+                            "id": 1476,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -914,14 +914,14 @@
                             "typeString": "uint256"
                           }
                         },
-                        "id": 1476,
+                        "id": 1478,
                         "nodeType": "ExpressionStatement",
                         "src": "476:22:4"
                       },
                       {
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1482,
+                          "id": 1484,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -930,21 +930,21 @@
                             "argumentTypes": null,
                             "baseExpression": {
                               "argumentTypes": null,
-                              "id": 1477,
+                              "id": 1479,
                               "name": "wastedSpace",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1413,
+                              "referencedDeclaration": 1415,
                               "src": "512:11:4",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_array$_t_uint256_$dyn_storage",
                                 "typeString": "uint256[] storage ref"
                               }
                             },
-                            "id": 1480,
+                            "id": 1482,
                             "indexExpression": {
                               "argumentTypes": null,
-                              "id": 1479,
+                              "id": 1481,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -955,11 +955,11 @@
                               "src": "524:5:4",
                               "subExpression": {
                                 "argumentTypes": null,
-                                "id": 1478,
+                                "id": 1480,
                                 "name": "len",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 1456,
+                                "referencedDeclaration": 1458,
                                 "src": "526:3:4",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_uint256",
@@ -987,7 +987,7 @@
                           "rightHandSide": {
                             "argumentTypes": null,
                             "hexValue": "30",
-                            "id": 1481,
+                            "id": 1483,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -1008,14 +1008,14 @@
                             "typeString": "uint256"
                           }
                         },
-                        "id": 1483,
+                        "id": 1485,
                         "nodeType": "ExpressionStatement",
                         "src": "512:22:4"
                       },
                       {
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1488,
+                          "id": 1490,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -1024,18 +1024,18 @@
                             "argumentTypes": null,
                             "expression": {
                               "argumentTypes": null,
-                              "id": 1484,
+                              "id": 1486,
                               "name": "wastedSpace",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1413,
+                              "referencedDeclaration": 1415,
                               "src": "548:11:4",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_array$_t_uint256_$dyn_storage",
                                 "typeString": "uint256[] storage ref"
                               }
                             },
-                            "id": 1486,
+                            "id": 1488,
                             "isConstant": false,
                             "isLValue": true,
                             "isPure": false,
@@ -1053,11 +1053,11 @@
                           "operator": "=",
                           "rightHandSide": {
                             "argumentTypes": null,
-                            "id": 1487,
+                            "id": 1489,
                             "name": "len",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1456,
+                            "referencedDeclaration": 1458,
                             "src": "569:3:4",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
@@ -1070,7 +1070,7 @@
                             "typeString": "uint256"
                           }
                         },
-                        "id": 1489,
+                        "id": 1491,
                         "nodeType": "ExpressionStatement",
                         "src": "548:24:4"
                       }
@@ -1080,11 +1080,11 @@
               ]
             },
             "documentation": null,
-            "id": 1493,
+            "id": 1495,
             "name": "sponsored",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 1453,
+              "id": 1455,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "347:0:4"
@@ -1093,7 +1093,7 @@
             "visibility": "internal"
           }
         ],
-        "scope": 1495,
+        "scope": 1497,
         "src": "55:542:4"
       }
     ],
@@ -1103,14 +1103,14 @@
     "absolutePath": "/Users/dave/Code/expo-demo/contracts/Sponsored.sol",
     "exportedSymbols": {
       "Sponsored": [
-        1494
+        1496
       ]
     },
-    "id": 1495,
+    "id": 1497,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1410,
+        "id": 1412,
         "literals": [
           "solidity",
           "^",
@@ -1126,19 +1126,19 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 1494,
+        "id": 1496,
         "linearizedBaseContracts": [
-          1494
+          1496
         ],
         "name": "Sponsored",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 1413,
+            "id": 1415,
             "name": "wastedSpace",
             "nodeType": "VariableDeclaration",
-            "scope": 1494,
+            "scope": 1496,
             "src": "80:21:4",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1148,7 +1148,7 @@
             },
             "typeName": {
               "baseType": {
-                "id": 1411,
+                "id": 1413,
                 "name": "uint256",
                 "nodeType": "ElementaryTypeName",
                 "src": "80:7:4",
@@ -1157,7 +1157,7 @@
                   "typeString": "uint256"
                 }
               },
-              "id": 1412,
+              "id": 1414,
               "length": null,
               "nodeType": "ArrayTypeName",
               "src": "80:9:4",
@@ -1171,21 +1171,21 @@
           },
           {
             "body": {
-              "id": 1451,
+              "id": 1453,
               "nodeType": "Block",
               "src": "135:185:4",
               "statements": [
                 {
                   "assignments": [
-                    1417
+                    1419
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 1417,
+                      "id": 1419,
                       "name": "len",
                       "nodeType": "VariableDeclaration",
-                      "scope": 1452,
+                      "scope": 1454,
                       "src": "145:11:4",
                       "stateVariable": false,
                       "storageLocation": "default",
@@ -1194,7 +1194,7 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 1416,
+                        "id": 1418,
                         "name": "uint256",
                         "nodeType": "ElementaryTypeName",
                         "src": "145:7:4",
@@ -1207,23 +1207,23 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 1420,
+                  "id": 1422,
                   "initialValue": {
                     "argumentTypes": null,
                     "expression": {
                       "argumentTypes": null,
-                      "id": 1418,
+                      "id": 1420,
                       "name": "wastedSpace",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1413,
+                      "referencedDeclaration": 1415,
                       "src": "159:11:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_array$_t_uint256_$dyn_storage",
                         "typeString": "uint256[] storage ref"
                       }
                     },
-                    "id": 1419,
+                    "id": 1421,
                     "isConstant": false,
                     "isLValue": true,
                     "isPure": false,
@@ -1243,7 +1243,7 @@
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1427,
+                    "id": 1429,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1252,18 +1252,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1421,
+                        "id": 1423,
                         "name": "wastedSpace",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1413,
+                        "referencedDeclaration": 1415,
                         "src": "187:11:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_array$_t_uint256_$dyn_storage",
                           "typeString": "uint256[] storage ref"
                         }
                       },
-                      "id": 1423,
+                      "id": 1425,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
@@ -1285,18 +1285,18 @@
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       },
-                      "id": 1426,
+                      "id": 1428,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "leftExpression": {
                         "argumentTypes": null,
-                        "id": 1424,
+                        "id": 1426,
                         "name": "len",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1417,
+                        "referencedDeclaration": 1419,
                         "src": "208:3:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -1308,7 +1308,7 @@
                       "rightExpression": {
                         "argumentTypes": null,
                         "hexValue": "33",
-                        "id": 1425,
+                        "id": 1427,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -1335,14 +1335,14 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 1428,
+                  "id": 1430,
                   "nodeType": "ExpressionStatement",
                   "src": "187:28:4"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1433,
+                    "id": 1435,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1351,25 +1351,25 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 1429,
+                        "id": 1431,
                         "name": "wastedSpace",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1413,
+                        "referencedDeclaration": 1415,
                         "src": "225:11:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_array$_t_uint256_$dyn_storage",
                           "typeString": "uint256[] storage ref"
                         }
                       },
-                      "id": 1431,
+                      "id": 1433,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 1430,
+                        "id": 1432,
                         "name": "len",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1417,
+                        "referencedDeclaration": 1419,
                         "src": "237:3:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -1392,7 +1392,7 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "31",
-                      "id": 1432,
+                      "id": 1434,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -1413,14 +1413,14 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 1434,
+                  "id": 1436,
                   "nodeType": "ExpressionStatement",
                   "src": "225:20:4"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1441,
+                    "id": 1443,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1429,36 +1429,36 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 1435,
+                        "id": 1437,
                         "name": "wastedSpace",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1413,
+                        "referencedDeclaration": 1415,
                         "src": "255:11:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_array$_t_uint256_$dyn_storage",
                           "typeString": "uint256[] storage ref"
                         }
                       },
-                      "id": 1439,
+                      "id": 1441,
                       "indexExpression": {
                         "argumentTypes": null,
                         "commonType": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         },
-                        "id": 1438,
+                        "id": 1440,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "argumentTypes": null,
-                          "id": 1436,
+                          "id": 1438,
                           "name": "len",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1417,
+                          "referencedDeclaration": 1419,
                           "src": "267:3:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -1470,7 +1470,7 @@
                         "rightExpression": {
                           "argumentTypes": null,
                           "hexValue": "31",
-                          "id": 1437,
+                          "id": 1439,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -1507,7 +1507,7 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "31",
-                      "id": 1440,
+                      "id": 1442,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -1528,14 +1528,14 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 1442,
+                  "id": 1444,
                   "nodeType": "ExpressionStatement",
                   "src": "255:24:4"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1449,
+                    "id": 1451,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1544,36 +1544,36 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 1443,
+                        "id": 1445,
                         "name": "wastedSpace",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1413,
+                        "referencedDeclaration": 1415,
                         "src": "289:11:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_array$_t_uint256_$dyn_storage",
                           "typeString": "uint256[] storage ref"
                         }
                       },
-                      "id": 1447,
+                      "id": 1449,
                       "indexExpression": {
                         "argumentTypes": null,
                         "commonType": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         },
-                        "id": 1446,
+                        "id": 1448,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "argumentTypes": null,
-                          "id": 1444,
+                          "id": 1446,
                           "name": "len",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1417,
+                          "referencedDeclaration": 1419,
                           "src": "301:3:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -1585,7 +1585,7 @@
                         "rightExpression": {
                           "argumentTypes": null,
                           "hexValue": "32",
-                          "id": 1445,
+                          "id": 1447,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -1622,7 +1622,7 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "31",
-                      "id": 1448,
+                      "id": 1450,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -1643,14 +1643,14 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 1450,
+                  "id": 1452,
                   "nodeType": "ExpressionStatement",
                   "src": "289:24:4"
                 }
               ]
             },
             "documentation": null,
-            "id": 1452,
+            "id": 1454,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -1658,19 +1658,19 @@
             "name": "sponsor",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1414,
+              "id": 1416,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "123:2:4"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1415,
+              "id": 1417,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "135:0:4"
             },
-            "scope": 1494,
+            "scope": 1496,
             "src": "107:213:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1678,26 +1678,26 @@
           },
           {
             "body": {
-              "id": 1492,
+              "id": 1494,
               "nodeType": "Block",
               "src": "347:245:4",
               "statements": [
                 {
-                  "id": 1454,
+                  "id": 1456,
                   "nodeType": "PlaceholderStatement",
                   "src": "357:1:4"
                 },
                 {
                   "assignments": [
-                    1456
+                    1458
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 1456,
+                      "id": 1458,
                       "name": "len",
                       "nodeType": "VariableDeclaration",
-                      "scope": 1493,
+                      "scope": 1495,
                       "src": "370:11:4",
                       "stateVariable": false,
                       "storageLocation": "default",
@@ -1706,7 +1706,7 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 1455,
+                        "id": 1457,
                         "name": "uint256",
                         "nodeType": "ElementaryTypeName",
                         "src": "370:7:4",
@@ -1719,23 +1719,23 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 1459,
+                  "id": 1461,
                   "initialValue": {
                     "argumentTypes": null,
                     "expression": {
                       "argumentTypes": null,
-                      "id": 1457,
+                      "id": 1459,
                       "name": "wastedSpace",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1413,
+                      "referencedDeclaration": 1415,
                       "src": "384:11:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_array$_t_uint256_$dyn_storage",
                         "typeString": "uint256[] storage ref"
                       }
                     },
-                    "id": 1458,
+                    "id": 1460,
                     "isConstant": false,
                     "isLValue": true,
                     "isPure": false,
@@ -1759,18 +1759,18 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 1462,
+                    "id": 1464,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "argumentTypes": null,
-                      "id": 1460,
+                      "id": 1462,
                       "name": "len",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1456,
+                      "referencedDeclaration": 1458,
                       "src": "416:3:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -1782,7 +1782,7 @@
                     "rightExpression": {
                       "argumentTypes": null,
                       "hexValue": "30",
-                      "id": 1461,
+                      "id": 1463,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -1804,18 +1804,18 @@
                     }
                   },
                   "falseBody": null,
-                  "id": 1491,
+                  "id": 1493,
                   "nodeType": "IfStatement",
                   "src": "412:171:4",
                   "trueBody": {
-                    "id": 1490,
+                    "id": 1492,
                     "nodeType": "Block",
                     "src": "426:157:4",
                     "statements": [
                       {
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1468,
+                          "id": 1470,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -1824,21 +1824,21 @@
                             "argumentTypes": null,
                             "baseExpression": {
                               "argumentTypes": null,
-                              "id": 1463,
+                              "id": 1465,
                               "name": "wastedSpace",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1413,
+                              "referencedDeclaration": 1415,
                               "src": "440:11:4",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_array$_t_uint256_$dyn_storage",
                                 "typeString": "uint256[] storage ref"
                               }
                             },
-                            "id": 1466,
+                            "id": 1468,
                             "indexExpression": {
                               "argumentTypes": null,
-                              "id": 1465,
+                              "id": 1467,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -1849,11 +1849,11 @@
                               "src": "452:5:4",
                               "subExpression": {
                                 "argumentTypes": null,
-                                "id": 1464,
+                                "id": 1466,
                                 "name": "len",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 1456,
+                                "referencedDeclaration": 1458,
                                 "src": "454:3:4",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_uint256",
@@ -1881,7 +1881,7 @@
                           "rightHandSide": {
                             "argumentTypes": null,
                             "hexValue": "30",
-                            "id": 1467,
+                            "id": 1469,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -1902,14 +1902,14 @@
                             "typeString": "uint256"
                           }
                         },
-                        "id": 1469,
+                        "id": 1471,
                         "nodeType": "ExpressionStatement",
                         "src": "440:22:4"
                       },
                       {
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1475,
+                          "id": 1477,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -1918,21 +1918,21 @@
                             "argumentTypes": null,
                             "baseExpression": {
                               "argumentTypes": null,
-                              "id": 1470,
+                              "id": 1472,
                               "name": "wastedSpace",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1413,
+                              "referencedDeclaration": 1415,
                               "src": "476:11:4",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_array$_t_uint256_$dyn_storage",
                                 "typeString": "uint256[] storage ref"
                               }
                             },
-                            "id": 1473,
+                            "id": 1475,
                             "indexExpression": {
                               "argumentTypes": null,
-                              "id": 1472,
+                              "id": 1474,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -1943,11 +1943,11 @@
                               "src": "488:5:4",
                               "subExpression": {
                                 "argumentTypes": null,
-                                "id": 1471,
+                                "id": 1473,
                                 "name": "len",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 1456,
+                                "referencedDeclaration": 1458,
                                 "src": "490:3:4",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_uint256",
@@ -1975,7 +1975,7 @@
                           "rightHandSide": {
                             "argumentTypes": null,
                             "hexValue": "30",
-                            "id": 1474,
+                            "id": 1476,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -1996,14 +1996,14 @@
                             "typeString": "uint256"
                           }
                         },
-                        "id": 1476,
+                        "id": 1478,
                         "nodeType": "ExpressionStatement",
                         "src": "476:22:4"
                       },
                       {
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1482,
+                          "id": 1484,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -2012,21 +2012,21 @@
                             "argumentTypes": null,
                             "baseExpression": {
                               "argumentTypes": null,
-                              "id": 1477,
+                              "id": 1479,
                               "name": "wastedSpace",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1413,
+                              "referencedDeclaration": 1415,
                               "src": "512:11:4",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_array$_t_uint256_$dyn_storage",
                                 "typeString": "uint256[] storage ref"
                               }
                             },
-                            "id": 1480,
+                            "id": 1482,
                             "indexExpression": {
                               "argumentTypes": null,
-                              "id": 1479,
+                              "id": 1481,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -2037,11 +2037,11 @@
                               "src": "524:5:4",
                               "subExpression": {
                                 "argumentTypes": null,
-                                "id": 1478,
+                                "id": 1480,
                                 "name": "len",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 1456,
+                                "referencedDeclaration": 1458,
                                 "src": "526:3:4",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_uint256",
@@ -2069,7 +2069,7 @@
                           "rightHandSide": {
                             "argumentTypes": null,
                             "hexValue": "30",
-                            "id": 1481,
+                            "id": 1483,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -2090,14 +2090,14 @@
                             "typeString": "uint256"
                           }
                         },
-                        "id": 1483,
+                        "id": 1485,
                         "nodeType": "ExpressionStatement",
                         "src": "512:22:4"
                       },
                       {
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1488,
+                          "id": 1490,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -2106,18 +2106,18 @@
                             "argumentTypes": null,
                             "expression": {
                               "argumentTypes": null,
-                              "id": 1484,
+                              "id": 1486,
                               "name": "wastedSpace",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1413,
+                              "referencedDeclaration": 1415,
                               "src": "548:11:4",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_array$_t_uint256_$dyn_storage",
                                 "typeString": "uint256[] storage ref"
                               }
                             },
-                            "id": 1486,
+                            "id": 1488,
                             "isConstant": false,
                             "isLValue": true,
                             "isPure": false,
@@ -2135,11 +2135,11 @@
                           "operator": "=",
                           "rightHandSide": {
                             "argumentTypes": null,
-                            "id": 1487,
+                            "id": 1489,
                             "name": "len",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1456,
+                            "referencedDeclaration": 1458,
                             "src": "569:3:4",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
@@ -2152,7 +2152,7 @@
                             "typeString": "uint256"
                           }
                         },
-                        "id": 1489,
+                        "id": 1491,
                         "nodeType": "ExpressionStatement",
                         "src": "548:24:4"
                       }
@@ -2162,11 +2162,11 @@
               ]
             },
             "documentation": null,
-            "id": 1493,
+            "id": 1495,
             "name": "sponsored",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 1453,
+              "id": 1455,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "347:0:4"
@@ -2175,7 +2175,7 @@
             "visibility": "internal"
           }
         ],
-        "scope": 1495,
+        "scope": 1497,
         "src": "55:542:4"
       }
     ],
@@ -2187,5 +2187,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-08-16T16:50:30.652Z"
+  "updatedAt": "2018-08-16T21:11:18.455Z"
 }
