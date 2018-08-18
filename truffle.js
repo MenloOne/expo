@@ -29,7 +29,7 @@ module.exports = {
       network_id: '1',
       gas: 4700000,
     },
-    develop: {
+    local: {
       host: '127.0.0.1',
       port: 9545,
       network_id: '*'
