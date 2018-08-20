@@ -358,7 +358,7 @@ EOL'
 You can test this config by doing:
 
 ``` 
-curl -H "Origin: http://expo-demo.menlo.com" \
+curl -H "Origin: http://expo.menlo.com" \
 -H "Access-Control-Request-Method: POST" \
 -H "Access-Control-Request-Headers: X-Requested-With" \
 --verbose \

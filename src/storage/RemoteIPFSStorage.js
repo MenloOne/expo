@@ -18,7 +18,8 @@ import ipfsAPI from 'ipfs-api'
 
 class RemoteIPFSStorage {
   constructor(host, port, connectionOptions) {
-    this.connection = ipfsAPI(host, port, connectionOptions)
+    let options = Object.assign(connectionOptions, { 'Allow-Control-Allow-Origin': '*' })
+    this.connection = ipfsAPI(host, port, options)
   }
 
   pin(hash) {
