@@ -55,7 +55,7 @@ class EthereumForum {
 
     this.forum.deployed().then(f => {
       f.Topic({}, {fromBlock: 0}).watch((error, result) => {
-        const parentHash = HashUtils.solidityHashToCid(result.args._parentHash)
+        const parentHash  = HashUtils.solidityHashToCid(result.args._parentHash)
         const messageHash = HashUtils.solidityHashToCid(result.args.contentHash)
 
         if (!this.topicOffsets[messageHash]) { // sometimes we get the same topic twice...
