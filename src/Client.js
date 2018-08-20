@@ -131,7 +131,7 @@ class Client {
       version: 'CONTRACT_VERSION',
       parent: parentHash || '0x0',
       body: messageBody,
-      issuer: this.account
+      issuer: this.account,
     }
 
     const messageHash = await this.localStorage.createMessage(message)
