@@ -60,7 +60,7 @@ class MessageForm extends React.Component {
     return (
 
       <form onSubmit={this.onSubmit}>
-                <textarea name="" className="field" id="" cols="30" rows="10" value={this.state.message}
+        <textarea name="" className="field" id="" cols="30" rows="10" value={this.state.message}
                           onChange={this.onChange}></textarea>
         <input type="submit" className="submit-btn" disabled={this.state.submitting}/>
         <a href="" className="cancle-btn" onClick={this.onCancel}>Cancel</a>

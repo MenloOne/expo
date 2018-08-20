@@ -50,7 +50,7 @@ class Message extends React.Component {
 
     this.state = {
       showReplyForm: false,
-      showReplies: false,
+      showReplies: true,
       children: [],
       votes: this.props.votes || 0,
       upvote: 0,
