@@ -61,6 +61,9 @@ class EthereumForum {
         if (!this.topicOffsets[messageHash]) { // sometimes we get the same topic twice...
           this.topicOffsets[messageHash] = this.topicOffsetCounter
           this.topicOffsetCounter = this.topicOffsetCounter + 1
+
+          console.log(`Found message ${messageHash}`)
+
           callback(messageHash, parentHash)
         }
       })
