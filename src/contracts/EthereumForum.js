@@ -62,7 +62,7 @@ class EthereumForum {
           this.topicOffsets[messageHash] = this.topicOffsetCounter
           this.topicOffsetCounter = this.topicOffsetCounter + 1
 
-          console.log(`Found message ${messageHash}`)
+          console.log(`Found message ${parentHash} > ${messageHash}`)
 
           callback(messageHash, parentHash)
         }

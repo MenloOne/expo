@@ -127,10 +127,13 @@ class Client {
     console.log(`getLocalMessages for ${nodeID} found: `, messageIDs)
 
     return Promise.all(messageIDs.map(id => this.localStorage.findMessage(id)))
-      .then(messages => messages.filter(m => {
-        console.log('Got message ', m)
-        return !m.error
-      }))
+      .then(messages => {
+        console.log('Found local messages: ',messages)
+
+        return messages.filter(m => {
+          return !m.error
+        })
+      })
   }
 
   async createMessage(messageBody, parentHash) {
