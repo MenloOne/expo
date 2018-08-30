@@ -128,8 +128,8 @@ class Client {
 
     return Promise.all(messageIDs.map(id => this.localStorage.findMessage(id)))
       .then(messages => messages.filter(m => {
-        console.log('Found message ', m)
-        return m
+        console.log('Got message ', m)
+        return !m.err
       }))
   }
 
