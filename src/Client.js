@@ -126,7 +126,7 @@ class Client {
 
     return Promise.all(messageIDs.map(id => this.localStorage.findMessage(id)))
       .then(messages => messages.filter(m => {
-        console.log(`Message ${id} in localstorage = ${m}`)
+        console.log('Found message ', m)
         return m
       }))
   }
