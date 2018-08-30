@@ -108,6 +108,8 @@ class Client {
       .then(votesCount => {
         this.votes[messageHash] = votesCount
         this.graph.addNode(messageHash, parentHash)
+        
+        console.log(`${messageHash} has ${votesCount} votes`)
       })
   }
 
