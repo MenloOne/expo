@@ -108,7 +108,7 @@ class Client {
       .then(votesCount => {
         this.votes[messageHash] = votesCount
         this.graph.addNode(messageHash, parentHash)
-        
+
         console.log(`${messageHash} has ${votesCount} votes`)
       })
   }
@@ -125,7 +125,10 @@ class Client {
     const messageIDs = this.graph.children(nodeID || '0x0')
 
     return Promise.all(messageIDs.map(id => this.localStorage.findMessage(id)))
-      .then(messages => messages.filter(m => m))
+      .then(messages => messages.filter(m => {
+        console.log(`Message ${id} in localstorage = ${m}`)
+        return m
+      }))
   }
 
   async createMessage(messageBody, parentHash) {
