@@ -153,7 +153,9 @@ class Message extends React.Component {
               </span>
             }
           </div>
-          {this.state.showReplies && this.state.children}
+          <ul>
+            {this.state.showReplies && this.state.children}
+          </ul>
           {this.state.showReplyForm && <MessageForm onSubmit={(message) => this.reply(message)}/>}
         </div>
       </li>
