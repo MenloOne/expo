@@ -68,6 +68,7 @@ class EthereumForum {
         }
       })
     }).catch(e => {
+      console.error(e)
     })
   }
 

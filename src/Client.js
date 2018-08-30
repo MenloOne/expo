@@ -124,6 +124,8 @@ class Client {
   getLocalMessages(nodeID) {
     const messageIDs = this.graph.children(nodeID || '0x0')
 
+    console.log(`getLocalMessages for ${nodeID} found: `, messageIDs)
+
     return Promise.all(messageIDs.map(id => this.localStorage.findMessage(id)))
       .then(messages => messages.filter(m => {
         console.log('Found message ', m)
@@ -133,7 +135,7 @@ class Client {
 
   async createMessage(messageBody, parentHash) {
     const message = {
-      version: 'CONTRACT_VERSION',
+      version: '1.0',
       parent: parentHash || '0x0',
       body: messageBody,
       issuer: this.account,
