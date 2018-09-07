@@ -1,4 +1,4 @@
-pragma solidity ^0.4.17;
+pragma solidity ^0.4.13;
 
 contract Migrations {
   address public owner;
@@ -21,3 +21,4 @@ contract Migrations {
     upgraded.setCompleted(last_completed_migration);
   }
 }
+

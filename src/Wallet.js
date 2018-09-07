@@ -53,7 +53,7 @@ class Wallet extends Component {
           <div className="container">
             <div className="row justify-content-md-center">
               <div className="col-md-4 item-wrapper">
-                <a href='/profile/'>
+                <a href='/menlo/'>
 
                   <img src={smallImroot} className="item-thumbnail"/>
                   <h3>BitKitties</h3>

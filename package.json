@@ -8,6 +8,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bl": "^1.2.2",
+    "bn": "^1.0.1",
     "bootstrap": "^4.1.1",
     "buffer": "^5.1.0",
     "chart.js": "^2.7.2",
@@ -18,11 +19,14 @@
     "d3-time-format": "^2.1.1",
     "ipfs": "^0.28.2",
     "ipfs-api": "^18.1.1",
+    "menlo-token": "git+https://github.com/MenloOne/menlo-token-crowdsale.git#ONE-token",
     "multihashing": "^0.3.2",
     "openzeppelin-solidity": "1.12.0",
     "react": "^16.4.1",
+    "react-blockies": "^1.3.0",
     "react-chartjs-2": "^2.7.2",
     "react-dom": "^16.4.1",
+    "react-responsive-embed": "^2.1.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
     "react-stockcharts": "^0.7.7",
@@ -33,6 +37,7 @@
     "web3": "^1.0.0-beta.33"
   },
   "scripts": {
+    "compile": "./scripts/make_flat.sh && truffle compile && truffle deploy --network develop --reset",
     "start": "NODE_PATH=./src  react-scripts start",
     "create-accounts": "node scripts/create-accounts.js",
     "build": "react-scripts build",

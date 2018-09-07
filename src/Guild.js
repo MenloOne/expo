@@ -168,7 +168,7 @@ class Guild extends Component {
                   <li><a href="#">Scam List (18)</a></li>
                 </ul>
                 <div className="game-token shadow-sm">
-                  <a href='/profile/'>
+                  <a href='/menlo/'>
 
                     <div className="container">
                       <span className="game-img"><img src={smallImroot} alt=""/></span>

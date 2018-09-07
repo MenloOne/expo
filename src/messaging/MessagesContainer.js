@@ -22,12 +22,14 @@ class MessagesContainer extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {messages: [], topFive: false}
+    this.state = {
+      messages: [],
+      topFive: false
+    }
   }
 
   componentDidMount() {
     this.props.client.subscribeMessages(this.refreshMessages.bind(this))
-    this.refreshMessages()
   }
 
   refreshMessages() {
@@ -36,7 +38,7 @@ class MessagesContainer extends React.Component {
   }
 
   onFormSubmit(messageBody) {
-    return this.props.client.createMessage(messageBody)
+    this.props.client.createMessage(messageBody)
   }
 
   topFiveMessages() {

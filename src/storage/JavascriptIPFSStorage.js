@@ -15,7 +15,7 @@
  */
 
 import IPFS from 'ipfs'
-import HashUtils from 'HashUtils'
+import HashUtils from '../HashUtils'
 
 class JavascriptIPFSStorage {
   constructor() {
@@ -35,9 +35,13 @@ class JavascriptIPFSStorage {
     })
   }
 
-  findMessage(hash) {
+  async findMessage(hash) {
+    console.log(`f (${hash})`)
+
     return new Promise((resolve, reject) => {
       this.ipfs.dag.get(hash, (err, result) => {
+
+        console.log(`f (${hash}): `, result)
         result ? resolve({...result.value, hash: hash}) : resolve({error: err, hash: hash})
       })
     })

@@ -1,78 +1,42 @@
 {
-  "contractName": "ERC20Basic",
+  "contractName": "MenloTokenReceiver",
   "abi": [
     {
-      "anonymous": false,
       "inputs": [
         {
-          "indexed": true,
-          "name": "from",
+          "name": "_tokenContract",
           "type": "address"
-        },
-        {
-          "indexed": true,
-          "name": "to",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "name": "value",
-          "type": "uint256"
-        }
-      ],
-      "name": "Transfer",
-      "type": "event"
-    },
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "totalSupply",
-      "outputs": [
-        {
-          "name": "",
-          "type": "uint256"
         }
       ],
       "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [
-        {
-          "name": "_who",
-          "type": "address"
-        }
-      ],
-      "name": "balanceOf",
-      "outputs": [
-        {
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
+      "stateMutability": "nonpayable",
+      "type": "constructor"
     },
     {
       "constant": false,
       "inputs": [
         {
-          "name": "_to",
+          "name": "_from",
           "type": "address"
         },
         {
           "name": "_value",
           "type": "uint256"
+        },
+        {
+          "name": "_action",
+          "type": "uint256"
+        },
+        {
+          "name": "_data",
+          "type": "bytes"
         }
       ],
-      "name": "transfer",
+      "name": "onTokenReceived",
       "outputs": [
         {
           "name": "",
-          "type": "bool"
+          "type": "bytes4"
         }
       ],
       "payable": false,
@@ -63498,5 +63462,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-09-07T19:09:02.518Z"
+  "updatedAt": "2018-09-07T19:09:02.734Z"
 }

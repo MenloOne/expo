@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import TopNav from './TopNav.js'
 import ReviewBoard from './ReviewBoard'
 import CountdownTimer from './CountdownTimer'
+import ResponsiveEmbed from 'react-responsive-embed'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './css/sb-admin.css'
@@ -131,7 +132,9 @@ class Profile extends Component {
                     your rarest kitties to create the top mice catcher. Live
                     long and prospurr.</p>
 
-                  <img className='screenshot' src={screenshot} width="100%" height="441px"/>
+                  <div className='screenshot' src={screenshot} style={{ width: '100%', height: '441px' }}>
+                      <ResponsiveEmbed src='https://www.youtube.com/embed/yuohXyDP1pk?rel=0' allowFullScreen />
+                  </div>
 
                   <hr/>
 

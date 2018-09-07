@@ -39,6 +39,7 @@ export function getTickerHistory(symbol, interval) {
     .then(dataResp => {
       return dataResp.chart
     })
+    .catch((e) => console.log(e))
 
   return promiseMSFT
 }

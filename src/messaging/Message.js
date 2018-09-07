@@ -60,7 +60,6 @@ class Message extends React.Component {
 
   componentDidMount() {
     this.props.client.subscribeMessages(this.refreshMessages.bind(this))
-    this.refreshMessages()
   }
 
   refreshMessages() {

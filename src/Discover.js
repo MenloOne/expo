@@ -243,7 +243,7 @@ class Discover extends Component {
                   </div>
                   <div className="main-list-items">
                     <div className="game-token shadow-sm">
-                      <a href='/profile/'>
+                      <a href='/menlo/'>
                         <div className="container">
                           <span className="game-img"><img src={smallImroot} alt=""/></span>
                           <div className="game-detail">
@@ -278,7 +278,7 @@ class Discover extends Component {
                       </a>
                     </div>
                     <div className="game-token shadow-sm">
-                      <a href='/profile/'>
+                      <a href='/menlo/'>
                         <div className="container">
                           <span className="game-img"><img src={smallImroot2} alt=""/></span>
                           <div className="game-detail">
@@ -313,7 +313,7 @@ class Discover extends Component {
                       </a>
                     </div>
                     <div className="game-token shadow-sm">
-                      <a href='/profile/'>
+                      <a href='/menlo/'>
                         <div className="container">
                           <span className="game-img"><img src={smallImroot3} alt=""/></span>
                           <div className="game-detail">

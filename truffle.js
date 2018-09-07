@@ -29,7 +29,7 @@ module.exports = {
       network_id: '1',
       gas: 4700000,
     },
-    local: {
+    develop: {
       host: '127.0.0.1',
       port: 9545,
       network_id: '*'
@@ -37,14 +37,8 @@ module.exports = {
     ganache: {
       host: '127.0.0.1',
       port: 7545,
-      network_id: 5777
-    },
-    ropsten: {
-      provider: function() {
-        return noncedWallet(new HDWalletProvider(privKeys, 'https://ropsten.infura.io/v3/1b81fcc6e29d459ca28861e0901aba99'))
-      },
-      network_id: '3',
-      gas: 4700000,
+      network_id: '*',
+      gas: 6721975
     },
     kovan: {
       provider: function() {
