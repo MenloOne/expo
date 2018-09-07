@@ -27,7 +27,7 @@ class TopNav extends Component {
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarResponsive">
-                        <ul className="navbar-nav main ml-auto">
+                        <ul className="navbar-nav main ml-auto" style={{display: 'none'}}>
                             <li className="nav-item"><a href="/" title="Discover">Discover</a></li>
                             <li className="nav-item"><a href="/guild/" title="Guilds">Guilds</a></li>
                             <li className="nav-item"><a href="/wallet/" title="Wallet">Wallet</a></li>

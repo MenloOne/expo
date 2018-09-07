@@ -62,7 +62,7 @@ class App extends React.Component {
             <EthContext.Provider value={this.state.ethContext}>
                 <BrowserRouter>
                     <Switch>
-                        <Route path="/" exact component={Discover}/>
+                        <Route path="/" exact component={Profile}/>
                         <Route path="/menlo" exact component={Profile}/>
                     </Switch>
                 </BrowserRouter>
