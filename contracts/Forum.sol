@@ -837,6 +837,7 @@ contract Forum is MenloTokenReceiver, ForumEvents, Ownable {
             c = uint(b[i]);
             b32 |= bytes32(b[i] & 0xFF) >> (r++ * 8);
         }
+        i++;
 
         result = b32;
     }
@@ -899,7 +900,6 @@ contract Forum is MenloTokenReceiver, ForumEvents, Ownable {
         if (_action == ACTION_POST) {
             bytes32 parentHash;
             bytes32 contentHash;
-
 
             (parentHash, i)  = decodeBytes32(_data, 1);
             (contentHash, i) = decodeBytes32(_data, i);
