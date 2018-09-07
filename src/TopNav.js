@@ -33,22 +33,11 @@ class TopNav extends Component {
                             <li className="nav-item"><a href="/wallet/" title="Wallet">Wallet</a></li>
                         </ul>
                         <ul className="navbar-nav ml-auto">
-                            <li className="nav-item">
-                                <form className="form-inline my-2 my-lg-0 mr-lg-2">
-                                    <ul className="navbar-nav main ml-auto">
-                                        <li className="nav-item"><a href="/wallet/" title="Wallet">{this.props.eth.balance} ONE</a>
-                                        </li>
-                                    </ul>
-                                    <div className="input-group">
-                                        <input className="form-control" type="text" placeholder="Search for..."/>
-                                        <span className="input-group-append">
-                                            <button className="btn btn-primary" type="button">
-                                                <i className="fa fa-search"></i>
-                                            </button>
-                                        </span>
-                                    </div>
-                                </form>
+                            <li className="nav-item token-number">
+                                <span>{this.props.eth.balance}</span>
+                                <span className="token-one">&nbsp;ONE</span>
                             </li>
+
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle mr-lg-2"
                                    id="messagesDropdown"
@@ -57,17 +46,17 @@ class TopNav extends Component {
                                    aria-haspopup="true"
                                    aria-expanded="false">
 
-                                    <span className="user-img">
-                                        {this.props.eth.avatar}
-                                    </span>
+                                <span className="user-img">
+                                    {this.props.eth.avatar}
+                                </span>
                                     <span className="name">{ this.props.eth.account }</span>
 
                                     <span className="d-lg-none">Messages
-		                                <span className="badge badge-pill badge-primary">12 New</span>
-                		            </span>
+                                    <span className="badge badge-pill badge-primary">12 New</span>
+                                </span>
                                     <span className="indicator text-primary d-none d-lg-block">
-		                              <i className="fa fa-fw fa-circle">3</i>
-		                            </span>
+                                  <i className="fa fa-fw fa-circle">3</i>
+                                </span>
                                 </a>
 
                                 <div className="dropdown-menu" aria-labelledby="messagesDropdown">

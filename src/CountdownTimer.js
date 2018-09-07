@@ -34,20 +34,20 @@ class CountdownTimer extends Component {
   tick() {
     const date = this.props.date
 
-    const timespan = countdown(date)
-    let daysUntil = countdown(date, null, countdown.DAYS).days
+    const timespan = countdown(null, date)
+    let daysUntil  = countdown(null, date, countdown.DAYS).days
 
     daysUntil = daysUntil < 1 ? '00' : daysUntil
-    timespan.hours = timespan.hours < 1 ? '00' : timespan.hours
+
+    timespan.hours   = timespan.hours < 1 ? '00' : timespan.hours
     timespan.minutes = timespan.minutes < 1 ? '00' : timespan.minutes
     timespan.seconds = timespan.seconds < 1 ? '00' : timespan.seconds
+
     daysUntil = daysUntil < 10 && daysUntil !== '00' ? `0${daysUntil}` : daysUntil
-    timespan.hours =
-      timespan.hours < 10 && timespan.hours !== '00' ? `0${timespan.hours}` : timespan.hours
-    timespan.minutes =
-      timespan.minutes < 10 && timespan.minutes !== '00' ? `0${timespan.minutes}` : timespan.minutes
-    timespan.seconds =
-      timespan.seconds < 10 && timespan.seconds !== '00' ? `0${timespan.seconds}` : timespan.seconds
+
+    timespan.hours   = timespan.hours   < 10 && timespan.hours !== '00' ? `0${timespan.hours}` : timespan.hours
+    timespan.minutes = timespan.minutes < 10 && timespan.minutes !== '00' ? `0${timespan.minutes}` : timespan.minutes
+    timespan.seconds = timespan.seconds < 10 && timespan.seconds !== '00' ? `0${timespan.seconds}` : timespan.seconds
 
     const newState = {
       days: daysUntil,

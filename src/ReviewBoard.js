@@ -62,7 +62,7 @@ class ReviewBoard extends Component {
   }
 
   renderMessages() {
-    if (this.state.messages.length === 0) return (<p>There are no messages.</p>)
+    if (this.state.messages.length === 0) return (<p>Be the first to leave a comment...</p>)
 
     const messages = this.state.topFive ? this.topFiveMessages() : this.state.messages
 
