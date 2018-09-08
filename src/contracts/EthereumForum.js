@@ -26,19 +26,24 @@ class EthereumForum {
     constructor(_tokenContract, account) {
         this.topicOffsetCounter = 0
         this.topicOffsets = {}
-        this.account = account
 
         this.tokenContract = _tokenContract
         this.forumContract = TruffleContract(ForumContract)
         this.forumContract.defaults({
             from: this.account
         })
-
         this.forum = null;
-        this.getContracts();
+
+        this.ready = this.setupAccount(account)
     }
 
-    async getContracts() {
+    topicOffset(hash) {
+        return this.topicOffsets[hash]
+    }
+
+    async setupAccount(account) {
+        this.account = account
+
         if (web3) {
             this.forumContract.setProvider(web3.currentProvider)
             this.tokenContract.setProvider(web3.currentProvider)
@@ -53,47 +58,42 @@ class EthereumForum {
     }
 
     async subscribeMessages(callback) {
-        if (!this.forum) {
-            await this.getContracts();
+        await this.ready
 
-            if (!this.forum) {
+        this.forum.Topic({}, {fromBlock: 0}).watch((error, result) => {
+            if (error) {
+                console.error( error )
                 return
             }
-        }
 
-        try {
-            this.forum.Topic({}, {fromBlock: 0}).watch((error, result) => {
-                const parentHash = HashUtils.solidityHashToCid(result.args._parentHash)
-                const messageHash = HashUtils.solidityHashToCid(result.args.contentHash)
+            const parentHash = HashUtils.solidityHashToCid(result.args._parentHash)
+            const messageHash = HashUtils.solidityHashToCid(result.args.contentHash)
 
-                if (!this.topicOffsets[messageHash]) { // sometimes we get the same topic twice...
-                    this.topicOffsets[messageHash] = this.topicOffsetCounter
-                    this.topicOffsetCounter = this.topicOffsetCounter + 1
+            console.log(`Topic: ${parentHash} > ${messageHash}`)
 
-                    console.log(`Found message ${parentHash} > ${messageHash}`)
+            // sometimes we get the same topic twice...
+            if (!this.topicOffsets[messageHash]) {
 
-                    callback(messageHash, parentHash)
-                }
-            })
-        } catch (e) {
-            console.error(e)
-        }
+                this.topicOffsets[messageHash] = this.topicOffsetCounter
+                this.topicOffsetCounter = this.topicOffsetCounter + 1
+
+                console.log('Need to send back date from ', result)
+
+                callback({
+                        id: messageHash,
+                        parent: parentHash,
+                        date: 0,
+                    })
+            }
+        })
     }
 
-    topicOffset(hash) {
-        return this.topicOffsets[hash]
-    }
-
+    /*
+     * Forum contracts - should get replaced by Typescript shim
+     */
 
     async epoch() {
-        if (!this.forum) {
-            await this.getContracts();
-
-            if (!this.forum) {
-                return
-            }
-        }
-
+        await this.ready
         try {
             let r = await this.forum.epochCurrent.call()
             return r.toNumber()
@@ -104,10 +104,7 @@ class EthereumForum {
     }
 
     async votes(offset) {
-        if (!this.forum) {
-            return
-        }
-
+        await this.ready
         try {
             let r = await this.forum.votes.call(offset)
             return parseInt(r.toString(), 0)
@@ -117,26 +114,17 @@ class EthereumForum {
     }
 
     async upvote(offset) {
-        if (!this.forum) {
-            return
-        }
-
+        await this.ready
         return this.forum.upvote(offset, {from: this.account})
     }
 
     async downvote(offset) {
-        if (!this.forum) {
-            return
-        }
-
+        await this.ready
         return this.forum.downvote(offset, {from: this.account})
     }
 
     async payoutAccounts() {
-        if (!this.forum) {
-            return
-        }
-
+        await this.ready
         let promises = [0, 1, 2, 3, 4].map(async i => {
             let r = await this.forum.payouts.call(i)
             return r.toString()
@@ -146,10 +134,7 @@ class EthereumForum {
     }
 
     async rewards() {
-        if (!this.forum) {
-            return
-        }
-
+        await this.ready
         let promises = [0, 1, 2, 3, 4].map(async i => {
             let r = await this.forum.reward.call(i)
             return r.toString()
@@ -159,16 +144,12 @@ class EthereumForum {
     }
 
     async claim(payoutIndex) {
-        if (!this.forum) {
-            return
-        }
+        await this.ready
         return this.forum.claim(payoutIndex, {from: this.account})
     }
 
     async post(hash, parentHash) {
-        if (!this.token) {
-            return
-        }
+        await this.ready
 
         hash = HashUtils.cidToSolidityHash(hash)
         if (parentHash !== '0x0') {

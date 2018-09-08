@@ -590,7 +590,16 @@ footer.sticky-footer {
     border: none !important;
     outline: none;
     box-shadow: none;
+}
 
+.btn-icon {
+    float: left;
+}
+
+.btn-label {
+    display: inline-block;
+    margin-left: 1em;
+    float: left;
 }
 
 .nav-item button.btn.btn-primary i {
@@ -928,7 +937,7 @@ hr {
 .tokens-detail {
     display: flex;
     flex-wrap: wrap;
-    padding-top: 10px;
+    padding-top: 50px;
 }
 
 .tokens-detail h4 {
@@ -1686,7 +1695,6 @@ span.sold {
     line-height: normal;
     letter-spacing: normal;
     color: #6b768e;
-    padding-left: 29px;
 }
 
 .right-side-box.moreinfo .info-item {

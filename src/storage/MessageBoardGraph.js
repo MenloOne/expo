@@ -14,37 +14,45 @@
  * limitations under the License.
  */
 
-class MessageBoardGraph {
-  constructor() {
-    this.nodes = {}
 
-    this.addNode('0x0')
-  }
+class MessageGraph {
 
-  children(nodeID) {
-    return this.nodes[nodeID]
-  }
+    constructor(rootMessage) {
+        if (!rootMessage) {
+            rootMessage = {
+                id: '0x0',
+                children: []
+            }
+        }
 
-  addNode(nodeID, parentID) {
-    if (!this.nodes[nodeID]) {
-      this.nodes[nodeID] = []
+        this.messages = {}
+        this.add(rootMessage)
     }
 
-    if (parentID) {
-      this.addNode(parentID)
-      if (parentID !== nodeID && !this.nodes[parentID].includes(nodeID)) {
-        this.nodes[parentID].push(nodeID)
-      }
+    add(message) {
+        let parentID = message.parent || '0x0'
+
+        let parentHash = message.parent
+        console.log('adding :', message)
+
+        if (typeof message.id == 'undefined') {
+            throw 'Adding invalid node'
+        }
+
+        this.messages[message.id] = message
+
+        if (parentID && parentID != message.id) {
+            let parent = this.messages[parentID]
+
+            if (!parent.children.includes(message.id)) {
+                parent.children.push(message.id)
+            }
+        }
     }
 
-    if (this.callback) {
-      this.callback()
+    get(nodeID) {
+        return this.messages[nodeID]
     }
-  }
-
-  subscribeMessages(callback) {
-    this.callback = callback
-  }
 }
 
-export default MessageBoardGraph
+export default MessageGraph

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import TopNav from './TopNav.js'
-import ReviewBoard from './ReviewBoard'
+import MessageBoard from './MessageBoard'
 import CountdownTimer from './CountdownTimer'
 import ResponsiveEmbed from 'react-responsive-embed'
 
@@ -206,7 +206,8 @@ class Profile extends Component {
 
 
                                 </div>
-                                <ReviewBoard/>
+
+                                <MessageBoard/>
 
                             </div>
 
@@ -296,16 +297,20 @@ class Profile extends Component {
                                     <h3>More Info</h3>
                                     <a href='https://menloone.docsend.com/view/uu6vcy9'>
                                         <div className="info-item">
-                                            <img src={whitePaperIm} alt="" width="36" height="31"/>
-                                            <span>White Paper</span>
-                                            <i className="fa fa-angle-right"></i>
+                                            <div className="btn-icon"><img src={whitePaperIm} alt="" width="36" height="31"/></div>
+                                            <div className="btn-label">
+                                                <span>White Paper</span>
+                                                <i className="fa fa-angle-right"></i>
+                                            </div>
                                         </div>
                                     </a>
                                     <a href='https://www.menlo.one'>
                                         <div className="info-item">
-                                            <img src={globe} alt="" width="29" height="29"/>
-                                            <span>Website <em>https://www.menlo.one</em></span>
-                                            <i className="fa fa-angle-right"></i>
+                                            <div className="btn-icon"><img src={globe} alt="" width="29" height="29"/></div>
+                                            <div className="btn-label">
+                                                <span>Website <em>https://www.menlo.one</em></span>
+                                                <i className="fa fa-angle-right"></i>
+                                            </div>
                                         </div>
                                     </a>
                                     <div className="social-links">

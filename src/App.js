@@ -4,7 +4,7 @@ import Discover from './Discover'
 import Wallet from './Wallet'
 import Guild from './Guild'
 import Profile from './Profile'
-import { client, EthContext, fakeClient } from './EthContext'
+import { messageBoard, EthContext } from './EthContext'
 
 Date.prototype.addDays = function(days) {
     var date = new Date(this.valueOf());
@@ -16,7 +16,7 @@ class App extends React.Component {
 
     state = {
         ethContext: {
-            client: client,
+            messageBoard,
             account: '',
             balance: '-',
             isAuthenticated: false,
@@ -38,11 +38,11 @@ class App extends React.Component {
 
     async refreshAccount() {
         try {
-            let details = await client.getAccountDetails()
+            let details = await messageBoard.getAccountDetails()
 
             this.setState({
                 ethContext: {
-                    client: client,
+                    messageBoard,
                     account: details.account,
                     avatar: details.avatar,
                     balance: details.balance.toFormat(0),

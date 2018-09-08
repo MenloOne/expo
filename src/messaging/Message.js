@@ -15,6 +15,8 @@
  */
 
 import React from 'react'
+import Blockies from 'react-blockies'
+
 import MessageForm from './MessageForm'
 import './Message.css'
 
@@ -22,144 +24,134 @@ const userIm = require('../images/user-1.png')
 const user2Im = require('../images/user-2.png')
 
 class Message extends React.Component {
-  reply = async (messageBody) => {
-    this.setState({showReplyForm: false})
+    constructor(props) {
+        super(props)
 
-    return this.props.client.createMessage(messageBody, this.props.hash)
-      .then(async messageHash => {
-        const child = (
-          <Message key={`${this.state.children.length}-${messageHash}`}
-                   hash={messageHash}
-                   votes={this.props.client.getVotes(messageHash)}
-                   type={'child'}
-                   client={this.props.client}
-                   body={messageBody}/>)
-
-        await this.showReplies(true)
-        this.setState({children: [...this.state.children, child], showReplyForm: false})
-      })
-  }
-
-  showReplies = async (show) => {
-    this.setState({showReplies: show})
-    this.refreshMessages()
-  }
-
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      showReplyForm: false,
-      showReplies: true,
-      children: [],
-      votes: this.props.votes || 0,
-      upvote: 0,
-      downvote: 0
+        this.state = {
+            showReplyForm: false,
+            showReplies: true,
+            children: [],
+            upvote: 0,
+            downvote: 0
+        }
     }
-  }
 
-  componentDidMount() {
-    this.props.client.subscribeMessages(this.refreshMessages.bind(this))
-  }
+    componentDidMount() {
+        this.props.messageBoard.subscribe(this.props.message.id, this.refreshMessages.bind(this))
+    }
 
-  refreshMessages() {
-    this.props.client.getLocalMessages(this.props.hash).then(replies => {
-      const replyItems = replies.map(r => {
-        return <Message key={r.hash}
-                        hash={r.hash}
-                        votes={this.props.client.getVotes(r.hash)}
-                        type={'child'}
-                        client={this.props.client}
-                        body={r.body}/>
-      })
+    async refreshMessages() {
+        let replies = this.props.messageBoard.getChildrenMessages(this.props.message.id)
 
-      this.setState({children: replyItems})
-    }).catch(error => {
-      this.setState({children: null})
-    })
-  }
-
-  showReplyForm() {
-    this.setState({showReplyForm: true})
-  }
-
-  upvote() {
-    this.props.client.upvote(this.props.hash)
-      .then(r => {
-        this.setState({
-          votes: this.state.votes + 1 + this.state.downvote,
-          downvote: 0,
-          upvote: 1
+        const messages = replies.map(m => {
+            return <Message key={m.id}
+                            message={m}
+                            messageBoard={this.props.messageBoard}/>
         })
-      })
-  }
 
-  downvote() {
-    this.props.client.downvote(this.props.hash)
-      .then(r => {
+        this.setState({ children: messages })
+    }
+
+    async reply(body) {
+        this.setState({ showReplyForm: false })
+
+        let message = await this.props.messageBoard.createMessage(body, this.props.message.id)
+        const child = (
+            <Message key={message.id}
+                     message={message}
+                     messageBoard={this.props.messageBoard}/>
+        )
+
+        this.showReplies(true)
         this.setState({
-          votes: this.state.votes - 1 - this.state.upvote,
-          downvote: 1,
-          upvote: 0
+            children: [...this.state.children, child],
+            showReplyForm: false
         })
-      })
-  }
+    }
 
-  countReplies() {
-    return this.state.children.length > 0 ? this.state.children.length : this.props.client.countReplies(this.props.hash)
-  }
+    showReplies (show) {
+        this.setState({ showReplies: show })
+    }
 
-  messageStatus() {
-    return this.props.client.topicOffset(this.props.hash) ? 'complete' : 'pending'
-  }
+    showReplyForm() {
+        this.setState({showReplyForm: true})
+    }
 
-  messageComplete() {
-    return this.messageStatus() === 'complete'
-  }
+    async upvote() {
+        await this.props.messageBoard.upvote(this.props.message.id)
+        this.setState({
+            votes: this.state.votes + 1 + this.state.downvote,
+            downvote: 0,
+            upvote: 1
+        })
+    }
 
-  messagePending() {
-    return this.messageStatus() === 'pending'
-  }
+    async downvote() {
+        await this.props.messageBoard.downvote(this.props.message.id)
+        this.setState({
+            votes: this.state.votes - 1 - this.state.upvote,
+            downvote: 1,
+            upvote: 0
+        })
+    }
 
-  render() {
-    return (
-      <li className="borderis">
-        <div className="icon"><img src={Math.random() < 0.5 ? userIm : user2Im} alt=""/></div>
-        <div className="content">
-          <h3 className="tag-name">@wethefuture <span className="points">255 points </span> <span
-            className="time">15 hours ago</span> <span
-            className="btn">Team</span>
-          </h3>
-          <div className="comments-text">
-            {this.props.body}
-          </div>
-          <div className="comments-review">
-            {' '}{this.state.upvote === 0 && this.messageComplete() &&
-          <a onClick={this.upvote.bind(this)}><span><i
-            className="fa fa-caret-up"></i> Upvote ({this.state.votes})</span></a>}
-            {' '}{this.state.downvote === 0 && this.messageComplete() &&
-          <a onClick={this.downvote.bind(this)}><span><i
-            className="fa fa-caret-down"></i> Downvote </span></a>}
-            {this.props.type === 'parent' && this.messageComplete() &&
-            <a className="reply" onClick={this.showReplyForm.bind(this)}><span>Reply</span></a>}
-          </div>
-          <div className="comments-review">
-            {' '}
-            {this.props.type === 'parent' && this.countReplies() > 0 &&
-              <span>
-                { this.state.showReplies && <a onClick={() => this.showReplies(!this.state.showReplies)}> <em className="blue">Hide Replies </em></a> }
-                { !this.state.showReplies && <a onClick={() => this.showReplies(!this.state.showReplies)}> <em className="blue">Load More Comments </em> ({this.countReplies()})</a> }
-              </span>
-            }
-          </div>
-          <ul>
-            {this.state.showReplies && this.state.children}
-          </ul>
-          {this.state.showReplyForm && <MessageForm onSubmit={(message) => this.reply(message)}/>}
-        </div>
-      </li>
-    )
-  }
+    messageStatus() {
+        return this.props.messageBoard.getMessage(this.props.message.id) ? 'complete' : 'pending'
+    }
+
+    messageComplete() {
+        return this.messageStatus() === 'complete'
+    }
+
+    messagePending() {
+        return this.messageStatus() === 'pending'
+    }
+
+    render() {
+        let message = this.props.message
+
+        return (
+            <li className="borderis">
+                <div className="icon"><Blockies seed={message.author} size={10} ></Blockies></div>
+                <div className="content">
+                    <h3 className="tag-name">
+                        {message.author}
+                        <span className="points">??? points </span>
+                        <span className="time">15 hours ago</span>
+                    </h3>
+                    <div className="comments-text">
+                        {message.body}
+                    </div>
+                    <div className="comments-review">
+                        {' '}{ this.state.upvote === 0 && this.messageComplete() &&
+                            <a onClick={this.upvote.bind(this)}><span><i className="fa fa-caret-up"></i> Upvote ({this.state.votes})</span></a>
+                        }
+                        {' '}{this.state.downvote === 0 && this.messageComplete() &&
+                            <a onClick={this.downvote.bind(this)}><span><i className="fa fa-caret-down"></i> Downvote </span></a>
+                        }
+                        {message.parent === '0x0' && this.messageComplete() &&
+                            <a className="reply" onClick={this.showReplyForm.bind(this)}><span>Reply</span></a>
+                        }
+                    </div>
+                    <div className="comments-review">
+                        {' '}
+                        {message.parent === '0x0' && this.countReplies() > 0 &&
+                            <span>
+                                { this.state.showReplies && <a onClick={() => this.showReplies(!this.state.showReplies)}> <em className="blue">Hide Replies </em></a> }
+                                { !this.state.showReplies && <a onClick={() => this.showReplies(!this.state.showReplies)}> <em className="blue">Load More Comments </em> ({ message.children.length })</a> }
+                            </span>
+                        }
+                    </div>
+                    <ul>
+                        {this.state.showReplies && this.state.children}
+                    </ul>
+                    {this.state.showReplyForm &&
+                        <MessageForm onSubmit={(message) => this.reply(message)}/>
+                    }
+                </div>
+            </li>
+        )
+    }
 }
 
 export default Message
