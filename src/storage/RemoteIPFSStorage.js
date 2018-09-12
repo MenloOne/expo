@@ -17,17 +17,20 @@
 import ipfsAPI from 'ipfs-api'
 
 class RemoteIPFSStorage {
-  constructor(host, port, connectionOptions) {
-    this.connection = ipfsAPI(host, port, connectionOptions)
-  }
+    constructor(host, port, connectionOptions) {
+        this.connection = ipfsAPI(host, port, connectionOptions)
+    }
 
-  pin(hash) {
-    return this.connection.pin.add(hash).then(result => {
-      if (result && result.length > 0) return hash
+    async pin(hash) {
+        let result = await this.connection.pin.add(hash)
+        if (result && result.length > 0) {
+            return hash
+        }
+    }
 
-      return Promise.reject()
-    })
-  }
+    async unpin(hash) {
+        return this.connection.pin.rm(hash)
+    }
 }
 
 export default RemoteIPFSStorage

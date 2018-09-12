@@ -336,8 +336,14 @@ class ForumService {
             body,
         }
 
+        var ipfsHash
+
         try {
-            const ipfsHash = await this.localStorage.createMessage(ipfsMessage)
+            // Create message and save to it local in-browser IPFS
+            ipfsHash = await this.localStorage.createMessage(ipfsMessage)
+
+            // Pin it to ipfs.menlo.one
+            await this.remoteStorage.pin(ipfsHash)
 
             const hashSolidity = HashUtils.cidToSolidityHash(ipfsHash)
             let parentHashSolidity = ipfsMessage.parent
@@ -345,17 +351,20 @@ class ForumService {
                 parentHashSolidity = HashUtils.cidToSolidityHash(parentHashSolidity)
             }
 
+            // Send it to Blockchain
             let tokenCost = await this.forum.postCost.call()
             let result = await this.token.transferAndCall(this.forum.address, tokenCost, this.actions.post, [parentHashSolidity, hashSolidity])
             console.log(result)
-
-            await this.remoteStorage.pin(ipfsHash)
 
             return {
                 id: ipfsHash,
                 ...ipfsMessage
             }
         } catch (e) {
+            // Failed - unpin it from ipfs.menlo.one
+            this.localStorage.rm(ipfsHash)
+            this.remoteStorage.unpin(ipfsHash)
+
             console.error(e)
             throw e
         }
