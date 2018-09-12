@@ -31,17 +31,15 @@ class MessageGraph {
 
     add(message) {
         let parentID = message.parent || '0x0'
-
-        let parentHash = message.parent
         console.log('adding :', message)
 
-        if (typeof message.id == 'undefined') {
-            throw 'Adding invalid node'
+        if (typeof message.id === 'undefined') {
+            throw new Error('Adding invalid node')
         }
 
         this.messages[message.id] = message
 
-        if (parentID && parentID != message.id) {
+        if (parentID && parentID !== message.id) {
             let parent = this.messages[parentID]
 
             if (!parent.children.includes(message.id)) {

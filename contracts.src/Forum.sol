@@ -16,8 +16,8 @@
 pragma solidity^0.4.24;
 
 import "menlo-token/contracts/MenloToken.sol";
+import "./BytesDecode.sol";
 import "./Redeemer.sol";
-
 
 
 contract ForumEvents {
@@ -29,15 +29,17 @@ contract ForumEvents {
 }
 
 
-contract Forum is MenloTokenReceiver, ForumEvents, Ownable {
+contract Forum is MenloTokenReceiver, ForumEvents, BytesDecode, Ownable {
 
     uint public constant ACTION_POST     = 1;
     uint public constant ACTION_UPVOTE   = 2;
     uint public constant ACTION_DOWNVOTE = 3;
 
-    uint256 public epochTimestamp;
+    uint256 public endTimestamp;
     uint256 public epochPrior;
     uint256 public epochCurrent;
+    uint256 public rewardPool;
+
     mapping(uint256 => int256) public votes;
     mapping(uint256 => mapping(address => int8)) public voters;
     address[] public posters;
@@ -46,31 +48,32 @@ contract Forum is MenloTokenReceiver, ForumEvents, Ownable {
     uint256 public postCost;
     uint256 public nextPostCost;
 
-    uint256 public rewardPool;
     address[5] public payouts;
 
     constructor(MenloToken _token, uint256 _postCost, uint256 _voteCost) public MenloTokenReceiver(_token) {
-        // posters.push(0);
-        // emit Topic(0, 0);
+        // Pus 0 so empty memory (0) doesn't overlap with a voter
+        posters.push(0);
+        emit Topic(0, 0);
 
         // no author for root post 0
         voteCost = _voteCost;
         postCost = _postCost;
         nextPostCost = _postCost;
+        endTimestamp = now + 5 days;
     }
 
     function postCount() public view returns (uint256) {
         return posters.length;
     }
 
-    function endEpoch() external {
-        require(era() >= epochTimestamp + 1 days);
-        epochTimestamp = era();
+    function endEpoch() public {
+        require(now >= endTimestamp, "Forum only closes after time expires");
 
         uint256[5] memory winners;
-        int256[5] memory topVotes;
+        int256[5]  memory topVotes;
+
         // get top 5 posts
-        for (uint256 i = epochCurrent; i -- > epochPrior;) {
+        for(uint256 i = epochCurrent; i-- > epochPrior; ) {
             if (votes[i] == 0) {
                 continue;
             }
@@ -143,6 +146,10 @@ contract Forum is MenloTokenReceiver, ForumEvents, Ownable {
         }
     }
 
+    function nextRewardPool() public view returns (uint256) {
+        return token.balanceOf(this) - rewardPool;
+    }
+
     function reward(uint8 _payout) public view returns (uint256) {
         if (_payout == 0) {
             return rewardPool * 2 / 5;
@@ -164,40 +171,8 @@ contract Forum is MenloTokenReceiver, ForumEvents, Ownable {
         token.transfer(msg.sender, reward(_payout));
     }
 
-    modifier onlyOwner {
-        require(msg.sender == owner);
-        _;
-    }
-    function setOwner(address _owner) external onlyOwner {
-        owner = _owner;
-    }
-
     function setNextPostCost(uint256 _nextPostCost) external onlyOwner {
         nextPostCost = _nextPostCost;
-    }
-
-    function redeem(Redeemer _redeemer) external onlyOwner returns (MenloToken) {
-        require(_redeemer.from() == token);
-
-        token.approve(_redeemer, token.balanceOf(this));
-        _redeemer.redeem();
-        MenloToken to = _redeemer.to();
-        // tokenContract = to;
-        return to;
-    }
-
-    function undo(Redeemer _redeemer) external onlyOwner returns (MenloToken) {
-        require(_redeemer.to() == token);
-
-        token.approve(_redeemer, token.balanceOf(this));
-        _redeemer.undo();
-        MenloToken from = _redeemer.from();
-        // tokenContract = from;
-        return from;
-    }
-
-    function era() internal view returns (uint256) {
-        return now;
     }
 
     event Votes(uint256, int256);
@@ -210,9 +185,7 @@ contract Forum is MenloTokenReceiver, ForumEvents, Ownable {
 
         votes[_offset] += _direction;
         voters[_offset][_voter] = priorVote + _direction;
-
-        emit MyVote(voters[_offset][_voter]);
-        emit Votes(_offset, votes[_offset]);
+        endTimestamp = now + 1 days;
     }
 
     function pushPoster(address _poster) internal {
@@ -231,102 +204,13 @@ contract Forum is MenloTokenReceiver, ForumEvents, Ownable {
         emit Topic(_parentHash, _contentHash);
         pushPoster(_poster);
         voters[posters.length][_poster] = 1;
+        endTimestamp = now + 1 days;
     }
 
-    function uintFromBytes(bytes bs)
-    internal pure
-    returns (uint256)
-    {
-        require(bs.length >= 32, "invalid conversion from bytes to uint");
-        uint256 x;
-        assembly {
-            x := mload(add(bs, 0x20))
-        }
-        return x;
-    }
 
-    function addressFromBytes(bytes bs)
-    internal pure
-    returns (address)
-    {
-        require(bs.length >= 20, "invalid conversion from bytes to address");
-        address x;
-        assembly {
-            x := mload(add(bs, 20))
-        }
-        return x;
-    }
-
-    function decodeUint(bytes b, uint index) internal pure returns (uint256 result, uint i) {
-        uint c = 0;
-
-        require(uint(b[index++]) == 34, "Expected \" for var"); // "
-
-        for (i = index; i < b.length && uint(b[i]) != 34; i++) {
-            c = uint(b[i]);
-            if (c >= 48 && c <= 57) {
-                result = result * 10 + (c - 48);
-            }
-        }
-        i += 2;
-    }
-
-    function decodeAddress(bytes b, uint index) internal pure returns (address result, uint i) {
-        uint c = 0;
-        uint256 r = 0;
-
-        require(b.length - index > 3, "Expected \"0x for var");
-        require(uint(b[index++]) == 34, "Expected \" for var");  // "
-        require(uint(b[index++]) == 48, "Expected 0 for var");  // 0
-        require(uint(b[index++]) == 120, "Expected x for var"); // x
-
-        for (i = index; i < b.length && uint(b[i]) != 34; i++) {
-            c = uint(b[i]);
-
-            if (c >= 48 && c <= 57) {
-                r = r * 16 + (c - 48);
-            } else
-                if (c >= 65 && c <= 70) {
-                    r = r * 16 + (c - 65 + 10);
-                } else
-                    if (c >= 97 && c <= 102) {
-                        r = r * 16 + (c - 97 + 10);
-                    }
-        }
-        i += 2;
-
-        result = address(r);
-    }
-
-    function decodeBytes32(bytes b, uint index) internal pure returns (bytes32 result, uint i) {
-        uint r = 0;
-        uint c = 0;
-        bytes32 b32;
-
-        require(b.length - index > 3, "Expected \"0x for var");
-        require(uint(b[index++]) == 34, "Expected \" for var");  // "
-        require(uint(b[index++]) == 48, "Expected 0 for var");  // 0
-        require(uint(b[index++]) == 120, "Expected x for var"); // x
-
-        for (i = index; i < b.length && uint(b[i]) != 34; i++) {
-            c = uint(b[i]);
-
-            if (c >= 48 && c <= 57) {
-                c = c - 48;
-            } else
-                if (c >= 65 && c <= 70) {
-                    c = c - 65 + 10;
-                } else
-                    if (c >= 97 && c <= 102) {
-                        c = c - 97 + 10;
-                    }
-
-            require (r <= 63, "byte32 can't be longer than 32 bytes");
-            b32 |= bytes32(c & 0xF) << ((63-r++) * 4);
-        }
-        i += 2;
-
-        result = b32;
+    modifier forumOpen() {
+        // require(now < endTimestamp);
+        _;
     }
 
     function usesONE(uint256 _value, uint256 _cost) internal pure returns (bool) {
@@ -338,10 +222,14 @@ contract Forum is MenloTokenReceiver, ForumEvents, Ownable {
         uint256 _value,
         uint256 _action,
         bytes _data
-    ) public onlyTokenContract returns(bytes4) {
+    ) public onlyTokenContract forumOpen returns(bytes4) {
 
         uint offset;
         uint i;
+
+        if (now > endTimestamp) {
+            endEpoch();
+        }
 
         if (_action == ACTION_UPVOTE) {
             require(usesONE(_value, voteCost), "Voting tokens sent != cost");
@@ -375,4 +263,27 @@ contract Forum is MenloTokenReceiver, ForumEvents, Ownable {
         return 0;
     }
 
+    //
+    // This exists purely for the case where Menlo ONE tokens need upgrading
+    //
+
+    function redeem(Redeemer _redeemer) external onlyOwner returns (MenloToken) {
+        require(_redeemer.from() == token);
+
+        token.approve(_redeemer, token.balanceOf(this));
+        _redeemer.redeem();
+        MenloToken to = _redeemer.to();
+        token = to;
+        return to;
+    }
+
+    function undo(Redeemer _redeemer) external onlyOwner returns (MenloToken) {
+        require(_redeemer.to() == token);
+
+        token.approve(_redeemer, token.balanceOf(this));
+        _redeemer.undo();
+        MenloToken from = _redeemer.from();
+        token = from;
+        return from;
+    }
 }

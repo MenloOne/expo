@@ -23,9 +23,6 @@ import MessageForm from './MessageForm'
 import '../css/sb-admin.css'
 import './Message.css'
 
-const userIm = require('../images/user-1.png')
-const user2Im = require('../images/user-2.png')
-
 class Message extends React.Component {
     constructor(props) {
         super(props)
@@ -38,11 +35,11 @@ class Message extends React.Component {
     }
 
     componentDidMount() {
-        this.props.messageBoard.subscribe(this.props.message.id, this.refreshMessages.bind(this))
+        this.props.forumService.subscribe(this.props.message.id, this.refreshMessages.bind(this))
     }
 
     componentWillUnmount() {
-        this.props.messageBoard.subscribe(this.props.message.id, null);
+        this.props.forumService.subscribe(this.props.message.id, null);
     }
 
     componentWillReceiveProps(newProps) {
@@ -52,18 +49,18 @@ class Message extends React.Component {
     async refreshMessages() {
         let message = this.props.message
 
-        let replies = await this.props.messageBoard.getChildrenMessages(message.id)
+        let replies = await this.props.forumService.getChildrenMessages(message.id)
         this.setState({ children: replies })
     }
 
     async reply(body) {
         this.setState({ showReplyForm: false })
 
-        let message = await this.props.messageBoard.createMessage(body, this.props.message.id)
+        let message = await this.props.forumService.createMessage(body, this.props.message.id)
         const child = (
             <Message key={message.id}
                      message={message}
-                     messageBoard={this.props.messageBoard}/>
+                     forumService={this.props.forumService}/>
         )
 
         this.showReplies(true)
@@ -90,15 +87,15 @@ class Message extends React.Component {
     }
 
     async upvote() {
-        let msg = await this.props.messageBoard.upvote(this.props.message.id)
+        await this.props.forumService.upvote(this.props.message.id)
     }
 
     async downvote() {
-        await this.props.messageBoard.downvote(this.props.message.id)
+        await this.props.forumService.downvote(this.props.message.id)
     }
 
     messageStatus() {
-        return this.props.messageBoard.getMessage(this.props.message.id) ? 'complete' : 'pending'
+        return this.props.forumService.getMessage(this.props.message.id) ? 'complete' : 'pending'
     }
 
     messageComplete() {
@@ -111,7 +108,7 @@ class Message extends React.Component {
 
     renderVotes() {
         let message = this.props.message
-        if (message.votes == 0) {
+        if (message.votes === 0) {
             return null
         }
 
@@ -125,7 +122,7 @@ class Message extends React.Component {
             return (
                 <Message key={m.id}
                          message={m}
-                         messageBoard={this.props.messageBoard}/>
+                         forumService={this.props.forumService}/>
             )
         })
     }
@@ -150,8 +147,8 @@ class Message extends React.Component {
                         {message.body}
                     </div>
                     <div className="comments-review">
-                        <a onClick={this.upvote.bind(this)} disabled={this.props.message.myvotes > 0 || message.author == this.props.messageBoard.account}><span><i className="fa fa-caret-up"></i> Upvote { this.renderVotes() }</span></a>
-                        <a onClick={this.downvote.bind(this)}  disabled={this.props.message.myvotes < 0 || message.author == this.props.messageBoard.account}><span><i className="fa fa-caret-down"></i> Downvote </span></a>
+                        <a onClick={this.upvote.bind(this)} disabled={this.props.message.myvotes > 0 || message.author === this.props.forumService.account}><span><i className="fa fa-caret-up"></i> Upvote { this.renderVotes() }</span></a>
+                        <a onClick={this.downvote.bind(this)}  disabled={this.props.message.myvotes < 0 || message.author === this.props.forumService.account}><span><i className="fa fa-caret-down"></i> Downvote </span></a>
                         {message.parent === '0x0' &&
                             <a className="reply" onClick={this.showReplyForm.bind(this)}><span>Reply</span></a>
                         }

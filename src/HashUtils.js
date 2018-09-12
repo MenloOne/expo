@@ -23,38 +23,37 @@ import waterfall from 'async/waterfall'
 let thisExport = {}
 
 thisExport.cidToSolidityHash = (cid) => {
-  if (cid === '0x0') {
-    return '0x0000000000000000000000000000000000000000000000000000000000000000'
-  }
+    if (cid === '0x0') {
+        return '0x0000000000000000000000000000000000000000000000000000000000000000'
+    }
 
-  let _cid = new CID(cid)
-  let _multihash = _cid.multihash
-  let _hex = '0x' + multihash.decode(_multihash).digest.toString('hex')
-    let test = thisExport.solidityHashToCid(_hex)
-  return _hex
+    let _cid = new CID(cid)
+    let _multihash = _cid.multihash
+    let _hex = '0x' + multihash.decode(_multihash).digest.toString('hex')
+    return _hex
 }
 
 thisExport.solidityHashToCid = (_hash) => {
-  if (_hash === '0x0000000000000000000000000000000000000000000000000000000000000000') {
-    return '0x0'
-  }
+    if (_hash === '0x0000000000000000000000000000000000000000000000000000000000000000') {
+        return '0x0'
+    }
 
-  let hash = _hash
-  if (hash.length === 66) {
-      hash = hash.slice(2, 66)
-  }
+    let hash = _hash
+    if (hash.length === 66) {
+        hash = hash.slice(2, 66)
+    }
 
-  let encodedHash = multihash.encode(multihash.fromHexString(hash), 'keccak-256')
-  let cid = new CID(1, 'dag-cbor', encodedHash).toBaseEncodedString()
-  return cid
+    let encodedHash = multihash.encode(multihash.fromHexString(hash), 'keccak-256')
+    let cid = new CID(1, 'dag-cbor', encodedHash).toBaseEncodedString()
+    return cid
 }
 
 thisExport.nodeToCID = (node, callback) => {
-  return waterfall([
-    (cb) => ipldDagCbor.util.serialize(node, cb),
-    (serialized, cb) => multihashing(serialized, 'keccak-256', cb),
-    (mh, cb) => cb(null, new CID(1, 'dag-cbor', mh))
-  ], callback)
+    return waterfall([
+        (cb) => ipldDagCbor.util.serialize(node, cb),
+        (serialized, cb) => multihashing(serialized, 'keccak-256', cb),
+        (mh, cb) => cb(null, new CID(1, 'dag-cbor', mh))
+    ], callback)
 }
 
 export default thisExport

@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import BigNumber from 'bignumber.js'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {withEth} from './EthContext'
@@ -9,15 +10,7 @@ import MenloFaucetContract from './truffle_artifacts/contracts/MenloFaucet.json'
 
 import './css/sb-admin.css'
 
-const smallIm = require('./images/guild/small-img.png')
 const logo = require('./images/logo.jpg')
-const userIm = require('./images/user-1.png')
-const user2Im = require('./images/user-2.png')
-const iconIm = require('./images/icon.png')
-const starsIm = require('./images/guild/stars.png')
-const smallImroot = require('./images/small-img.png')
-
-
 
 class TopNav extends Component {
 
@@ -50,7 +43,7 @@ class TopNav extends Component {
     renderONE() {
         let one = this.props.eth.balance
 
-        if (one == 0) {
+        if (one === 0) {
             return (
                 <li className="nav-item token-number">
                     <button className='btn faucet-btn' onClick={ this.onGetTokens }>GET ONE TOKENS FROM KOVAN FAUCET</button>
@@ -60,7 +53,7 @@ class TopNav extends Component {
 
         return (
             <li className="nav-item token-number">
-                <span>{ one }</span>
+                <span>{ new BigNumber(one).toFormat(0) }</span>
                 <span className="token-one">&nbsp;ONE</span>
             </li>
         )
@@ -106,7 +99,7 @@ class TopNav extends Component {
                 <li className="nav-item dropdown">
                     <a className="nav-link dropdown-toggle mr-lg-2"
                        id="messagesDropdown"
-                       href="#"
+
                        data-toggle="dropdown"
                        aria-haspopup="true"
                        aria-expanded="false">
@@ -122,38 +115,6 @@ class TopNav extends Component {
                                         </span>
                         }
                     </a>
-
-                    <div className="dropdown-menu" aria-labelledby="messagesDropdown">
-                        <h6 className="dropdown-header">New Messages:</h6>
-                        <div className="dropdown-divider"></div>
-                        <a className="dropdown-item" href="#">
-                            <strong>David Miller</strong>
-                            <span className="small float-right text-muted">11:21 AM</span>
-                            <div className="dropdown-message small">Hey there! This new version of SB Admin
-                                is pretty awesome! These messages clip off when they
-                                reach the end of the box so they don't overflow over to the sides!
-                            </div>
-                        </a>
-                        <div className="dropdown-divider"></div>
-                        <a className="dropdown-item" href="#">
-                            <strong>Jane Smith</strong>
-                            <span className="small float-right text-muted">11:21 AM</span>
-                            <div className="dropdown-message small">I was wondering if you could meet for an
-                                appointment at 3:00 instead of 4:00. Thanks!
-                            </div>
-                        </a>
-                        <div className="dropdown-divider"></div>
-                        <a className="dropdown-item" href="#">
-                            <strong>John Doe</strong>
-                            <span className="small float-right text-muted">11:21 AM</span>
-                            <div className="dropdown-message small">I've sent the final files over to you
-                                for review. When you're able to sign off of them let me
-                                know and we can discuss distribution.
-                            </div>
-                        </a>
-                        <div className="dropdown-divider"></div>
-                        <a className="dropdown-item small" href="#">View all messages</a>
-                    </div>
                 </li>
             </ul>
         )
@@ -163,8 +124,9 @@ class TopNav extends Component {
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
                 <div className="container">
-                    <a className="navbar-brand" href="index.html"><img src={logo} title="Menlo One"
-                                                                       alt="Menlo One"/></a>
+                    <a className="navbar-brand" href="index.html">
+                        <img src={logo} title="Menlo One" alt="Menlo One"/>
+                    </a>
                     <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                             data-target="#navbarResponsive"
                             aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">

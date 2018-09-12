@@ -13,7 +13,6 @@ const screenshot = require('./images/screenshot.png')
 const userIm = require('./images/user-1.png')
 const user2Im = require('./images/user-2.png')
 const iconIm = require('./images/icon.png')
-const smallImroot = require('./images/small-img.png')
 const whitePaperIm = require('./images/white-paper.png')
 const globe = require('./images/globe.png')
 
@@ -74,7 +73,7 @@ class Profile extends Component {
                             <span className="total-comments">
                                 832 committed to buying when sale opens &nbsp;
                             </span>
-                            <a href="#" className="circle-btn" title=""><img src={iconIm} alt=""/></a>
+                            <a className="circle-btn" title=""><img src={iconIm} alt=""/></a>
                         </div>
 
                     </div>
@@ -96,8 +95,8 @@ class Profile extends Component {
                                                 <span className="user-img"><img src={userIm} title="user"
                                                                                 alt="user"/></span>
                                             </div>
-                                            <div className="top-names"><a href="#">@david</a>, <a href="#">@jenny</a>,
-                                                and <a href="#">@bobNYC</a></div>
+                                            <div className="top-names"><a >@david</a>, <a >@jenny</a>,
+                                                and <a >@bobNYC</a></div>
                                         </div>
 
                                         <div className="backers">
@@ -109,8 +108,7 @@ class Profile extends Component {
                                                 <span className="user-img"><img src={userIm} title="user"
                                                                                 alt="user"/></span>
                                             </div>
-                                            <div className="top-names"><a href="#">@BlockchainCapital</a>, <a
-                                                href="#">@RogerVer</a> and 1,322 others
+                                            <div className="top-names"><a >@BlockchainCapital</a>, <a >@RogerVer</a> and 1,322 others
                                             </div>
                                         </div>
 
@@ -159,14 +157,14 @@ class Profile extends Component {
                                     <div className="team-member">
                                         <span className="user-img"><img src={userIm} title="user" alt="user"/></span>
                                         <div className="user-detail">
-                                            <div className="team-member-name"><a href="#">@wethefuture</a></div>
+                                            <div className="team-member-name"><a >@wethefuture</a></div>
                                             <div className="designation">CTO</div>
                                         </div>
                                     </div>
                                     <div className="team-member">
                                         <span className="user-img"><img src={user2Im} title="user" alt="user"/></span>
                                         <div className="user-detail">
-                                            <div className="team-member-name"><a href="#">@greatthings</a></div>
+                                            <div className="team-member-name"><a >@greatthings</a></div>
                                             <div className="designation">COO</div>
                                         </div>
                                     </div>
@@ -313,12 +311,12 @@ class Profile extends Component {
                                             </div>
                                         </div>
                                     </a>
-                                    <div className="social-links">
-                                        <a href="#" title="Twitter"><i className="fa fa-twitter"></i></a>
-                                        <a href="#" title="Facebook"><i className="fa fa-facebook"></i></a>
-                                        <a href="#" title="GitHub"><i className="fa fa-github"></i></a>
-                                        <a href="#" title="Hash"><i className="fa fa-slack"></i></a>
-                                        <a href="#" title="Flag"><i className="fa fa-paper-plane"></i></a>
+                                    <div className="social-links" style={{ display: 'none' }}>
+                                        <a  title="Twitter"><i className="fa fa-twitter"></i></a>
+                                        <a  title="Facebook"><i className="fa fa-facebook"></i></a>
+                                        <a  title="GitHub"><i className="fa fa-github"></i></a>
+                                        <a  title="Hash"><i className="fa fa-slack"></i></a>
+                                        <a  title="Flag"><i className="fa fa-paper-plane"></i></a>
                                     </div>
                                 </div>
 

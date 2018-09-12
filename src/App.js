@@ -4,23 +4,18 @@ import Blockies from 'react-blockies'
 
 import Profile from './Profile'
 import { EthContext } from './EthContext'
-import Client from './Client'
+import ForumService from './ForumService'
 import web3 from './web3_override'
-
-Date.prototype.addDays = function(days) {
-    var date = new Date(this.valueOf());
-    date.setDate(date.getDate() + days);
-    return date;
-}
 
 class App extends React.Component {
 
     state = {
         ethContext: {
-            messageBoard: new Client(),
+            forumService: new ForumService(),
             account: null,
             balance: '-',
             status: 'starting',
+            ready: new Promise((resolve) => { this.resolveReady = resolve })
         }
     }
 
@@ -44,21 +39,15 @@ class App extends React.Component {
         let self = this
 
         if (!web3) {
-            this.setState({
-                ethContext: {
-                    status: 'uninstalled',
-                }
-            })
+            let ethContext = Object.assign(this.state.ethContext, { status: 'uninstalled' })
+            this.setState({ ethContext })
             return
         }
 
         web3.eth.getAccounts((err, accounts) => {
             if (err || !accounts || accounts.length === 0) {
-                self.setState({
-                    ethContext: {
-                        status: 'logged out',
-                    }
-                })
+                let ethContext = Object.assign(this.state.ethContext, { status: 'logged out' })
+                this.setState({ ethContext })
                 return
             }
 
@@ -84,7 +73,7 @@ class App extends React.Component {
         setTimeout(async () => {
             let eth = self.state.ethContext
 
-            let balance = await eth.messageBoard.getBalance()
+            let balance = await eth.forumService.getBalance()
             let ethContext = Object.assign({}, eth, { balance })
 
             self.setState({
@@ -106,8 +95,8 @@ class App extends React.Component {
                 refreshBalance: this.refreshBalance.bind(this)
             }
 
-            await this.state.ethContext.messageBoard.setAccount(acct)
-            let balance = await this.state.ethContext.messageBoard.getBalance()
+            await this.state.ethContext.forumService.setAccount(acct)
+            let balance = await this.state.ethContext.forumService.getBalance()
 
             let ethContext = Object.assign({}, this.state.ethContext, {
                 status: 'ok',
@@ -118,6 +107,8 @@ class App extends React.Component {
             this.setState({
                 ethContext
             })
+
+            this.resolveReady()
 
         } catch(e) {
             console.error(e)

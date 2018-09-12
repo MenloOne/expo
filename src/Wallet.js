@@ -12,6 +12,12 @@ const smallImroot = require('./images/small-img.png')
 const smallImroot2 = require('./images/small-img2.png')
 const smallImroot3 = require('./images/small-img3.png')
 
+Date.prototype.addDays = function(days) {
+    var date = new Date(this.valueOf());
+    date.setDate(date.getDate() + days);
+    return date;
+}
+
 
 class Wallet extends Component {
 

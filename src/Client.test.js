@@ -17,7 +17,7 @@
 jest.mock('truffle-contract')
 import truffleContract from 'truffle-contract'
 import * as web3 from './web3_override'
-import Client from './Client'
+import ForumService( from './ForumService'
 import MessageBoardError from './MessageBoardError'
 
 describe('Client', () => {
@@ -43,7 +43,7 @@ describe('Client', () => {
     }
     truffleContract.mockImplementation(() => contract)
 
-    client = new Client(graph, forum, lottery, localStorage, remoteStorage)
+    client = new ForumService(graph, forum, lottery, localStorage, remoteStorage)
   })
 
   describe('retrieving account details', () => {
@@ -116,7 +116,7 @@ describe('Client', () => {
     it('throws a MessageBoardError if localStorage rejects creating the message', () => {
       localStorage = {createMessage: jest.fn(() => Promise.reject())}
 
-      client = new Client(graph, forum, lottery, localStorage, remoteStorage)
+      client = new ForumService(graph, forum, lottery, localStorage, remoteStorage)
 
       return client.createMessage('someMessage')
         .catch(error => {
@@ -127,7 +127,7 @@ describe('Client', () => {
     it('throws a MessageBoardError if forum rejects posting the message', () => {
       forum = {post: jest.fn(() => Promise.reject()), subscribeMessages: jest.fn()}
 
-      client = new Client(graph, forum, lottery, localStorage, remoteStorage)
+      client = new ForumService(graph, forum, lottery, localStorage, remoteStorage)
 
       return client.createMessage('someMessage')
         .catch(error => {
@@ -138,7 +138,7 @@ describe('Client', () => {
     it('throws a MessageBoardError if remoteStorage rejects pinning the message', () => {
       remoteStorage = {pin: jest.fn(() => Promise.reject())}
 
-      client = new Client(graph, forum, lottery, localStorage, remoteStorage)
+      client = new ForumService(graph, forum, lottery, localStorage, remoteStorage)
 
       return client.createMessage('someMessage')
         .catch(error => {

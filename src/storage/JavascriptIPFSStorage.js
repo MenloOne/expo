@@ -40,43 +40,18 @@ class JavascriptIPFSStorage {
     }
 
     connectPeer(remote) {
-        this.ipfs.on('ready', () => {
-            new Promise((resolve, reject) => {
-                remote.connection.id((err, result) => {
-                    if (err) {
-                        reject(err)
-                        return
-                    }
+        try {
+            this.ipfs.on('ready', async () => {
 
-                    console.log('Found IPFS addresses ' + result.addresses)
-
-                    // Must find websocket based address to connect to as we're in browser
-                    let wsAddress = result.addresses.find(a => a.includes('ws/'))
-                    if (!wsAddress) {
-                        reject('No Websocket connection exposed by ipfs.menlo.one')
-                        return
-                    }
-
-                    this.ipfs.swarm.connect(wsAddress, (connectErr, connectResult) => {
-                        if (connectErr) {
-                            // The Menlo NGINX proxy converts WSS:4002 to WS:8081
-                            this.ipfs.swarm.connect('/dns4/ipfs.menlo.one/tcp/4002/wss/ipfs/QmQP5wZGuFEF5Vxb6UmvwKuS9DVNCGz975aRXVLFHK1z3s', (connectErr, connectResult) => {
-                                if (connectErr) {
-                                    reject(connectErr)
-                                } else {
-                                    this.connectedToPeer = true
-                                    resolve()
-                                }
-                            })
-                        } else {
-                            this.connectedToPeer = true
-                            resolve()
-                        }
-                    })
-
-                })
+                // The Menlo NGINX proxy converts WSS:4002 to WS:8081
+                let result = await this.ipfs.swarm.connect('/dns4/ipfs.menlo.one/tcp/4002/wss/ipfs/QmQP5wZGuFEF5Vxb6UmvwKuS9DVNCGz975aRXVLFHK1z3s')
+                console.log('Remote IPFS connected! ', result)
+                this.connectedToPeer = true
             })
-        })
+        } catch (e) {
+            console.error('IPFS Connection Error', e)
+            throw (e)
+        }
     }
 
     isOnline() {
