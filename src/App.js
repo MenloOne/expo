@@ -79,16 +79,18 @@ class App extends React.Component {
     }
 
     async refreshBalance() {
-        let eth = this.state.ethContext
+        let self = this
 
-        let details = await eth.messageBoard.setAccount(eth.account)
-        let balance = await eth.messageBoard.getBalance()
+        setTimeout(async () => {
+            let eth = self.state.ethContext
 
-        let ethContext = Object.assign({}, eth, { balance })
+            let balance = await eth.messageBoard.getBalance()
+            let ethContext = Object.assign({}, eth, { balance })
 
-        this.setState({
-            ethContext
-        })
+            self.setState({
+                ethContext
+            })
+        }, 4000)
     }
 
     async refreshAccount(refreshBoard, account) {
