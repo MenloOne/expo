@@ -1,10 +1,9 @@
 import React from 'react'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
-import Discover from './Discover'
-import Wallet from './Wallet'
-import Guild from './Guild'
 import Profile from './Profile'
-import { messageBoard, EthContext } from './EthContext'
+import { EthContext } from './EthContext'
+import Client from './Client'
+import web3 from './web3_override'
 
 Date.prototype.addDays = function(days) {
     var date = new Date(this.valueOf());
@@ -16,38 +15,83 @@ class App extends React.Component {
 
     state = {
         ethContext: {
-            messageBoard,
-            account: '',
+            messageBoard: new Client(),
+            account: null,
             balance: '-',
-            isAuthenticated: false,
-            isLoading: true,
-            refreshAccount: () => {
-            }
+            status: 'starting',
         }
     }
 
     constructor() {
         super()
-
         this.refreshAccount = this.refreshAccount.bind(this)
     }
 
     componentWillMount() {
-        this.refreshAccount()
+        this.accountInterval = window.setInterval( () => { this.checkMetamaskStatus(); }, 1000);
     }
 
-    async refreshAccount() {
+    componentDidMount() {
+    }
+
+    componentWillUnmount() {
+        window.clearInterval(this.accountInterval);
+    }
+
+    async checkMetamaskStatus() {
+        let self = this
+
+        if (!web3) {
+            this.setState({
+                ethContext: {
+                    status: 'uninstalled',
+                }
+            })
+            return
+        }
+
+        web3.eth.getAccounts((err, accounts) => {
+            if (err || !accounts || accounts.length === 0) {
+                self.setState({
+                    ethContext: {
+                        status: 'logged out',
+                    }
+                })
+                return
+            }
+
+            if (self.state.ethContext.status !== 'starting' && self.state.ethContext.status !== 'ok') {
+                self.refreshAccount( true )
+            }
+
+            if (accounts[0] !== self.state.ethContext.account) {
+                // The only time we ever want to load data from the chain history
+                // is when we receive a change in accounts - this happens anytime
+                // the page is initially loaded or if there is a change in the account info
+                // via a metamask interaction.
+                web3.eth.defaultAccount = accounts[0]
+
+                self.refreshAccount( self.state.ethContext.account !== null, accounts[0] )
+            }
+        });
+    }
+
+    async refreshAccount(refreshBoard, account) {
         try {
-            let details = await messageBoard.getAccountDetails()
+            if (refreshBoard) {
+                // Easy way out for now
+                window.location.reload()
+            }
+
+            let details = await this.state.ethContext.messageBoard.setAccountDetails(account)
 
             this.setState({
                 ethContext: {
-                    messageBoard,
+                    messageBoard: this.state.ethContext.messageBoard,
                     account: details.account,
                     avatar: details.avatar,
+                    status: 'ok',
                     balance: details.balance.toFormat(0),
-                    isAuthenticated: true,
-                    isLoading: false,
                     refreshAccount: this.refreshAccount
                 }
             })

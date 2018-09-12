@@ -14,23 +14,39 @@
  * limitations under the License.
  */
 a {
-  cursor: pointer;
+    cursor: pointer;
+}
+
+a[disabled], a[disabled]:hover {
+    pointer-events: none;
+    cursor: default;
+    color: #c0c0c0 !important;
 }
 
 .message .text {
-  font-size: 1.2em;
+    font-size: 1.2em;
 }
 
 .message .actions a {
-  font-size: .75em;
-  color: #989898;
-  cursor: pointer;
+    font-size: .75em;
+    color: #989898;
+    cursor: pointer;
 }
 
 .parent {
-  padding-bottom: 1em;
+    padding-bottom: 1em;
+}
+
+.comments .tag-name .time {
+    color: #bdbdbd;
+    padding-left: 1em;
+}
+
+.comments .tag-name span.points {
+    color: #2c3035;
+    padding-left: 1em;
 }
 
 .error {
-  color: red;
+    color: red;
 }

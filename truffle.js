@@ -5,12 +5,11 @@ var NonceTrackerSubprovider = require("web3-provider-engine/subproviders/nonce-t
 // const mnemonic = process.env.MNEMONIC
 
 var HDWalletProvider = require('truffle-hdwallet-provider-privkey');
+
 var keys = []
 keys.push(require('./chain/root.json'))
-keys.push(require('./chain/tenet1.json'))
-keys.push(require('./chain/tenet2.json'))
-keys.push(require('./chain/tenet3.json'))
-var privKeys = keys.map((js) => js.privateKey.substr(2) /* Skip 0x */)
+keys.push(require('./chain/wallet.json'))
+var privKeys = keys.map((js) => js.privateKey.toLowerCase())
 
 function noncedWallet(wallet) {
   var nonceTracker = new NonceTrackerSubprovider()
@@ -46,19 +45,13 @@ module.exports = {
       },
       network_id: 42,
       gas: 4700000,
-      gasPrice: 150000000000
-    },
-    rinkeby: {
-      host: '127.0.0.1',
-      port: 8545,
-      gas: 4612388,
-      network_id: 4,
+      gasPrice: 10000000000
     }
   },
   solc: {
     optimizer: {
       enabled: true,
-      runs: 0
+      runs: 200
     }
   }
 }

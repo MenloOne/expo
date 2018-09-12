@@ -50,8 +50,8 @@ class MessageGraph {
         }
     }
 
-    get(nodeID) {
-        return this.messages[nodeID]
+    get(id) {
+        return this.messages[id]
     }
 }
 

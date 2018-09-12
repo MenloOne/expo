@@ -802,10 +802,6 @@ span.game-img {
     vertical-align: top;
 }
 
-.total-comments {
-    padding-top: 40px;
-}
-
 .total-comments span.user-img {
     width: 28px;
     height: 28px;
@@ -822,6 +818,7 @@ span.game-img {
 span.location {
     padding-right: 10px;
 }
+
 
 .content-wrapper {
     clear: both;
@@ -1527,7 +1524,7 @@ span.sold {
     display: inline-block;
     vertical-align: top;
     width: calc(100% - 70px);
-    margin-bottom: 50px;
+    margin-bottom: 1em;
 }
 
 .comments .tag-name {
@@ -1537,14 +1534,11 @@ span.sold {
     font-weight: 600;
     font-style: normal;
     font-stretch: normal;
-    line-height: 2.25;
+    line-height: 3.25;
     letter-spacing: normal;
     color: #18af41;
     margin-bottom: 24px;
-}
-
-.comments .tag-name span.points {
-    color: #2c3035;
+    margin-left: 0.5em;
 }
 
 .comments .comments-text {
@@ -1576,10 +1570,6 @@ span.sold {
     border-radius: 3px;
     margin-left: 12px;
     background-color: #ed5d42;
-}
-
-.comments .tag-name .time {
-    color: #bdbdbd;
 }
 
 .comments-review em {
@@ -1619,11 +1609,8 @@ span.sold {
     margin: 30px 0 34px;
 }
 
-.submit-btn {
-    width: 145px;
-    height: 36px;
+.btn {
     border-radius: 3px;
-    background-color: #154dca;
     font-family: Titillium web;
     font-size: 13px;
     font-weight: bold;
@@ -1632,6 +1619,23 @@ span.sold {
     line-height: normal;
     letter-spacing: normal;
     text-align: center;
+    border: solid 1px #eaeaea;
+    color: #2c3035;
+    border: 0;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.btn:disabled {
+    color: #b2b2b2;
+}
+
+.faucet-btn {
+}
+
+.submit-btn {
+    border-radius: 3px;
+    background-color: #154dca;
     color: #ffffff;
     border: 0;
     display: inline-block;
@@ -1644,7 +1648,7 @@ span.sold {
     background-color: #a3b1db;
 }
 
-.cancle-btn {
+.cancel-btn {
     float: right;
     vertical-align: middle;
     width: 77px;
@@ -1653,15 +1657,7 @@ span.sold {
     height: 36px;
     line-height: 36px;
     border-radius: 3px;
-    border: solid 1px #eaeaea;
-    font-family: Titillium web;
-    font-size: 13px;
-    font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
-    letter-spacing: normal;
     padding-top: 0;
-    color: #2c3035;
     margin-left: 19px;
 }
 
@@ -1790,7 +1786,7 @@ img {
 .comments li.borderis:after {
     content: '';
     width: 1px;
-    height: 90%;
+    height: calc(100% - 20px);
     background: #e2dede;
     display: inline-block;
     top: 50px;

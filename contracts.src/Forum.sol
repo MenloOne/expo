@@ -34,28 +34,29 @@ contract Forum is MenloTokenReceiver, ForumEvents, Ownable {
     uint public constant ACTION_POST     = 1;
     uint public constant ACTION_UPVOTE   = 2;
     uint public constant ACTION_DOWNVOTE = 3;
-    uint public constant ACTION_UNVOTE   = 4;
 
     uint256 public epochTimestamp;
     uint256 public epochPrior;
     uint256 public epochCurrent;
     mapping(uint256 => int256) public votes;
-    mapping(uint256 => mapping(address => int8)) voters;
+    mapping(uint256 => mapping(address => int8)) public voters;
     address[] public posters;
 
+    uint256 public voteCost;
     uint256 public postCost;
     uint256 public nextPostCost;
 
     uint256 public rewardPool;
     address[5] public payouts;
 
-    constructor(MenloToken _token) public MenloTokenReceiver(_token) {
-        posters.push(0);
-        emit Topic(0, 0);
+    constructor(MenloToken _token, uint256 _postCost, uint256 _voteCost) public MenloTokenReceiver(_token) {
+        // posters.push(0);
+        // emit Topic(0, 0);
 
         // no author for root post 0
-        postCost = 20 * 10**18;
-        nextPostCost = 20 * 10**18;
+        voteCost = _voteCost;
+        postCost = _postCost;
+        nextPostCost = _postCost;
     }
 
     function postCount() public view returns (uint256) {
@@ -132,6 +133,7 @@ contract Forum is MenloTokenReceiver, ForumEvents, Ownable {
         for (i = 0; i < 5; i++) {
             payouts[i] = posters[winners[i]];
         }
+
         // refresh the pool
         rewardPool = token.balanceOf(this);
         epochPrior = epochCurrent;
@@ -142,7 +144,6 @@ contract Forum is MenloTokenReceiver, ForumEvents, Ownable {
     }
 
     function reward(uint8 _payout) public view returns (uint256) {
-        // I wish we had switch()
         if (_payout == 0) {
             return rewardPool * 2 / 5;
         } else if (_payout == 1) {
@@ -199,31 +200,37 @@ contract Forum is MenloTokenReceiver, ForumEvents, Ownable {
         return now;
     }
 
+    event Votes(uint256, int256);
+    event MyVote(int256);
+
     function vote(address _voter, uint256 _offset, int8 _direction) internal {
         int8 priorVote = voters[_offset][_voter];
-        votes[_offset] += _direction - priorVote;
-        voters[_offset][_voter] = _direction;
+
+        require (priorVote != _direction, "Can't vote for same comment more than 1 time");
+
+        votes[_offset] += _direction;
+        voters[_offset][_voter] = priorVote + _direction;
+
+        emit MyVote(voters[_offset][_voter]);
+        emit Votes(_offset, votes[_offset]);
     }
 
     function pushPoster(address _poster) internal {
         posters.push(_poster);
     }
 
-    function upvote(address _poster,uint256 _offset) internal {
-        vote(_poster, _offset, 1);
+    function upvote(address _voter, uint256 _offset) internal {
+        vote(_voter, _offset, 1);
     }
 
-    function downvote(address _poster,uint256 _offset) internal {
-        vote(_poster, _offset, - 1);
+    function downvote(address _voter, uint256 _offset) internal {
+        vote(_voter, _offset, -1);
     }
 
-    function unvote(address _poster, uint256 _offset) internal {
-        vote(_poster, _offset, 0);
-    }
-
-    function post(bytes32 _parentHash, bytes32 _contentHash) internal {
+    function post(address _poster, bytes32 _parentHash, bytes32 _contentHash) internal {
         emit Topic(_parentHash, _contentHash);
-        pushPoster(msg.sender);
+        pushPoster(_poster);
+        voters[posters.length][_poster] = 1;
     }
 
     function uintFromBytes(bytes bs)
@@ -250,48 +257,32 @@ contract Forum is MenloTokenReceiver, ForumEvents, Ownable {
         return x;
     }
 
-    modifier usesONE(uint256 _value) {
-        require(postCost == _value);
-        _;
-    }
-
     function decodeUint(bytes b, uint index) internal pure returns (uint256 result, uint i) {
         uint c = 0;
-        for (i = index; i < b.length && c != 44; i++) {
+
+        require(uint(b[index++]) == 34, "Expected \" for var"); // "
+
+        for (i = index; i < b.length && uint(b[i]) != 34; i++) {
             c = uint(b[i]);
             if (c >= 48 && c <= 57) {
                 result = result * 10 + (c - 48);
             }
         }
-    }
-
-    function decodeBytes32(bytes b, uint index) internal pure returns (bytes32 result, uint i) {
-        uint r = 0;
-        uint c = 0;
-        bytes32 b32;
-
-        require(uint(b[index++]) == 34, "Expected \" to start bytes32");
-
-        for (i = index; i < b.length && r < 32 && c != 34; i++) {
-            c = uint(b[i]);
-            b32 |= bytes32(b[i] & 0xFF) >> (r++ * 8);
-        }
-        i++;
-
-        result = b32;
+        i += 2;
     }
 
     function decodeAddress(bytes b, uint index) internal pure returns (address result, uint i) {
         uint c = 0;
         uint256 r = 0;
 
-        require(b.length - index > 3);
-        require(uint(b[index++]) == 34);  // "
-        require(uint(b[index++]) == 48);  // 0
-        require(uint(b[index++]) == 120); // x
+        require(b.length - index > 3, "Expected \"0x for var");
+        require(uint(b[index++]) == 34, "Expected \" for var");  // "
+        require(uint(b[index++]) == 48, "Expected 0 for var");  // 0
+        require(uint(b[index++]) == 120, "Expected x for var"); // x
 
-        for (i = index; i < b.length && c != 44; i++) {
+        for (i = index; i < b.length && uint(b[i]) != 34; i++) {
             c = uint(b[i]);
+
             if (c >= 48 && c <= 57) {
                 r = r * 16 + (c - 48);
             } else
@@ -302,48 +293,82 @@ contract Forum is MenloTokenReceiver, ForumEvents, Ownable {
                         r = r * 16 + (c - 97 + 10);
                     }
         }
+        i += 2;
 
         result = address(r);
     }
 
-    event LogBytes(bytes b);
+    function decodeBytes32(bytes b, uint index) internal pure returns (bytes32 result, uint i) {
+        uint r = 0;
+        uint c = 0;
+        bytes32 b32;
+
+        require(b.length - index > 3, "Expected \"0x for var");
+        require(uint(b[index++]) == 34, "Expected \" for var");  // "
+        require(uint(b[index++]) == 48, "Expected 0 for var");  // 0
+        require(uint(b[index++]) == 120, "Expected x for var"); // x
+
+        for (i = index; i < b.length && uint(b[i]) != 34; i++) {
+            c = uint(b[i]);
+
+            if (c >= 48 && c <= 57) {
+                c = c - 48;
+            } else
+                if (c >= 65 && c <= 70) {
+                    c = c - 65 + 10;
+                } else
+                    if (c >= 97 && c <= 102) {
+                        c = c - 97 + 10;
+                    }
+
+            require (r <= 63, "byte32 can't be longer than 32 bytes");
+            b32 |= bytes32(c & 0xF) << ((63-r++) * 4);
+        }
+        i += 2;
+
+        result = b32;
+    }
+
+    function usesONE(uint256 _value, uint256 _cost) internal pure returns (bool) {
+        return (_cost == _value);
+    }
 
     function onTokenReceived(
         address _from,
         uint256 _value,
         uint256 _action,
         bytes _data
-    ) public onlyTokenContract usesONE(_value) returns(bytes4) {
+    ) public onlyTokenContract returns(bytes4) {
 
         uint offset;
         uint i;
 
         if (_action == ACTION_UPVOTE) {
+            require(usesONE(_value, voteCost), "Voting tokens sent != cost");
+
             (offset, i) = decodeUint(_data, 1);
             upvote(_from, offset);
             return ONE_RECEIVED;
         }
 
         if (_action == ACTION_DOWNVOTE) {
+            require(usesONE(_value, voteCost), "Voting tokens sent != cost");
+
             (offset, i) = decodeUint(_data, 1);
             downvote(_from, offset);
             return ONE_RECEIVED;
         }
 
-        if (_action == ACTION_UNVOTE) {
-            (offset, i) = decodeUint(_data, 1);
-            unvote(_from, offset);
-            return ONE_RECEIVED;
-        }
-
         if (_action == ACTION_POST) {
+            require(usesONE(_value, postCost), "Posting tokens sent != cost");
+
             bytes32 parentHash;
             bytes32 contentHash;
 
             (parentHash, i)  = decodeBytes32(_data, 1);
             (contentHash, i) = decodeBytes32(_data, i);
 
-            post(parentHash, contentHash);
+            post(_from, parentHash, contentHash);
             return ONE_RECEIVED;
         }
 

@@ -53,12 +53,27 @@ class EthereumForum {
         this.forum = await this.forumContract.deployed()
 
         this.actions = {
-            post: await this.forum.ACTION_POST.call()
+            post:   await this.forum.ACTION_POST.call(),
+            upvote: await this.forum.ACTION_UPVOTE.call(),
+            downvote: await this.forum.ACTION_DOWNVOTE.call(),
         }
+
+        // Figure out cost for post
+        // this.postGas = await this.token.transferAndCall.estimateGas(this.forum.address, 1 * 10**18, this.actions.post, ['0x0', '0x0000000000000000000000000000000000000000000000000000000000000000'])
+        // this.voteGas = await this.token.transferAndCall.estimateGas(this.forum.address, 1 * 10**18, this.actions.upvote, ['0x0000000000000000000000000000000000000000000000000000000000000000'])
+        // console.log(`postGas ${this.postGas}, voteGas ${this.voteGas}`)
     }
 
     async subscribeMessages(callback) {
         await this.ready
+
+        if (this.callback) {
+            this.callback = callback
+            return
+        }
+        this.callback = callback
+
+        const self = this
 
         this.forum.Topic({}, {fromBlock: 0}).watch((error, result) => {
             if (error) {
@@ -66,23 +81,20 @@ class EthereumForum {
                 return
             }
 
-            const parentHash = HashUtils.solidityHashToCid(result.args._parentHash)
+            const parentHash  = HashUtils.solidityHashToCid(result.args._parentHash)
             const messageHash = HashUtils.solidityHashToCid(result.args.contentHash)
 
-            console.log(`Topic: ${parentHash} > ${messageHash}`)
-
             // sometimes we get the same topic twice...
-            if (!this.topicOffsets[messageHash]) {
+            if (typeof self.topicOffsets[messageHash] == 'undefined') {
 
-                this.topicOffsets[messageHash] = this.topicOffsetCounter
-                this.topicOffsetCounter = this.topicOffsetCounter + 1
+                console.log(`Topic: ${parentHash} > ${messageHash}`)
 
-                console.log('Need to send back date from ', result)
+                self.topicOffsets[messageHash] = self.topicOffsetCounter
+                self.topicOffsetCounter = self.topicOffsetCounter + 1
 
-                callback({
+                self.callback({
                         id: messageHash,
-                        parent: parentHash,
-                        date: 0,
+                        parent: parentHash
                     })
             }
         })
@@ -103,36 +115,6 @@ class EthereumForum {
         }
     }
 
-    async votes(offset) {
-        await this.ready
-        try {
-            let r = await this.forum.votes.call(offset)
-            return parseInt(r.toString(), 0)
-        } catch (e) {
-            console.error(e)
-        }
-    }
-
-    async upvote(offset) {
-        await this.ready
-        return this.forum.upvote(offset, {from: this.account})
-    }
-
-    async downvote(offset) {
-        await this.ready
-        return this.forum.downvote(offset, {from: this.account})
-    }
-
-    async payoutAccounts() {
-        await this.ready
-        let promises = [0, 1, 2, 3, 4].map(async i => {
-            let r = await this.forum.payouts.call(i)
-            return r.toString()
-        })
-
-        return Promise.all(promises)
-    }
-
     async rewards() {
         await this.ready
         let promises = [0, 1, 2, 3, 4].map(async i => {
@@ -145,13 +127,64 @@ class EthereumForum {
 
     async claim(payoutIndex) {
         await this.ready
-        return this.forum.claim(payoutIndex, {from: this.account})
+        return this.forum.claim(payoutIndex)
     }
 
-    async post(hash, parentHash) {
+    async payoutAccounts() {
+        await this.ready
+        let promises = [0, 1, 2, 3, 4].map(async i => {
+            let r = await this.forum.payouts.call(i)
+            return r.toString()
+        })
+
+        return Promise.all(promises)
+    }
+
+    async votes(id) {
+        await this.ready
+        try {
+            let r = await this.forum.votes.call(this.topicOffset(id))
+            let v = r.toNumber()
+            return v
+        } catch (e) {
+            console.error(e)
+            return 0
+        }
+    }
+
+    async voters(id, user) {
+        await this.ready
+        try {
+            let r = await this.forum.voters.call(this.topicOffset(id), user)
+            let v = r.toNumber()
+            return v
+        } catch (e) {
+            console.error(e)
+            return 0
+        }
+    }
+
+    async upvote(id) {
+        await this.ready
+        let hash = HashUtils.cidToSolidityHash(id)
+        let tokenCost = await this.forum.voteCost.call()
+        let tx = await this.token.transferAndCall(this.forum.address, tokenCost, this.actions.upvote, [this.topicOffset(id).toString()])
+        console.log(tx)
+    }
+
+    async downvote(id) {
+        await this.ready
+        let hash = HashUtils.cidToSolidityHash(id)
+        let tokenCost = await this.forum.voteCost.call()
+        let tx = await this.token.transferAndCall(this.forum.address, tokenCost, this.actions.downvote, [this.topicOffset(id).toString()])
+        console.log(tx)
+    }
+
+    async post(_hash, _parentHash) {
         await this.ready
 
-        hash = HashUtils.cidToSolidityHash(hash)
+        let hash = HashUtils.cidToSolidityHash(_hash)
+        let parentHash = _parentHash
         if (parentHash !== '0x0') {
             parentHash = HashUtils.cidToSolidityHash(parentHash)
         }

@@ -27,24 +27,26 @@ thisExport.cidToSolidityHash = (cid) => {
     return '0x0000000000000000000000000000000000000000000000000000000000000000'
   }
 
-
-  return '0x' + multihash.decode(new CID(cid).multihash).digest.toString('hex')
+  let _cid = new CID(cid)
+  let _multihash = _cid.multihash
+  let _hex = '0x' + multihash.decode(_multihash).digest.toString('hex')
+    let test = thisExport.solidityHashToCid(_hex)
+  return _hex
 }
 
-thisExport.solidityHashToCid = (hash) => {
-  if (hash === '0x0000000000000000000000000000000000000000000000000000000000000000') {
+thisExport.solidityHashToCid = (_hash) => {
+  if (_hash === '0x0000000000000000000000000000000000000000000000000000000000000000') {
     return '0x0'
   }
 
-
-  let theHash = hash
-
+  let hash = _hash
   if (hash.length === 66) {
-    theHash = hash.slice(2, 66)
+      hash = hash.slice(2, 66)
   }
 
-  let encodedHash = multihash.encode(multihash.fromHexString(theHash), 'keccak-256')
-  return new CID(1, 'dag-cbor', encodedHash).toBaseEncodedString()
+  let encodedHash = multihash.encode(multihash.fromHexString(hash), 'keccak-256')
+  let cid = new CID(1, 'dag-cbor', encodedHash).toBaseEncodedString()
+  return cid
 }
 
 thisExport.nodeToCID = (node, callback) => {

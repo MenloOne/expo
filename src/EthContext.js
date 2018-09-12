@@ -1,9 +1,6 @@
 import React from 'react'
-import Client from './Client'
 
 const EthContext = React.createContext({})
-
-const messageBoard = new Client()
 
 
 function withEth(Component) {
@@ -22,6 +19,5 @@ function withEth(Component) {
 
 export {
     EthContext,
-    withEth,
-    messageBoard
+    withEth
 }

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import TopNav from './TopNav.js'
-import MessageBoard from './MessageBoard'
+import MessageBoard from './messaging/MessageBoard'
 import CountdownTimer from './CountdownTimer'
 import ResponsiveEmbed from 'react-responsive-embed'
 

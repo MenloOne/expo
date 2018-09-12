@@ -23,21 +23,16 @@ class Client {
 
         this.messages = new MessagesGraph()
         this.epoch = 0
-        this.callback = null
         this.account = null;
         this.callbacks = {}
-
-        this.getAccountDetails()
+        this.newMessageOnging = null
     }
 
-    async getAccountDetails() {
-        if (!web3) { return {} }
-
+    async setAccountDetails(account) {
         try {
-            const accounts = await web3.eth.getAccounts()
-            this.account = accounts[0]
+            this.account = account
             this.avatar = <Blockies seed={this.account} size={10} />
-            web3.eth.defaultAccount = this.account
+
             await this.tokenContract.setProvider(web3.currentProvider)
             this.tokenContract.defaults({
                 from: this.account
@@ -67,57 +62,99 @@ class Client {
     }
 
     async onNewMessage(metadata) {
-        if (this.messages.get(metadata.id)) {
+        let self = this
+
+        // Prevent re-entrancy - we must finish with messages.add() before checking to see if its been done before
+        while ( this.newMessageOnging ) {
+            await this.newMessageOnging
+        }
+
+        let resolveNewMessageOngoing
+        this.newMessageOnging = new Promise((resolve) => { resolveNewMessageOngoing = resolve })
+
+        if (typeof this.messages.get(metadata.id) !== 'undefined') {
             // Already added
             return
         }
 
-        let offset = this.forum.topicOffset(metadata.id)
-        let votes = await this.forum.votes(offset)
-        let ifpsMessage = await this.localStorage.findMessage(metadata.id)
+        try {
 
-        let message = {
-            id: metadata.id,
-            parent: metadata.parent,
-            children: [],
-            date: metadata.date,
-            votes,
-            offset: offset,
-            ...ifpsMessage
+            let offset = this.forum.topicOffset(metadata.id)
+            let ifpsMessage = await this.localStorage.findMessage(metadata.id)
+
+            let message = {
+                id: metadata.id,
+                parent: metadata.parent,
+                children: [],
+                date: metadata.date,
+                offset: offset,
+                ...ifpsMessage
+            }
+            await this.updateVotesData(message)
+            this.messages.add(message)
+
+            this.onModifiedMessage(message)
+
+            this.newMessageOnging = null
+            resolveNewMessageOngoing()
+        } catch (e) {
+            this.newMessageOnging = null
+            resolveNewMessageOngoing()
+            throw (e)
+        }
+    }
+
+    async updateVotesData(message, delta) {
+        if (delta) {
+            message.votes += delta
+            message.myvotes += delta
+        } else {
+            message.votes   = await this.forum.votes(message.id)
+            message.myvotes = await this.forum.voters(message.id, this.account)
         }
 
-        this.messages.add(message)
+        console.log('updated Votes: ', message)
+    }
 
-        let callback = this.callbacks[metadata.parent]
+    onModifiedMessage(message) {
+        // Send message back
+        let callback = this.callbacks[message.parent]
         if (callback) {
             callback(message)
         }
     }
 
-    countReplies(nodeID) {
-        return this.messages.get(nodeID).children.length
+    countReplies(id) {
+        return this.messages.get(id).children.length
     }
 
-    getMessage(nodeID) {
-        this.messages.get(nodeID)
+    getMessage(id) {
+        return this.messages.get(id)
     }
 
-    async getChildrenMessages(nodeID) {
+    async getChildrenMessages(id) {
         let self = this
-        let message = this.messages.get(nodeID)
-        return Promise.all(message.children.map(id => self.messages.get(id)))
+        const message = this.getMessage(id)
+
+        if (!message || message.children.length == 0) {
+            return []
+        }
+
+        return Promise.all(message.children.map(cid => self.getMessage(cid)))
     }
 
     async createMessage(body, parentHash) {
         const ipfsMessage = {
             version: '1',
-            author: this.account,
             parent: parentHash || '0x0', // Do we need this since its in Topic?
+            author: this.account,
+            date: Date.now(),
             body,
         }
 
         try {
             const messageHash = await this.localStorage.createMessage(ipfsMessage)
+
             await this.forum.post(messageHash, ipfsMessage.parent)
             await this.remoteStorage.pin(messageHash)
 
@@ -131,20 +168,24 @@ class Client {
         }
     }
 
+    async upvote(id) {
+        await this.forum.upvote(id)
+        let message = this.messages.get(id)
+        await this.updateVotesData(message, 1)
+        this.onModifiedMessage(message)
+        return message
+    }
+
+    async downvote(id) {
+        await this.forum.downvote(id)
+        let message = this.messages.get(id)
+        await this.updateVotesData(message, -1)
+        this.onModifiedMessage(message)
+        return message
+    }
+
     topicOffset(messageHash) {
         return this.forum.topicOffset(messageHash)
-    }
-
-    getVotes(messageHash) {
-        return this.votes[messageHash] || 0
-    }
-
-    upvote(messageHash) {
-        return this.forum.upvote(this.topicOffset(messageHash))
-    }
-
-    downvote(messageHash) {
-        return this.forum.downvote(this.topicOffset(messageHash))
     }
 
     getPayoutAccounts() {

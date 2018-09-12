@@ -30,30 +30,31 @@ class MessageForm extends React.Component {
         this.onSubmit = this.onSubmit.bind(this)
     }
 
-    onSubmit(event) {
+    async onSubmit(event) {
         event.preventDefault()
-        this.setState({submitting: true})
+        this.setState({ submitting: true })
 
-        this.props.onSubmit(this.state.message)
-            .then(() => {
-                if (this.props.type !== 'Response') this.setState({
-                    message: '',
-                    submitting: false,
-                    error: null
-                })
-            })
-            .catch(error => this.setState({
-                error: error.message,
+        try {
+            let msg = await this.props.onSubmit(this.state.message)
+            this.setState({
+                message: '',
                 submitting: false,
-            }))
+                error: null
+            })
+        } catch (e) {
+            this.setState({
+                error: e.message,
+                submitting: false,
+            })
+        }
     }
 
     onChange(event) {
-        this.setState({message: event.target.value})
+        this.setState({ message: event.target.value })
     }
 
     onCancel() {
-        this.setState({message: ''})
+        this.setState({ message: '' })
     }
 
     render() {
@@ -61,8 +62,8 @@ class MessageForm extends React.Component {
 
             <form onSubmit={this.onSubmit}>
                 <textarea name="" className="field" id="" cols="30" rows="10" value={this.state.message} onChange={this.onChange}></textarea>
-                <input type="submit" className="submit-btn" disabled={this.state.submitting}/>
-                <a href="" className="cancle-btn" onClick={this.onCancel}>Cancel</a>
+                <input type="submit" className="btn submit-btn" disabled={this.state.submitting}/>
+                <a href="" className="btn cancel-btn" onClick={this.onCancel}>Cancel</a>
                 {this.state.error && <p className="error">{this.state.error}</p>}
             </form>
         )

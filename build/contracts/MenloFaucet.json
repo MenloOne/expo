@@ -1,29 +1,15 @@
 {
-  "contractName": "BurnableToken",
+  "contractName": "MenloFaucet",
   "abi": [
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "totalSupply",
-      "outputs": [
-        {
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
     {
       "constant": true,
       "inputs": [
         {
-          "name": "_owner",
+          "name": "",
           "type": "address"
         }
       ],
-      "name": "balanceOf",
+      "name": "lastDrip",
       "outputs": [
         {
           "name": "",
@@ -36,17 +22,85 @@
     },
     {
       "constant": false,
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
       "inputs": [
         {
-          "name": "_to",
+          "name": "_newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "name": "_token",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "previousOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipRenounced",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "previousOwner",
           "type": "address"
         },
         {
-          "name": "_value",
-          "type": "uint256"
+          "indexed": true,
+          "name": "newOwner",
+          "type": "address"
         }
       ],
-      "name": "transfer",
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "drip",
       "outputs": [
         {
           "name": "",
@@ -56,65 +110,12 @@
       "payable": false,
       "stateMutability": "nonpayable",
       "type": "function"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "name": "burner",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "name": "value",
-          "type": "uint256"
-        }
-      ],
-      "name": "Burn",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "name": "from",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "name": "to",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "name": "value",
-          "type": "uint256"
-        }
-      ],
-      "name": "Transfer",
-      "type": "event"
-    },
-    {
-      "constant": false,
-      "inputs": [
-        {
-          "name": "_value",
-          "type": "uint256"
-        }
-      ],
-      "name": "burn",
-      "outputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
     }
   ],
-  "bytecode": "0x608060405234801561001057600080fd5b50610342806100206000396000f3006080604052600436106100485763ffffffff60e060020a60003504166318160ddd811461004d57806342966c681461007457806370a082311461008e578063a9059cbb146100af575b600080fd5b34801561005957600080fd5b506100626100e7565b60408051918252519081900360200190f35b34801561008057600080fd5b5061008c6004356100ed565b005b34801561009a57600080fd5b50610062600160a060020a03600435166100fa565b3480156100bb57600080fd5b506100d3600160a060020a0360043516602435610115565b604080519115158252519081900360200190f35b60015490565b6100f733826101e2565b50565b600160a060020a031660009081526020819052604090205490565b3360009081526020819052604081205482111561013157600080fd5b600160a060020a038316151561014657600080fd5b33600090815260208190526040902054610166908363ffffffff6102d116565b3360009081526020819052604080822092909255600160a060020a03851681522054610198908363ffffffff6102e316565b600160a060020a038416600081815260208181526040918290209390935580518581529051919233926000805160206102f78339815191529281900390910190a350600192915050565b600160a060020a03821660009081526020819052604090205481111561020757600080fd5b600160a060020a038216600090815260208190526040902054610230908263ffffffff6102d116565b600160a060020a03831660009081526020819052604090205560015461025c908263ffffffff6102d116565b600155604080518281529051600160a060020a038416917fcc16f5dbb4873280815c1ee09dbd06736cffcc184412cf7a71a0fdb75d397ca5919081900360200190a2604080518281529051600091600160a060020a038516916000805160206102f78339815191529181900360200190a35050565b6000828211156102dd57fe5b50900390565b818101828110156102f057fe5b929150505600ddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3efa165627a7a7230582024b006add21c68026833efccfc2166f536fbf1619ffc860c1bb9e8f94c7e80160029",
-  "deployedBytecode": "0x6080604052600436106100485763ffffffff60e060020a60003504166318160ddd811461004d57806342966c681461007457806370a082311461008e578063a9059cbb146100af575b600080fd5b34801561005957600080fd5b506100626100e7565b60408051918252519081900360200190f35b34801561008057600080fd5b5061008c6004356100ed565b005b34801561009a57600080fd5b50610062600160a060020a03600435166100fa565b3480156100bb57600080fd5b506100d3600160a060020a0360043516602435610115565b604080519115158252519081900360200190f35b60015490565b6100f733826101e2565b50565b600160a060020a031660009081526020819052604090205490565b3360009081526020819052604081205482111561013157600080fd5b600160a060020a038316151561014657600080fd5b33600090815260208190526040902054610166908363ffffffff6102d116565b3360009081526020819052604080822092909255600160a060020a03851681522054610198908363ffffffff6102e316565b600160a060020a038416600081815260208181526040918290209390935580518581529051919233926000805160206102f78339815191529281900390910190a350600192915050565b600160a060020a03821660009081526020819052604090205481111561020757600080fd5b600160a060020a038216600090815260208190526040902054610230908263ffffffff6102d116565b600160a060020a03831660009081526020819052604090205560015461025c908263ffffffff6102d116565b600155604080518281529051600160a060020a038416917fcc16f5dbb4873280815c1ee09dbd06736cffcc184412cf7a71a0fdb75d397ca5919081900360200190a2604080518281529051600091600160a060020a038516916000805160206102f78339815191529181900360200190a35050565b6000828211156102dd57fe5b50900390565b818101828110156102f057fe5b929150505600ddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3efa165627a7a7230582024b006add21c68026833efccfc2166f536fbf1619ffc860c1bb9e8f94c7e80160029",
-  "sourceMap": "5232:723:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;5232:723:1;;;;;;;",
-  "deployedSourceMap": "5232:723:1:-;;;;;;;;;-1:-1:-1;;;5232:723:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;4368:83;;8:9:-1;5:2;;;30:1;27;20:12;5:2;4368:83:1;;;;;;;;;;;;;;;;;;;;5438:73;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;5438:73:1;;;;;;;5128:99;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;5128:99:1;-1:-1:-1;;;;;5128:99:1;;;;;4605:321;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;4605:321:1;-1:-1:-1;;;;;4605:321:1;;;;;;;;;;;;;;;;;;;;;;;;;4368:83;4434:12;;4368:83;:::o;5438:73::-;5481:25;5487:10;5499:6;5481:5;:25::i;:::-;5438:73;:::o;5128:99::-;-1:-1:-1;;;;;5206:16:1;5184:7;5206:16;;;;;;;;;;;;5128:99::o;4605:321::-;4707:10;4668:4;4698:20;;;;;;;;;;;4688:30;;;4680:39;;;;;;-1:-1:-1;;;;;4733:17:1;;;;4725:26;;;;;;4790:10;4781:8;:20;;;;;;;;;;;:32;;4806:6;4781:32;:24;:32;:::i;:::-;4767:10;4758:8;:20;;;;;;;;;;;:55;;;;-1:-1:-1;;;;;4835:13:1;;;;;;:25;;4853:6;4835:25;:17;:25;:::i;:::-;-1:-1:-1;;;;;4819:13:1;;:8;:13;;;;;;;;;;;;:41;;;;4871:33;;;;;;;4819:13;;4880:10;;-1:-1:-1;;;;;;;;;;;4871:33:1;;;;;;;;;-1:-1:-1;4917:4:1;4605:321;;;;:::o;5515:438::-;-1:-1:-1;;;;;5593:14:1;;:8;:14;;;;;;;;;;;5583:24;;;5575:33;;;;;;-1:-1:-1;;;;;5803:14:1;;:8;:14;;;;;;;;;;;:26;;5822:6;5803:26;:18;:26;:::i;:::-;-1:-1:-1;;;;;5786:14:1;;:8;:14;;;;;;;;;;:43;5850:12;;:24;;5867:6;5850:24;:16;:24;:::i;:::-;5835:12;:39;5885:18;;;;;;;;-1:-1:-1;;;;;5885:18:1;;;;;;;;;;;;;5914:34;;;;;;;;5937:1;;-1:-1:-1;;;;;5914:34:1;;;-1:-1:-1;;;;;;;;;;;5914:34:1;;;;;;;;5515:438;;:::o;969:116::-;1029:7;1051:8;;;;1044:16;;;;-1:-1:-1;1073:7:1;;;969:116::o;1147:128::-;1228:7;;;1248;;;;1241:15;;;;1147:128;;;;:::o",
+  "bytecode": "0x608060405234801561001057600080fd5b506040516020806103f7833981016040525160008054600160a060020a0319908116331790915560018054600160a060020a03909316929091169190911790556103988061005f6000396000f3006080604052600436106100535763ffffffff60e060020a6000350416630935f0048114610058578063715018a61461008b5780638da5cb5b146100a25780639f678cca146100d3578063f2fde38b146100fc575b600080fd5b34801561006457600080fd5b50610079600160a060020a036004351661011d565b60408051918252519081900360200190f35b34801561009757600080fd5b506100a061012f565b005b3480156100ae57600080fd5b506100b761018e565b60408051600160a060020a039092168252519081900360200190f35b3480156100df57600080fd5b506100e861019d565b604080519115158252519081900360200190f35b34801561010857600080fd5b506100a0600160a060020a03600435166102d9565b60026020526000908152604090205481565b600054600160a060020a0316331461014657600080fd5b60008054604051600160a060020a03909116917ff8df31144d9c2f0f6b59d69b8b98abd5459d07f2742c4df920b25aae33c6482091a260008054600160a060020a0319169055565b600054600160a060020a031681565b3360009081526002602052604081205481101561023657336000908152600260205260409020546305265c00429190910311610236576040805160e560020a62461bcd02815260206004820152602760248201527f4e6f7420656e6f7567682074696d6520656c61707365642073696e6365206c61604482015260cc60020a660737420647269702606482015290519081900360840190fd5b336000818152600260209081526040808320429055600154815160e060020a63a9059cbb02815260048101959095526802b5e3af16b188000060248601529051600160a060020a039091169363a9059cbb9360448083019493928390030190829087803b1580156102a657600080fd5b505af11580156102ba573d6000803e3d6000fd5b505050506040513d60208110156102d057600080fd5b50600191505090565b600054600160a060020a031633146102f057600080fd5b6102f9816102fc565b50565b600160a060020a038116151561031157600080fd5b60008054604051600160a060020a03808516939216917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e091a360008054600160a060020a031916600160a060020a03929092169190911790555600a165627a7a723058207e19137c7572ae1ad60e887e22fc77bacb1888589ccd49427b4c80b87ecb3ff60029",
+  "deployedBytecode": "0x6080604052600436106100535763ffffffff60e060020a6000350416630935f0048114610058578063715018a61461008b5780638da5cb5b146100a25780639f678cca146100d3578063f2fde38b146100fc575b600080fd5b34801561006457600080fd5b50610079600160a060020a036004351661011d565b60408051918252519081900360200190f35b34801561009757600080fd5b506100a061012f565b005b3480156100ae57600080fd5b506100b761018e565b60408051600160a060020a039092168252519081900360200190f35b3480156100df57600080fd5b506100e861019d565b604080519115158252519081900360200190f35b34801561010857600080fd5b506100a0600160a060020a03600435166102d9565b60026020526000908152604090205481565b600054600160a060020a0316331461014657600080fd5b60008054604051600160a060020a03909116917ff8df31144d9c2f0f6b59d69b8b98abd5459d07f2742c4df920b25aae33c6482091a260008054600160a060020a0319169055565b600054600160a060020a031681565b3360009081526002602052604081205481101561023657336000908152600260205260409020546305265c00429190910311610236576040805160e560020a62461bcd02815260206004820152602760248201527f4e6f7420656e6f7567682074696d6520656c61707365642073696e6365206c61604482015260cc60020a660737420647269702606482015290519081900360840190fd5b336000818152600260209081526040808320429055600154815160e060020a63a9059cbb02815260048101959095526802b5e3af16b188000060248601529051600160a060020a039091169363a9059cbb9360448083019493928390030190829087803b1580156102a657600080fd5b505af11580156102ba573d6000803e3d6000fd5b505050506040513d60208110156102d057600080fd5b50600191505090565b600054600160a060020a031633146102f057600080fd5b6102f9816102fc565b50565b600160a060020a038116151561031157600080fd5b60008054604051600160a060020a03808516939216917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e091a360008054600160a060020a031916600160a060020a03929092169190911790555600a165627a7a723058207e19137c7572ae1ad60e887e22fc77bacb1888589ccd49427b4c80b87ecb3ff60029",
+  "sourceMap": "16554:599:1:-;;;16747:69;8:9:-1;5:2;;;30:1;27;20:12;5:2;16747:69:1;;;;;;;;;;;;;1629:5;:18;;-1:-1:-1;;;;;;1629:18:1;;;1637:10;1629:18;;;;;16795:14;;-1:-1:-1;;;;;16795:14:1;;;;;;;;;;;;;16554:599;;;;;;",
+  "deployedSourceMap": "16554:599:1:-;;;;;;;;;-1:-1:-1;;;16554:599:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;16697:43;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;16697:43:1;-1:-1:-1;;;;;16697:43:1;;;;;;;;;;;;;;;;;;;;;2063:111;;8:9:-1;5:2;;;30:1;27;20:12;5:2;2063:111:1;;;;;;1300:20;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1300:20:1;;;;;;;;-1:-1:-1;;;;;1300:20:1;;;;;;;;;;;;;;16822:329;;8:9:-1;5:2;;;30:1;27;20:12;5:2;16822:329:1;;;;;;;;;;;;;;;;;;;;;;2336:103;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;2336:103:1;-1:-1:-1;;;;;2336:103:1;;;;;16697:43;;;;;;;;;;;;;:::o;2063:111::-;1781:5;;-1:-1:-1;;;;;1781:5:1;1767:10;:19;1759:28;;;;;;2139:5;;;2120:25;;-1:-1:-1;;;;;2139:5:1;;;;2120:25;;;2167:1;2151:18;;-1:-1:-1;;;;;;2151:18:1;;;2063:111::o;1300:20::-;;;-1:-1:-1;;;;;1300:20:1;;:::o;16822:329::-;16883:10;16854:4;16874:20;;;:8;:20;;;;;;:24;-1:-1:-1;16870:155:1;;;16949:10;16940:20;;;;:8;:20;;;;;;16620:21;16922:15;:38;;;;:48;16914:100;;;;;-1:-1:-1;;;;;16914:100:1;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;16914:100:1;;;;;;;;;;;;;;;17044:10;17035:20;;;;:8;:20;;;;;;;;17058:15;17035:38;;17083:5;;:39;;-1:-1:-1;;;;;17083:39:1;;;;;;;;;17110:11;17083:39;;;;;;-1:-1:-1;;;;;17083:5:1;;;;:14;;:39;;;;;17035:20;17083:39;;;;;;;;:5;:39;;;5:2:-1;;;;30:1;27;20:12;5:2;17083:39:1;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;17083:39:1;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;17140:4:1;;-1:-1:-1;;16822:329:1;:::o;2336:103::-;1781:5;;-1:-1:-1;;;;;1781:5:1;1767:10;:19;1759:28;;;;;;2405:29;2424:9;2405:18;:29::i;:::-;2336:103;:::o;2574:171::-;-1:-1:-1;;;;;2644:23:1;;;;2636:32;;;;;;2700:5;;;2679:38;;-1:-1:-1;;;;;2679:38:1;;;;2700:5;;;2679:38;;;2723:5;:17;;-1:-1:-1;;;;;;2723:17:1;-1:-1:-1;;;;;2723:17:1;;;;;;;;;;2574:171::o",
   "source": "pragma solidity ^0.4.13;\n\nlibrary SafeMath {\n\n  /**\n  * @dev Multiplies two numbers, throws on overflow.\n  */\n  function mul(uint256 _a, uint256 _b) internal pure returns (uint256 c) {\n    // Gas optimization: this is cheaper than asserting 'a' not being zero, but the\n    // benefit is lost if 'b' is also tested.\n    // See: https://github.com/OpenZeppelin/openzeppelin-solidity/pull/522\n    if (_a == 0) {\n      return 0;\n    }\n\n    c = _a * _b;\n    assert(c / _a == _b);\n    return c;\n  }\n\n  /**\n  * @dev Integer division of two numbers, truncating the quotient.\n  */\n  function div(uint256 _a, uint256 _b) internal pure returns (uint256) {\n    // assert(_b > 0); // Solidity automatically throws when dividing by 0\n    // uint256 c = _a / _b;\n    // assert(_a == _b * c + _a % _b); // There is no case in which this doesn't hold\n    return _a / _b;\n  }\n\n  /**\n  * @dev Subtracts two numbers, throws on overflow (i.e. if subtrahend is greater than minuend).\n  */\n  function sub(uint256 _a, uint256 _b) internal pure returns (uint256) {\n    assert(_b <= _a);\n    return _a - _b;\n  }\n\n  /**\n  * @dev Adds two numbers, throws on overflow.\n  */\n  function add(uint256 _a, uint256 _b) internal pure returns (uint256 c) {\n    c = _a + _b;\n    assert(c >= _a);\n    return c;\n  }\n}\n\ncontract Ownable {\n  address public owner;\n\n\n  event OwnershipRenounced(address indexed previousOwner);\n  event OwnershipTransferred(\n    address indexed previousOwner,\n    address indexed newOwner\n  );\n\n\n  /**\n   * @dev The Ownable constructor sets the original `owner` of the contract to the sender\n   * account.\n   */\n  constructor() public {\n    owner = msg.sender;\n  }\n\n  /**\n   * @dev Throws if called by any account other than the owner.\n   */\n  modifier onlyOwner() {\n    require(msg.sender == owner);\n    _;\n  }\n\n  /**\n   * @dev Allows the current owner to relinquish control of the contract.\n   * @notice Renouncing to ownership will leave the contract without an owner.\n   * It will not be possible to call the functions with the `onlyOwner`\n   * modifier anymore.\n   */\n  function renounceOwnership() public onlyOwner {\n    emit OwnershipRenounced(owner);\n    owner = address(0);\n  }\n\n  /**\n   * @dev Allows the current owner to transfer control of the contract to a newOwner.\n   * @param _newOwner The address to transfer ownership to.\n   */\n  function transferOwnership(address _newOwner) public onlyOwner {\n    _transferOwnership(_newOwner);\n  }\n\n  /**\n   * @dev Transfers control of the contract to a newOwner.\n   * @param _newOwner The address to transfer ownership to.\n   */\n  function _transferOwnership(address _newOwner) internal {\n    require(_newOwner != address(0));\n    emit OwnershipTransferred(owner, _newOwner);\n    owner = _newOwner;\n  }\n}\n\ncontract Pausable is Ownable {\n  event Pause();\n  event Unpause();\n\n  bool public paused = false;\n\n\n  /**\n   * @dev Modifier to make a function callable only when the contract is not paused.\n   */\n  modifier whenNotPaused() {\n    require(!paused);\n    _;\n  }\n\n  /**\n   * @dev Modifier to make a function callable only when the contract is paused.\n   */\n  modifier whenPaused() {\n    require(paused);\n    _;\n  }\n\n  /**\n   * @dev called by the owner to pause, triggers stopped state\n   */\n  function pause() public onlyOwner whenNotPaused {\n    paused = true;\n    emit Pause();\n  }\n\n  /**\n   * @dev called by the owner to unpause, returns to normal state\n   */\n  function unpause() public onlyOwner whenPaused {\n    paused = false;\n    emit Unpause();\n  }\n}\n\ncontract CanReclaimToken is Ownable {\n  using SafeERC20 for ERC20Basic;\n\n  /**\n   * @dev Reclaim all ERC20Basic compatible tokens\n   * @param _token ERC20Basic The address of the token contract\n   */\n  function reclaimToken(ERC20Basic _token) external onlyOwner {\n    uint256 balance = _token.balanceOf(this);\n    _token.safeTransfer(owner, balance);\n  }\n\n}\n\ncontract ERC20Basic {\n  function totalSupply() public view returns (uint256);\n  function balanceOf(address _who) public view returns (uint256);\n  function transfer(address _to, uint256 _value) public returns (bool);\n  event Transfer(address indexed from, address indexed to, uint256 value);\n}\n\ncontract BasicToken is ERC20Basic {\n  using SafeMath for uint256;\n\n  mapping(address => uint256) internal balances;\n\n  uint256 internal totalSupply_;\n\n  /**\n  * @dev Total number of tokens in existence\n  */\n  function totalSupply() public view returns (uint256) {\n    return totalSupply_;\n  }\n\n  /**\n  * @dev Transfer token for a specified address\n  * @param _to The address to transfer to.\n  * @param _value The amount to be transferred.\n  */\n  function transfer(address _to, uint256 _value) public returns (bool) {\n    require(_value <= balances[msg.sender]);\n    require(_to != address(0));\n\n    balances[msg.sender] = balances[msg.sender].sub(_value);\n    balances[_to] = balances[_to].add(_value);\n    emit Transfer(msg.sender, _to, _value);\n    return true;\n  }\n\n  /**\n  * @dev Gets the balance of the specified address.\n  * @param _owner The address to query the the balance of.\n  * @return An uint256 representing the amount owned by the passed address.\n  */\n  function balanceOf(address _owner) public view returns (uint256) {\n    return balances[_owner];\n  }\n\n}\n\ncontract BurnableToken is BasicToken {\n\n  event Burn(address indexed burner, uint256 value);\n\n  /**\n   * @dev Burns a specific amount of tokens.\n   * @param _value The amount of token to be burned.\n   */\n  function burn(uint256 _value) public {\n    _burn(msg.sender, _value);\n  }\n\n  function _burn(address _who, uint256 _value) internal {\n    require(_value <= balances[_who]);\n    // no need to require value <= totalSupply, since that would imply the\n    // sender's balance is greater than the totalSupply, which *should* be an assertion failure\n\n    balances[_who] = balances[_who].sub(_value);\n    totalSupply_ = totalSupply_.sub(_value);\n    emit Burn(_who, _value);\n    emit Transfer(_who, address(0), _value);\n  }\n}\n\ncontract ERC20 is ERC20Basic {\n  function allowance(address _owner, address _spender)\n    public view returns (uint256);\n\n  function transferFrom(address _from, address _to, uint256 _value)\n    public returns (bool);\n\n  function approve(address _spender, uint256 _value) public returns (bool);\n  event Approval(\n    address indexed owner,\n    address indexed spender,\n    uint256 value\n  );\n}\n\nlibrary SafeERC20 {\n  function safeTransfer(\n    ERC20Basic _token,\n    address _to,\n    uint256 _value\n  )\n    internal\n  {\n    require(_token.transfer(_to, _value));\n  }\n\n  function safeTransferFrom(\n    ERC20 _token,\n    address _from,\n    address _to,\n    uint256 _value\n  )\n    internal\n  {\n    require(_token.transferFrom(_from, _to, _value));\n  }\n\n  function safeApprove(\n    ERC20 _token,\n    address _spender,\n    uint256 _value\n  )\n    internal\n  {\n    require(_token.approve(_spender, _value));\n  }\n}\n\ncontract StandardToken is ERC20, BasicToken {\n\n  mapping (address => mapping (address => uint256)) internal allowed;\n\n\n  /**\n   * @dev Transfer tokens from one address to another\n   * @param _from address The address which you want to send tokens from\n   * @param _to address The address which you want to transfer to\n   * @param _value uint256 the amount of tokens to be transferred\n   */\n  function transferFrom(\n    address _from,\n    address _to,\n    uint256 _value\n  )\n    public\n    returns (bool)\n  {\n    require(_value <= balances[_from]);\n    require(_value <= allowed[_from][msg.sender]);\n    require(_to != address(0));\n\n    balances[_from] = balances[_from].sub(_value);\n    balances[_to] = balances[_to].add(_value);\n    allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_value);\n    emit Transfer(_from, _to, _value);\n    return true;\n  }\n\n  /**\n   * @dev Approve the passed address to spend the specified amount of tokens on behalf of msg.sender.\n   * Beware that changing an allowance with this method brings the risk that someone may use both the old\n   * and the new allowance by unfortunate transaction ordering. One possible solution to mitigate this\n   * race condition is to first reduce the spender's allowance to 0 and set the desired value afterwards:\n   * https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729\n   * @param _spender The address which will spend the funds.\n   * @param _value The amount of tokens to be spent.\n   */\n  function approve(address _spender, uint256 _value) public returns (bool) {\n    allowed[msg.sender][_spender] = _value;\n    emit Approval(msg.sender, _spender, _value);\n    return true;\n  }\n\n  /**\n   * @dev Function to check the amount of tokens that an owner allowed to a spender.\n   * @param _owner address The address which owns the funds.\n   * @param _spender address The address which will spend the funds.\n   * @return A uint256 specifying the amount of tokens still available for the spender.\n   */\n  function allowance(\n    address _owner,\n    address _spender\n   )\n    public\n    view\n    returns (uint256)\n  {\n    return allowed[_owner][_spender];\n  }\n\n  /**\n   * @dev Increase the amount of tokens that an owner allowed to a spender.\n   * approve should be called when allowed[_spender] == 0. To increment\n   * allowed value is better to use this function to avoid 2 calls (and wait until\n   * the first transaction is mined)\n   * From MonolithDAO Token.sol\n   * @param _spender The address which will spend the funds.\n   * @param _addedValue The amount of tokens to increase the allowance by.\n   */\n  function increaseApproval(\n    address _spender,\n    uint256 _addedValue\n  )\n    public\n    returns (bool)\n  {\n    allowed[msg.sender][_spender] = (\n      allowed[msg.sender][_spender].add(_addedValue));\n    emit Approval(msg.sender, _spender, allowed[msg.sender][_spender]);\n    return true;\n  }\n\n  /**\n   * @dev Decrease the amount of tokens that an owner allowed to a spender.\n   * approve should be called when allowed[_spender] == 0. To decrement\n   * allowed value is better to use this function to avoid 2 calls (and wait until\n   * the first transaction is mined)\n   * From MonolithDAO Token.sol\n   * @param _spender The address which will spend the funds.\n   * @param _subtractedValue The amount of tokens to decrease the allowance by.\n   */\n  function decreaseApproval(\n    address _spender,\n    uint256 _subtractedValue\n  )\n    public\n    returns (bool)\n  {\n    uint256 oldValue = allowed[msg.sender][_spender];\n    if (_subtractedValue >= oldValue) {\n      allowed[msg.sender][_spender] = 0;\n    } else {\n      allowed[msg.sender][_spender] = oldValue.sub(_subtractedValue);\n    }\n    emit Approval(msg.sender, _spender, allowed[msg.sender][_spender]);\n    return true;\n  }\n\n}\n\ncontract PausableToken is StandardToken, Pausable {\n\n  function transfer(\n    address _to,\n    uint256 _value\n  )\n    public\n    whenNotPaused\n    returns (bool)\n  {\n    return super.transfer(_to, _value);\n  }\n\n  function transferFrom(\n    address _from,\n    address _to,\n    uint256 _value\n  )\n    public\n    whenNotPaused\n    returns (bool)\n  {\n    return super.transferFrom(_from, _to, _value);\n  }\n\n  function approve(\n    address _spender,\n    uint256 _value\n  )\n    public\n    whenNotPaused\n    returns (bool)\n  {\n    return super.approve(_spender, _value);\n  }\n\n  function increaseApproval(\n    address _spender,\n    uint _addedValue\n  )\n    public\n    whenNotPaused\n    returns (bool success)\n  {\n    return super.increaseApproval(_spender, _addedValue);\n  }\n\n  function decreaseApproval(\n    address _spender,\n    uint _subtractedValue\n  )\n    public\n    whenNotPaused\n    returns (bool success)\n  {\n    return super.decreaseApproval(_spender, _subtractedValue);\n  }\n}\n\ncontract MenloToken is PausableToken, BurnableToken, CanReclaimToken {\n\n  // Token properties\n  string public constant name = 'Menlo One';\n  string public constant symbol = 'ONE';\n\n  uint8 public constant decimals = 18;\n  uint256 private constant token_factor = 10**uint256(decimals);\n\n  // 1 billion ONE tokens in units divisible up to 18 decimals\n  uint256 public constant INITIAL_SUPPLY    = 1000000000 * token_factor;\n\n  uint256 public constant PUBLICSALE_SUPPLY = 354000000 * token_factor;\n  uint256 public constant GROWTH_SUPPLY     = 246000000 * token_factor;\n  uint256 public constant TEAM_SUPPLY       = 200000000 * token_factor;\n  uint256 public constant ADVISOR_SUPPLY    = 100000000 * token_factor;\n  uint256 public constant PARTNER_SUPPLY    = 100000000 * token_factor;\n\n  /**\n   * @dev Magic value to be returned upon successful reception of Menlo Tokens\n   */\n  bytes4 internal constant ONE_RECEIVED = 0x150b7a03;\n\n  address public crowdsale;\n  address public teamTimelock;\n  address public advisorTimelock;\n\n  modifier notInitialized(address saleAddress) {\n    require(address(saleAddress) == address(0), \"Expected address to be null\");\n    _;\n  }\n\n  constructor(address _growth, address _teamTimelock, address _advisorTimelock, address _partner) public {\n    assert(INITIAL_SUPPLY > 0);\n    assert((PUBLICSALE_SUPPLY + GROWTH_SUPPLY + TEAM_SUPPLY + ADVISOR_SUPPLY + PARTNER_SUPPLY) == INITIAL_SUPPLY);\n\n    uint256 _poolTotal = GROWTH_SUPPLY + TEAM_SUPPLY + ADVISOR_SUPPLY + PARTNER_SUPPLY;\n    uint256 _availableForSales = INITIAL_SUPPLY - _poolTotal;\n\n    assert(_availableForSales == PUBLICSALE_SUPPLY);\n\n    teamTimelock = _teamTimelock;\n    advisorTimelock = _advisorTimelock;\n\n    mint(msg.sender, _availableForSales);\n    mint(_growth, GROWTH_SUPPLY);\n    mint(_teamTimelock, TEAM_SUPPLY);\n    mint(_advisorTimelock, ADVISOR_SUPPLY);\n    mint(_partner, PARTNER_SUPPLY);\n\n    assert(totalSupply_ == INITIAL_SUPPLY);\n    pause();\n  }\n\n  function initializeCrowdsale(address _crowdsale) public onlyOwner notInitialized(crowdsale) {\n    unpause();\n    transfer(_crowdsale, balances[msg.sender]);  // Transfer left over balance after private presale allocations\n    crowdsale = _crowdsale;\n    pause();\n    transferOwnership(_crowdsale);\n  }\n\n  function mint(address _to, uint256 _amount) internal {\n    balances[_to] = _amount;\n    totalSupply_ = totalSupply_.add(_amount);\n    emit Transfer(address(0), _to, _amount);\n  }\n\n  /**\n   * @dev Safely transfers the ownership of a given token ID to another address\n   * If the target address is a contract, it must implement `onERC721Received`,\n   * which is called upon a safe transfer, and return the magic value `bytes4(0x150b7a03)`;\n   * otherwise, the transfer is reverted.\n   * Requires the msg sender to be the owner, approved, or operator\n   * @param _to address to receive the tokens.  Must be a MenloTokenReceiver based contract\n   * @param _value uint256 number of tokens to transfer\n   * @param _action uint256 action to perform in target _to contract\n   * @param _data bytes data to send along with a safe transfer check\n   **/\n  function transferAndCall(address _to, uint256 _value, uint256 _action, bytes _data) public returns (bool) {\n    if (transfer(_to, _value)) {\n      require (MenloTokenReceiver(_to).onTokenReceived(msg.sender, _value, _action, _data) == ONE_RECEIVED, \"Target contract onTokenReceived failed\");\n      return true;\n    }\n\n    return false;\n  }\n}\n\ncontract MenloTokenReceiver {\n\n    /*\n     * @dev Address of the MenloToken contract\n     */\n    MenloToken token;\n\n    constructor(MenloToken _tokenContract) public {\n        token = _tokenContract;\n    }\n\n    /**\n     * @dev Magic value to be returned upon successful reception of Menlo Tokens\n     */\n    bytes4 internal constant ONE_RECEIVED = 0x150b7a03;\n\n    /**\n     * @dev Throws if called by any account other than the Menlo Token contract.\n     */\n    modifier onlyTokenContract() {\n        require(msg.sender == address(token));\n        _;\n    }\n\n    /**\n     * @notice Handle the receipt of Menlo Tokens\n     * @dev The MenloToken contract calls this function on the recipient\n     * after a `transferAndCall`. This function MAY throw to revert and reject the\n     * transfer. Return of other than the magic value MUST result in the\n     * transaction being reverted.\n     * Warning: this function must call the onlyTokenContract modifier to trust\n     * the transfer took place\n     * @param _from The address which previously owned the token\n     * @param _value Number of tokens that were transfered\n     * @param _action Used to define enumeration of possible functions to call\n     * @param _data Additional data with no specified format\n     * @return `bytes4(0x150b7a03)`\n     */\n    function onTokenReceived(\n        address _from,\n        uint256 _value,\n        uint256 _action,\n        bytes _data\n    ) public /* onlyTokenContract */ returns(bytes4);\n}\n\ncontract MenloFaucet is Ownable {\n\n    uint256 constant MINTIME = 24 * 60 * (1000 * 60); // 24 * 60 minutes = 1 day\n\n    MenloToken token;\n    mapping(address => uint256) public lastDrip;\n\n    constructor(MenloToken _token) public {\n        token = _token;\n    }\n\n    function drip() public returns (bool) {\n        if (lastDrip[msg.sender] > 0) {\n            require(block.timestamp - lastDrip[msg.sender] > MINTIME, \"Not enough time elapsed since last drip\");\n        }\n\n        lastDrip[msg.sender] = block.timestamp;\n        token.transfer(msg.sender, 50 * 10**18);\n\n        return true;\n    }\n}\n\n",
   "sourcePath": "/Users/dave/Code/expo/contracts/MenloFaucet.sol",
   "ast": {
@@ -33825,7 +33826,20 @@
     "name": "solc",
     "version": "0.4.24+commit.e67f0147.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "42": {
+      "events": {},
+      "links": {},
+      "address": "0xf45c107f71e7fe8bb6095315343ca5e2a7fdd0ea",
+      "transactionHash": "0x3df45cce425e618c07fa46cb2ed68ac9b87914cf4d2cf9bc62269bb2f64de4c6"
+    },
+    "4447": {
+      "events": {},
+      "links": {},
+      "address": "0xbc42f5b916db5274e030da7d759efadcbedf48b8",
+      "transactionHash": "0x81ac48df27163efd2efcd2ccaa9706c3ea8f3f20a1f2fbf8a0ab8db4e4b2651b"
+    }
+  },
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-09-11T23:56:01.412Z"
+  "updatedAt": "2018-09-12T01:13:00.647Z"
 }

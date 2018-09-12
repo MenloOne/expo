@@ -1,21 +1,26 @@
 import React, {Component} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import {withEth} from './EthContext'
-import Message from './messaging/Message'
-import MessageForm from './messaging/MessageForm'
-import './css/sb-admin.css'
+
+import {withEth} from '../EthContext'
+import Message from './Message'
+import MessageForm from './MessageForm'
+
+import '../css/sb-admin.css'
 
 
 class MessageBoard extends Component {
 
     state = {
         messages: [],
-        topFive: false
+        topFive: false,
+        showCompose: true,
     }
 
     constructor() {
         super()
+
         this.onSubmitMessage = this.onSubmitMessage.bind(this)
+        this.onChangeReplying = this.onChangeReplying.bind(this)
     }
 
     componentDidMount() {
@@ -24,6 +29,7 @@ class MessageBoard extends Component {
     }
 
     componentWillUnmount() {
+        this.props.eth.messageBoard.subscribe('0x0', null)
     }
 
     async refreshMessages() {
@@ -59,6 +65,10 @@ class MessageBoard extends Component {
         }
     }
 
+    onChangeReplying(replying) {
+        this.setState({ showCompose: !replying })
+    }
+
     renderMessages() {
         if (this.state.messages.length === 0) return (<p>Be the first to leave a comment...</p>)
 
@@ -66,9 +76,11 @@ class MessageBoard extends Component {
 
         return messages.map((m, index) => {
             return (
-                <Message key={`${index}-${m.id}`}
+                <Message key={m.id}
                          messageBoard={this.props.eth.messageBoard}
-                         message={m} />)
+                         message={m}
+                         onChangeReplying={this.onChangeReplying}
+                />)
         })
     }
 
@@ -80,11 +92,13 @@ class MessageBoard extends Component {
                     <ul>
                         {this.renderMessages()}
 
-                        <li>
-                            <div className='content'>
-                                <MessageForm onSubmit={this.onSubmitMessage}/>
-                            </div>
-                        </li>
+                        { this.state.showCompose &&
+                            <li>
+                                <div className='content'>
+                                    <MessageForm onSubmit={this.onSubmitMessage}/>
+                                </div>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
