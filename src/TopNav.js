@@ -27,7 +27,7 @@ class TopNav extends Component {
     }
 
     async onGetTokens() {
-        if (this.props.eth.state !== 'ok') {
+        if (this.props.eth.status !== 'ok') {
             return
         }
 
@@ -40,6 +40,8 @@ class TopNav extends Component {
 
             let faucet = await faucetContract.deployed()
             await faucet.drip()
+
+            this.props.eth.refreshBalance()
         } catch (e) {
             window.alert( e )
         }
@@ -51,7 +53,7 @@ class TopNav extends Component {
         if (one == 0) {
             return (
                 <li className="nav-item token-number">
-                    <button href='#' className='btn faucet-btn' onClick={ this.onGetTokens }>GET ONE TOKENS FROM KOVAN FAUCET</button>
+                    <button className='btn faucet-btn' onClick={ this.onGetTokens }>GET ONE TOKENS FROM KOVAN FAUCET</button>
                 </li>
             )
         }
@@ -81,7 +83,7 @@ class TopNav extends Component {
             return (
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item token-number">
-                        <span className="token-one">YOU MUST USE CHROME WITH THE METAMASK EXTENSION TO TAKER PART IN DISCUSSINS</span>
+                        <span className="token-one">YOU MUST USE CHROME WITH THE METAMASK EXTENSION TO TAKER PART IN DISCUSSIONS</span>
                     </li>
                 </ul>
             )

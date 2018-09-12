@@ -1,7 +1,3 @@
-import React from 'react'
-import BigNumber from 'bn'
-import Blockies from 'react-blockies'
-
 import JavascriptIPFSStorage from './storage/JavascriptIPFSStorage'
 import RemoteIPFSStorage from './storage/RemoteIPFSStorage'
 import EthereumForum from './contracts/EthereumForum'
@@ -28,10 +24,10 @@ class Client {
         this.newMessageOnging = null
     }
 
-    async setAccountDetails(account) {
+    async setAccount(acct) {
         try {
-            this.account = account
-            this.avatar = <Blockies seed={this.account} size={10} />
+            this.account = acct.account
+            this.refreshBalance = acct.refreshBalance
 
             await this.tokenContract.setProvider(web3.currentProvider)
             this.tokenContract.defaults({
@@ -40,21 +36,18 @@ class Client {
             this.token = await this.tokenContract.deployed()
             this.forum = new EthereumForum(this.tokenContract, this.account)
 
-            var balanceWei = await this.token.balanceOf(this.account)
-            var balance    = balanceWei.div(10**18)
-
             this.epoch = await this.forum.epoch()
             this.forum.subscribeMessages(this.onNewMessage.bind(this))
-
-            return {
-                account: this.account,
-                avatar: this.avatar,
-                balance
-            }
 
         } catch (e) {
             console.error(e);
         }
+    }
+
+    async getBalance() {
+        var balanceWei = await this.token.balanceOf(this.account)
+        var balance    = balanceWei.div(10**18).toNumber()
+        return balance
     }
 
     subscribe(parentID, callback) {
@@ -74,6 +67,8 @@ class Client {
 
         if (typeof this.messages.get(metadata.id) !== 'undefined') {
             // Already added
+            this.newMessageOnging = null
+            resolveNewMessageOngoing()
             return
         }
 
@@ -98,6 +93,8 @@ class Client {
             this.newMessageOnging = null
             resolveNewMessageOngoing()
         } catch (e) {
+            console.error(e)
+
             this.newMessageOnging = null
             resolveNewMessageOngoing()
             throw (e)
@@ -158,6 +155,8 @@ class Client {
             await this.forum.post(messageHash, ipfsMessage.parent)
             await this.remoteStorage.pin(messageHash)
 
+            this.refreshBalance()
+
             return {
                 id: messageHash,
                 ...ipfsMessage
@@ -173,6 +172,7 @@ class Client {
         let message = this.messages.get(id)
         await this.updateVotesData(message, 1)
         this.onModifiedMessage(message)
+        this.refreshBalance()
         return message
     }
 
@@ -181,6 +181,7 @@ class Client {
         let message = this.messages.get(id)
         await this.updateVotesData(message, -1)
         this.onModifiedMessage(message)
+        this.refreshBalance()
         return message
     }
 

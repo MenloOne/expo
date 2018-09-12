@@ -15,6 +15,7 @@
  */
 
 import IPFS from 'ipfs'
+import promiseTimeout from '../promiseTimeout'
 import HashUtils from '../HashUtils'
 
 class JavascriptIPFSStorage {
@@ -34,11 +35,8 @@ class JavascriptIPFSStorage {
     }
 
     async findMessage(hash) {
-        return new Promise((resolve, reject) => {
-            this.ipfs.dag.get(hash, (err, result) => {
-                result ? resolve(result.value) : resolve({error: err})
-            })
-        })
+        let result = await promiseTimeout(5000, this.ipfs.dag.get(hash))
+        return result.value
     }
 
     connectPeer(remote) {

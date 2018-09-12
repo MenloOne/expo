@@ -13,6 +13,8 @@ async function go() {
 
         console.log('Transfer partner tokens to faucet')
         await token.transfer(menloFaucet.address, 100000 * 10**18, { from : '0xe8234bb4573775ecad0cd2a7fced591b4312b116' }) // Give partner wallet tokens
+
+        process.exit()
     } catch (e) {
         throw(e)
     }

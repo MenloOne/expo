@@ -1,5 +1,7 @@
 import React from 'react'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import Blockies from 'react-blockies'
+
 import Profile from './Profile'
 import { EthContext } from './EthContext'
 import Client from './Client'
@@ -76,6 +78,19 @@ class App extends React.Component {
         });
     }
 
+    async refreshBalance() {
+        let eth = this.state.ethContext
+
+        let details = await eth.messageBoard.setAccount(eth.account)
+        let balance = await eth.messageBoard.getBalance()
+
+        let ethContext = Object.assign({}, eth, { balance })
+
+        this.setState({
+            ethContext
+        })
+    }
+
     async refreshAccount(refreshBoard, account) {
         try {
             if (refreshBoard) {
@@ -83,17 +98,23 @@ class App extends React.Component {
                 window.location.reload()
             }
 
-            let details = await this.state.ethContext.messageBoard.setAccountDetails(account)
+            let acct = {
+                account: account,
+                avatar: <Blockies seed={account} size={10} />,
+                refreshBalance: this.refreshBalance.bind(this)
+            }
+
+            await this.state.ethContext.messageBoard.setAccount(acct)
+            let balance = await this.state.ethContext.messageBoard.getBalance()
+
+            let ethContext = Object.assign({}, this.state.ethContext, {
+                status: 'ok',
+                balance,
+                ...acct
+            })
 
             this.setState({
-                ethContext: {
-                    messageBoard: this.state.ethContext.messageBoard,
-                    account: details.account,
-                    avatar: details.avatar,
-                    status: 'ok',
-                    balance: details.balance.toFormat(0),
-                    refreshAccount: this.refreshAccount
-                }
+                ethContext
             })
 
         } catch(e) {
