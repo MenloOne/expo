@@ -93,11 +93,19 @@ class MessageBoard extends Component {
 
     renderMessages() {
         if (this.props.eth.status !== 'ok') {
-            return <li className='borderis'>Loading Discussion...</li>
+            return (<li className='borderis'>
+                <div style={{ paddingBottom: '3em' }}>
+                    Loading Discussion...
+                </div>
+            </li>)
         }
 
         if (this.state.messages.length === 0) {
-            return <li className='borderis'>Be the first to leave a comment...</li>
+            return (<li className='borderis'>
+                <div style={{ paddingBottom: '3em' }}>
+                    Be the first to leave a comment...
+                </div>
+            </li>)
         }
 
         const messages = this.state.topFive ? this.topFiveMessages() : this.state.messages
