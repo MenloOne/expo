@@ -1,13 +1,14 @@
-import web3 from './web3_override'
+import web3 from '../web3_override'
 import TruffleContract from 'truffle-contract'
 import TokenContract from 'menlo-token/build/contracts/MenloToken.json'
-import ForumContract from './truffle_artifacts/contracts/Forum.json'
 
-import JavascriptIPFSStorage from './storage/JavascriptIPFSStorage'
-import RemoteIPFSStorage from './storage/RemoteIPFSStorage'
-import MessagesGraph from './storage/MessageBoardGraph'
+import ForumContract from '../truffle_artifacts/contracts/Forum.json'
 
-import HashUtils from './HashUtils'
+import JavascriptIPFSStorage from '../storage/JavascriptIPFSStorage'
+import RemoteIPFSStorage from '../storage/RemoteIPFSStorage'
+import MessagesGraph from '../storage/MessageBoardGraph'
+
+import HashUtils from '../HashUtils'
 
 
 class Lottery {
