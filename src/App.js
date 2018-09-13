@@ -25,7 +25,13 @@ class App extends React.Component {
     }
 
     componentWillMount() {
-        this.accountInterval = window.setInterval( () => { this.checkMetamaskStatus(); }, 1000);
+        if (!web3) {
+            let ethContext = Object.assign(this.state.ethContext, { status: 'uninstalled' })
+            this.setState({ ethContext })
+            return
+        }
+
+        web3.currentProvider.publicConfigStore.on('update', this.checkMetamaskStatus.bind(this));
     }
 
     componentDidMount() {
@@ -37,12 +43,6 @@ class App extends React.Component {
 
     async checkMetamaskStatus() {
         let self = this
-
-        if (!web3) {
-            let ethContext = Object.assign(this.state.ethContext, { status: 'uninstalled' })
-            this.setState({ ethContext })
-            return
-        }
 
         web3.eth.getAccounts((err, accounts) => {
             if (err || !accounts || accounts.length === 0) {
