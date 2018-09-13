@@ -58,7 +58,7 @@ class Lottery {
         let hash = await this.forum.payouts.call(i)
         this.claimed[i] = true
 
-        return (hash == 0)
+        return (hash === 0)
     }
 
     totalWinnings() {
@@ -103,7 +103,6 @@ class Lottery {
 
 
 class ForumService {
-
 
 
     constructor() {

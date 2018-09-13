@@ -1,12 +1,19 @@
-# Menlo One Expo - Demo of Townhall consumer
+# Menlo One Expo 
+## Discussion site built on the Townhall Layer
 
-Find out about Menlo One: [https://www.menlo.one/](https://www.menlo.one/)
+Expo is the first application built on top of the Townhall technology.  It uses the 
+publicly deployed Menlo One Token as the utility token with which to post messages
+and win lottery rewards for contributing the most upvoted content.
 
-Core Townhall Libraries: [https://www.menlo.one/#/townhall](https://www.menlo.one/#/townhall)
+To use Expo on the Kovan Test Network, visit the site curerntly running here: [https://expo.menlo.one](https://expo.menlo.one)
+which includes a Menlo One Kovan Faucet for those who don't have Menlo ONE tokens.
+ 
+Menlo One is about to have a Public Token Sale.  Find out more here:
 
-Expo Demo Site including Townhall use: [https://www.github.com/menloone/expo-demo](https://www.github.com/menloone/expo-demo)
+#[https://www.menlo.one/](https://www.menlo.one/)
 
 
+#For Developers:
 ## Local "Develop" Environment
 
 To develop and run Expo locally, install the following prerequisites and

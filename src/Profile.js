@@ -13,8 +13,8 @@ const screenshot = require('./images/screenshot.png')
 const userIm = require('./images/user-1.png')
 const user2Im = require('./images/user-2.png')
 const iconIm = require('./images/icon.png')
-const whitePaperIm = require('./images/white-paper.png')
-const globe = require('./images/globe.png')
+// const whitePaperIm = require('./images/white-paper.png')
+// const globe = require('./images/globe.png')
 
 class Profile extends Component {
 
