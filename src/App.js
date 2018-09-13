@@ -4,7 +4,7 @@ import Blockies from 'react-blockies'
 
 import Profile from './Profile'
 import { EthContext } from './EthContext'
-import ForumService from './ForumService'
+import ForumService from './services/ForumService'
 import web3 from './web3_override'
 
 class App extends React.Component {

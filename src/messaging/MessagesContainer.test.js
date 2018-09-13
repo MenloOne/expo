@@ -1,5 +1,6 @@
 /*
- *
+ * Copyright 2018 Menlo One, Inc.
+ * Parts Copyright 2018 Vulcanize, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the “License”);
  * you may not use this file except in compliance with the License.
