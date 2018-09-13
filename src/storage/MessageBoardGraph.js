@@ -48,6 +48,10 @@ class MessageGraph {
         }
     }
 
+    delete(message) {
+        delete this.messages[message.id]
+    }
+
     get(id) {
         return this.messages[id]
     }

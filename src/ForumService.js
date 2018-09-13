@@ -70,6 +70,10 @@ class ForumService {
         }
     }
 
+    topicOffset(hash) {
+        return this.topicOffsets[hash]
+    }
+
     async watchForMessages() {
         await this.ready
         const self = this
@@ -93,68 +97,44 @@ class ForumService {
                 console.log(`Topic: ${parentHash} > ${messageHash}`)
 
                 self.topicOffsets[messageHash] = self.topicOffsetCounter
+                let message = {
+                    id: messageHash,
+                    parent: parentHash,
+                    children: [],
+                    offset: self.topicOffsetCounter
+                }
                 self.topicOffsetCounter = self.topicOffsetCounter + 1
 
-                self.onNewMessage({
-                    id: messageHash,
-                    parent: parentHash
-                })
+                // IMPORTANT - Have to do this first to prevent re-entrancy problems,
+                // and only after this any await statements
+                this.messages.add(message)
+
+                self.fillMessage(message.id)
             }
         })
     }
 
-    topicOffset(hash) {
-        return this.topicOffsets[hash]
+    async fillMessage(id) {
+        await this.ready;
+
+        let message = this.messages.get(id)
+        try {
+            await this.updateVotesData(message)
+            await this.localStorage.fillMessage(message)
+
+            console.log('onModified ',message)
+            this.onModifiedMessage(message)
+        } catch (e) {
+            // Couldn't fill message, throw it away for now
+            this.messages.delete(message)
+
+            console.error(e)
+            throw (e)
+        }
     }
 
     subscribe(parentID, callback) {
         this.callbacks[parentID] = callback
-    }
-
-    async onNewMessage(metadata) {
-        await this.ready;
-
-        // Prevent re-entrancy - we must finish with messages.add() before checking to see if its been done before
-        while ( this.newMessageOnging ) {
-            await this.newMessageOnging
-        }
-
-        let resolveNewMessageOngoing
-        this.newMessageOnging = new Promise((resolve) => { resolveNewMessageOngoing = resolve })
-
-        if (typeof this.messages.get(metadata.id) !== 'undefined') {
-            // Already added
-            this.newMessageOnging = null
-            resolveNewMessageOngoing()
-            return
-        }
-
-        try {
-            let offset = this.topicOffset(metadata.id)
-            let ifpsMessage = await this.localStorage.findMessage(metadata.id)
-
-            let message = {
-                id: metadata.id,
-                parent: metadata.parent,
-                children: [],
-                date: metadata.date,
-                offset: offset,
-                ...ifpsMessage
-            }
-            await this.updateVotesData(message)
-            this.messages.add(message)
-
-            this.onModifiedMessage(message)
-
-            this.newMessageOnging = null
-            resolveNewMessageOngoing()
-        } catch (e) {
-            console.error(e)
-
-            this.newMessageOnging = null
-            resolveNewMessageOngoing()
-            throw (e)
-        }
     }
 
     async updateVotesData(message, delta) {
@@ -186,10 +166,6 @@ class ForumService {
         return this.messages.get(id).children.length
     }
 
-    getMessage(id) {
-        return this.messages.get(id)
-    }
-
     refreshBalances() {
         this.refreshTokenBalance()
         this.rewardPool(true)
@@ -201,6 +177,10 @@ class ForumService {
         return (new Date().getTime() < end)
     }
 
+    getMessage(id) {
+        return this.messages.get(id)
+    }
+
     async getChildrenMessages(id) {
         let self = this
         const message = this.getMessage(id)
@@ -209,7 +189,7 @@ class ForumService {
             return []
         }
 
-        return Promise.all(message.children.map(cid => self.getMessage(cid)))
+        return Promise.all(message.children.map(cid => self.getMessage(cid)).filter(m => m.body))
     }
 
     async getBalance() {

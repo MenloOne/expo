@@ -56,6 +56,7 @@ class MessageBoard extends Component {
 
     async refreshMessages() {
         const messages = await this.props.eth.forumService.getChildrenMessages('0x0')
+        console.log('in refresh: ', messages)
         this.setState({ messages })
     }
 

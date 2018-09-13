@@ -34,9 +34,11 @@ class JavascriptIPFSStorage {
         })
     }
 
-    async findMessage(hash) {
-        let result = await promiseTimeout(5000, this.ipfs.dag.get(hash))
-        return result.value
+    async fillMessage(message) {
+        let result = await promiseTimeout(5000, this.ipfs.dag.get(message.id))
+        let ipfsMessage = result.value
+
+        Object.assign(message, ipfsMessage)
     }
 
     connectPeer(remote) {
