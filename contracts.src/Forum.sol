@@ -51,7 +51,7 @@ contract Forum is MenloTokenReceiver, ForumEvents, BytesDecode, Ownable {
     address[5] public payouts;
 
     constructor(MenloToken _token, uint256 _postCost, uint256 _voteCost) public MenloTokenReceiver(_token) {
-        // Pus 0 so empty memory (0) doesn't overlap with a voter
+        // Push 0 so empty memory (0) doesn't overlap with a voter
         posters.push(0);
         emit Topic(0, 0);
 
@@ -59,15 +59,17 @@ contract Forum is MenloTokenReceiver, ForumEvents, BytesDecode, Ownable {
         voteCost = _voteCost;
         postCost = _postCost;
         nextPostCost = _postCost;
-        endTimestamp = now + 5 days;
+        endTimestamp = now + 1 days;
     }
 
     function postCount() public view returns (uint256) {
         return posters.length;
     }
 
-    function endEpoch() public {
-        require(now >= endTimestamp, "Forum only closes after time expires");
+    function endEpoch() public returns (bool) {
+        if (now < endTimestamp) {
+            return false;
+        }
 
         uint256[5] memory winners;
         int256[5]  memory topVotes;
@@ -144,6 +146,9 @@ contract Forum is MenloTokenReceiver, ForumEvents, BytesDecode, Ownable {
         if (nextPostCost != postCost) {
             postCost = nextPostCost;
         }
+        endTimestamp = now + 10 minutes;
+
+        return true;
     }
 
     function nextRewardPool() public view returns (uint256) {
@@ -167,6 +172,7 @@ contract Forum is MenloTokenReceiver, ForumEvents, BytesDecode, Ownable {
 
     function claim(uint8 _payout) external {
         require(payouts[_payout] == msg.sender);
+        endEpoch();
         payouts[_payout] = 0;
         token.transfer(msg.sender, reward(_payout));
     }
@@ -185,7 +191,7 @@ contract Forum is MenloTokenReceiver, ForumEvents, BytesDecode, Ownable {
 
         votes[_offset] += _direction;
         voters[_offset][_voter] = priorVote + _direction;
-        endTimestamp = now + 1 days;
+        endTimestamp = now + 10 minutes;
     }
 
     function pushPoster(address _poster) internal {
@@ -204,9 +210,8 @@ contract Forum is MenloTokenReceiver, ForumEvents, BytesDecode, Ownable {
         emit Topic(_parentHash, _contentHash);
         pushPoster(_poster);
         voters[posters.length][_poster] = 1;
-        endTimestamp = now + 1 days;
+        endTimestamp = now + 10 minutes;
     }
-
 
     modifier forumOpen() {
         // require(now < endTimestamp);
@@ -227,9 +232,7 @@ contract Forum is MenloTokenReceiver, ForumEvents, BytesDecode, Ownable {
         uint offset;
         uint i;
 
-        if (now > endTimestamp) {
-            endEpoch();
-        }
+        endEpoch();
 
         if (_action == ACTION_UPVOTE) {
             require(usesONE(_value, voteCost), "Voting tokens sent != cost");

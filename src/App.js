@@ -31,7 +31,8 @@ class App extends React.Component {
             return
         }
 
-        web3.currentProvider.publicConfigStore.on('update', this.checkMetamaskStatus.bind(this));
+        web3.currentProvider.publicConfigStore.on('update', this.checkMetamaskStatus.bind(this))
+        this.checkMetamaskStatus()
     }
 
     componentDidMount() {

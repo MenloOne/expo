@@ -202,10 +202,7 @@ class Profile extends Component {
                                         <span className="name">- Blockchain Architect Guild</span>
                                     </div>
 
-
                                 </div>
-
-                                <MessageBoard/>
 
                             </div>
 
@@ -292,38 +289,10 @@ class Profile extends Component {
                                     </ul>
                                 </div>
 
-                                <div className="right-side-box moreinfo">
-                                    <h3>More Info</h3>
-                                    <a href='https://menloone.docsend.com/view/uu6vcy9'>
-                                        <div className="info-item">
-                                            <div className="btn-icon"><img src={whitePaperIm} alt="" width="36" height="31"/></div>
-                                            <div className="btn-label">
-                                                <span>White Paper</span>
-                                                <i className="fa fa-angle-right"></i>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href='https://www.menlo.one'>
-                                        <div className="info-item">
-                                            <div className="btn-icon"><img src={globe} alt="" width="29" height="29"/></div>
-                                            <div className="btn-label">
-                                                <span>Website <em>https://www.menlo.one</em></span>
-                                                <i className="fa fa-angle-right"></i>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <div className="social-links" style={{ display: 'none' }}>
-                                        <a  title="Twitter"><i className="fa fa-twitter"></i></a>
-                                        <a  title="Facebook"><i className="fa fa-facebook"></i></a>
-                                        <a  title="GitHub"><i className="fa fa-github"></i></a>
-                                        <a  title="Hash"><i className="fa fa-slack"></i></a>
-                                        <a  title="Flag"><i className="fa fa-paper-plane"></i></a>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
 
+                        <MessageBoard/>
                     </div>
                 </div>
             </div>

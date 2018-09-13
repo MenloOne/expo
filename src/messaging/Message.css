@@ -50,3 +50,8 @@ a[disabled], a[disabled]:hover {
 .error {
     color: red;
 }
+
+.error .new-message {
+    padding-top: 0;
+    text-align: right;
+}

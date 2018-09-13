@@ -847,14 +847,13 @@ span.location {
     display: block;
 }
 
-.left-side .user-img {
-    width: 40px;
-    height: 40px;
+.user-img {
+    width: 35px;
+    height: 35px;
     background: #f9f9f9;
     display: inline-block;
     border-radius: 50%;
     overflow: hidden;
-    border: 2px solid #fff;
     margin-right: 0px;
     margin-left: -12px;
     margin-bottom: -8px;
@@ -1020,10 +1019,6 @@ hr {
 
 }
 
-.expert-reviews-1.left-side {
-    margin-bottom: 60px;
-}
-
 body {
     margin-bottom: 0px !important;
 }
@@ -1034,7 +1029,7 @@ body {
     border: solid 1px #ececed;
     display: inline-block;
     display: block;
-    margin-bottom: 40px;
+    margin-bottom: 35px;
 }
 
 .green-bg {
@@ -1055,45 +1050,93 @@ body {
     margin-bottom: 10px;
 }
 
-li.forum-state {
-    width: 100%;
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
+.lottery-block .winners-block {
+    margin-top: 1em;
 }
 
-li.forum-state + li.borderis {
-    margin-top: -5.4em;
-}
-
-.forum-state-block {
-    float: right;
-    margin-right: 4em;
-}
-
-.forum-state .pot {
+.lottery-block .winners {
     font-family: Titillium web;
     font-size: 20px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
 }
 
-.forum-state .time-left {
-    float: right;
+.lottery-block .pedestal {
+    margin-right: 0.3em;
+    margin-left: 0.3em;
+    min-width: 4em;
+    padding: 10px;
+    border: 2px solid #f3e416;
+    border-radius: 3px;
+    background-color: #fffddb;}
+
+.lottery-block .pedestal .rank {
+    color: #a1aecb;
+    font-family: Titillium web;
+    font-size: 12px;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 2.09em;
+    letter-spacing: normal;
+    text-align: center;
+    margin: auto auto;
 }
 
-.forum-state .time-watch div {
-    font-size: 30px;
+.lottery-block .pedestal .tokens {
+    color: #7e87a0;
+    font-family: Titillium web;
+    font-size: 15px;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 2.09em;
+    letter-spacing: normal;
+    text-align: center;
+    margin: auto auto;
 }
 
-.forum-state .time-watch div.dots {
-    width: 5px;
-    line-height: 1.3em;
+.lottery-block .pedestal .tokens.one {
+    position: relative;
+    top: -2.15em;
+    left: 2em;
 }
 
-.forum-state .time-watch div span {
-    font-size: 10px;
+.lottery-block .user-img {
+    width: 30px;
+    height: 30px;
+    margin: auto auto;
+    display: block;
+}
+
+.lottery-block .message {
+    text-align: right;
+    top: -2.3em;
+    position: relative;
+    margin-bottom: 1em;
+}
+
+.claim {
+    margin-top: 1em;
+}
+
+.btn.claim-btn {
+    border: 2px solid #858585;
+    width: 100%;
+    color: #858585;
 }
 
 .time-watch {
+    text-align: center;
+}
+
+.time-watch .time-left {
+    position: relative;
+    top: -1.7em;
+}
+
+.winners-message {
     text-align: center;
 }
 
@@ -1178,7 +1221,7 @@ span.sold {
 }
 
 .white-bg {
-    padding: 30px 32px;
+    padding: 30px 32px 21px;
 }
 
 .white-bg h3 {
@@ -1353,12 +1396,13 @@ span.sold {
 }
 
 .expert-reviews-1 {
+    margin-bottom: 60px;
     border-radius: 6px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     background-color: #ffffff;
-    border: solid 1px #ececed;
-    padding: 50px 18px 50px 18px;
+    border: none;
+    padding: 0;
 }
 
 .Expert-Reviews {
@@ -1540,6 +1584,10 @@ span.sold {
     line-height: 1.8;
     letter-spacing: normal;
     color: #464646;
+}
+
+.comments {
+    margin: 10px;
 }
 
 .comments ul > li > ul {

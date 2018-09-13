@@ -15,9 +15,11 @@ export default class CountdownTimer extends Component {
 
     renderer({ days, hours, minutes, seconds, completed }) {
         if (completed) {
-            return (
-                <h4>Sale is open...</h4>
-            )
+            if (this.props.renderCompleted) {
+                this.props.renderCompleted()
+            }
+
+            return null
         }
 
         return (

@@ -31,7 +31,7 @@ class MessageGraph {
 
     add(message) {
         let parentID = message.parent || '0x0'
-        console.log('adding :', message)
+        // console.log('adding :', message)
 
         if (typeof message.id === 'undefined') {
             throw new Error('Adding invalid node')
