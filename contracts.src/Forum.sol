@@ -171,8 +171,9 @@ contract Forum is MenloTokenReceiver, ForumEvents, BytesDecode, Ownable {
     }
 
     function claim(uint8 _payout) external {
-        require(payouts[_payout] == msg.sender);
         endEpoch();
+
+        require(payouts[_payout] == msg.sender);
         payouts[_payout] = 0;
         token.transfer(msg.sender, reward(_payout));
     }

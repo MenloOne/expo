@@ -112,6 +112,9 @@ class App extends React.Component {
             this.resolveReady()
 
         } catch(e) {
+            let ethContext = Object.assign(this.state.ethContext, { status: 'error', error: e.message })
+            this.setState({ ethContext })
+
             console.error(e)
         }
     }

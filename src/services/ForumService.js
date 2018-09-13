@@ -168,7 +168,8 @@ class ForumService {
             this.signalReady()
 
         } catch (e) {
-            console.error(e);
+            console.error(e)
+            throw(e)
         }
     }
 

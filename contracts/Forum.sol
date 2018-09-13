@@ -807,8 +807,9 @@ contract Forum is MenloTokenReceiver, ForumEvents, BytesDecode, Ownable {
     }
 
     function claim(uint8 _payout) external {
-        require(payouts[_payout] == msg.sender);
         endEpoch();
+
+        require(payouts[_payout] == msg.sender);
         payouts[_payout] = 0;
         token.transfer(msg.sender, reward(_payout));
     }
@@ -868,9 +869,7 @@ contract Forum is MenloTokenReceiver, ForumEvents, BytesDecode, Ownable {
         uint offset;
         uint i;
 
-        if (now > endTimestamp) {
-            endEpoch();
-        }
+        endEpoch();
 
         if (_action == ACTION_UPVOTE) {
             require(usesONE(_value, voteCost), "Voting tokens sent != cost");

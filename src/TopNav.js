@@ -82,6 +82,16 @@ class TopNav extends Component {
             )
         }
 
+        if (this.props.eth.status === 'error') {
+            return (
+                <ul className="navbar-nav ml-auto">
+                    <li className="nav-item token-number">
+                        <span className="token-one">{ this.props.eth.error }</span>
+                    </li>
+                </ul>
+            )
+        }
+
         if (this.props.eth.status === 'starting') {
             return (
                 <ul className="navbar-nav ml-auto">
