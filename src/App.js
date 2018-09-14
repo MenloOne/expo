@@ -73,12 +73,15 @@ class App extends React.Component {
         let self = this
         let eth = self.state.ethContext
 
-        let balance = await eth.forumService.getBalance()
-        let ethContext = Object.assign({}, eth, { balance })
+        setTimeout(async () => {
+            let balance = await eth.forumService.getBalance()
+            let ethContext = Object.assign({}, eth, { balance })
 
-        self.setState({
-            ethContext
-        })
+            self.setState({
+                ethContext
+            })
+        }, 1000)
+
     }
 
     async refreshAccount(refreshBoard, account) {

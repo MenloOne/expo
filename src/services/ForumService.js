@@ -346,7 +346,7 @@ class ForumService {
                 this.updateVotesData(message)
                 this.onModifiedMessage(message)
 
-                if (offset >= this.currentLottery.offset[0]) {
+                if (offset >= this.currentLottery.offsets[0]) {
                     this.refreshLotteries(true)
                 }
             }
