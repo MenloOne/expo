@@ -123,7 +123,8 @@ class MessageBoard extends Component {
                 }
                 { !(lottery.winners && lottery.winners.length > 0) &&
                     <div className='message' style={{ top: '0.3em', textAlign: 'center' }}>
-                        TOP VOTED POSTERS WIN ONE TOKENS
+                        TOP VOTED POSTERS WIN ONE TOKENS<br/>
+                        NO VOTES YET...
                     </div>
                 }
                 { lottery.winners && lottery.winners.length > 0 &&
