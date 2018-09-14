@@ -437,7 +437,9 @@ class ForumService {
             message.votes += delta
             message.myvotes += delta
         } else {
-            const [votes, myvotes] = await Promise.all([this.forum.votes(this.topicOffset(message.id)), this.forum.voters(this.topicOffset(message.id), this.account)])
+            const [votes, myvotes] = await Promise.all([
+                this.forum.votes.call(this.topicOffset(message.id)),
+                this.forum.voters.call(this.topicOffset(message.id), this.account)])
 
             message.votes   = votes.toNumber()
             message.myvotes = myvotes.toNumber()
