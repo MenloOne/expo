@@ -673,7 +673,7 @@ contract Forum is MenloTokenReceiver, ForumEvents, BytesDecode, Ownable {
     uint public constant ACTION_UPVOTE   = 2;
     uint public constant ACTION_DOWNVOTE = 3;
 
-    uint256 public constant epochLength = 2 minutes;
+    uint256 public constant epochLength = 15 minutes;
 
     uint256 public currentLottery;
     uint256 public endTimestamp;
