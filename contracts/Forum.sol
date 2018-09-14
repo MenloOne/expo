@@ -722,15 +722,14 @@ contract Forum is MenloTokenReceiver, ForumEvents, BytesDecode, Ownable {
 
         uint256[5] memory winners;
         int256[5]  memory topVotes;
-        bool hasVotes;
+        bool hasVotes = false;
 
         // get top 5 posts
         for(uint256 i = posters.length; i-- > epochCurrent; ) {
             if (votes[i] == 0) {
                 continue;
-            } else {
-                hasVotes = true;
             }
+            hasVotes = true;
 
             int256 current = votes[i];
             if (current > topVotes[4]) {
@@ -834,11 +833,16 @@ contract Forum is MenloTokenReceiver, ForumEvents, BytesDecode, Ownable {
     function claim() external {
         endEpoch();
 
+        if (rewardPool == 0) {
+            return;
+        }
+
         uint256 total = 0;
         for (uint8 i = 0; i < 5; i++) {
             if (payouts[i] == msg.sender) {
-                total += reward(i);
-                rewardPool -= reward(i);
+                uint256 rewardi = reward(i);
+                total      += rewardi;
+                rewardPool -= rewardi;
                 payouts[i] = 0;
             }
         }

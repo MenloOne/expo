@@ -205,7 +205,13 @@ class Lottery {
     }
 
     async claimWinnings() {
-        await this.forum.forum.claim()
+        try {
+            await this.forum.forum.claim()
+        } catch (e) {
+            console.error(e)
+            // await this.forum.forum.endEpoch()
+            throw (e)
+        }
 
         // How long do we wait?
         setTimeout(this.forum.refreshBalances.bind(this.forum), 2000)
@@ -610,9 +616,17 @@ class ForumService {
         }
 
         var eligibleMessages = []
+        var hasVotes = false
 
         for (let i = from; i < to; i++) {
-            eligibleMessages.push(this.getMessage(this.topicHashes[i]))
+            let msg = this.getMessage(this.topicHashes[i])
+            eligibleMessages.push(msg)
+            hasVotes = hasVotes || (msg.votes != 0)
+        }
+
+        // No votes, no winners
+        if (!hasVotes) {
+            return []
         }
 
         // Sort by votes descending, then offset ascending
