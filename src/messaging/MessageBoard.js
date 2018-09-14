@@ -136,7 +136,7 @@ class MessageBoard extends Component {
                     </div>
                 }
                 { !(lottery.winners && lottery.winners.length > 0) &&
-                    <div className='message'>
+                    <div className='message' style={{ top: '0.3em' }}>
                         top posters share { lottery.reward > 0 && new BigNumber(lottery.reward).toFormat(0) } ONE Tokens
                     </div>
                 }
