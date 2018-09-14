@@ -298,7 +298,7 @@ class ForumService {
 
     currentLotteryElapsed() {
         const now = new Date()
-        return (now.getTime() > this.endLotteryTime &&  this.currentLottery.winners && this.currentLottery.winners.length > 0)
+        return ((now.getTime() > this.endLotteryTimeServer) &&  this.currentLottery.winners && (this.currentLottery.winners.length > 0))
 
     }
 
@@ -520,12 +520,14 @@ class ForumService {
     async refreshEndLotteryTime() {
         let timeBN = await this.forum.endTimestamp.call()
         this.endLotteryTime = timeBN.toNumber() * 1000 // Convert to JS
+        this.endLotteryTimeServer = this.endLotteryTime
 
         var now = new Date()
         if (this.endLotteryTime < now.getTime() && !this.currentLotteryElapsed()) {
             // We're in a weird state where the server will continue the current lottery
             // as soon as someone pays up.  Assume more time
-            this.endLotteryTime = new Date(now.getTime() + this.lotteryLength)
+            const newDate = new Date(now.getTime() + this.lotteryLength)
+            this.endLotteryTime = newDate.getTime()
         }
 
         if (this.lotteryTimeout) {
