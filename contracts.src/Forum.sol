@@ -209,8 +209,8 @@ contract Forum is MenloTokenReceiver, ForumEvents, BytesDecode, Ownable {
 
     function post(address _poster, bytes32 _parentHash, bytes32 _contentHash) internal {
         emit Topic(_parentHash, _contentHash);
-        pushPoster(_poster);
         voters[posters.length][_poster] = 1;
+        pushPoster(_poster);
         endTimestamp = now + 10 minutes;
     }
 

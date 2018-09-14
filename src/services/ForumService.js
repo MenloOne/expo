@@ -135,7 +135,6 @@ class ForumService {
             })
             this.token = await this.tokenContract.deployed()
 
-            this.topicOffsetCounter = 0
             this.filledMessagesCounter = 0
             this.topicOffsets = {}
             this.topicHashes = []
@@ -150,7 +149,7 @@ class ForumService {
             this.actions = { post, upvote, downvote }
 
             const bn = await this.forum.postCount.call()
-            this.lastEpoch = bn.toNumber() -1 // Forget about 0x0->0x0 message
+            this.lastEpoch = bn.toNumber()-1
 
             const timestamp = await this.endTimestamp()
             const now = new Date()
@@ -190,24 +189,26 @@ class ForumService {
             const parentHash  = HashUtils.solidityHashToCid(result.args._parentHash)
             const messageHash = HashUtils.solidityHashToCid(result.args.contentHash)
 
+            console.log(`Topic: ${parentHash} > ${messageHash}`)
             if (parentHash === messageHash) {
                 // Probably 0x0 > 0x0 which Solidity adds to make life simple
-                self.topicOffsetCounter = self.topicOffsetCounter + 1
+                self.topicOffsets[messageHash] = self.topicHashes.length
+                self.topicHashes.push(messageHash)
                 return
             }
 
             if (typeof self.topicOffsets[messageHash] === 'undefined') {
-                console.log(`Topic: ${parentHash} > ${messageHash}`)
 
-                self.topicOffsets[messageHash] = self.topicOffsetCounter
+                let offset = self.topicHashes.length
+                console.log(`${messageHash} -> ${offset}`)
+                self.topicOffsets[messageHash] = offset
                 self.topicHashes.push(messageHash)
                 let message = {
                     id: messageHash,
                     parent: parentHash,
                     children: [],
-                    offset: self.topicOffsetCounter
+                    offset
                 }
-                self.topicOffsetCounter = self.topicOffsetCounter + 1
 
                 // IMPORTANT - Have to do this first to prevent re-entrancy problems,
                 // and only after this any await statements
@@ -239,6 +240,7 @@ class ForumService {
             console.error(e)
             throw (e)
         } finally {
+            console.log(this.filledMessagesCounter, ', ', this.lastEpoch)
             if (this.filledMessagesCounter >= this.lastEpoch) {
                 this.signalSynced()
             }
@@ -251,6 +253,7 @@ class ForumService {
 
     async updateVotesData(message, delta) {
         if (delta) {
+            console.log(`adding to ${message.body} myvotes locally `, delta)
             message.votes += delta
             message.myvotes += delta
         } else {
@@ -258,6 +261,7 @@ class ForumService {
 
             message.votes   = votes.toNumber()
             message.myvotes = myvotes.toNumber()
+            console.log(`${message.body} ${this.topicOffsets[message.id]} myvotes from sol `, myvotes.toNumber())
         }
 
         // console.log('updated Votes: ', message)
@@ -423,7 +427,7 @@ class ForumService {
         })
 
         // Filter out nulls
-        return winners.filter(m => m)
+        return winners.filter(m => m != null && typeof m != 'undefined')
     }
 
     async winningAuthors(from, to) {
@@ -435,11 +439,16 @@ class ForumService {
         await this.synced
 
         const [epochPriorBN, epochCurrentBN] = await Promise.all([this.forum.epochPrior.call(), this.forum.epochCurrent.call()])
-        const epochPrior   = epochPriorBN.toNumber()
+        var    epochPrior   = epochPriorBN.toNumber()
         const epochCurrent = epochCurrentBN.toNumber()
         if ( epochCurrent === epochPrior ) {
             return null
         }
+        if ( epochPrior === 0 ) {
+            epochPrior++;
+        }
+
+
         const offsets  = [epochPrior, epochCurrent]
         const winners  = await this.winningAuthors(offsets)
         const rewardBN = await this.forum.rewardPool.call()
@@ -453,11 +462,15 @@ class ForumService {
         await this.synced
 
         const epochCurrentBN = await this.forum.epochCurrent.call()
-        const epochCurrent   = epochCurrentBN.toNumber()
+        var   epochCurrent   = epochCurrentBN.toNumber()
         const epochLatest    = this.topicHashes.length
 
         if ( epochCurrent === epochLatest ) {
             return null
+        }
+
+        if ( epochCurrent === 0 ) {
+            epochCurrent++;
         }
 
         const [rewardBN, endTimeStamp] = await Promise.all([this.token.balanceOf(this.forum.address), this.endTimestamp(true)])
@@ -479,6 +492,7 @@ class ForumService {
         const now = new Date()
         const end = await this.endTimestamp(true)
 
+        console.log('lotteries: ',priorLottery,currentLottery)
         if (end < now.getTime()) {
             currentLottery.name = "Last"
 
@@ -540,7 +554,7 @@ class ForumService {
         } catch (e) {
             if (ipfsHash) {
                 // Failed - unpin it from ipfs.menlo.one
-                this.localStorage.delete(ipfsHash)
+                this.localStorage.rm(ipfsHash)
                 this.remoteStorage.unpin(ipfsHash)
             }
 
