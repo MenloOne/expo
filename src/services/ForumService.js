@@ -490,7 +490,7 @@ class ForumService {
             return []
         }
 
-        return Promise.all(message.children.map(cid => self.getMessage(cid)).filter(m => m.body))
+        return Promise.all(message.children.map(cid => self.getMessage(cid)).filter(m => m && m.body))
     }
 
     async getBalance() {
