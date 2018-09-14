@@ -36,11 +36,11 @@ class Message extends React.Component {
     }
 
     componentDidMount() {
-        this.props.forumService.subscribe(this.props.message.id, this.refreshMessages.bind(this))
+        this.props.forumService.subscribeMessages(this.props.message.id, this.refreshMessages.bind(this))
     }
 
     componentWillUnmount() {
-        this.props.forumService.subscribe(this.props.message.id, null);
+        this.props.forumService.subscribeMessages(this.props.message.id, null);
     }
 
     componentWillReceiveProps(newProps) {
@@ -58,6 +58,8 @@ class Message extends React.Component {
         this.setState({ showReplyForm: false })
 
         let message = await this.props.forumService.createMessage(body, this.props.message.id)
+        /*
+
         const child = (
             <Message key={message.id}
                      message={message}
@@ -67,6 +69,10 @@ class Message extends React.Component {
         this.showReplies(true)
         this.setState({
             children: [...this.state.children, child],
+            showReplyForm: false
+        })
+         */
+        this.setState({
             showReplyForm: false
         })
 
@@ -148,8 +154,8 @@ class Message extends React.Component {
                         {message.body}
                     </div>
                     <div className="comments-review">
-                        <a onClick={this.upvote.bind(this)} disabled={this.props.message.myvotes > 0 || message.author === this.props.forumService.account}><span><i className="fa fa-caret-up"></i> Upvote { this.renderVotes() }</span></a>
-                        <a onClick={this.downvote.bind(this)}  disabled={this.props.message.myvotes < 0 || message.author === this.props.forumService.account}><span><i className="fa fa-caret-down"></i> Downvote </span></a>
+                        <a onClick={this.upvote.bind(this)}    disabled={this.props.message.upvoteDisabled()}>  <span><i className="fa fa-caret-up"></i> Upvote { this.renderVotes() }</span></a>
+                        <a onClick={this.downvote.bind(this)}  disabled={this.props.message.downvoteDisabled()}><span><i className="fa fa-caret-down"></i> Downvote </span></a>
                         {message.parent === '0x0' &&
                             <a className="reply" onClick={this.showReplyForm.bind(this)}><span>Reply</span></a>
                         }

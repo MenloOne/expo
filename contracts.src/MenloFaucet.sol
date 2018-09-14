@@ -20,7 +20,7 @@ import "menlo-token/contracts/MenloToken.sol";
 
 contract MenloFaucet is Ownable {
 
-    uint256 constant MINTIME = 24 * 60 * (1000 * 60); // 24 * 60 minutes = 1 day
+    uint256 constant MINTIME = 1 days;
 
     MenloToken token;
     mapping(address => uint256) public lastDrip;

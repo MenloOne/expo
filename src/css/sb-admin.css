@@ -88,14 +88,16 @@ body.fixed-nav {
     cursor: pointer;
 }
 
-#mainNav .navbar-collapse .navbar-sidenav .nav-link-collapse:after {
+#mainNav .navbar-collapse .navbar-sidenav .nav-link-collapse:afterd {
     float: right;
     content: '\f107';
     font-family: 'FontAwesome';
+    display: none !imporant;
 }
 
-#mainNav .navbar-collapse .navbar-sidenav .nav-link-collapse.collapsed:after {
+#mainNav .navbar-collapse .navbar-sidenav .nav-link-collapse.collapsed:afterd {
     content: '\f105';
+    display: none;
 }
 
 #mainNav .navbar-collapse .navbar-sidenav .sidenav-second-level,
@@ -519,6 +521,7 @@ footer.sticky-footer {
 }
 
 #mainNav .navbar-collapse .navbar-nav > .nav-item.dropdown > .nav-link:after {
+    display: none !important;
     content: '\f107';
     vertical-align: top;
     padding-top: 10px;
@@ -1065,7 +1068,7 @@ body {
 .lottery-block .pedestal {
     margin-right: 0.3em;
     margin-left: 0.3em;
-    min-width: 4em;
+    min-width: 3.5em;
     padding: 10px;
     border: 2px solid #f3e416;
     border-radius: 3px;
@@ -1736,6 +1739,7 @@ span.sold {
 
 .submit-btn[disabled] {
     background-color: #a3b1db;
+    color: white;
 }
 
 .cancel-btn {

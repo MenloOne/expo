@@ -8,10 +8,10 @@ module.exports = (deployer, network) => {
 
         try {
             console.log('Deploying faucet')
-            let menloFaucet = await deployer.deploy(MenloFaucet, MenloToken.address);
+            let menloFaucet = await deployer.deploy(MenloFaucet, MenloToken.address); // await MenloFaucet.deployed()
 
             console.log('Transfer partner tokens to faucet')
-            await token.transfer(menloFaucet.address, 100000 * 10**18, { from : '0xe8234bb4573775ecad0cd2a7fced591b4312b116' }) // Give partner wallet tokens
+            await token.transfer(menloFaucet.address, 100000 * 10**18, { from : '0x0d1d4e623d10f9fba5db95830f7d3839406c6af2' }) // Give partner wallet tokens
         } catch (e) {
             throw(e)
         }

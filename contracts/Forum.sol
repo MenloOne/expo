@@ -663,6 +663,8 @@ contract ForumEvents {
     // by convention, the bytes32 is a keccak-256 content hash
     // the multihash prefix for this is 1b,20
     event Topic(bytes32 _parentHash, bytes32 contentHash);
+    event Payout(uint256 _lottery, address _user, uint256 _tokens);
+    event Vote(uint256 _offset);
 }
 
 contract Forum is MenloTokenReceiver, ForumEvents, BytesDecode, Ownable {
@@ -671,6 +673,9 @@ contract Forum is MenloTokenReceiver, ForumEvents, BytesDecode, Ownable {
     uint public constant ACTION_UPVOTE   = 2;
     uint public constant ACTION_DOWNVOTE = 3;
 
+    uint256 public constant epochLength = 2 minutes;
+
+    uint256 public currentLottery;
     uint256 public endTimestamp;
     uint256 public epochPrior;
     uint256 public epochCurrent;
@@ -698,7 +703,15 @@ contract Forum is MenloTokenReceiver, ForumEvents, BytesDecode, Ownable {
         endTimestamp = now + 1 days;
     }
 
+    function getVoters(uint256 i, address user) public view returns (int8) {
+        return voters[i][user];
+    }
+
     function postCount() public view returns (uint256) {
+        return posters.length;
+    }
+
+    function votesCount() public view returns (uint256) {
         return posters.length;
     }
 
@@ -709,11 +722,14 @@ contract Forum is MenloTokenReceiver, ForumEvents, BytesDecode, Ownable {
 
         uint256[5] memory winners;
         int256[5]  memory topVotes;
+        bool hasVotes;
 
         // get top 5 posts
-        for(uint256 i = epochCurrent; i-- > epochPrior; ) {
+        for(uint256 i = posters.length; i-- > epochCurrent; ) {
             if (votes[i] == 0) {
                 continue;
+            } else {
+                hasVotes = true;
             }
 
             int256 current = votes[i];
@@ -767,7 +783,13 @@ contract Forum is MenloTokenReceiver, ForumEvents, BytesDecode, Ownable {
                     }
                 }
             }
-            votes[i] = 0;
+
+            // votes[i] = 0 Should clean up memory?
+        }
+
+        if (!hasVotes) {
+            endTimestamp = now + epochLength;
+            return true;
         }
 
         // write the new winners
@@ -777,12 +799,15 @@ contract Forum is MenloTokenReceiver, ForumEvents, BytesDecode, Ownable {
 
         // refresh the pool
         rewardPool = token.balanceOf(this);
+
         epochPrior = epochCurrent;
         epochCurrent = posters.length;
+        currentLottery++;
         if (nextPostCost != postCost) {
             postCost = nextPostCost;
         }
-        endTimestamp = now + 10 minutes;
+
+        endTimestamp = now + epochLength;
 
         return true;
     }
@@ -806,20 +831,27 @@ contract Forum is MenloTokenReceiver, ForumEvents, BytesDecode, Ownable {
         return 0;
     }
 
-    function claim(uint8 _payout) external {
+    function claim() external {
         endEpoch();
 
-        require(payouts[_payout] == msg.sender);
-        payouts[_payout] = 0;
-        token.transfer(msg.sender, reward(_payout));
+        uint256 total = 0;
+        for (uint8 i = 0; i < 5; i++) {
+            if (payouts[i] == msg.sender) {
+                total += reward(i);
+                rewardPool -= reward(i);
+                payouts[i] = 0;
+            }
+        }
+
+        require(total > 0, "No tokens left to claim");
+
+        emit Payout(currentLottery-1, msg.sender, total);
+        token.transfer(msg.sender, total);
     }
 
     function setNextPostCost(uint256 _nextPostCost) external onlyOwner {
         nextPostCost = _nextPostCost;
     }
-
-    event Votes(uint256, int256);
-    event MyVote(int256);
 
     function vote(address _voter, uint256 _offset, int8 _direction) internal {
         int8 priorVote = voters[_offset][_voter];
@@ -828,7 +860,9 @@ contract Forum is MenloTokenReceiver, ForumEvents, BytesDecode, Ownable {
 
         votes[_offset] += _direction;
         voters[_offset][_voter] = priorVote + _direction;
-        endTimestamp = now + 10 minutes;
+        endTimestamp = now + epochLength;
+
+        emit Vote(_offset);
     }
 
     function pushPoster(address _poster) internal {
@@ -845,9 +879,9 @@ contract Forum is MenloTokenReceiver, ForumEvents, BytesDecode, Ownable {
 
     function post(address _poster, bytes32 _parentHash, bytes32 _contentHash) internal {
         emit Topic(_parentHash, _contentHash);
-        pushPoster(_poster);
         voters[posters.length][_poster] = 1;
-        endTimestamp = now + 10 minutes;
+        pushPoster(_poster);
+        endTimestamp = now + epochLength;
     }
 
     modifier forumOpen() {

@@ -56,31 +56,29 @@ class App extends React.Component {
                 self.refreshAccount( true )
             }
 
-            if (accounts[0] !== self.state.ethContext.account) {
+            const account0 = accounts[0].toLowerCase()
+            if (account0 !== self.state.ethContext.account) {
                 // The only time we ever want to load data from the chain history
                 // is when we receive a change in accounts - this happens anytime
                 // the page is initially loaded or if there is a change in the account info
                 // via a metamask interaction.
-                web3.eth.defaultAccount = accounts[0]
+                web3.eth.defaultAccount = account0
 
-                self.refreshAccount( self.state.ethContext.account !== null, accounts[0] )
+                self.refreshAccount( self.state.ethContext.account !== null, account0 )
             }
         });
     }
 
     async refreshBalance() {
         let self = this
+        let eth = self.state.ethContext
 
-        setTimeout(async () => {
-            let eth = self.state.ethContext
+        let balance = await eth.forumService.getBalance()
+        let ethContext = Object.assign({}, eth, { balance })
 
-            let balance = await eth.forumService.getBalance()
-            let ethContext = Object.assign({}, eth, { balance })
-
-            self.setState({
-                ethContext
-            })
-        }, 4000)
+        self.setState({
+            ethContext
+        })
     }
 
     async refreshAccount(refreshBoard, account) {

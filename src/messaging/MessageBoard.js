@@ -30,12 +30,16 @@ class MessageBoard extends Component {
     }
 
     componentDidMount() {
-        this.props.eth.forumService.subscribe('0x0', this.refreshMessages.bind(this))
+        this.props.eth.forumService.subscribeMessages('0x0', this.refreshMessages.bind(this))
         this.refreshMessages()
+
+        this.props.eth.forumService.subscribeLotteries(this.refreshLotteries.bind(this))
+        this.refreshLotteries()
     }
 
     componentWillUnmount() {
-        this.props.eth.forumService.subscribe('0x0', null)
+        this.props.eth.forumService.subscribeMessages('0x0', null)
+        this.props.eth.forumService.subscribeLotteries(null)
     }
 
     componentWillReceiveProps(newProps) {
@@ -46,19 +50,20 @@ class MessageBoard extends Component {
         await props.eth.ready
         const svc = props.eth.forumService
 
-        const [endTimestamp, reward] = await Promise.all([
-            svc.endTimestamp(),
-            svc.rewardPool()
+        const [endTimestamp] = await Promise.all([
+            svc.endLotteryTime
         ])
-        this.setState ({ endTimestamp, reward })
+        this.setState ({ endTimestamp })
     }
 
     async refreshMessages() {
-        const svc = this.props.eth.forumService
-        const messages = await svc.getChildrenMessages('0x0')
-        this.setState({ messages })
+        const messages = await this.props.eth.forumService.getChildrenMessages('0x0')
+        this.setState({messages})
+    }
 
-        let lotteries = await svc.getLotteries()
+    async refreshLotteries() {
+        let lotteries = await this.props.eth.forumService.refreshLotteries()
+        console.log(lotteries)
         this.setState({ ...lotteries })
     }
 
@@ -103,31 +108,12 @@ class MessageBoard extends Component {
         return null
     }
 
-    renderLotteries() {
-
-        let lotteries = [this.state.priorLottery, this.state.currentLottery]
-
-        return lotteries.map((lottery) => {
-            if (!lottery) { return null }
-
-            return (
-                <div key={lottery.name} className="lottery right-side-box white-bg">
-                    { this.renderLottery(lottery) }
-                </div>
-            )
-        })
-    }
-
     renderLottery(lottery) {
-            if (!lottery) {
-            return null
-        }
-
         return (
             <div className='lottery-block right-side'>
-                <h4>{ lottery.name } Lottery</h4>
+                <h4>{ lottery.name() } Lottery</h4>
 
-                { !lottery.completed &&
+                { !lottery.hasEnded() &&
                     <div>
                         <div className='message'>TIME LEFT</div>
                         <div className='time-left'>
@@ -136,16 +122,17 @@ class MessageBoard extends Component {
                     </div>
                 }
                 { !(lottery.winners && lottery.winners.length > 0) &&
-                    <div className='message' style={{ top: '0.3em' }}>
-                        top posters share { lottery.reward > 0 && new BigNumber(lottery.reward).toFormat(0) } ONE Tokens
+                    <div className='message' style={{ top: '0.3em', textAlign: 'center' }}>
+                        Top posters share { lottery.reward > 0 && new BigNumber(lottery.reward).toFormat(0) } ONE Tokens
                     </div>
                 }
                 { lottery.winners && lottery.winners.length > 0 &&
                     <span>
-                        { lottery.iWon() && <div className='message'>YOU WON!!!</div> }
-                        { !lottery.iWon() && <div className='winners-message'>CURRENT WINNERS</div> }
+                    {  lottery.iWon && !lottery.claimed && <div className='message'>YOU WON!!!</div> }
+                    {  lottery.iWon &&  lottery.claimed && <div className='message'>YOU GOT TOKENS</div> }
+                    { !lottery.iWon && <div className='winners-message'>CURRENT WINNERS</div> }
 
-                        <div className='winners-block'>
+                    <div className='winners-block'>
                             <div className='winners'>
                                 {
                                     lottery.winners.map((a, i) => {
@@ -161,16 +148,31 @@ class MessageBoard extends Component {
                                     })
                                 }
                             </div>
-                            {   lottery.iWon() &&
+                        {   lottery.iWon && !lottery.claimed &&
                             <div className='claim'>
                                 <button className='btn claim-btn' onClick={this.claimWinnings}>CLAIM { lottery.totalWinnings() } ONE TOKENS</button>
                             </div>
-                            }
+                        }
                         </div>
                     </span>
                 }
             </div>
         )
+    }
+
+    renderLotteries() {
+
+        let lotteries = [this.state.currentLottery, this.state.priorLottery]
+
+        return lotteries.map((lottery) => {
+            if (!lottery || !lottery.show()) { return null }
+
+            return (
+                <div key={lottery.type} className="lottery right-side-box white-bg">
+                    { this.renderLottery(lottery) }
+                </div>
+            )
+        })
     }
 
     renderMessages() {
