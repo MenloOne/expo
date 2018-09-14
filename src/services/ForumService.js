@@ -125,6 +125,10 @@ class ForumService {
     }
 
     async setAccount(acct) {
+        if (acct.account === this.account) {
+            return
+        }
+
         try {
             this.account = acct.account
             this.refreshTokenBalance = acct.refreshBalance
@@ -413,13 +417,11 @@ class ForumService {
     }
 
     async winningMessages(offsets) {
-        var [from, to] = offsets
+        const [from, to] = offsets
         var eligibleMessages = []
 
-        if (to > this.topicHashes.length) {
-            to = this.topicHashes.length
-        }
         for (let i = from; i < to; i++) {
+            console.log(`eligible ${i}`)
             eligibleMessages.push(this.getMessage(this.topicHashes[i]))
         }
 
