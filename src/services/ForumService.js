@@ -413,9 +413,12 @@ class ForumService {
     }
 
     async winningMessages(offsets) {
-        const [from, to] = offsets
+        var [from, to] = offsets
         var eligibleMessages = []
 
+        if (to > this.topicHashes.length) {
+            to = this.topicHashes.length
+        }
         for (let i = from; i < to; i++) {
             eligibleMessages.push(this.getMessage(this.topicHashes[i]))
         }
@@ -424,7 +427,7 @@ class ForumService {
         const winners = eligibleMessages.sort((a,b) => {
             let diff = b.votes - a.votes
             return (diff === 0) ? a.offset - b.offset : diff
-        })
+        }).slice(0,5)
 
         // Filter out nulls
         return winners.filter(m => m != null && typeof m != 'undefined')
