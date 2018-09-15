@@ -151,7 +151,7 @@ class MessageBoard extends Component {
                             </div>
                         {   lottery.iWon && !lottery.claimed &&
                             <div className='claim'>
-                                <button className='btn claim-btn' onClick={this.claimWinnings}>CLAIM { lottery.totalWinnings() } ONE TOKENS</button>
+                                <button className='btn claim-btn' onClick={this.claimWinnings}>CLAIM { Number(lottery.totalWinnings()).toFixed(1) } ONE TOKENS</button>
                             </div>
                         }
                         </div>
