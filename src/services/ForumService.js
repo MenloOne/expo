@@ -374,7 +374,7 @@ class ForumService {
                 tokens:  result.args._tokens.toNumber(),
                 user:    result.args._user
             }
-            console.log('Payout: ', payout)
+            console.log('[[ Payout ]] ', payout)
 
             if (payout.user.toLowerCase() === self.account) {
                 // Mark payout
@@ -399,6 +399,8 @@ class ForumService {
 
             const bn = result.args._offset
             const offset = bn.toNumber()
+            console.log('[[ Vote ]]  ',offset)
+
             const message = this.messages.get(self.topicHashes[offset])
             if (message) {
                 self.updateVotesData(message)
@@ -424,8 +426,9 @@ class ForumService {
             const parentHash  = HashUtils.solidityHashToCid(result.args._parentHash)
             const messageHash = HashUtils.solidityHashToCid(result.args.contentHash)
 
-            console.log(`Topic: ${parentHash} > ${messageHash}`)
             if (parentHash === messageHash) {
+                console.log(`[[ Topic ]] ${parentHash} > ${messageHash}`)
+
                 // Probably 0x0 > 0x0 which Solidity adds to make life simple
                 self.topicOffsets[messageHash] = self.topicHashes.length
                 self.topicHashes.push(messageHash)
@@ -433,9 +436,9 @@ class ForumService {
             }
 
             if (typeof self.topicOffsets[messageHash] === 'undefined') {
-
                 let offset = self.topicHashes.length
-                console.log(`${messageHash} -> ${offset}`)
+                console.log(`[[ Topic ]] ${parentHash} > ( ${offset} ) ${messageHash}`)
+
                 self.topicOffsets[messageHash] = offset
                 self.topicHashes.push(messageHash)
                 let message = new Message( this, messageHash, parentHash, offset )
@@ -529,6 +532,7 @@ class ForumService {
             this.refreshEndLotteryTime(true),
         ])
 
+        // Optimization - don't refresh lotteries, just lotteries time
         if (this.lotteriesCallback) {
             this.lotteriesCallback()
         }
@@ -675,6 +679,10 @@ class ForumService {
 
         await Promise.all([this.priorLottery.refresh(), this.currentLottery.refresh()])
         console.log('Lotteries: ', [this.priorLottery, this.currentLottery])
+
+        if (this.lotteriesCallback) {
+            this.lotteriesCallback()
+        }
     }
 
     async getLotteries()  {
