@@ -622,6 +622,9 @@ class ForumService {
 
         for (let i = from; i < to; i++) {
             let msg = this.getMessage(this.topicHashes[i])
+            if (!msg) {
+                continue
+            }
             eligibleMessages.push(msg)
             hasVotes = hasVotes || (msg.votes != 0)
         }
