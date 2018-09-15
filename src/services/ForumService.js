@@ -80,7 +80,7 @@ class Lottery {
         }
 
         this.claimed = (this.forum.claimedLotteries[this.lotteryID] == true)
-        this.winners = await this.forum.winningAuthors(this.offsets)
+        this.winners = await this.winningAuthors()
         this.iWon = (this.hasEnded() && this.winners.filter(a => a === this.forum.account).length > 0)
 
         if (this.iWon) {
@@ -140,6 +140,46 @@ class Lottery {
         }
 
         return this
+    }
+
+
+    async winningMessages() {
+        const [from, to] = this.offsets
+
+        if (to <= from) {
+            return []
+        }
+
+        var eligibleMessages = []
+        var hasVotes = false
+
+        for (let i = from; i < to; i++) {
+            let msg = this.forum.getMessage(this.forum.topicHashes[i])
+            if (!msg) {
+                continue
+            }
+            eligibleMessages.push(msg)
+            hasVotes = hasVotes || (msg.votes != 0)
+        }
+
+        // No votes, no winners
+        if (!hasVotes) {
+            return []
+        }
+
+        // Sort by votes descending, then offset ascending
+        const winners = eligibleMessages.sort((a,b) => {
+            let diff = b.votes - a.votes
+            return (diff === 0) ? a.offset - b.offset : diff
+        }).slice(0,5)
+
+        // Filter out nulls
+        return winners.filter(m => m != null && typeof m != 'undefined')
+    }
+
+    async winningAuthors() {
+        let winners = await this.winningMessages()
+        return winners.map(m => m.author)
     }
 
     currentType() {
@@ -364,7 +404,7 @@ class ForumService {
                 self.updateVotesData(message)
                 self.onModifiedMessage(message)
 
-                if (offset >= this.currentLottery.offsets[0] && offset >= self.initialSyncEpoch) {
+                if (offset >= this.priorLottery.offsets[0]) {
                     self.refreshLotteries()
                 }
             }
@@ -418,7 +458,7 @@ class ForumService {
         }
 
         try {
-            await Promise.all([this.localStorage.fillMessage(message)])
+            await Promise.all([this.updateVotesData(message), this.localStorage.fillMessage(message)])
             message.filled = true
 
             // console.log('onModified ',message)
@@ -627,45 +667,6 @@ class ForumService {
         this.refreshBalances()
 
         return message
-    }
-
-    async winningMessages(offsets) {
-        const [from, to] = offsets
-
-        if (to <= from) {
-            return []
-        }
-
-        var eligibleMessages = []
-        var hasVotes = false
-
-        for (let i = from; i < to; i++) {
-            let msg = this.getMessage(this.topicHashes[i])
-            if (!msg) {
-                continue
-            }
-            eligibleMessages.push(msg)
-            hasVotes = hasVotes || (msg.votes != 0)
-        }
-
-        // No votes, no winners
-        if (!hasVotes) {
-            return []
-        }
-
-        // Sort by votes descending, then offset ascending
-        const winners = eligibleMessages.sort((a,b) => {
-            let diff = b.votes - a.votes
-            return (diff === 0) ? a.offset - b.offset : diff
-        }).slice(0,5)
-
-        // Filter out nulls
-        return winners.filter(m => m != null && typeof m != 'undefined')
-    }
-
-    async winningAuthors(from, to) {
-        let winners = await this.winningMessages(from, to)
-        return winners.map(m => m.author)
     }
 
 
