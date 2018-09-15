@@ -9,7 +9,7 @@ import RemoteIPFSStorage from '../storage/RemoteIPFSStorage'
 import MessagesGraph from '../storage/MessageBoardGraph'
 
 import HashUtils from '../HashUtils'
-
+import QPromise from '../utils/QPromise'
 
 class Message {
 
@@ -19,6 +19,9 @@ class Message {
         this.parent = parent
         this.offset = offset
         this.children = []
+        this.votes = 0
+        this.myvotes = 0
+        this.body = 'Loading from IPFS...'
     }
 
     votesDisabled() {
@@ -44,8 +47,6 @@ class Lottery {
         this.type = _type
         this.claimed = false
         this.offsets = [0,0]
-
-        this.refresh()
     }
 
     async refresh() {
@@ -64,6 +65,7 @@ class Lottery {
             this.lotteryID = bn.toNumber()
 
         } else {
+            // Last
 
             const [epochPriorBN, epochCurrentBN] = await Promise.all([this.forum.forum.epochPrior.call(), this.forum.forum.epochCurrent.call()])
             var   epochPrior   = Math.max(epochPriorBN.toNumber(), 1)
@@ -77,7 +79,7 @@ class Lottery {
             this.lotteryID = bn.toNumber()-1
         }
 
-        this.claimed = this.forum.claimedLotteries[this.lotteryID]
+        this.claimed = (this.forum.claimedLotteries[this.lotteryID] == true)
         this.winners = await this.forum.winningAuthors(this.offsets)
         this.iWon = (this.hasEnded() && this.winners.filter(a => a === this.forum.account).length > 0)
 
@@ -134,6 +136,7 @@ class Lottery {
             }
 
             this.debug = debug
+            this.filled = true
         }
 
         return this
@@ -225,7 +228,7 @@ class ForumService {
 
     constructor() {
         this.ready  = new Promise((resolve) => { this.signalReady = resolve })
-        this.synced = new Promise((resolve) => { this.signalSynced = resolve })
+        this.synced = new QPromise((resolve) => { this.signalSynced = resolve })
 
         this.tokenContract = TruffleContract(TokenContract)
         this.forumContract = TruffleContract(ForumContract)
@@ -236,12 +239,9 @@ class ForumService {
         this.localStorage.connectPeer(this.remoteStorage)
 
         this.messages = new MessagesGraph()
-        this.epoch = 0
         this.account = null;
         this.messagesCallbacks = {}
         this.lotteriesCallback = null
-        this.newMessageOnging = null
-
         this.claimedLotteries = {}
         this.priorLottery   = new Lottery(this, 'last')
         this.currentLottery = new Lottery(this, 'current')
@@ -275,11 +275,18 @@ class ForumService {
             const [post, upvote, downvote] = await Promise.all([this.forum.ACTION_POST.call(), this.forum.ACTION_UPVOTE.call(), await this.forum.ACTION_DOWNVOTE.call()])
             this.actions = { post, upvote, downvote }
 
-            var bn = await this.forum.postCount.call()
-            this.lastEpoch = bn.toNumber()-1
+            const [bn1,bn2,bn3,bn4] = await Promise.all([
+                this.forum.postCount.call(),
+                this.forum.epochCurrent.call(),
+                this.forum.epochPrior.call(),
+                this.forum.epochLength.call()
+            ])
+            this.initialSyncEpoch = bn1.toNumber()-1
+            this.epochCurrent     = bn2.toNumber()
+            this.epochPrior       = bn3.toNumber()
+            this.lotteryLength    = bn4.toNumber() * 1000
+
             await this.refreshEndLotteryTime()
-            bn = await this.forum.epochLength.call()
-            this.lotteryLength = bn.toNumber() * 1000
 
             // Figure out cost for post
             // this.postGas = await this.token.transferAndCall.estimateGas(this.forum.address, 1 * 10**18, this.actions.post, ['0x0', '0x0000000000000000000000000000000000000000000000000000000000000000'])
@@ -292,7 +299,7 @@ class ForumService {
 
             this.signalReady()
 
-            if (this.lastEpoch === 0) {
+            if (this.initialSyncEpoch === 0) {
                 this.signalSynced()
             }
 
@@ -335,25 +342,30 @@ class ForumService {
                 if (self.priorLottery.lotteryID === payout.lottery) {
                     self.refreshLotteries()
                 }
+
             }
         })
     }
 
     async watchForVotes() {
+        let self = this
+        await this.synced
+
         this.forum.Vote({}, {fromBlock: 0}).watch((error, result) => {
             if (error) {
                 console.error( error )
                 return
             }
 
-            const offset  = result.args._offset
-            const message = this.topicHashes[offset]
+            const bn = result.args._offset
+            const offset = bn.toNumber()
+            const message = this.messages.get(self.topicHashes[offset])
             if (message) {
-                this.updateVotesData(message)
-                this.onModifiedMessage(message)
+                self.updateVotesData(message)
+                self.onModifiedMessage(message)
 
-                if (offset >= this.currentLottery.offsets[0]) {
-                    this.refreshLotteries(true)
+                if (offset >= this.currentLottery.offsets[0] && offset >= self.initialSyncEpoch) {
+                    self.refreshLotteries()
                 }
             }
         })
@@ -401,24 +413,28 @@ class ForumService {
         await this.ready;
 
         let message = this.messages.get(id)
+        if (!message) {
+            throw (new Error(`Unable to get message ${id}`))
+        }
+
         try {
-            await Promise.all([this.updateVotesData(message), this.localStorage.fillMessage(message)])
+            await Promise.all([this.localStorage.fillMessage(message)])
+            message.filled = true
 
             // console.log('onModified ',message)
             this.onModifiedMessage(message)
 
-            this.filledMessagesCounter++;
-
         } catch (e) {
             // Couldn't fill message, throw it away for now
             this.messages.delete(message)
+            console.error(e)
 
+            message.error = e
+            message.body = 'IPFS Connectivity Issue. Retrying...'
+        } finally {
             this.filledMessagesCounter++;
 
-            console.error(e)
-            throw (e)
-        } finally {
-            if (this.filledMessagesCounter >= this.lastEpoch) {
+            if (this.filledMessagesCounter >= this.initialSyncEpoch) {
                 this.signalSynced()
             }
         }
@@ -437,6 +453,9 @@ class ForumService {
             message.votes += delta
             message.myvotes += delta
         } else {
+            if (!message || !message.id) {
+                throw (new Error('invalid Message ID'))
+            }
             const [votes, myvotes] = await Promise.all([
                 this.forum.votes.call(this.topicOffset(message.id)),
                 this.forum.voters.call(this.topicOffset(message.id), this.account)])
@@ -650,10 +669,28 @@ class ForumService {
     }
 
 
-    async refreshLotteries(refresh) {
+    async refreshLotteries() {
         await this.synced
 
         await Promise.all([this.priorLottery.refresh(), this.currentLottery.refresh()])
+        console.log('Lotteries: ', [this.priorLottery, this.currentLottery])
+    }
+
+    async getLotteries()  {
+        await this.synced
+
+        var signalGetLotteriesSync
+        // Optimize so we only call refresh once across multiple get calls
+        if (this.getLotteriesSync) {
+            await this.getLotteriesSync
+        } else {
+            this.getLotteriesSync = new Promise(resolve => signalGetLotteriesSync = resolve)
+        }
+
+        if (!this.currentLottery.filled || !this.priorLottery.filled) {
+            await this.refreshLotteries()
+            signalGetLotteriesSync()
+        }
 
         return {
             currentLottery: this.currentLottery,

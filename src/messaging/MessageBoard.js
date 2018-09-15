@@ -62,8 +62,7 @@ class MessageBoard extends Component {
     }
 
     async refreshLotteries() {
-        let lotteries = await this.props.eth.forumService.refreshLotteries()
-        console.log(lotteries)
+        let lotteries = await this.props.eth.forumService.getLotteries()
         this.setState({ ...lotteries })
     }
 
@@ -177,7 +176,7 @@ class MessageBoard extends Component {
     }
 
     renderMessages() {
-        if (this.props.eth.status !== 'ok') {
+        if (this.state.messages.length === 0 && (this.props.eth.status !== 'ok' || !this.props.eth.forumService.synced.isFulfilled())) {
             return (<li className='borderis'>
                 <div style={{ paddingBottom: '3em' }}>
                     Loading Discussion...
