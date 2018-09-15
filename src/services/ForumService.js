@@ -1,6 +1,6 @@
 import web3 from '../web3_override'
 import TruffleContract from 'truffle-contract'
-import TokenContract from 'menlo-token/build/contracts/MenloToken.json'
+import TokenContract from '../truffle_artifacts/contracts/MenloToken.json'
 
 import ForumContract from '../truffle_artifacts/contracts/Forum.json'
 

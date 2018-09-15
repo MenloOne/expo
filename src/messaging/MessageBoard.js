@@ -143,7 +143,7 @@ class MessageBoard extends Component {
                                                     <Blockies seed={a} size={10} scale={3}/>
                                                 </div>
                                                 <div className='rank'>{ this.ranks[i] }</div>
-                                                <div className='tokens'>{ lottery.winnings(i) }<br/>ONE</div>
+                                                <div className='tokens'>{ Number(lottery.winnings(i)).toFixed(1) }<br/>ONE</div>
                                             </div>
                                         )
                                     })

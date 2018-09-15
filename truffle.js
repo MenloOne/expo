@@ -26,7 +26,9 @@ module.exports = {
         return noncedWallet(new HDWalletProvider(privKeys, 'https://mainnet.infura.io/v3/1b81fcc6e29d459ca28861e0901aba99'))
       },
       network_id: '1',
-      gas: 4700000,
+      gas: 7700000,
+      gasPrice: 10000000000,
+      from: '0x56ffd2f3234ac48ed561a0ae812906398fe3aeb9'
     },
     develop: {
       host: '127.0.0.1',
