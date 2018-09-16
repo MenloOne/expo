@@ -88,18 +88,6 @@ body.fixed-nav {
     cursor: pointer;
 }
 
-#mainNav .navbar-collapse .navbar-sidenav .nav-link-collapse:afterd {
-    float: right;
-    content: '\f107';
-    font-family: 'FontAwesome';
-    display: none !imporant;
-}
-
-#mainNav .navbar-collapse .navbar-sidenav .nav-link-collapse.collapsed:afterd {
-    content: '\f105';
-    display: none;
-}
-
 #mainNav .navbar-collapse .navbar-sidenav .sidenav-second-level,
 #mainNav .navbar-collapse .navbar-sidenav .sidenav-third-level {
     padding-left: 0;
@@ -287,7 +275,6 @@ body.sidenav-toggled #mainNav.fixed-top #sidenavToggler i {
     -moz-transform: scaleX(-1);
     -o-transform: scaleX(-1);
     transform: scaleX(-1);
-    filter: FlipH;
     -ms-filter: 'FlipH';
 }
 
@@ -306,7 +293,6 @@ body.sidenav-toggled #mainNav.static-top #sidenavToggler i {
     -moz-transform: scaleX(-1);
     -o-transform: scaleX(-1);
     transform: scaleX(-1);
-    filter: FlipH;
     -ms-filter: 'FlipH';
 }
 

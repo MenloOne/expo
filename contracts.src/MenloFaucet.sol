@@ -20,22 +20,24 @@ import "menlo-token/contracts/MenloToken.sol";
 
 contract MenloFaucet is Ownable {
 
-    uint256 constant MINTIME = 1 days;
-
     MenloToken token;
+    uint256 tokens;
+    uint256 delay;
     mapping(address => uint256) public lastDrip;
 
-    constructor(MenloToken _token) public {
+    constructor(MenloToken _token, uint256 _tokens, uint256 _delay ) public {
         token = _token;
+        tokens = _tokens;
+        delay = _delay;
     }
 
     function drip() public returns (bool) {
         if (lastDrip[msg.sender] > 0) {
-            require(block.timestamp - lastDrip[msg.sender] > MINTIME, "Not enough time elapsed since last drip");
+            require(block.timestamp - lastDrip[msg.sender] > delay, "Not enough time elapsed since last drip");
         }
 
         lastDrip[msg.sender] = block.timestamp;
-        token.transfer(msg.sender, 50 * 10**18);
+        token.transfer(msg.sender, tokens);
 
         return true;
     }
