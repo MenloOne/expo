@@ -43,17 +43,6 @@ class MessageBoard extends Component {
     }
 
     componentWillReceiveProps(newProps) {
-        this.updateStatus(newProps)
-    }
-
-    async updateStatus(props) {
-        await props.eth.ready
-        const svc = props.eth.forumService
-
-        const [endTimestamp] = await Promise.all([
-            svc.endLotteryTime
-        ])
-        this.setState ({ endTimestamp })
     }
 
     async refreshMessages() {
@@ -62,8 +51,12 @@ class MessageBoard extends Component {
     }
 
     async refreshLotteries() {
-        let lotteries = await this.props.eth.forumService.getLotteries()
-        this.setState({ ...lotteries })
+        const svc = this.props.eth.forumService
+        let lotteries = await svc.getLotteries()
+        this.setState({
+            ...lotteries,
+            endTimestamp: svc.endLotteryTime,
+            timeExtended: (svc.endLotteryTimeServer != svc.endLotteryTime)})
     }
 
     claimWinnings() {
@@ -114,7 +107,7 @@ class MessageBoard extends Component {
 
                 { !lottery.hasEnded() &&
                     <div>
-                        <div className='message'>TIME LEFT</div>
+                        <div className='message'>TIME { this.state.timeExtended ? 'EXTENDED' : 'LEFT' }</div>
                         <div className='time-left'>
                             <CountdownTimer date={ new Date(this.state.endTimestamp) }/>
                         </div>

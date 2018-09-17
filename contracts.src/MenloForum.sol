@@ -20,7 +20,7 @@ import "./BytesDecode.sol";
 import "./Redeemer.sol";
 
 
-contract ForumEvents {
+contract MenloForumEvents {
     // the total ordering of all events on a smart contract is defined
     // a parent of 0x0 indicates root topic
     // by convention, the bytes32 is a keccak-256 content hash
@@ -31,14 +31,13 @@ contract ForumEvents {
 }
 
 
-contract Forum is MenloTokenReceiver, ForumEvents, BytesDecode, Ownable {
+contract MenloForum is MenloTokenReceiver, MenloForumEvents, BytesDecode, Ownable {
 
     uint public constant ACTION_POST     = 1;
     uint public constant ACTION_UPVOTE   = 2;
     uint public constant ACTION_DOWNVOTE = 3;
 
-    uint256 public constant epochLength = 15 minutes;
-
+    uint256 public epochLength;
     uint256 public currentLottery;
     uint256 public endTimestamp;
     uint256 public epochPrior;
@@ -55,7 +54,7 @@ contract Forum is MenloTokenReceiver, ForumEvents, BytesDecode, Ownable {
 
     address[5] public payouts;
 
-    constructor(MenloToken _token, uint256 _postCost, uint256 _voteCost) public MenloTokenReceiver(_token) {
+    constructor(MenloToken _token, uint256 _postCost, uint256 _voteCost, uint256 _epochLength) public MenloTokenReceiver(_token) {
         // Push 0 so empty memory (0) doesn't overlap with a voter
         posters.push(0);
         emit Topic(0, 0);
@@ -64,7 +63,8 @@ contract Forum is MenloTokenReceiver, ForumEvents, BytesDecode, Ownable {
         voteCost = _voteCost;
         postCost = _postCost;
         nextPostCost = _postCost;
-        endTimestamp = now + 1 days;
+        epochLength = _epochLength;
+        endTimestamp = now + epochLength;
     }
 
     function getVoters(uint256 i, address user) public view returns (int8) {

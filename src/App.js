@@ -6,12 +6,14 @@ import Profile from './Profile'
 import { EthContext } from './EthContext'
 import ForumService from './services/ForumService'
 import web3 from './web3_override'
+import ReputationService from './services/ReputationService'
 
 class App extends React.Component {
 
     state = {
         ethContext: {
             forumService: new ForumService(),
+            repService: new ReputationService(),
             account: null,
             balance: '-',
             status: 'starting',
@@ -81,8 +83,8 @@ class App extends React.Component {
                 ethContext
             })
         }, 1000)
-
     }
+
 
     async refreshAccount(refreshBoard, account) {
         try {
@@ -91,19 +93,22 @@ class App extends React.Component {
                 window.location.reload()
             }
 
-            let acct = {
-                account: account,
+            const acct = {
+                account,
                 avatar: <Blockies seed={account} size={10} />,
                 refreshBalance: this.refreshBalance.bind(this)
             }
 
             await this.state.ethContext.forumService.setAccount(acct)
-            let balance = await this.state.ethContext.forumService.getBalance()
 
-            let ethContext = Object.assign({}, this.state.ethContext, {
+            const alias = await this.state.ethContext.repService.alias
+            const balance = await this.state.ethContext.forumService.getBalance()
+
+            const ethContext = Object.assign({}, this.state.ethContext, {
                 status: 'ok',
                 balance,
-                ...acct
+                alias,
+                ...acct,
             })
 
             this.setState({

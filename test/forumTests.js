@@ -1,7 +1,7 @@
 'use strict';
 
 var MenloToken = artifacts.require('menlo-token/contracts/MenloToken.sol');
-var Receiver = artifacts.require('contracts/Forum.sol');
+var Receiver = artifacts.require('contracts/MenloForum.sol');
 
 const assertFail = require("./helpers/assertFail");
 const ethFormat = require('./helpers/ethFormat');

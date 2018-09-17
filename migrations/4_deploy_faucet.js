@@ -1,9 +1,12 @@
 var MenloToken = artifacts.require("menlo-token/MenloToken.sol");
 var MenloFaucet = artifacts.require("./MenloFaucet.sol");
+var networkEnv = require ('../scripts/networkEnv')
+
 
 module.exports = (deployer, network) => {
 
     const asyncDeploy = async () => {
+        networkEnv()
         let token = await MenloToken.deployed()
 
         try {
@@ -11,7 +14,7 @@ module.exports = (deployer, network) => {
             let menloFaucet = await deployer.deploy(MenloFaucet, MenloToken.address, 100 * 10**18, 24 * 60 * 60 /* One day */); // await MenloFaucet.deployed()
 
             console.log('Transfer partner tokens to faucet')
-            await token.transfer(menloFaucet.address, 100000 * 10**18, { from : '0x079542865f27d7b22b47cfed901f9fb29ce3206e' }) // Give partner wallet tokens
+            await token.transfer(menloFaucet.address, 100000 * 10**18, { from : process.env.ONE_OWNER }) // Give partner wallet tokens
         } catch (e) {
             throw(e)
         }
