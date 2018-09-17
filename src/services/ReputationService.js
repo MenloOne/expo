@@ -20,6 +20,17 @@ import ReputationContract from '../truffle_artifacts/contracts/MenloReputation.j
 
 import QPromise from '../utils/QPromise'
 
+
+class User {
+    constructor(svc, acct, alias, rep) {
+        this.svc = svc
+        this.acct = acct
+        this.alias = alias
+        this.rep = rep
+    }
+}
+
+
 export default class ReputationService {
 
     constructor() {
@@ -29,8 +40,7 @@ export default class ReputationService {
         this.rep = null
         this.repContract = TruffleContract(ReputationContract)
 
-        this.alias = null
-        this.reputation = 0
+        this.me = null
     }
 
     async setAccount(acct) {
@@ -47,9 +57,9 @@ export default class ReputationService {
             })
             this.rep = await this.repContract.deployed()
 
-            this.alias = await this.rep.alias.call(this.account)
-            const bn = await this.rep.reputation.call(this.account)
-            this.reputation = bn.toNumber()
+            const [alias, rep] = await Promise.all([this.rep.alias.call(this.account),
+                                                    this.rep.reputation.call(this.account)])
+            this.me = new User(this, this.account, alias, rep.toNumber())
 
             this.signalReady()
 
@@ -64,4 +74,6 @@ export default class ReputationService {
         await this.ready
         return this.rep.setAlias(alias)
     }
+
+
 }
