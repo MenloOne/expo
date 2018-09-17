@@ -31,7 +31,7 @@ contract MenloForumEvents {
 }
 
 
-contract MenloForum is MenloTokenReceiver, MenloForumEvents, BytesDecode, Ownable {
+contract MenloForum is MenloTokenReceiver, MenloForumEvents, BytesDecode, Ownable, CanReclaimToken {
 
     uint public constant ACTION_POST     = 1;
     uint public constant ACTION_UPVOTE   = 2;

@@ -18,7 +18,7 @@ pragma solidity^0.4.24;
 import "menlo-token/contracts/MenloToken.sol";
 
 
-contract MenloFaucet is Ownable {
+contract MenloFaucet is Ownable, CanReclaimToken {
 
     MenloToken token;
     uint256 tokens;
