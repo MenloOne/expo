@@ -1,6 +1,6 @@
 const assets = {}
 
-assets.menloFB = require('./images/menlo/menlo-one-fb.jpg')
+assets.menloFB = require('./images/menlo/menlo-one-fb.png')
 assets.blockchain = require('./images/menlo/blockchain.svg')
 assets.m1 = require('./images/menlo/m1.svg')
 assets.data = require('./images/menlo/data.svg')

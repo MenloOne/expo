@@ -4,7 +4,7 @@
 
 @media (min-width: 1200px) {
     .container {
-        max-width: 1440px;
+        max-width: 1420px;
     }
 }
 
@@ -26,7 +26,7 @@ body.sticky-footer .content-wrapper {
 }
 
 body.fixed-nav {
-    padding-top: 56px;
+    padding-top: 68px;
 }
 
 .error {
@@ -699,24 +699,36 @@ footer.sticky-footer {
 
 .game-token {
     margin-bottom: 0px;
-    padding-top: 26px;
-    padding-bottom: 25px;
+    padding-top: 27px;
+    padding-bottom: 27px;
     vertical-align: top;
     float: left;
     clear: both;
     width: 100%;
 }
 
-span.game-img {
-    width: 300px;
-    height: 160px;
-    display: inline-block;
-    margin-right: 41px;
-    float: left;
+.game-token .container {
+    display: flex;
 }
 
-.game-detail {
-    padding-top: 10px;
+.game-img {
+    width: 150px;
+    margin-right: 2rem;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.game-detail-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-action-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly
 }
 
 .game-detail h2 {
@@ -755,9 +767,10 @@ span.game-img {
     height: 36px;
     background-color: #f4f4f4;
     border-radius: 50%;
-    display: inline-block;
-    vertical-align: middle;
-    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: .5rem;
 }
 
 .total-comments {
@@ -782,13 +795,37 @@ span.game-img {
     font-family: Inconsolata;
     font-size: 12px;
     color: #6b768e;
+    display: flex;
+    align-items: center;
 }
 
-.btn-top-right, .total-comments {
-    display: inline-block;
-    float: right;
-    padding-top: 15px;
+.committed, .total-comments {
+    padding-top: 8px;
     vertical-align: top;
+}
+
+.committed {
+    text-align: right;
+}
+
+.total-comments a {
+    vertical-align: middle;
+}
+
+.total-comments span {
+    color: #3E71CC;
+}
+
+.header-buttons {
+    width: 100%;
+    text-align: right;
+    padding-top: 10px;
+}
+
+.header-buttons .btn {
+    border: 1px solid #3E71CC;
+    margin-left: 1rem;
+    color: #3E71CC
 }
 
 .total-comments span.user-img {
@@ -1629,6 +1666,10 @@ span.sold {
     letter-spacing: normal;
     color: #464646;
     max-width: calc(100% - 200px);
+}
+
+span.tag {
+    flex: 1;
 }
 
 .comments .tag-name .btn {

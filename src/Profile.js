@@ -60,22 +60,28 @@ class Profile extends Component {
 
                 <div className="game-token shadow-sm">
                     <div className="container">
-                        <span className="game-img"><img src={assets.menloFB} alt="" style={{scale: 2}}/></span>
-                        <div className="game-detail">
-                            <h2>Menlo One</h2>
-                            <p>Menlo One is a powerful framework for building decentralized applications with the speed of a traditional web app. Our decentralized database and Proof-of-Reputation incentive system is the infrastructure that enables the Web 3.0 generation of marketplaces, social media platforms, and future apps to be as fast and performant as their centralized predecessors.</p>
-                            <div className="locaton-tag">
-                                <span className="location"><i className="fa fa-map-marker"></i> New Jersey</span>
-                                <span className="tag"><i className="fa fa-tag"></i> Utility Token</span>
+                        <div className="col-md-8 game-detail-wrapper">
+                            <img className="game-img" src={assets.menloFB} alt="" style={{scale: 2}}/>
+                            <div className="game-detail">
+                                <h2>Menlo One</h2>
+                                <p>Menlo One is a powerful framework for building decentralized applications with the speed of a traditional web app. Our decentralized database and Proof-of-Reputation incentive system is the infrastructure that enables the Web 3.0 generation of marketplaces, social media platforms, and future apps to be as fast and performant as their centralized predecessors.</p>
+                                <div className="locaton-tag">
+                                    <span className="location"><i className="fa fa-map-marker"></i> New Jersey</span>
+                                    <span className="tag"><i className="fa fa-tag"></i> Utility Token</span>
+                                </div>
                             </div>
                         </div>
-                        <div className="btn-top-right">
-                            <span className="total-comments">
-                                832 committed to buying when sale opens &nbsp;
-                            </span>
-                            <a className="circle-btn" title=""><img src={iconIm} alt=""/></a>
+                        <div className="col-md-4 game-action-wrapper">
+                            <div className="header-buttons">
+                                <a href="" className="btn">Watch</a>
+                                <a href="" className="btn">Recommend</a>
+                            </div>
+                            <div className="committed">
+                                <p className="total-comments">
+                                    <a className="circle-btn" title=""><img src={iconIm} alt="" /></a>
+                                    <span>103 accounts</span>&nbsp;currently hold Menlo ONE tokens&nbsp;</p>
+                            </div>
                         </div>
-
                     </div>
                 </div>
 
