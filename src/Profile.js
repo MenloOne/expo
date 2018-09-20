@@ -13,6 +13,7 @@ const screenshot = require('./images/screenshot.png')
 const userIm = require('./images/user-1.png')
 const user2Im = require('./images/user-2.png')
 const iconIm = require('./images/icon.png')
+const computer = require('./images/ICO_profile_page_svg.svg')
 // const whitePaperIm = require('./images/white-paper.png')
 // const globe = require('./images/globe.png')
 
@@ -90,8 +91,8 @@ class Profile extends Component {
                         <div className="row">
                             <div className="col-md-8">
                                 <div className="left-side">
+                                <div className="left-side-wrapper">
                                     <div className="top-users" style={{ display: 'none' }}>
-
                                         <div className="members">
                                             <h3>MEMBERS 12 (3)</h3>
                                             <div className="member-users">
@@ -122,186 +123,169 @@ class Profile extends Component {
                                     </div>
 
 
-                                    <h2>About Menlo One</h2>
-                                    <p>Menlo One gives developers the essential building blocks for decentralized apps. From a distributed database, to a proof of reputation algorithm, to transactions and governance, our framework gives you the tools you need without having to build them from scratch. We re-imagined the web stack for a future with no administrators, censors, or single point of failure.</p>
-
-                                    <div className='screenshot' src={screenshot} style={{ width: '100%', height: '441px' }}>
+                                    <h2>The next generation of the web</h2>
+                                    <h6>All of the data on this page was pulled from<br />a blockchain, but is as fast as the cloud.</h6>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p>This page is different from any other webpage you’ve ever used. While it may not seem like it, all of the information here was pulled in from several blockchains and decentralized systems, and there is a built in protocol for you the user to verify that. The goal of Menlo One is to make dApps as fast and easy to use as their centralized predecessors, and this page is a demonstrtion of the alpha release of our framework in action.</p>
+                                        </div>
+                                        <div class="col-md-6 text-center">
+                                            <img src={computer} />
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div className="left-side-wrapper">
+                                    <div className='screenshot' src={screenshot} style={{ width: '100%', minHeight: '441px' }}>
                                         <ResponsiveEmbed src='https://www.youtube.com/embed/yuohXyDP1pk?rel=0' allowFullScreen />
                                     </div>
-
-                                    <hr/>
-
-                                    <div className="tokens-detail ">
-                                        <div className="token">
-                                            <h4>Token distribution</h4>
-                                            <ul>
-                                                <li><b>35.4%</b> ICO</li>
-                                                <li><b>24.6%</b> Future Growth</li>
-                                                <li><b>20%</b> Team</li>
-                                                <li><b>10%</b> Advisors</li>
-                                                <li><b>10%</b> Partners</li>
-                                            </ul>
-                                        </div>
-                                        <div className="token">
-                                            <h4>Token generation cap</h4>
-                                            <ul>
-                                                <li><b>1,000,000,000</b> ONE</li>
-                                            </ul>
-                                        </div>
-                                        <div className="token">
-                                            <h4>Token exchange</h4>
-                                            <ul>
-                                                <li><b>1 ONE - 12,000</b> ETH</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
                                 </div>
+                            </div>
 
-                                <div className="team left-side" style={{display: 'none'}}>
-                                    <h2>Team</h2>
-                                    <div className="team-member">
-                                        <span className="user-img"><img src={userIm} title="user" alt="user"/></span>
-                                        <div className="user-detail">
-                                            <div className="team-member-name"><a >@wethefuture</a></div>
-                                            <div className="designation">CTO</div>
+                            <div className="team left-side" style={{display: 'none'}}>
+                                <h2>Team</h2>
+                                <div className="team-member">
+                                    <span className="user-img"><img src={userIm} title="user" alt="user"/></span>
+                                    <div className="user-detail">
+                                        <div className="team-member-name"><a >@wethefuture</a></div>
+                                        <div className="designation">CTO</div>
+                                    </div>
+                                </div>
+                                <div className="team-member">
+                                    <span className="user-img"><img src={user2Im} title="user" alt="user"/></span>
+                                    <div className="user-detail">
+                                        <div className="team-member-name"><a >@greatthings</a></div>
+                                        <div className="designation">COO</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div className="reviews-and-comments expert-reviews left-side" style={{display: 'none'}}>
+                                <div className="Expert-Reviews">
+                                    <h3> Expert Reviews </h3>
+                                    <div className="boxinner">
+                                        <span className="oval-1">84%</span>
+                                        <div className="boxinner-text"> Blockchain Architect Guild<span>3,812 Reviews</span>
                                         </div>
                                     </div>
-                                    <div className="team-member">
-                                        <span className="user-img"><img src={user2Im} title="user" alt="user"/></span>
-                                        <div className="user-detail">
-                                            <div className="team-member-name"><a >@greatthings</a></div>
-                                            <div className="designation">COO</div>
+                                    <div className="boxinner">
+                                        <span className="oval-2">92%</span>
+                                        <div className="boxinner-text">Startup MBA Guild<span>401 Reviews</span>
                                         </div>
                                     </div>
                                 </div>
-
-
-                                <div className="reviews-and-comments expert-reviews left-side" style={{display: 'none'}}>
-                                    <div className="Expert-Reviews">
-                                        <h3> Expert Reviews </h3>
-                                        <div className="boxinner">
-                                            <span className="oval-1">84%</span>
-                                            <div className="boxinner-text"> Blockchain Architect Guild<span>3,812 Reviews</span>
-                                            </div>
-                                        </div>
-                                        <div className="boxinner">
-                                            <span className="oval-2">92%</span>
-                                            <div className="boxinner-text">Startup MBA Guild<span>401 Reviews</span>
-                                            </div>
-                                        </div>
+                                <div className="User-Reviews">
+                                    <h3>User Reviews</h3>
+                                    <div className="Profile">
+                                        <i className="fa fa-thumbs-up"></i>
+                                        12
                                     </div>
-                                    <div className="User-Reviews">
-                                        <h3>User Reviews</h3>
-                                        <div className="Profile">
-                                            <i className="fa fa-thumbs-up"></i>
-                                            12
-                                        </div>
-                                        <div className="Profile">
-                                            <i className="fa fa-thumbs-down"></i>
-                                            109
-                                        </div>
-
-                                    </div>
-                                    <div className="awesome-product-aw">
-                                        “Love what these guys are doing.” <br/>
-                                        <span className="name">- Blockchain Architect Guild</span>
+                                    <div className="Profile">
+                                        <i className="fa fa-thumbs-down"></i>
+                                        109
                                     </div>
 
+                                </div>
+                                <div className="awesome-product-aw">
+                                    “Love what these guys are doing.” <br/>
+                                    <span className="name">- Blockchain Architect Guild</span>
                                 </div>
 
                             </div>
 
-                            <div className="col-md-4">
-                                <div className="right-side-box">
-
-                                    <div className="green-bg">
-                                        <div className="start-in">STARTS IN</div>
-
-                                        <CountdownTimer date={new Date(Date.UTC(2018, 8, 17, 9, 0, 0)) }/>
-
-                                        <div className="sold-range">
-                                            <div className="who-and-how">
-                                                <span className="sold-amount">$-,---</span>
-                                                <span className="sold">Not Open Yet</span>
-                                            </div>
-                                            <div className="range-bar">
-                                                <span className="range-position"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="white-bg">
-                                        <h3>ONE Token</h3>
-                                        <div className="token-cal">
-                                            <div className="menlo-token">
-                                                <div className="name-token">Ethereum (ETH)</div>
-                                                <div className="tex-field">
-                                                    <input type="text" value={this.state.eth}
-                                                           onChange={this.onEditEth}/>
-                                                    <span>ETH</span>
-                                                </div>
-                                            </div>
-                                            <div className="arrow"></div>
-                                            <div className="bitkitties">
-                                                <div className="name-token">Menlo One (ONE)</div>
-                                                <div className="tex-field">
-                                                    <input type="text" value={this.state.tokens}
-                                                           onChange={this.onEditTokens}/>
-                                                    <span>ONE</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <a href="https://tokensale.menlo.one" className="green-btn" title="Buy Tokens">Buy Tokens</a>
-                                    </div>
-
-                                </div>
-
-                                <div className="token-metrics right-side-box white-bg">
-                                    <h4>Token Metrics</h4>
-                                    <ul>
-                                        <li>
-                                            <div className="name">Sale Date</div>
-                                            <div className="detail">September 17, 2018</div>
-                                        </li>
-                                        <li>
-                                            <div className="name">Token Supply</div>
-                                            <div className="detail">1 Billion</div>
-                                        </li>
-                                        <li>
-                                            <div className="name">Hour 1 Price Discount</div>
-                                            <div className="detail">30% discount</div>
-                                        </li>
-                                        <li>
-                                            <div className="name">Week 1 Price Discount</div>
-                                            <div className="detail">15% discount</div>
-                                        </li>
-                                        <li>
-                                            <div className="name">Week 2 Price Discount</div>
-                                            <div className="detail">10% discount</div>
-                                        </li>
-                                        <li>
-                                            <div className="name">Week 3 Price Discount</div>
-                                            <div className="detail">5% discount</div>
-                                        </li>
-                                        <li>
-                                            <div className="name">Lockup (team)</div>
-                                            <div className="detail">2 month lockup, 2 year vest</div>
-                                        </li>
-                                        <li>
-                                            <div className="name">Lockup (advisors)</div>
-                                            <div className="detail">2 month lockup, 2 year vest</div>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                            </div>
                         </div>
 
-                        <MessageBoard/>
+                        <div className="col-md-4">
+                            <div className="right-side-box">
+
+                                <div className="green-bg">
+                                    <div className="start-in">STARTS IN</div>
+
+                                    <CountdownTimer date={new Date(Date.UTC(2018, 8, 17, 9, 0, 0)) }/>
+
+                                    <div className="sold-range">
+                                        <div className="who-and-how">
+                                            <span className="sold-amount">$-,---</span>
+                                            <span className="sold">Not Open Yet</span>
+                                        </div>
+                                        <div className="range-bar">
+                                            <span className="range-position"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="white-bg">
+                                    <h3>ONE Token</h3>
+                                    <div className="token-cal">
+                                        <div className="menlo-token">
+                                            <div className="name-token">Ethereum (ETH)</div>
+                                            <div className="tex-field">
+                                                <input type="text" value={this.state.eth}
+                                                        onChange={this.onEditEth}/>
+                                                <span>ETH</span>
+                                            </div>
+                                        </div>
+                                        <div className="arrow"></div>
+                                        <div className="bitkitties">
+                                            <div className="name-token">Menlo One (ONE)</div>
+                                            <div className="tex-field">
+                                                <input type="text" value={this.state.tokens}
+                                                        onChange={this.onEditTokens}/>
+                                                <span>ONE</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="https://tokensale.menlo.one" className="green-btn" title="Buy Tokens">Buy Tokens</a>
+                                </div>
+
+                            </div>
+
+                            <div className="token-metrics right-side-box white-bg">
+                                <h4>Token Metrics</h4>
+                                <ul>
+                                    <li>
+                                        <div className="name">Sale Date</div>
+                                        <div className="detail">September 17, 2018</div>
+                                    </li>
+                                    <li>
+                                        <div className="name">Token Supply</div>
+                                        <div className="detail">1 Billion</div>
+                                    </li>
+                                    <li>
+                                        <div className="name">Hour 1 Price Discount</div>
+                                        <div className="detail">30% discount</div>
+                                    </li>
+                                    <li>
+                                        <div className="name">Week 1 Price Discount</div>
+                                        <div className="detail">15% discount</div>
+                                    </li>
+                                    <li>
+                                        <div className="name">Week 2 Price Discount</div>
+                                        <div className="detail">10% discount</div>
+                                    </li>
+                                    <li>
+                                        <div className="name">Week 3 Price Discount</div>
+                                        <div className="detail">5% discount</div>
+                                    </li>
+                                    <li>
+                                        <div className="name">Lockup (team)</div>
+                                        <div className="detail">2 month lockup, 2 year vest</div>
+                                    </li>
+                                    <li>
+                                        <div className="name">Lockup (advisors)</div>
+                                        <div className="detail">2 month lockup, 2 year vest</div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
                     </div>
+
+                    <MessageBoard/>
                 </div>
             </div>
+        </div>
         )
     }
 }

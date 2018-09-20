@@ -209,22 +209,25 @@ class MessageBoard extends Component {
                 <div className="col-md-8">
 
                     <div className="left-side">
-                        <div className="expert-reviews-1 left-side white-bg">
-                            <h4> ONE Powered Discussion </h4>
+                        <div className="left-side-wrapper">
+                            <div className="expert-reviews-1 left-side white-bg">
+                                <h2> ONE Powered Discussion </h2>
+                                <h6>If anyone makes money off your internet activity,<br />it should be you. Build a reputation and profit. </h6>
+                                <p>What is TownHall? Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation </p>
+                                <div className="comments">
+                                    <ul>
+                                        { this.renderMessages() }
 
-                            <div className="comments">
-                                <ul>
-                                    { this.renderMessages() }
-
-                                    {
-                                        this.state.showCompose &&
-                                        <li>
-                                            <div className='content'>
-                                                <MessageForm onSubmit={this.onSubmitMessage}/>
-                                            </div>
-                                        </li>
-                                    }
-                                </ul>
+                                        {
+                                            this.state.showCompose &&
+                                            <li>
+                                                <div className='content'>
+                                                    <MessageForm onSubmit={this.onSubmitMessage}/>
+                                                </div>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
