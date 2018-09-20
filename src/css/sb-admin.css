@@ -503,7 +503,7 @@ footer.sticky-footer {
 /***************/
 #mainNav {
     background-color: #0942ab !important;
-    height: 68px;
+    height: 55px;
 }
 
 #mainNav .navbar-collapse .navbar-nav > .nav-item.dropdown > .nav-link:after {
@@ -565,6 +565,8 @@ footer.sticky-footer {
     font-size: 15px;
     font-weight: 300;
     color: #fff;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 .nav-item .form-inline {
@@ -600,10 +602,6 @@ footer.sticky-footer {
     font-size: 16px;
 }
 
-#mainNav a#messagesDropdown {
-    padding-top: 12px;
-}
-
 .nav-item input.form-control {
     border: none;
     box-shadow: none;
@@ -627,6 +625,19 @@ footer.sticky-footer {
 #mainNav .navbar-brand {
     width: 150px;
     margin-right: 50px;
+    display: block;
+}
+
+.navbar-brand img {
+    display: block;
+    height: 20px;
+}
+
+.navbar-nav {
+    justify-content: center;
+    display: flex;
+    height: 55px;
+    align-items: center;
 }
 
 .navbar-expand-lg .navbar-nav.main li {
@@ -689,7 +700,6 @@ footer.sticky-footer {
     font-size: 18px;
     font-weight: 500;
     color: #fff;
-    line-height: 66px;
     padding-right: 3em;
 }
 
@@ -825,7 +835,10 @@ footer.sticky-footer {
 .header-buttons .btn {
     border: 1px solid #3E71CC;
     margin-left: 1rem;
-    color: #3E71CC
+    color: #3E71CC;
+    font-size: .8rem;
+    font-weight: 600;
+    padding: .3rem 1.5rem;
 }
 
 .total-comments span.user-img {

@@ -10,7 +10,7 @@ import MenloFaucetContract from './truffle_artifacts/contracts/MenloFaucet.json'
 
 import './css/sb-admin.css'
 
-const logo = require('./images/logo.jpg')
+const logo = require('./images/logo.svg')
 
 class TopNav extends Component {
 
