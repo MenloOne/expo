@@ -533,6 +533,7 @@ class ForumService {
         }
 
         this.refreshBalances()
+        this.refreshLotteries()
     }
 
     countReplies(id) {
@@ -689,6 +690,7 @@ class ForumService {
 
 
     async refreshLotteries() {
+        // TODO: Optimize multiple parties waiting here to just one call
         await this.synced
 
         await Promise.all([this.priorLottery.refresh(), this.currentLottery.refresh()])
