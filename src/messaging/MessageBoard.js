@@ -211,7 +211,7 @@ class MessageBoard extends Component {
                     <div className="left-side">
                         <div className="left-side-wrapper">
                             <div className="expert-reviews-1 left-side white-bg">
-                                <h2> ONE Powered Discussion </h2>
+                                <h2>Townhall</h2>
                                 <h6>If anyone makes money off your internet activity,<br />it should be you. Build a reputation and profit. </h6>
                                 <p>What is TownHall? Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation </p>
                                 <div className="comments">

@@ -16,6 +16,7 @@ const iconIm = require('./images/icon.png')
 const computer = require('./images/ICO_profile_page_svg.svg')
 // const whitePaperIm = require('./images/white-paper.png')
 // const globe = require('./images/globe.png')
+const townhall = require('./images/Townhall_valued_comment_svg.svg')
 
 class Profile extends Component {
 
@@ -90,7 +91,7 @@ class Profile extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-md-8">
-                                <div className="left-side">
+                            <div className="left-side">
                                 <div className="left-side-wrapper">
                                     <div className="top-users" style={{ display: 'none' }}>
                                         <div className="members">
@@ -200,85 +201,145 @@ class Profile extends Component {
                             <div className="right-side-box">
 
                                 <div className="green-bg">
-                                    <div className="start-in">STARTS IN</div>
-
-                                    <CountdownTimer date={new Date(Date.UTC(2018, 8, 17, 9, 0, 0)) }/>
-
-                                    <div className="sold-range">
-                                        <div className="who-and-how">
-                                            <span className="sold-amount">$-,---</span>
-                                            <span className="sold">Not Open Yet</span>
-                                        </div>
-                                        <div className="range-bar">
-                                            <span className="range-position"></span>
-                                        </div>
-                                    </div>
+                                    <div className="start-in">CONTENT NODE STATS</div>
+                                    <table className="stats">
+                                        <tr>
+                                            <td>
+                                                Node Earnings (In ONE)
+                                            </td>
+                                            <td>
+                                                34,233  ONE 
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Node Earnings (In USD)
+                                            </td>
+                                            <td>
+                                                $220 
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Content Node Cost (mo)
+                                            </td>
+                                            <td>
+                                                $19
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Content Node Reputation
+                                            </td>
+                                            <td>
+                                                440 (A+ Grade)
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Node Uptime
+                                            </td>
+                                            <td>
+                                                99%
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Annual ROI
+                                            </td>
+                                            <td>
+                                                91.4%
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </div>
-
-                                <div className="white-bg">
-                                    <h3>ONE Token</h3>
-                                    <div className="token-cal">
-                                        <div className="menlo-token">
-                                            <div className="name-token">Ethereum (ETH)</div>
-                                            <div className="tex-field">
-                                                <input type="text" value={this.state.eth}
-                                                        onChange={this.onEditEth}/>
-                                                <span>ETH</span>
-                                            </div>
-                                        </div>
-                                        <div className="arrow"></div>
-                                        <div className="bitkitties">
-                                            <div className="name-token">Menlo One (ONE)</div>
-                                            <div className="tex-field">
-                                                <input type="text" value={this.state.tokens}
-                                                        onChange={this.onEditTokens}/>
-                                                <span>ONE</span>
-                                            </div>
-                                        </div>
+                                <div className="white-bg content-node">
+                                    <a href="https://tokensale.menlo.one" className="green-btn" title="Buy Tokens">Apply to run a Content Node</a>
+                                    <div>
+                                        <p>
+                                            Menlo One Content Nodes are an<br />alpha stage project. If you would like to run a<br />Content Node, please contact us.
+                                        </p>
                                     </div>
-                                    <a href="https://tokensale.menlo.one" className="green-btn" title="Buy Tokens">Buy Tokens</a>
                                 </div>
 
                             </div>
+
+
+
 
                             <div className="token-metrics right-side-box white-bg">
                                 <h4>Token Metrics</h4>
                                 <ul>
                                     <li>
-                                        <div className="name">Sale Date</div>
-                                        <div className="detail">September 17, 2018</div>
+                                        <div className="name">Tokens in circulation</div>
+                                        <div className="detail">354,000,000</div>
+                                    </li>
+                                    <li>
+                                        <div className="name">Price</div>
+                                        <div className="detail">$0.03</div>
+                                    </li>
+                                    <li>
+                                        <div className="name">Volume</div>
+                                        <div className="detail">34,241</div>
                                     </li>
                                     <li>
                                         <div className="name">Token Supply</div>
-                                        <div className="detail">1 Billion</div>
-                                    </li>
-                                    <li>
-                                        <div className="name">Hour 1 Price Discount</div>
-                                        <div className="detail">30% discount</div>
-                                    </li>
-                                    <li>
-                                        <div className="name">Week 1 Price Discount</div>
-                                        <div className="detail">15% discount</div>
-                                    </li>
-                                    <li>
-                                        <div className="name">Week 2 Price Discount</div>
-                                        <div className="detail">10% discount</div>
-                                    </li>
-                                    <li>
-                                        <div className="name">Week 3 Price Discount</div>
-                                        <div className="detail">5% discount</div>
-                                    </li>
-                                    <li>
-                                        <div className="name">Lockup (team)</div>
-                                        <div className="detail">2 month lockup, 2 year vest</div>
-                                    </li>
-                                    <li>
-                                        <div className="name">Lockup (advisors)</div>
-                                        <div className="detail">2 month lockup, 2 year vest</div>
+                                        <div className="detail">50% discount</div>
                                     </li>
                                 </ul>
                             </div>
 
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="col-md-8">
+                            <div className="left-side">
+                                <div className="left-side-wrapper">
+                                    <h2>Build reputation, earn tokens</h2>
+                                    <h6>You know it’s secure, because you validate it yourself.</h6>
+                                    <div style={{display: 'flex'}}>
+                                        <img src={townhall} style={{ marginRight: '1rem' }} />
+                                        <div className="paragraph-details-wrapper">
+                                            <p>EXPLAIN WHY REPUTATION IS IMPORTANT HERE - Vallidate this page and begin earning tokens. ———Meow up on this idea, since if we built this game on the blockchain everything would’ve been easier to create. So here we are, the decentralized way to make games a </p>
+                                            <div className="points-wrapper">
+                                                <div className="point">
+                                                    <span className="points-label">
+                                                        REPUTATION
+                                                    </span>
+                                                    <span className="points-stat">
+                                                        2
+                                                    </span>
+                                                    </div>
+                                                    <div className="point">
+                                                        <span className="points-label">
+                                                            REWARD
+                                                    </span>
+                                                        <span className="points-stat">
+                                                            2 ONE
+                                                    </span>
+                                                    </div>
+                                                <div className="point">
+                                                    <span className="points-label">
+                                                        VALIDATION COST
+                                                    </span>
+                                                    <span className="points-stat">
+                                                        0.00013 ETH
+                                                    </span>
+                                                    </div>
+                                                    <div className="point">
+                                                        <span className="points-label">
+                                                            PROFIT
+                                                    </span>
+                                                        <span className="points-stat">
+                                                            13%
+                                                    </span>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 

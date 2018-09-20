@@ -4,7 +4,7 @@
 
 @media (min-width: 1200px) {
     .container {
-        max-width: 1420px;
+        max-width: 1250px;
     }
 }
 
@@ -881,6 +881,7 @@ span.location {
     border: solid 1px #ececed;
     display: inline-block;
     display: block;
+    margin-bottom: 2rem;
 }
 
 .left-side hr {
@@ -1404,9 +1405,9 @@ span.sold {
 }
 
 .token-metrics .name {
-    font-family: Inconsolata;
+    font-family: Titillium;
     font-size: 13px;
-    font-weight: bold;
+    font-weight: 600;
     font-style: normal;
     font-stretch: normal;
     line-height: 1.92;
@@ -1417,7 +1418,7 @@ span.sold {
 }
 
 .token-metrics .detail {
-    font-family: Inconsolata;
+    font-family: Open Sans;
     font-size: 13px;
     font-weight: normal;
     font-style: normal;
@@ -1927,6 +1928,36 @@ img {
     display: none;
 }
 
+table.stats {
+    width: 100%;
+}
+
+table.stats tr {
+    line-height: 2rem;
+    font-size: 14px;
+}
+
+.content-node a, .content-node a:hover {
+    font-weight: 600;
+}
+
+.content-node p {
+    font-size: .65rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+table.stats tr td:nth-child(1) {
+    font-weight: bold;
+    color: #40609A;
+    font-family: Titillium;
+}
+
+table.stats tr td:nth-child(2) {
+    color: #2E4168;
+    font-family: Open Sans;
+}
+
 .comments li.borderis:after {
     content: '';
     width: 1px;
@@ -2005,4 +2036,33 @@ img {
 .header-section .col-md-12 {
     display: flex;
     justify-content: flex-end;
+}
+
+.points-wrapper {
+    display: flex;
+}
+
+.point {
+    flex-direction: column;
+    display: flex;
+    text-align: center;
+    flex: 1;
+    border-right: 1px solid #6B768E;
+}
+
+.point:last-child {
+    border-right: none;
+}
+
+.points-label {
+    font-size: 10px;
+    font-family: Titillium;
+    color: #6B768E;
+}
+
+.points-stat {
+    font-size: 18px;
+    color: #40609A;
+    font-size: bold;
+    font-family: Open Sans;
 }
