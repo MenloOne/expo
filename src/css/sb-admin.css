@@ -1386,13 +1386,14 @@ span.sold {
 
 .white-bg h4 {
     font-family: Titillium web;
-    font-size: 20px;
+    font-size: 19px;
     font-weight: 600;
     font-style: normal;
     font-stretch: normal;
     line-height: normal;
     letter-spacing: normal;
     color: #2e4168;
+    margin-bottom: 1.5rem;
 }
 
 .token-metrics ul {
@@ -2065,4 +2066,51 @@ table.stats tr td:nth-child(2) {
     color: #40609A;
     font-size: bold;
     font-family: Open Sans;
+}
+
+.stats-wrapper {
+    overflow: hidden;
+}
+
+.stat {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    float: left;
+    margin-bottom: 1rem;
+}
+
+.number-circle {
+    border-radius: 50%;
+    color: white;
+    width: 2.75rem;
+    height: 2.75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: .5rem;
+}
+
+.stat:nth-child(even) .number-circle {
+    background: #FF7B30;
+}
+
+.stat:nth-child(odd) .number-circle {
+    background: #6EB735;
+}
+
+.stat-label-wrapper {
+    display: flex;
+    flex-direction: column;
+    font-size: 11px;
+}
+
+.stat-label-wrapper span:nth-child(1) {
+    color: #40609A;
+}
+
+.stat-label-wrapper span:nth-child(2) {
+    color: #6B768E;
 }

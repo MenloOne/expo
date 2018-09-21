@@ -153,6 +153,53 @@ class MessageBoard extends Component {
         )
     }
 
+    renderUserStats() {
+
+        return (
+            <div className="user-stats right-side-box white-bg">
+                <h4>User Metrics</h4>
+                <div className="stats-wrapper">
+                    <div className="stat">
+                        <div className="number-circle">
+                            <span>84%</span>
+                        </div>
+                        <div className="stat-label-wrapper">
+                            <span>Your Reputation</span>
+                            <span>3,812 Reviews</span>
+                        </div>
+                    </div>
+                    <div className="stat">
+                        <div className="number-circle">
+                            <span>102</span>
+                        </div>
+                        <div className="stat-label-wrapper">
+                            <span>ONE Tokens Earned</span>
+                            <span>($10 USD)</span>
+                        </div>
+                    </div>
+                    <div className="stat">
+                        <div className="number-circle">
+                            <span>12</span>
+                        </div>
+                        <div className="stat-label-wrapper">
+                            <span>Your Posts</span>
+                            <span>See Posts</span>
+                        </div>
+                    </div>
+                    <div className="stat">
+                        <div className="number-circle">
+                            <span>9</span>
+                        </div>
+                        <div className="stat-label-wrapper">
+                            <span>Paid Views</span>
+                            <span>Link</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
     renderLotteries() {
 
         let lotteries = [this.state.currentLottery, this.state.priorLottery]
@@ -235,7 +282,8 @@ class MessageBoard extends Component {
 
                 <div className="col-md-4">
                     <div className='right-side'>
-                        { this.renderLotteries() }
+                        {this.renderUserStats()}
+                        {this.renderLotteries()}
                     </div>
                 </div>
             </div>
