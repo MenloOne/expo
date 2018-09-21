@@ -2101,6 +2101,40 @@ table.stats tr td:nth-child(2) {
     background: #6EB735;
 }
 
+.userstats-countdown {
+    font-size: 11px;
+    letter-spacing: .02rem;
+    text-transform: uppercase;
+}
+
+.userstats-countdown-wrapper {
+    text-align: center;
+    font-family: "Titillium";
+    margin-top: 1rem;
+    color: #6B768E;
+}
+
+.userstats-timeblock-wrapper {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.userstats-timeblock {
+    flex: 1;
+}
+
+.userstats-block {
+    margin-top: 1rem;
+    font-size: 45px;
+    line-height: 45px;
+}
+
+.userstats-label {
+    font-size: 11px;
+}
+
 .stat-label-wrapper {
     display: flex;
     flex-direction: column;
