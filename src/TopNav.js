@@ -120,9 +120,9 @@ class TopNav extends Component {
                         <span className="name">{ this.props.eth.account }</span>
 
                         { false &&
-                        <span className="indicator text-primary d-none d-lg-block">
-                                          <i className="fa fa-fw fa-circle">3</i>
-                                        </span>
+                        <span className="avatar-indicator text-primary d-none d-lg-block">
+                            <i className="fa fa-fw fa-circle">3</i>
+                        </span>
                         }
                     </a>
                 </li>

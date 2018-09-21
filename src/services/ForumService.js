@@ -25,6 +25,8 @@ import MessagesGraph from '../storage/MessageBoardGraph'
 import HashUtils from '../HashUtils'
 import QPromise from '../utils/QPromise'
 
+const address0 = '0x0000000000000000000000000000000000000000'
+
 class Message {
 
     constructor(forum, id, parent, offset) {
@@ -63,44 +65,96 @@ class Lottery {
         this.offsets = [0,0]
     }
 
-    async refresh() {
+    updateEndTimeTimer() {
+        const date = new Date()
+        const now = date.getTime()
+        const self = this
+
+        if ( this.endTime < now ) {
+            // We're in a weird state where the server will continue the current lottery
+            // as soon as someone pays up.  Assume more time
+            const newDate = new Date(now + this.forum.lotteryLength)
+            this.endTime = newDate.getTime()
+        }
+
+        if (this.lotteryTimeout) {
+            clearTimeout(this.lotteryTimeout)
+            this.lotteryTimeout = null
+        }
+
+        if (now < this.endTime) {
+            this.lotteryTimeout = setTimeout(() => {
+                self.forum.refreshLotteries()
+            }, this.endTime - now)
+        }
+    }
+
+    async refresh(currentLottery, endTime, epochPrior, epochCurrent, epochLatest) {
         await this.forum.synced
+        const now = new Date()
+
+        // If time on server has run out.
+        // If there are winners in current, the next paying action will reconcile current -> last
+        const currentWinners = await this.winningAuthors([epochCurrent, epochLatest])
+        this.willReconcile = (endTime < now.getTime() && (currentWinners.length > 0))
 
         if (this.type == 'current') {
-            const epochLatest    = Math.max(this.forum.topicHashes.length, 1)
-            const epochCurrentBN = await this.forum.forum.epochCurrent.call()
-            var   epochCurrent   = Math.max(epochCurrentBN.toNumber(), 1)
-            this.offsets = [epochCurrent, epochLatest]
+            this.endTimeServer = endTime
 
-            const [poolBN] = await Promise.all([this.forum.forum.nextRewardPool.call()])
-            this.pool = poolBN.toNumber() / 10 ** 18
+            if (!this.endTime) {
+                this.endTime = this.endTimeServer
+            }
 
-            var bn = await this.forum.forum.currentLottery.call()
-            this.lotteryID = bn.toNumber()
+            if (this.willReconcile) {
+                // Make current == no new messages
+
+                this.lotteryID = currentLottery + 1
+                this.offsets = [epochLatest, epochLatest]
+                this.pool = 0
+                this.winners = []
+
+            } else {
+
+                this.lotteryID = currentLottery
+                this.offsets = [epochCurrent, epochLatest]
+                const [poolBN] = await Promise.all([this.forum.forum.nextRewardPool.call()])
+                this.pool = poolBN.toNumber() / 10 ** 18
+                this.winners = await this.winningAuthors()
+            }
+
+            this.hasEnded = false
+            this.updateEndTimeTimer()
+            this.iWon = false
 
         } else {
             // Last
 
-            const [epochPriorBN, epochCurrentBN] = await Promise.all([this.forum.forum.epochPrior.call(), this.forum.forum.epochCurrent.call()])
-            var   epochPrior   = Math.max(epochPriorBN.toNumber(), 1)
-            const epochCurrent = Math.max(epochCurrentBN.toNumber(), 1)
-            this.offsets  = [epochPrior, epochCurrent]
+            if (this.willReconcile) {
 
-            const poolBN = await this.forum.forum.rewardPool.call()
-            this.pool = poolBN.toNumber() / 10**18
+                this.lotteryID = currentLottery
+                this.offsets = [epochCurrent, epochLatest]
+                const [poolBN] = await Promise.all([this.forum.forum.nextRewardPool.call()])
+                this.pool = poolBN.toNumber() / 10**18
 
-            var bn = await this.forum.forum.currentLottery.call()
-            this.lotteryID = bn.toNumber()-1
+                this.winners = await this.winningAuthors()
+                this.payouts = this.winners
+
+            } else {
+
+                this.lotteryID = currentLottery -1
+                this.offsets = [epochPrior, epochCurrent]
+                const poolBN = await this.forum.forum.rewardPool.call()
+                this.pool = poolBN.toNumber() / 10**18
+
+                this.winners = await this.winningAuthors()
+                this.payouts = await Promise.all([0,1,2,3,4].map(i => this.forum.forum.payouts.call(i)))
+            }
+
+            this.hasEnded = true
+            this.claimed = (this.forum.claimedLotteries[this.lotteryID] == true)
+            this.iWon = (this.winners.filter(a => a === this.forum.account).length > 0)
         }
 
-        this.claimed = (this.forum.claimedLotteries[this.lotteryID] == true)
-        this.winners = await this.winningAuthors()
-        this.iWon = (this.hasEnded() && this.winners.filter(a => a === this.forum.account).length > 0)
-
-        if (this.iWon) {
-            // Check if server has already payed out
-            // TODO: Do this through event watch and lottery numbers...
-        }
 
         if (this.DEBUG) {
             const forum = this.forum.forum // SOL Contract
@@ -121,7 +175,6 @@ class Lottery {
                 votesCount: v.toNumber(),
                 postersCount: pc.toNumber(),
                 show: this.show(),
-                ended: this.hasEnded(),
                 currentType: this.currentType()
             })
 
@@ -131,9 +184,14 @@ class Lottery {
                 debug.votes.push(bn.toNumber())
             }
 
-            debug.payouts = []
-            for (let i = 0; i < 5; i++) {
-                debug.payouts.push(await forum.payouts.call(i))
+            if (this.payouts) {
+                debug.voters = []
+                for (let i = 0; i < 5; i++) {
+                    debug.voters.push (await Promise.all(this.payouts.map(async (user) => {
+                        let bn = await forum.voters.call(i, user)
+                        return { user, votes: bn.toNumber() }
+                    })))
+                }
             }
 
             debug.posters = []
@@ -141,58 +199,48 @@ class Lottery {
                 debug.posters.push(await forum.posters.call(i))
             }
 
-            debug.voters = []
-            for (let i = 0; i < debug.postersCount; i++) {
-                debug.voters.push (await Promise.all(this.winners.map(async (user) => {
-                    let bn = await forum.voters.call(i, user)
-                    return { user, votes: bn.toNumber() }
-                })))
-            }
-
             this.debug = debug
-            this.filled = true
         }
 
+        this.filled = true
         return this
     }
 
 
-    async winningMessages() {
-        const [from, to] = this.offsets
+    async winningMessages(offsets) {
+        const [from, to] = offsets || this.offsets
 
         if (to <= from) {
             return []
         }
 
         var eligibleMessages = []
-        var hasVotes = false
 
         for (let i = from; i < to; i++) {
             let msg = this.forum.getMessage(this.forum.topicHashes[i])
-            if (!msg) {
+            if (!msg || msg.votes <= 0) {
                 continue
             }
             eligibleMessages.push(msg)
-            hasVotes = hasVotes || (msg.votes != 0)
         }
 
         // No votes, no winners
-        if (!hasVotes) {
+        if (eligibleMessages.length == 0) {
             return []
         }
 
-        // Sort by votes descending, then offset ascending
+        // Sort by votes descending, then offset descending
         const winners = eligibleMessages.sort((a,b) => {
             let diff = b.votes - a.votes
-            return (diff === 0) ? a.offset - b.offset : diff
+            return (diff === 0) ? b.offset - a.offset : diff
         }).slice(0,5)
 
         // Filter out nulls
         return winners.filter(m => m != null && typeof m != 'undefined')
     }
 
-    async winningAuthors() {
-        let winners = await this.winningMessages()
+    async winningAuthors(offsets) {
+        let winners = await this.winningMessages(offsets)
         return winners.map(m => m.author)
     }
 
@@ -204,19 +252,16 @@ class Lottery {
 
     show() {
         return ((this.type === 'current') ||
-                (this.type === 'last' && this.offsets[1] != 1 && !this.forum.currentLotteryElapsed()))
+                (this.type === 'last' && this.offsets[1] != 1))
     }
 
-    hasEnded() {
-        if (this.currentType() === 'last' || this.offsets[1] < this.forum.topicHashes.length-1) {
-            return true
-        }
-
-        return this.forum.currentLotteryElapsed()
+    hasElapsedWithWinners() {
+        const now = new Date()
+        return ((now.getTime() > this.endTimeServer) &&  this.winners && this.winners.length > 0)
     }
 
     name() {
-        return this.hasEnded() ? 'Last' : 'Open'
+        return this.hasEnded ? 'Last' : 'Open'
     }
 
     totalWinners() {
@@ -246,6 +291,13 @@ class Lottery {
         if (this.totalWinners() < 4) { rest += r / 10 }
         if (this.totalWinners() < 5) { rest += r / 20 }
         */
+
+        if (this.hasEnded && !this.willReconcile) {
+            // Has this winner been paid out?
+            if (this.payouts[i] == address0) {
+                return 0
+            }
+        }
 
         return (me + rest / this.totalWinners())
     }
@@ -281,8 +333,10 @@ class ForumService {
 
 
     constructor() {
-        this.ready  = new QPromise((resolve) => { this.signalReady = resolve })
-        this.synced = new QPromise((resolve) => { this.signalSynced = resolve })
+        const self = this
+
+        this.ready  = new QPromise((resolve) => { self.signalReady = resolve })
+        this.synced = new QPromise((resolve) => { self.signalSynced = resolve })
 
         this.tokenContract = TruffleContract(TokenContract)
         this.forumContract = TruffleContract(ForumContract)
@@ -290,7 +344,7 @@ class ForumService {
         this.forum = null;
         this.remoteStorage = new RemoteIPFSStorage('ipfs.menlo.one', '443', {protocol: 'https'}) // new RemoteIPFSStorage('/ip4/127.0.0.1/tcp/5001')
         this.localStorage = new JavascriptIPFSStorage()
-        this.localStorage.connectPeer(this.remoteStorage)
+        // this.localStorage.connectPeer(this.remoteStorage)
 
         this.messages = new MessagesGraph()
         this.account = null;
@@ -299,6 +353,9 @@ class ForumService {
         this.claimedLotteries = {}
         this.priorLottery   = new Lottery(this, 'last')
         this.currentLottery = new Lottery(this, 'current')
+
+        // Callbacks
+        this.calculateLotteries = this.calculateLotteries.bind(this)
     }
 
     async setAccount(acct) {
@@ -340,8 +397,6 @@ class ForumService {
             this.epochPrior       = bn3.toNumber()
             this.lotteryLength    = bn4.toNumber() * 1000
 
-            await this.refreshEndLotteryTime()
-
             // Figure out cost for post
             // this.postGas = await this.token.transferAndCall.estimateGas(this.forum.address, 1 * 10**18, this.actions.post, ['0x0', '0x0000000000000000000000000000000000000000000000000000000000000000'])
             // this.voteGas = await this.token.transferAndCall.estimateGas(this.forum.address, 1 * 10**18, this.actions.upvote, ['0x0000000000000000000000000000000000000000000000000000000000000000'])
@@ -364,9 +419,7 @@ class ForumService {
     }
 
     currentLotteryElapsed() {
-        const now = new Date()
-        return ((now.getTime() > this.endLotteryTimeServer) &&  this.currentLottery.winners && (this.currentLottery.winners.length > 0))
-
+        return this.currentLottery.willReconcile
     }
 
     topicOffset(hash) {
@@ -390,13 +443,16 @@ class ForumService {
             }
             console.log('[[ Payout ]] ', payout)
 
+            if (payout.lottery < self.priorLottery.lotteryID) {
+                return
+            }
+
             if (payout.user.toLowerCase() === self.account) {
                 // Mark payout
                 self.claimedLotteries[payout.lottery] = true
                 if (self.priorLottery.lotteryID === payout.lottery) {
                     self.refreshLotteries()
                 }
-
             }
         })
     }
@@ -543,8 +599,7 @@ class ForumService {
     async refreshBalances() {
         await Promise.all([
             this.refreshTokenBalance(),
-            this.refreshRewardPool(true),
-            this.refreshEndLotteryTime(true),
+            this.refreshRewardPool(true)
         ])
 
         // Optimization - don't refresh lotteries, just lotteries time
@@ -603,30 +658,6 @@ class ForumService {
         return this.rewardPool
     }
 
-    async refreshEndLotteryTime() {
-        let timeBN = await this.forum.endTimestamp.call()
-        this.endLotteryTime = timeBN.toNumber() * 1000 // Convert to JS
-        this.endLotteryTimeServer = this.endLotteryTime
-
-        var now = new Date()
-        if (this.endLotteryTime < now.getTime() && !this.currentLotteryElapsed()) {
-            // We're in a weird state where the server will continue the current lottery
-            // as soon as someone pays up.  Assume more time
-            const newDate = new Date(now.getTime() + this.lotteryLength)
-            this.endLotteryTime = newDate.getTime()
-        }
-
-        if (this.lotteryTimeout) {
-            clearTimeout(this.lotteryTimeout)
-            this.lotteryTimeout = null
-        }
-
-        if (now.getTime() < this.endLotteryTime) {
-            this.lotteryTimeout = setTimeout(this.refreshLotteries.bind(this), this.endLotteryTime - now.getTime())
-        }
-
-        return this.endLotteryTime
-    }
 
     async rewards() {
         await this.ready
@@ -688,14 +719,37 @@ class ForumService {
         return message
     }
 
-
     async refreshLotteries() {
-        // TODO: Optimize multiple parties waiting here to just one call
         await this.synced
 
-        await Promise.all([this.priorLottery.refresh(), this.currentLottery.refresh()])
-        console.log('Lotteries: ', [this.priorLottery, this.currentLottery])
+        if (!this.calcLotteriesTimer) {
+            this.calcLotteriesTimer = setTimeout(this.calculateLotteries, 500)
+        }
+    }
 
+    async calculateLotteries() {
+        await this.synced
+
+        const now = new Date()
+        const [bn1, bn2, bn3, bn4] = await Promise.all([
+            this.forum.currentLottery.call(),
+            this.forum.endTimestamp.call(),
+            this.forum.epochCurrent.call(),
+            this.forum.epochPrior.call(),
+        ])
+        const currentLottery = bn1.toNumber()
+        const endTime        = bn2.toNumber() * 1000 // Convert to JS
+        const epochCurrent   = Math.max(bn3.toNumber(), 1)
+        const epochPrior     = Math.max(bn4.toNumber(), 1)
+        const epochLatest    = Math.max(this.topicHashes.length, 1)
+
+        await Promise.all([
+            this.priorLottery.refresh(currentLottery, endTime, epochPrior, epochCurrent, epochLatest),
+            this.currentLottery.refresh(currentLottery, endTime, epochPrior, epochCurrent, epochLatest)
+        ])
+        this.calcLotteriesTimer = null
+
+        console.log('Lotteries: ', [this.priorLottery, this.currentLottery])
         if (this.lotteriesCallback) {
             this.lotteriesCallback()
         }
@@ -713,7 +767,7 @@ class ForumService {
         }
 
         if (!this.currentLottery.filled || !this.priorLottery.filled) {
-            await this.refreshLotteries()
+            await this.calculateLotteries()
             signalGetLotteriesSync()
         }
 
@@ -749,7 +803,7 @@ class ForumService {
             ipfsHash = await this.localStorage.createMessage(ipfsMessage)
 
             // Pin it to ipfs.menlo.one
-            await this.remoteStorage.pin(ipfsHash)
+            // await this.remoteStorage.pin(ipfsHash)
 
             const hashSolidity = HashUtils.cidToSolidityHash(ipfsHash)
             let parentHashSolidity = ipfsMessage.parent

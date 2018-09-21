@@ -130,11 +130,15 @@ body.fixed-nav {
     font-family: 'FontAwesome';
 }
 
-#mainNav .navbar-collapse .navbar-nav > .nav-item.dropdown > .nav-link .indicator {
+.avatar-indicator {
     position: absolute;
     top: 5px;
     left: 21px;
     font-size: 10px;
+}
+
+.votes-indicator {
+
 }
 
 #mainNav .navbar-collapse .navbar-nav > .nav-item.dropdown.show > .nav-link:after {
@@ -525,28 +529,78 @@ footer.sticky-footer {
     margin-right: 15px;
 }
 
-#mainNav i.fa.fa-fw.fa-circle {
-    background-color: #1b6dff;
-    border: solid 2px #254fc0;
-    width: 23px;
+i.fa.fa-circle {
+    background-color: #1944a5;
+    border: solid 2px #fff;
+    color: #000;
+    font-family: 'Titillium web', 'Helvetica Neue';
+    font-weight: 900;
+    min-width: 23px;
     border-radius: 50%;
     height: 23px;
-    color: #fff;
-    font-family: Titillium web;
     font-size: 13px;
-    font-weight: 300;
     font-style: normal;
     font-stretch: normal;
     line-height: normal;
     letter-spacing: 1.3px;
     text-align: center;
-    color: #ffffff;
-    margin-top: 5px;
-    right: -17px;
+    margin-top: -1px;
+    right: -10px;
     position: relative;
+    padding: 1px 3px;
 }
 
-#mainNav i.fa.fa-fw.fa-circle:before {
+.votes-indicator .circle {
+    background-color: #1944a5;
+    font-family: 'Titillium web', 'Helvetica Neue';
+    font-weight: 900;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.5em;
+    letter-spacing: 1.3px;
+    text-align: center;
+    margin-top: -1px;
+    position: relative;
+    color: #fff;
+    font-size: 15px;
+    display: inline-block;
+    border-radius: 41%;
+    padding: 1px;
+    min-width: 20px;
+    min-height: 1.6em;
+}
+
+.votes-indicator .circle.mid {
+    border-radius: 0;
+    position: relative;
+    top: -7px;
+    border: 0;
+}
+
+.votes-indicator .circle.left {
+    width: 20px;
+    border-radius: 50%;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    min-width: auto;
+    margin:0;
+}
+.votes-indicator .circle.right {
+    width: 20px;
+    border-radius: 50%;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    min-width: auto;
+    margin:0;
+}
+
+
+
+.votes-indicator .fa-thumbs-up {
+    top: 0;
+}
+
+i.fa.fa-circle:before {
     display: none;
 }
 
@@ -561,7 +615,7 @@ footer.sticky-footer {
 
 #mainNav a#messagesDropdown {
     vertical-align: middle;
-    font-family: Titillium web;
+    font-family: 'Titillium web', 'Helvetica Neue';
     font-size: 15px;
     font-weight: 300;
     color: #fff;
@@ -685,7 +739,7 @@ footer.sticky-footer {
 }
 
 .token-number {
-    font-family: Titillium web;
+    font-family: 'Titillium web', 'Helvetica Neue';
     font-size: 18px;
     font-weight: 500;
     color: #fff;
@@ -720,14 +774,14 @@ span.game-img {
 }
 
 .game-detail h2 {
-    font-family: Titillium web;
+    font-family: 'Titillium web', 'Helvetica Neue';
     font-size: 26px;
     font-weight: 600;
     color: #2e4168;
 }
 
 .game-detail p {
-    font-family: Inconsolata;
+    font-family: 'Inconsolata', 'Courier New';
     font-size: 14px;
     line-height: 1.86;
     letter-spacing: normal;
@@ -738,7 +792,7 @@ span.game-img {
     border-radius: 3px;
     border: solid 1px #3e71cc;
     min-width: 107px;
-    font-family: Titillium web;
+    font-family: 'Titillium web', 'Helvetica Neue';
     font-size: 16px;
     font-weight: 600;
     font-style: normal;
@@ -779,7 +833,7 @@ span.game-img {
 }
 
 .locaton-tag {
-    font-family: Inconsolata;
+    font-family: 'Inconsolata', 'Courier New';
     font-size: 12px;
     color: #6b768e;
 }
@@ -875,7 +929,7 @@ hr {
 }
 
 .left-side .top-users h3 {
-    font-family: Titillium web;
+    font-family: 'Titillium web', 'Helvetica Neue';
     font-size: 14px;
     font-weight: 600;
     letter-spacing: 0.7px;
@@ -885,7 +939,7 @@ hr {
 
 .left-side .top-users .top-names,
 .left-side .top-users .top-names a {
-    font-family: Titillium web;
+    font-family: 'Titillium web', 'Helvetica Neue';
     font-size: 12px;
     font-weight: 600;
     color: #154dca;
@@ -897,7 +951,7 @@ hr {
 }
 
 .left-side h2 {
-    font-family: Titillium web;
+    font-family: 'Titillium web', 'Helvetica Neue';
     font-size: 14px;
     font-weight: 600;
     font-style: normal;
@@ -911,7 +965,7 @@ hr {
 }
 
 .left-side p {
-    font-family: Inconsolata;
+    font-family: 'Inconsolata', 'Courier New';
     font-size: 15px;
     font-weight: normal;
     font-style: normal;
@@ -928,7 +982,7 @@ hr {
 }
 
 .tokens-detail h4 {
-    font-family: Titillium web;
+    font-family: 'Titillium web', 'Helvetica Neue';
     font-size: 14px;
     font-weight: 600;
     letter-spacing: 0.7px;
@@ -946,7 +1000,7 @@ hr {
 .tokens-detail .token {
     width: 33.3%;
     padding-top: 15px;
-    font-family: Inconsolata;
+    font-family: 'Inconsolata', 'Courier New';
     padding-bottom: 10px;
 }
 
@@ -957,7 +1011,7 @@ hr {
 }
 
 .tokens-detail li {
-    font-family: Inconsolata;
+    font-family: 'Inconsolata', 'Courier New';
     font-size: 16px;
     line-height: 2.06;
     letter-spacing: 0px;
@@ -987,13 +1041,13 @@ hr {
 }
 
 .team .designation {
-    font-family: Inconsolata;
+    font-family: 'Inconsolata', 'Courier New';
     font-size: 12px;
     color: #6b768e;
 }
 
 .team h2 {
-    font-family: Titillium web;
+    font-family: 'Titillium web', 'Helvetica Neue';
     font-size: 14px;
     font-weight: bold;
     letter-spacing: 0.7px;
@@ -1027,7 +1081,7 @@ body {
 }
 
 .start-in {
-    font-family: Titillium web;
+    font-family: 'Titillium web', 'Helvetica Neue';
     font-size: 12px;
     font-weight: 600;
     font-style: normal;
@@ -1044,7 +1098,7 @@ body {
 }
 
 .lottery-block .winners {
-    font-family: Titillium web;
+    font-family: 'Titillium web', 'Helvetica Neue';
     font-size: 20px;
     flex: 1;
     display: flex;
@@ -1062,7 +1116,7 @@ body {
 
 .lottery-block .pedestal .rank {
     color: #a1aecb;
-    font-family: Titillium web;
+    font-family: 'Titillium web', 'Helvetica Neue';
     font-size: 12px;
     font-weight: 400;
     font-style: normal;
@@ -1075,7 +1129,7 @@ body {
 
 .lottery-block .pedestal .tokens {
     color: #7e87a0;
-    font-family: Titillium web;
+    font-family: 'Titillium web', 'Helvetica Neue';
     font-size: 15px;
     font-weight: 400;
     font-style: normal;
@@ -1130,7 +1184,7 @@ body {
 }
 
 .time-watch div {
-    font-family: Inconsolata;
+    font-family: 'Inconsolata', 'Courier New';
     font-size: 60px;
     font-weight: normal;
     font-style: normal;
@@ -1151,7 +1205,7 @@ body {
 }
 
 .time-watch div span {
-    font-family: Titillium web;
+    font-family: 'Titillium web', 'Helvetica Neue';
     font-size: 11px;
     font-weight: 400;
     font-style: normal;
@@ -1165,7 +1219,7 @@ body {
 
 
 span.sold-amount {
-    font-family: Titillium web;
+    font-family: 'Titillium web', 'Helvetica Neue';
     font-size: 32px;
     font-weight: normal;
     font-style: normal;
@@ -1180,7 +1234,7 @@ span.sold-amount {
 }
 
 span.sold {
-    font-family: Titillium web;
+    font-family: 'Titillium web', 'Helvetica Neue';
     font-size: 15px;
     font-weight: 600;
     font-style: normal;
@@ -1214,7 +1268,7 @@ span.sold {
 }
 
 .white-bg h3 {
-    font-family: Titillium web;
+    font-family: 'Titillium web', 'Helvetica Neue';
     font-size: 30px;
     font-weight: 400;
     font-style: normal;
@@ -1231,7 +1285,7 @@ span.sold {
     display: block;
     height: 77px;
     color: #fff;
-    font-family: Titillium web;
+    font-family: 'Titillium web', 'Helvetica Neue';
     font-size: 22px;
     font-weight: 300;
     font-style: normal;
@@ -1247,7 +1301,7 @@ span.sold {
 .white-bg p {
     max-width: 264px;
     height: 49px;
-    font-family: Inconsolata;
+    font-family: 'Inconsolata', 'Courier New';
     font-size: 13px;
     line-height: 1.54;
     text-align: center;
@@ -1268,7 +1322,7 @@ span.sold {
 }
 
 .name-token {
-    font-family: Titillium web;
+    font-family: 'Titillium web', 'Helvetica Neue';
     font-size: 13px;
     font-weight: 600;
     font-style: normal;
@@ -1280,7 +1334,7 @@ span.sold {
 }
 
 .offer {
-    font-family: Inconsolata;
+    font-family: 'Inconsolata', 'Courier New';
     font-size: 12px;
     font-weight: normal;
     font-style: normal;
@@ -1301,7 +1355,7 @@ span.sold {
     background-color: #ffffff;
     border: solid 1px #e7eaf1;
     padding: 16px;
-    font-family: Inconsolata;
+    font-family: 'Inconsolata', 'Courier New';
     font-size: 20px;
     font-weight: normal;
     font-style: normal;
@@ -1313,7 +1367,7 @@ span.sold {
 }
 
 .tex-field span {
-    font-family: Inconsolata;
+    font-family: 'Inconsolata', 'Courier New';
     font-size: 20px;
     font-weight: normal;
     font-style: normal;
@@ -1328,7 +1382,7 @@ span.sold {
 }
 
 .white-bg h4 {
-    font-family: Titillium web;
+    font-family: 'Titillium web', 'Helvetica Neue';
     font-size: 20px;
     font-weight: 600;
     font-style: normal;
@@ -1348,7 +1402,7 @@ span.sold {
 }
 
 .token-metrics .name {
-    font-family: Inconsolata;
+    font-family: 'Inconsolata', 'Courier New';
     font-size: 13px;
     font-weight: bold;
     font-style: normal;
@@ -1361,7 +1415,7 @@ span.sold {
 }
 
 .token-metrics .detail {
-    font-family: Inconsolata;
+    font-family: 'Inconsolata', 'Courier New';
     font-size: 13px;
     font-weight: normal;
     font-style: normal;
@@ -1405,7 +1459,7 @@ span.sold {
 .Expert-Reviews h3 {
     width: 572px;
     height: 15px;
-    font-family: Titillium web;
+    font-family: 'Titillium web', 'Helvetica Neue';
     font-size: 14px;
     font-weight: bold;
     font-style: normal;
@@ -1425,7 +1479,7 @@ span.sold {
 
 .Expert-Reviews .oval-2,
 .Expert-Reviews .oval-1 {
-    font-family: Inconsolata;
+    font-family: 'Inconsolata', 'Courier New';
     font-size: 16.8px;
     font-weight: bold;
     font-style: normal;
@@ -1448,7 +1502,7 @@ span.sold {
 }
 
 .Expert-Reviews .boxinner-text {
-    font-family: Inconsolata;
+    font-family: 'Inconsolata', 'Courier New';
     font-size: 12px;
     font-weight: normal;
     font-style: normal;
@@ -1482,7 +1536,7 @@ span.sold {
 
 .User-Reviews h3 {
     height: 15px;
-    font-family: Titillium web;
+    font-family: 'Titillium web', 'Helvetica Neue';
     font-size: 14px;
     font-weight: bold;
     font-style: normal;
@@ -1515,7 +1569,7 @@ span.sold {
 .User-Reviews .Profile {
     /*width: 22px;*/
     /*height: 12px;*/
-    font-family: Inconsolata;
+    font-family: 'Inconsolata', 'Courier New';
     font-size: 12px;
     font-weight: normal;
     font-style: normal;
@@ -1539,7 +1593,7 @@ span.sold {
 .awesome-product-aw {
     width: 715px;
     height: 48px;
-    font-family: Inconsolata;
+    font-family: 'Inconsolata', 'Courier New';
     font-size: 15px;
     font-weight: normal;
     font-style: normal;
@@ -1552,7 +1606,7 @@ span.sold {
 .awesome-product-aw .name {
     width: 163px;
     height: 24px;
-    font-family: Inconsolata;
+    font-family: 'Inconsolata', 'Courier New';
     font-size: 12px;
     font-weight: normal;
     font-style: normal;
@@ -1565,7 +1619,7 @@ span.sold {
 .awesome-product-aw p {
     /*width: 715px;*/
     height: 48px;
-    font-family: Inconsolata;
+    font-family: 'Inconsolata', 'Courier New';
     font-size: 15px;
     font-weight: normal;
     font-style: normal;
@@ -1620,7 +1674,7 @@ span.sold {
 }
 
 .comments .comments-text {
-    font-family: Inconsolata;
+    font-family: 'Inconsolata', 'Courier New';
     font-size: 15px;
     font-weight: normal;
     font-style: normal;
@@ -1632,7 +1686,7 @@ span.sold {
 }
 
 .comments .tag-name .btn {
-    font-family: Titillium web;
+    font-family: 'Titillium web', 'Helvetica Neue';
     font-size: 13px;
 
     font-weight: bold;
@@ -1656,16 +1710,39 @@ span.sold {
     cursor: pointer;
 }
 
+.comments-votes {
+    font-size: 1em;
+    margin: 0.5em 0;
+}
+
+.fa-lg {
+    font-size: 1.5em;
+}
+
+.fa-thumbs-down {
+    top: 3px;
+    position: relative;
+}
+
+.fa-thumbs-up {
+    top: -3px;
+    position: relative;
+}
+
+.comments-votes span {
+    margin-right: 1em;
+}
+
+.comments-review span {
+    margin-right: 20px;
+}
+
 .comments-review .blue {
     color: #1b6dff;
 }
 
 .comments-review span i {
     margin-right: 5px;;
-}
-
-.comments-review span {
-    margin-right: 20px;
 }
 
 .comments-review {
@@ -1690,7 +1767,7 @@ span.sold {
 
 .btn {
     border-radius: 3px;
-    font-family: Titillium web;
+    font-family: 'Titillium web', 'Helvetica Neue';
     font-size: 13px;
     font-weight: bold;
     font-style: normal;
@@ -1747,7 +1824,7 @@ span.sold {
 
 .right-side-box.moreinfo .info-item span {
     height: 30px;
-    font-family: Titillium web;
+    font-family: 'Titillium web', 'Helvetica Neue';
     font-size: 16px;
     font-weight: bold;
     font-style: normal;
@@ -1762,7 +1839,7 @@ span.sold {
 .right-side-box.moreinfo .info-item em {
     font-style: normal;
     height: 30px;
-    font-family: Inconsolata;
+    font-family: 'Inconsolata', 'Courier New';
     font-size: 12px;
     display: block;
     font-weight: normal;
@@ -1786,7 +1863,7 @@ span.sold {
 .right-side-box.alsolike h3,
 .right-side-box.moreinfo h3 {
     height: 20px;
-    font-family: Titillium web;
+    font-family: 'Titillium web', 'Helvetica Neue';
     font-size: 20px;
     font-weight: 600;
     font-style: normal;
@@ -1820,7 +1897,7 @@ span.sold {
 
 .right-side-box.alsolike .media-body > a {
     height: 15px;
-    font-family: Titillium web;
+    font-family: 'Titillium web', 'Helvetica Neue';
     font-size: 15px;
     font-weight: bold;
     font-style: normal;
@@ -1849,7 +1926,7 @@ span.sold {
 .right-side-box.alsolike .text-muted {
     width: 283px;
     height: 38px;
-    font-family: Inconsolata;
+    font-family: 'Inconsolata', 'Courier New';
     font-size: 12px;
     font-weight: normal;
     font-style: normal;
@@ -1885,7 +1962,7 @@ img {
 }
 
 .left-menus h3 {
-    font-family: Titillium web;
+    font-family: 'Titillium web', 'Helvetica Neue';
     font-size: 14.6px;
     font-weight: 600;
     line-height: normal;
@@ -1898,7 +1975,7 @@ img {
 }
 
 .left-menus ul li a, .left-menus ul li {
-    font-family: Inconsolata;
+    font-family: 'Inconsolata', 'Courier New';
     font-size: 12.8px;
     font-weight: normal;
     font-style: normal;

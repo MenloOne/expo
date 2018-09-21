@@ -120,7 +120,13 @@ class Message extends React.Component {
         }
 
         return (
-            <span>({ message.votes })</span>
+            <span className="votes-indicator text-primary d-lg-block">
+                <div className='circle left'/>
+                <div className='circle mid'>
+                    <i className='fa fa-fw fa-thumbs-up'/>{ message.votes }
+                </div>
+                <div className='circle right'/>
+            </span>
         )
     }
 
@@ -153,18 +159,29 @@ class Message extends React.Component {
                     <div className="comments-text">
                         {message.body}
                     </div>
-                    <div className="comments-review">
-                        <a onClick={this.upvote.bind(this)}    disabled={this.props.message.upvoteDisabled()}>  <span><i className="fa fa-caret-up"></i> Upvote { this.renderVotes() }</span></a>
-                        <a onClick={this.downvote.bind(this)}  disabled={this.props.message.downvoteDisabled()}><span><i className="fa fa-caret-down"></i> Downvote </span></a>
-                        {message.parent === '0x0' &&
-                            <a className="reply" onClick={this.showReplyForm.bind(this)}><span>Reply</span></a>
+                    <div className="comments-votes">
+                        { (!this.props.message.upvoteDisabled() || !this.props.message.downvoteDisabled()) &&
+                            <span>
+                                <a onClick={this.downvote.bind(this)}  disabled={this.props.message.downvoteDisabled()}><span><i className="fa fa-thumbs-down fa-lg"></i></span></a>
+                                <a onClick={this.upvote.bind(this)}    disabled={this.props.message.upvoteDisabled()}><span><i className="fa fa-thumbs-up fa-lg" ></i></span></a>
+                            </span>
                         }
+                        <span>{ this.renderVotes() }</span>
                     </div>
-                    {this.state.children.length > 0 &&
+                    { (this.state.children.length > 0 || message.parent === '0x0') &&
                         <div className="comments-review">
                             <span>
-                                { this.state.showReplies && <a onClick={() => this.showReplies(!this.state.showReplies)}> <em className="blue">Hide Replies </em></a> }
-                                { !this.state.showReplies && <a onClick={() => this.showReplies(!this.state.showReplies)}> <em className="blue">Show Replies</em> ({ message.children.length })</a> }
+                                { message.parent === '0x0' &&  <a className="reply" onClick={this.showReplyForm.bind(this)}><span>Reply</span></a> }
+                                {this.state.children.length > 0 &&
+                                <span>
+                                    {this.state.showReplies &&
+                                    <a onClick={() => this.showReplies(!this.state.showReplies)}> <em className="blue">Hide
+                                        Replies </em></a>}
+                                    {!this.state.showReplies &&
+                                    <a onClick={() => this.showReplies(!this.state.showReplies)}> <em className="blue">Show
+                                        Replies</em> ({message.children.length})</a>}
+                                    </span>
+                                }
                             </span>
                         </div>
                     }

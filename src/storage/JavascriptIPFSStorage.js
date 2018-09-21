@@ -39,7 +39,7 @@ class JavascriptIPFSStorage {
     }
 
     async fillMessage(message) {
-        let result = await promiseTimeout(5000, this.ipfs.dag.get(message.id))
+        let result = await promiseTimeout(15000, this.ipfs.dag.get(message.id))
         let ipfsMessage = result.value
 
         Object.assign(message, ipfsMessage)
