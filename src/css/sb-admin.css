@@ -602,6 +602,10 @@ i.fa.fa-circle {
     top: 0;
 }
 
+.votes-indicator[negative='true'] .circle {
+    background-color: #d10000;
+}
+
 i.fa.fa-circle:before {
     display: none;
 }
@@ -1726,12 +1730,16 @@ span.sold {
     position: relative;
 }
 
+.votes-indicator .fa-thumbs-down {
+    top: 0;
+}
+
 .fa-thumbs-up {
     top: -3px;
     position: relative;
 }
 
-.comments-votes span {
+.comments-votes .item {
     margin-right: 1em;
 }
 

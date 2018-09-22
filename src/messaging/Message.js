@@ -120,10 +120,14 @@ class Message extends React.Component {
         }
 
         return (
-            <span className="votes-indicator text-primary d-lg-block">
+            <span className="votes-indicator item text-primary d-lg-block" negative={(message.votes < 0) ? 'true' : 'false'}>
                 <div className='circle left'/>
                 <div className='circle mid'>
-                    <i className='fa fa-fw fa-thumbs-up'/>{ message.votes }
+                    {message.votes < 0 ?
+                        <span><i className='fa fa-fw fa-thumbs-down'/>{message.votes}</span>
+                        :
+                        <span><i className='fa fa-fw fa-thumbs-up'/>{message.votes}</span>
+                    }
                 </div>
                 <div className='circle right'/>
             </span>
@@ -160,31 +164,29 @@ class Message extends React.Component {
                         {message.body}
                     </div>
                     <div className="comments-votes">
-                        { (!this.props.message.upvoteDisabled() || !this.props.message.downvoteDisabled()) &&
-                            <span>
-                                <a onClick={this.downvote.bind(this)}  disabled={this.props.message.downvoteDisabled()}><span><i className="fa fa-thumbs-down fa-lg"></i></span></a>
-                                <a onClick={this.upvote.bind(this)}    disabled={this.props.message.upvoteDisabled()}><span><i className="fa fa-thumbs-up fa-lg" ></i></span></a>
-                            </span>
-                        }
                         <span>{ this.renderVotes() }</span>
-                    </div>
-                    { (this.state.children.length > 0 || message.parent === '0x0') &&
-                        <div className="comments-review">
+                        { (!this.props.message.upvoteDisabled() || !this.props.message.downvoteDisabled()) &&
+                            <span >
+                                    <a onClick={this.downvote.bind(this)}  disabled={this.props.message.downvoteDisabled()}><span className='item'><i className="fa fa-thumbs-down fa-lg"></i></span></a>
+                                    <a onClick={this.upvote.bind(this)}    disabled={this.props.message.upvoteDisabled()}><span className='item'><i className="fa fa-thumbs-up fa-lg" ></i></span></a>
+                                </span>
+                        }
+                        { (this.state.children.length > 0 || message.parent === '0x0') &&
+                        <span className='item'>
+                            { message.parent === '0x0' &&  <a className="reply" onClick={this.showReplyForm.bind(this)}><span>Reply</span></a> }
+                            {this.state.children.length > 0 &&
                             <span>
-                                { message.parent === '0x0' &&  <a className="reply" onClick={this.showReplyForm.bind(this)}><span>Reply</span></a> }
-                                {this.state.children.length > 0 &&
-                                <span>
-                                    {this.state.showReplies &&
-                                    <a onClick={() => this.showReplies(!this.state.showReplies)}> <em className="blue">Hide
-                                        Replies </em></a>}
-                                    {!this.state.showReplies &&
-                                    <a onClick={() => this.showReplies(!this.state.showReplies)}> <em className="blue">Show
-                                        Replies</em> ({message.children.length})</a>}
-                                    </span>
-                                }
-                            </span>
-                        </div>
-                    }
+                                {this.state.showReplies &&
+                                <a onClick={() => this.showReplies(!this.state.showReplies)}> <em className="blue">Hide
+                                    Replies </em></a>}
+                                {!this.state.showReplies &&
+                                <a onClick={() => this.showReplies(!this.state.showReplies)}> <em className="blue">Show
+                                    Replies</em> ({message.children.length})</a>}
+                                </span>
+                            }
+                        </span>
+                        }
+                    </div>
                     <ul>
                         {this.state.showReplies && this.renderReplies()}
                     </ul>
