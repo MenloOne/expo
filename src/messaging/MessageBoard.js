@@ -204,7 +204,7 @@ class MessageBoard extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="userstats-countdown-wrapper">
+                {/* <div className="userstats-countdown-wrapper">
                     <span className="userstats-countdown-label">Conversation Ends</span>
                     <div className="userstats-timeblock-wrapper">
                         <div className="userstats-timeblock">
@@ -236,7 +236,7 @@ class MessageBoard extends Component {
                             <div className="userstats-label">Seconds</div>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
         )
     }
