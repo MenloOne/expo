@@ -582,7 +582,7 @@ contract MenloTokenReceiver {
     ) public /* onlyTokenContract */ returns(bytes4);
 }
 
-contract MenloFaucet is Ownable {
+contract MenloFaucet is Ownable, CanReclaimToken {
 
     MenloToken token;
     uint256 tokens;

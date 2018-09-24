@@ -13,7 +13,7 @@ module.exports = (deployer, network) => {
             console.log('Deploying faucet')
             let menloFaucet = await deployer.deploy(MenloFaucet, MenloToken.address, 100 * 10**18, 24 * 60 * 60 /* One day */); // await MenloFaucet.deployed()
 
-            console.log('Transfer partner tokens to faucet')
+            console.log('Transfer partner tokens to faucet from ', process.env.ONE_OWNER)
             await token.transfer(menloFaucet.address, 100000 * 10**18, { from : process.env.ONE_OWNER }) // Give partner wallet tokens
         } catch (e) {
             throw(e)

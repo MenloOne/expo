@@ -82,7 +82,7 @@ class App extends React.Component {
             self.setState({
                 ethContext
             })
-        }, 1000)
+        }, 3000)
     }
 
 

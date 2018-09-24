@@ -31,13 +31,15 @@ class MessageBoard extends Component {
         this.onSubmitMessage = this.onSubmitMessage.bind(this)
         this.onChangeReplying = this.onChangeReplying.bind(this)
         this.claimWinnings = this.claimWinnings.bind(this)
+        this.refreshLotteries = this.refreshLotteries.bind(this)
+        this.refreshMessages = this.refreshMessages.bind(this)
     }
 
     componentDidMount() {
-        this.props.eth.forumService.subscribeMessages('0x0', this.refreshMessages.bind(this))
+        this.props.eth.forumService.subscribeMessages('0x0', this.refreshMessages)
         this.refreshMessages()
 
-        this.props.eth.forumService.subscribeLotteries(this.refreshLotteries.bind(this))
+        this.props.eth.forumService.subscribeLotteries(this.refreshLotteries)
         this.refreshLotteries()
     }
 
@@ -59,8 +61,7 @@ class MessageBoard extends Component {
         let lotteries = await svc.getLotteries()
         this.setState({
             ...lotteries,
-            endTimestamp: svc.endLotteryTime,
-            timeExtended: (svc.endLotteryTimeServer != svc.endLotteryTime)})
+            timeExtended: (lotteries.currentLottery.endTimeServer != lotteries.currentLottery.endTime)})
     }
 
     claimWinnings() {
@@ -109,11 +110,11 @@ class MessageBoard extends Component {
             <div className='lottery-block right-side'>
                 <h4>{ lottery.name() } Lottery</h4>
 
-                { !lottery.hasEnded() &&
+                { !lottery.hasEnded &&
                     <div>
                         <div className='message'>TIME { this.state.timeExtended ? 'EXTENDED' : 'LEFT' }</div>
                         <div className='time-left'>
-                            <CountdownTimer date={ new Date(this.state.endTimestamp) }/>
+                            <CountdownTimer date={ new Date(this.state.currentLottery.endTime) }/>
                         </div>
                     </div>
                 }
@@ -139,7 +140,10 @@ class MessageBoard extends Component {
                                                     <Blockies seed={a} size={10} scale={3}/>
                                                 </div>
                                                 <div className='rank'>{ this.ranks[i] }</div>
-                                                <div className='tokens'>{ Number(lottery.winnings(i)).toFixed(1) }<br/>ONE</div>
+                                                <div className='tokens'>
+                                                    { Number(lottery.winnings(i)) == 0 ? <span>PAID<br/>OUT</span> : Number(lottery.winnings(i)).toFixed(1) }
+                                                    { Number(lottery.winnings(i)) == 0 ? null : <span><br/>ONE</span> }
+                                                </div>
                                             </div>
                                         )
                                     })
@@ -147,7 +151,7 @@ class MessageBoard extends Component {
                             </div>
                         {   lottery.iWon && !lottery.claimed &&
                             <div className='claim'>
-                                <button className='btn claim-btn' onClick={this.claimWinnings}>CLAIM { Number(lottery.totalWinnings()).toFixed(1) } ONE TOKENS</button>
+                                <button className='btn claim-btn' onClick={this.claimWinnings}>CLAIM { Number(lottery.totalWinnings()).toFixed(2) } ONE TOKENS</button>
                             </div>
                         }
                         </div>

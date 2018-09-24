@@ -37,12 +37,14 @@ contract MenloForum is MenloTokenReceiver, MenloForumEvents, BytesDecode, Ownabl
     uint public constant ACTION_UPVOTE   = 2;
     uint public constant ACTION_DOWNVOTE = 3;
 
-    uint256 public epochLength;
+
     uint256 public currentLottery;
     uint256 public endTimestamp;
+    uint256 public rewardPool;
+
+    uint256 public epochLength;
     uint256 public epochPrior;
     uint256 public epochCurrent;
-    uint256 public rewardPool;
 
     mapping(uint256 => int256) public votes;
     mapping(uint256 => mapping(address => int8)) public voters;
@@ -79,7 +81,7 @@ contract MenloForum is MenloTokenReceiver, MenloForumEvents, BytesDecode, Ownabl
         return posters.length;
     }
 
-    function endEpoch() public returns (bool) {
+    function endEpoch(uint256 _tokensForNextEpoch) public returns (bool) {
         if (now < endTimestamp) {
             return false;
         }
@@ -112,6 +114,7 @@ contract MenloForum is MenloTokenReceiver, MenloForumEvents, BytesDecode, Ownabl
                 topVotes[j] = current;
                 winners[j] = i;
                 */
+
                 // the code below is equivalent to the commented code above
                 if (current > topVotes[2]) {
                     topVotes[4] = topVotes[3];
@@ -150,9 +153,10 @@ contract MenloForum is MenloTokenReceiver, MenloForumEvents, BytesDecode, Ownabl
             // votes[i] = 0 Should clean up memory?
         }
 
+        endTimestamp = now + epochLength;
+
         if (!hasVotes) {
-            endTimestamp = now + epochLength;
-            return true;
+            return false;
         }
 
         // write the new winners
@@ -161,7 +165,7 @@ contract MenloForum is MenloTokenReceiver, MenloForumEvents, BytesDecode, Ownabl
         }
 
         // refresh the pool
-        rewardPool = token.balanceOf(this);
+        rewardPool = token.balanceOf(this) - _tokensForNextEpoch;
 
         epochPrior = epochCurrent;
         epochCurrent = posters.length;
@@ -169,8 +173,6 @@ contract MenloForum is MenloTokenReceiver, MenloForumEvents, BytesDecode, Ownabl
         if (nextPostCost != postCost) {
             postCost = nextPostCost;
         }
-
-        endTimestamp = now + epochLength;
 
         return true;
     }
@@ -195,7 +197,7 @@ contract MenloForum is MenloTokenReceiver, MenloForumEvents, BytesDecode, Ownabl
     }
 
     function claim() external {
-        endEpoch();
+        endEpoch(0);
 
         if (rewardPool == 0) {
             return;
@@ -205,8 +207,7 @@ contract MenloForum is MenloTokenReceiver, MenloForumEvents, BytesDecode, Ownabl
         for (uint8 i = 0; i < 5; i++) {
             if (payouts[i] == msg.sender) {
                 uint256 rewardi = reward(i);
-                total      += rewardi;
-                rewardPool -= rewardi;
+                total += rewardi;
                 payouts[i] = 0;
             }
         }
@@ -271,7 +272,7 @@ contract MenloForum is MenloTokenReceiver, MenloForumEvents, BytesDecode, Ownabl
         uint offset;
         uint i;
 
-        endEpoch();
+        endEpoch(_value);
 
         if (_action == ACTION_UPVOTE) {
             require(usesONE(_value, voteCost), "Voting tokens sent != cost");
