@@ -14,6 +14,13 @@ const arrowRight = require('../images/arrow-right.svg')
 const globe = require('../images/icon-globe.svg')
 const paper = require('../images/icon-paper.svg')
 
+
+const twitter = require('../images/twitter.svg')
+const facebook = require('../images/facebook.svg')
+const github = require('../images/github.svg')
+// const slack = require('../images/slack.svg')
+const telegram = require('../images/telegram.svg')
+
 class MessageBoard extends Component {
 
     state = {
@@ -265,6 +272,35 @@ class MessageBoard extends Component {
                             <img src={arrowRight} className="arrow-right" />
                         </div>
                     </a>
+                </div>
+                <div className="moreinfo-social-wrapper">
+                    <ul>
+                        <li>
+                            <a href="https://twitter.com/menloone?lang=en" target="_blank">
+                                <img src={twitter} alt="Menlo One Twitter" />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/menloone/" target="_blank">
+                                <img src={facebook} alt="Menlo One Facebook" />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/MenloOne" target="_blank">
+                                <img src={github} alt="Menlo One Github" />
+                            </a>
+                        </li>
+                        {/* <li>
+                            <a href="" target="_blank">
+                                <img src={slack} alt="Menlo One Slack" />
+                            </a>
+                        </li> */}
+                        <li>
+                            <a href="https://t.me/Menloone" target="_blank">
+                                <img src={telegram} alt="Menlo One Telegram" />
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         )
