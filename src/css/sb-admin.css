@@ -23,6 +23,7 @@ body.sticky-footer {
 
 body.sticky-footer .content-wrapper {
     min-height: calc(100vh - 56px - 56px);
+    box-shadow: inset 3px 3px 8px #00000012;
 }
 
 body.fixed-nav {
@@ -768,9 +769,11 @@ i.fa.fa-circle:before {
 }
 
 .game-token {
+    overflow: hidden;
+    overflow-y: scroll;
     margin-bottom: 0px;
-    padding-top: 27px;
-    padding-bottom: 27px;
+    padding-top: 23px;
+    padding-bottom: 23px;
     vertical-align: top;
     float: left;
     clear: both;
@@ -784,7 +787,6 @@ i.fa.fa-circle:before {
 
 .game-img {
     width: 150px;
-    margin-right: 2rem;
     margin-bottom: 2rem;
     align-items: center;
     display: flex;
@@ -893,20 +895,20 @@ i.fa.fa-circle:before {
 
 .header-buttons {
     width: 100%;
-    padding-top: 10px;
 }
 
 .header-buttons .btn {
     border: 1px solid #3E71CC;
-    margin-left: 1rem;
+    margin-right: 1rem;
     color: #3E71CC;
     font-size: .8rem;
     font-weight: 600;
     padding: .3rem 1.5rem;
+    margin-top: 10px;
 }
 
-.header-buttons .btn:first-child {
-    margin-left: 0;
+.header-buttons .btn:last-child {
+    margin-right: 0;
 }
 
 .total-comments span.user-img {
@@ -931,7 +933,13 @@ span.location {
 
 .content-wrapper {
     clear: both;
-    background-color: #f9f9f9;
+    background-color: #e7eaec;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f3f5f7+0,e7eaec+100 */
+    background: #f3f5f7; /* Old browsers */
+    background: -moz-linear-gradient(top, #f3f5f7 0%, #e7eaec 120%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #f3f5f7 0%,#e7eaec 120%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #f3f5f7 0%,#e7eaec 120%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3f5f7', endColorstr='#e7eaec',GradientType=0 ); /* IE6-9 */
 }
 
 .content-wrapper .container {
@@ -945,7 +953,8 @@ span.location {
 
 .left-side {
     border-radius: 6px;
-    background-color: #ffffff;
+    background-color: #fafafa;
+    box-shadow: inset 0 0 60px white;
     border: solid 1px #ececed;
     display: inline-block;
     display: block;
@@ -958,6 +967,7 @@ span.location {
 
 .left-side-wrapper {
     padding: 32px;
+    box-shadow: 0 2px 4px #0000000f;
 }
 
 .left-side h6 {
@@ -1150,6 +1160,7 @@ body {
     display: inline-block;
     display: block;
     margin-bottom: 35px;
+    box-shadow: 0 2px 4px #0000000f;
 }
 
 .green-bg {
@@ -1342,6 +1353,12 @@ span.sold {
 
 .white-bg {
     padding: 30px 32px 21px;
+    background-color: #fafafa;
+    box-shadow: inset 0 0 60px white;
+}
+
+.white-bg.right-side-box {
+    box-shadow: inset 0 0 60px white, 0 2px 4px #0000000f;
 }
 
 .white-bg h3 {
