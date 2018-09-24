@@ -10,17 +10,6 @@ import CountdownTimer from '../CountdownTimer'
 
 import '../css/sb-admin.css'
 
-const arrowRight = require('../images/arrow-right.svg')
-const globe = require('../images/icon-globe.svg')
-const paper = require('../images/icon-paper.svg')
-
-
-const twitter = require('../images/twitter.svg')
-const facebook = require('../images/facebook.svg')
-const github = require('../images/github.svg')
-// const slack = require('../images/slack.svg')
-const telegram = require('../images/telegram.svg')
-
 class MessageBoard extends Component {
 
     state = {
@@ -248,64 +237,6 @@ class MessageBoard extends Component {
         )
     }
 
-    renderMoreInfo() {
-        return (
-            <div className="user-stats right-side-box white-bg">
-                <h4>More Info</h4>
-                <div className="moreinfo-btns-wrapper">
-                    <a href="http://menlo.one">
-                        <div className="moreinfo-btn">
-                            <img src={paper} className="icon-paper" />
-                            <div className="moreinfo-btn-textwrapper">
-                                <span>White Paper</span>
-                            </div>
-                            <img src={arrowRight} className="arrow-right" />
-                        </div>
-                    </a>
-                    <a href="http://menlo.one">
-                        <div className="moreinfo-btn">
-                            <img src={globe} className="icon-globe" />
-                            <div className="moreinfo-btn-textwrapper">
-                                <span>Website</span>
-                                <span>http://menlo.one</span>
-                            </div>
-                            <img src={arrowRight} className="arrow-right" />
-                        </div>
-                    </a>
-                </div>
-                <div className="moreinfo-social-wrapper">
-                    <ul>
-                        <li>
-                            <a href="https://twitter.com/menloone?lang=en" target="_blank">
-                                <img src={twitter} alt="Menlo One Twitter" />
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.facebook.com/menloone/" target="_blank">
-                                <img src={facebook} alt="Menlo One Facebook" />
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://github.com/MenloOne" target="_blank">
-                                <img src={github} alt="Menlo One Github" />
-                            </a>
-                        </li>
-                        {/* <li>
-                            <a href="" target="_blank">
-                                <img src={slack} alt="Menlo One Slack" />
-                            </a>
-                        </li> */}
-                        <li>
-                            <a href="https://t.me/Menloone" target="_blank">
-                                <img src={telegram} alt="Menlo One Telegram" />
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        )
-    }
-
     renderLotteries() {
 
         let lotteries = [this.state.currentLottery, this.state.priorLottery]
@@ -390,7 +321,6 @@ class MessageBoard extends Component {
                     <div className='right-side'>
                         {this.renderUserStats()}
                         {this.renderLotteries()}
-                        {this.renderMoreInfo()}
                     </div>
                 </div>
             </div>

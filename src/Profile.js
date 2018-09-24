@@ -9,6 +9,17 @@ import './css/sb-admin.css'
 
 import assets from 'assets'
 
+const arrowRight = require('./images/arrow-right.svg')
+const globe = require('./images/icon-globe.svg')
+const paper = require('./images/icon-paper.svg')
+
+
+const twitter = require('./images/twitter.svg')
+const facebook = require('./images/facebook.svg')
+const github = require('./images/github.svg')
+// const slack = require('./images/slack.svg')
+const telegram = require('./images/telegram.svg')
+
 // const screenshot = require('./images/screenshot.png')
 const userIm = require('./images/user-1.png')
 const user2Im = require('./images/user-2.png')
@@ -53,6 +64,64 @@ class Profile extends Component {
         let tokens = evt.target.value
         let eth = Math.round((tokens / (12000)) * 100) / 100
         this.setState({eth: eth, tokens: tokens})
+    }
+
+    renderMoreInfo() {
+        return (
+            <div className="user-stats right-side-box white-bg">
+                <h4>More Info</h4>
+                <div className="moreinfo-btns-wrapper">
+                    <a href="http://menlo.one">
+                        <div className="moreinfo-btn">
+                            <img src={paper} className="icon-paper" />
+                            <div className="moreinfo-btn-textwrapper">
+                                <span>White Paper</span>
+                            </div>
+                            <img src={arrowRight} className="arrow-right" />
+                        </div>
+                    </a>
+                    <a href="http://menlo.one">
+                        <div className="moreinfo-btn">
+                            <img src={globe} className="icon-globe" />
+                            <div className="moreinfo-btn-textwrapper">
+                                <span>Website</span>
+                                <span>http://menlo.one</span>
+                            </div>
+                            <img src={arrowRight} className="arrow-right" />
+                        </div>
+                    </a>
+                </div>
+                <div className="moreinfo-social-wrapper">
+                    <ul>
+                        <li>
+                            <a href="https://twitter.com/menloone?lang=en" target="_blank">
+                                <img src={twitter} alt="Menlo One Twitter" />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/menloone/" target="_blank">
+                                <img src={facebook} alt="Menlo One Facebook" />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/MenloOne" target="_blank">
+                                <img src={github} alt="Menlo One Github" />
+                            </a>
+                        </li>
+                        {/* <li>
+                            <a href="" target="_blank">
+                                <img src={slack} alt="Menlo One Slack" />
+                            </a>
+                        </li> */}
+                        <li>
+                            <a href="https://t.me/Menloone" target="_blank">
+                                <img src={telegram} alt="Menlo One Telegram" />
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        )
     }
 
     render() {
@@ -191,10 +260,54 @@ class Profile extends Component {
                                     <span className="name">- Blockchain Architect Guild</span>
                                 </div>
 
+                                </div>
+                                <div className="left-side">
+                                    <div className="left-side-wrapper">
+                                        <h2>Build reputation, earn tokens</h2>
+                                        <h6>You know it’s secure, because you validate it yourself.</h6>
+                                        <div style={{ display: 'flex' }}>
+                                            <img src={townhall} style={{ marginRight: '1rem' }} />
+                                            <div className="paragraph-details-wrapper">
+                                                <p>EXPLAIN WHY REPUTATION IS IMPORTANT HERE - Vallidate this page and begin earning tokens. ———Meow up on this idea, since if we built this game on the blockchain everything would’ve been easier to create. So here we are, the decentralized way to make games a </p>
+                                                <div className="points-wrapper">
+                                                    <div className="point">
+                                                        <span className="points-label">
+                                                            REPUTATION
+                                                </span>
+                                                        <span className="points-stat">
+                                                            2
+                                                </span>
+                                                    </div>
+                                                    <div className="point">
+                                                        <span className="points-label">
+                                                            REWARD
+                                                </span>
+                                                        <span className="points-stat">
+                                                            2 ONE
+                                                </span>
+                                                    </div>
+                                                    <div className="point">
+                                                        <span className="points-label">
+                                                            VALIDATION COST
+                                                </span>
+                                                        <span className="points-stat">
+                                                            0.00013 ETH
+                                                </span>
+                                                    </div>
+                                                    <div className="point">
+                                                        <span className="points-label">
+                                                            PROFIT
+                                                </span>
+                                                        <span className="points-stat">
+                                                            13%
+                                                </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-
-                        </div>
-
                         <div className="col-md-4">
                             <div className="right-side-box">
 
@@ -264,7 +377,6 @@ class Profile extends Component {
 
 
 
-
                             <div className="token-metrics right-side-box white-bg">
                                 <h4>Token Metrics</h4>
                                 <ul>
@@ -287,59 +399,12 @@ class Profile extends Component {
                                 </ul>
                             </div>
 
-                        </div>
-                    </div>
+                            {this.renderMoreInfo()}
 
-                    <div className="row">
-                        <div className="col-md-8">
-                            <div className="left-side">
-                                <div className="left-side-wrapper">
-                                    <h2>Build reputation, earn tokens</h2>
-                                    <h6>You know it’s secure, because you validate it yourself.</h6>
-                                    <div style={{display: 'flex'}}>
-                                        <img src={townhall} style={{ marginRight: '1rem' }} />
-                                        <div className="paragraph-details-wrapper">
-                                            <p>EXPLAIN WHY REPUTATION IS IMPORTANT HERE - Vallidate this page and begin earning tokens. ———Meow up on this idea, since if we built this game on the blockchain everything would’ve been easier to create. So here we are, the decentralized way to make games a </p>
-                                            <div className="points-wrapper">
-                                                <div className="point">
-                                                    <span className="points-label">
-                                                        REPUTATION
-                                                    </span>
-                                                    <span className="points-stat">
-                                                        2
-                                                    </span>
-                                                    </div>
-                                                    <div className="point">
-                                                        <span className="points-label">
-                                                            REWARD
-                                                    </span>
-                                                        <span className="points-stat">
-                                                            2 ONE
-                                                    </span>
-                                                    </div>
-                                                <div className="point">
-                                                    <span className="points-label">
-                                                        VALIDATION COST
-                                                    </span>
-                                                    <span className="points-stat">
-                                                        0.00013 ETH
-                                                    </span>
-                                                    </div>
-                                                    <div className="point">
-                                                        <span className="points-label">
-                                                            PROFIT
-                                                    </span>
-                                                        <span className="points-stat">
-                                                            13%
-                                                    </span>
-                                                    </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
+
                         </div>
-                    </div>
+
 
                     <MessageBoard/>
                 </div>
