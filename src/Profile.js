@@ -9,7 +9,7 @@ import './css/sb-admin.css'
 
 import assets from 'assets'
 
-const screenshot = require('./images/screenshot.png')
+// const screenshot = require('./images/screenshot.png')
 const userIm = require('./images/user-1.png')
 const user2Im = require('./images/user-2.png')
 const iconIm = require('./images/icon.png')
@@ -137,9 +137,7 @@ class Profile extends Component {
                                 </div>
                                 <hr />
                                 <div className="left-side-wrapper">
-                                    <div className='screenshot' src={screenshot} style={{ width: '100%', minHeight: '441px' }}>
-                                        <ResponsiveEmbed src='https://www.youtube.com/embed/yuohXyDP1pk?rel=0' allowFullScreen />
-                                    </div>
+                                    <ResponsiveEmbed src='https://www.youtube.com/embed/yuohXyDP1pk?rel=0' allowFullScreen />
                                 </div>
                             </div>
 
