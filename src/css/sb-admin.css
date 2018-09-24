@@ -1253,24 +1253,24 @@ body {
 }
 
 .time-watch div {
-    font-family: 'Inconsolata', 'Courier New';
-    font-size: 60px;
+    font-family: "Titillium";
+    color: #6B768E;
+    font-size: 50px;
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
-    line-height: normal;
+    line-height: 40px;
     letter-spacing: normal;
     text-align: center;
-    color: #2e4168;
     width: auto;
     display: inline-block;
     vertical-align: top;
 }
 
 .time-watch div.dots {
-    color: #cfd5e4;
+    color: #6B768E;
     width: 16px;
-    margin: -6px 10px 0 0;
+    margin: -6px 6px 0;
 }
 
 .time-watch div span {
