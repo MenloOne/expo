@@ -2148,3 +2148,36 @@ table.stats tr td:nth-child(2) {
 .stat-label-wrapper span:nth-child(2) {
     color: #6B768E;
 }
+
+.moreinfo-btn {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    padding:.6rem;
+    margin-bottom: .33rem;
+    border: 1px solid #ECECED;
+    border-radius: .2rem;
+}
+
+.moreinfo-btn-textwrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.moreinfo-btn-textwrapper span:nth-child(1) {
+    color: #2E4168;
+    font-size: .9em;
+    font-weight: 600;
+}
+
+.moreinfo-btn-textwrapper span:nth-child(2) {
+    color: #6B768E;
+    font-size: .7em;
+}
+
+.moreinfo-btn [class*=icon] {
+    margin-right: 1rem;
+    width: 2.2rem;
+}

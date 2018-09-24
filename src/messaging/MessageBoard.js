@@ -10,6 +10,10 @@ import CountdownTimer from '../CountdownTimer'
 
 import '../css/sb-admin.css'
 
+const arrowRight = require('../images/arrow-right.svg')
+const globe = require('../images/icon-globe.svg')
+const paper = require('../images/icon-paper.svg')
+
 class MessageBoard extends Component {
 
     state = {
@@ -233,6 +237,35 @@ class MessageBoard extends Component {
         )
     }
 
+    renderMoreInfo() {
+        return (
+            <div className="user-stats right-side-box white-bg">
+                <h4>More Info</h4>
+                <div className="moreinfo-btns-wrapper">
+                    <a href="http://menlo.one">
+                        <div className="moreinfo-btn">
+                            <img src={paper} className="icon-paper" />
+                            <div className="moreinfo-btn-textwrapper">
+                                <span>White Paper</span>
+                            </div>
+                            <img src={arrowRight} className="arrow-right" />
+                        </div>
+                    </a>
+                    <a href="http://menlo.one">
+                        <div className="moreinfo-btn">
+                            <img src={globe} className="icon-globe" />
+                            <div className="moreinfo-btn-textwrapper">
+                                <span>Website</span>
+                                <span>http://menlo.one</span>
+                            </div>
+                            <img src={arrowRight} className="arrow-right" />
+                        </div>
+                    </a>
+                </div>
+            </div>
+        )
+    }
+
     renderLotteries() {
 
         let lotteries = [this.state.currentLottery, this.state.priorLottery]
@@ -317,6 +350,7 @@ class MessageBoard extends Component {
                     <div className='right-side'>
                         {this.renderUserStats()}
                         {this.renderLotteries()}
+                        {this.renderMoreInfo()}
                     </div>
                 </div>
             </div>
