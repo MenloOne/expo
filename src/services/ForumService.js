@@ -18,7 +18,6 @@ import TruffleContract from 'truffle-contract'
 import TokenContract from '../truffle_artifacts/contracts/MenloToken.json'
 import ForumContract from '../truffle_artifacts/contracts/MenloForum.json'
 
-import JavascriptIPFSStorage from '../storage/JavascriptIPFSStorage'
 import RemoteIPFSStorage from '../storage/RemoteIPFSStorage'
 import MessagesGraph from '../storage/MessageBoardGraph'
 
@@ -342,9 +341,7 @@ class ForumService {
         this.forumContract = TruffleContract(ForumContract)
 
         this.forum = null;
-        this.remoteStorage = new RemoteIPFSStorage('ipfs.menlo.one', '443', {protocol: 'https'}) // new RemoteIPFSStorage('/ip4/127.0.0.1/tcp/5001')
-        this.localStorage = new JavascriptIPFSStorage()
-        // this.localStorage.connectPeer(this.remoteStorage)
+        this.remoteStorage = new RemoteIPFSStorage()
 
         this.messages = new MessagesGraph()
         this.account = null;
@@ -531,7 +528,7 @@ class ForumService {
         }
 
         try {
-            await Promise.all([this.updateVotesData(message), this.localStorage.fillMessage(message)])
+            await Promise.all([this.updateVotesData(message), this.remoteStorage.fillMessage(message)])
             message.filled = true
 
             // console.log('onModified ',message)
@@ -789,21 +786,19 @@ class ForumService {
         await this.ready
 
         const ipfsMessage = {
-            version: '1',
+            version: 1,
+            offset: this.topicHashes.length,
             parent: parentHash || '0x0', // Do we need this since its in Topic?
             author: this.account,
             date: Date.now(),
             body,
         }
 
-        var ipfsHash
+        let ipfsHash
 
         try {
-            // Create message and save to it local in-browser IPFS
-            ipfsHash = await this.localStorage.createMessage(ipfsMessage)
-
-            // Pin it to ipfs.menlo.one
-            await this.remoteStorage.pin(ipfsHash)
+            // Create message and pin it to remote IPFS
+            ipfsHash = await this.remoteStorage.createMessage(ipfsMessage)
 
             const hashSolidity = HashUtils.cidToSolidityHash(ipfsHash)
             let parentHashSolidity = ipfsMessage.parent
@@ -823,7 +818,7 @@ class ForumService {
         } catch (e) {
             if (ipfsHash) {
                 // Failed - unpin it from ipfs.menlo.one
-                this.localStorage.rm(ipfsHash)
+                // this.localStorage.rm(ipfsHash)
                 this.remoteStorage.unpin(ipfsHash)
             }
 

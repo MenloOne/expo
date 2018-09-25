@@ -43,8 +43,9 @@ thisExport.solidityHashToCid = (_hash) => {
         hash = hash.slice(2, 66)
     }
 
-    let encodedHash = multihash.encode(multihash.fromHexString(hash), 'keccak-256')
-    let cid = new CID(1, 'dag-cbor', encodedHash).toBaseEncodedString()
+    let encodedHash = multihash.encode(multihash.fromHexString(hash), 'sha2-256')
+    let _cid = new CID(0, 'dag-pb', encodedHash)
+    let cid = _cid.toBaseEncodedString()
     return cid
 }
 
