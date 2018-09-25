@@ -134,7 +134,7 @@ class Profile extends Component {
                         <div className="col-md-12 game-detail-wrapper">
                             <img className="game-img" src={assets.menloFB} alt="" style={{scale: 2}}/>
                             <div className="game-detail">
-                                <h2>Menlo One</h2>
+                                <h2>Menlo One (ONE)</h2>
                                 <div className="header-buttons">
                                     <a href="" className="btn">Watch</a>
                                     <a href="" className="btn">Recommend</a>
