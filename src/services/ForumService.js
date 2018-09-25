@@ -160,10 +160,11 @@ class Lottery {
 
             const debug = {}
 
-            const [p,c,r,v,pc] = await Promise.all([
+            const [p,c,r,n,v,pc] = await Promise.all([
                 forum.epochPrior.call(),
                 forum.epochCurrent.call(),
                 forum.rewardPool.call(),
+                forum.nextRewardPool.call(),
                 forum.votesCount.call(),
                 forum.postCount.call()])
 
@@ -171,6 +172,7 @@ class Lottery {
                 epochPrior: p.toNumber(),
                 epochCurrent: c.toNumber(),
                 rewardPool: r.toNumber(),
+                nextRewardPool: n.toNumber(),
                 votesCount: v.toNumber(),
                 postersCount: pc.toNumber(),
                 show: this.show(),
@@ -282,15 +284,6 @@ class Lottery {
         if (i === 3) { me = r / 10; }
         if (i === 4) { me = r / 20; }
 
-        /*
-        Not implemented by contract yet
-
-        if (this.totalWinners() < 2) { rest += r / 4 }
-        if (this.totalWinners() < 3) { rest += r / 5 }
-        if (this.totalWinners() < 4) { rest += r / 10 }
-        if (this.totalWinners() < 5) { rest += r / 20 }
-        */
-
         if (this.hasEnded && !this.willReconcile) {
             // Has this winner been paid out?
             if (this.payouts[i] == address0) {
@@ -298,7 +291,7 @@ class Lottery {
             }
         }
 
-        return (me + rest / this.totalWinners())
+        return me
     }
 
     totalWinnings() {

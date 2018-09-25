@@ -178,7 +178,7 @@ contract MenloForum is MenloTokenReceiver, MenloForumEvents, BytesDecode, Ownabl
     }
 
     function nextRewardPool() public view returns (uint256) {
-        return token.balanceOf(this) - rewardPool;
+        return token.balanceOf(this);
     }
 
     function reward(uint8 _payout) public view returns (uint256) {

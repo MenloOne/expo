@@ -814,7 +814,7 @@ contract MenloForum is MenloTokenReceiver, MenloForumEvents, BytesDecode, Ownabl
     }
 
     function nextRewardPool() public view returns (uint256) {
-        return token.balanceOf(this) - rewardPool;
+        return token.balanceOf(this);
     }
 
     function reward(uint8 _payout) public view returns (uint256) {
@@ -843,7 +843,7 @@ contract MenloForum is MenloTokenReceiver, MenloForumEvents, BytesDecode, Ownabl
         for (uint8 i = 0; i < 5; i++) {
             if (payouts[i] == msg.sender) {
                 uint256 rewardi = reward(i);
-                total      += rewardi;
+                total += rewardi;
                 payouts[i] = 0;
             }
         }
