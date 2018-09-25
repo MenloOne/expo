@@ -2,8 +2,9 @@
 import axios from 'axios'
 import config from './public'
 
-axios.defaults.baseURL = config.apiUrl // DD: Why is config undefined?
+// axios.defaults.baseURL = config.apiUrl // DD: Why is config undefined?
 axios.defaults.headers.post['Content-Type'] = 'application/json'
+axios.defaults.crossDomain = true
 
 // Intercept global error
 

@@ -7,6 +7,10 @@ import { EthContext } from './EthContext'
 import ForumService from './services/ForumService'
 import web3 from './web3_override'
 import ReputationService from './services/ReputationService'
+import axios from 'axios'
+
+axios.defaults.headers.post['Content-Type'] = 'application/json'
+axios.defaults.crossDomain = true
 
 class App extends React.Component {
 

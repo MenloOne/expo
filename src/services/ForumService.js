@@ -803,7 +803,7 @@ class ForumService {
             ipfsHash = await this.localStorage.createMessage(ipfsMessage)
 
             // Pin it to ipfs.menlo.one
-            // await this.remoteStorage.pin(ipfsHash)
+            await this.remoteStorage.pin(ipfsHash)
 
             const hashSolidity = HashUtils.cidToSolidityHash(ipfsHash)
             let parentHashSolidity = ipfsMessage.parent

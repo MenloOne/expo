@@ -43,7 +43,7 @@ class TopNav extends Component {
     renderONE() {
         let one = this.props.eth.balance
 
-        if (one === 0) {
+        if (one < 5) {
             return (
                 <li className="nav-item token-number">
                     <button className='btn faucet-btn' onClick={ this.onGetTokens }>GET ONE TOKENS FROM KOVAN FAUCET</button>

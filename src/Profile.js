@@ -195,11 +195,11 @@ class Profile extends Component {
 
                                     <h2>The next generation of the web</h2>
                                     <h6>All of the data on this page was pulled from<br />a blockchain, but is as fast as the cloud.</h6>
-                                    <div class="row">
-                                        <div class="col-md-6">
+                                    <div className="row">
+                                        <div className="col-md-6">
                                             <p>This page is different from any other webpage you’ve ever used. While it may not seem like it, all of the information here was pulled in from several blockchains and decentralized systems, and there is a built in protocol for you the user to verify that. The goal of Menlo One is to make dApps as fast and easy to use as their centralized predecessors, and this page is a demonstrtion of the alpha release of our framework in action.</p>
                                         </div>
-                                        <div class="col-md-6 text-center">
+                                        <div className="col-md-6 text-center">
                                             <img src={computer} />
                                         </div>
                                     </div>
@@ -314,54 +314,56 @@ class Profile extends Component {
                                 <div className="green-bg">
                                     <div className="start-in">CONTENT NODE STATS</div>
                                     <table className="stats">
-                                        <tr>
-                                            <td>
-                                                Node Earnings (In ONE)
-                                            </td>
-                                            <td>
-                                                34,233  ONE 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                Node Earnings (In USD)
-                                            </td>
-                                            <td>
-                                                $220 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                Content Node Cost (mo)
-                                            </td>
-                                            <td>
-                                                $19
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                Content Node Reputation
-                                            </td>
-                                            <td>
-                                                440 (A+ Grade)
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                Node Uptime
-                                            </td>
-                                            <td>
-                                                99%
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                Annual ROI
-                                            </td>
-                                            <td>
-                                                91.4%
-                                            </td>
-                                        </tr>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    Node Earnings (In ONE)
+                                                </td>
+                                                <td>
+                                                    34,233  ONE
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Node Earnings (In USD)
+                                                </td>
+                                                <td>
+                                                    $220
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Content Node Cost (mo)
+                                                </td>
+                                                <td>
+                                                    $19
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Content Node Reputation
+                                                </td>
+                                                <td>
+                                                    440 (A+ Grade)
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Node Uptime
+                                                </td>
+                                                <td>
+                                                    99%
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Annual ROI
+                                                </td>
+                                                <td>
+                                                    91.4%
+                                                </td>
+                                            </tr>
+                                        </tbody>
                                     </table>
                                 </div>
                                 <div className="white-bg content-node">
