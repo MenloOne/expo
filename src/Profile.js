@@ -105,6 +105,26 @@ class Profile extends Component {
                                 <img src={arrowRight} className="arrow-right" />
                             </div>
                         </a>
+                        <a href="http://menlo.one">
+                            <div className="moreinfo-btn">
+                                <img src={globe} className="icon-globe" />
+                                <div className="moreinfo-btn-textwrapper">
+                                    <span>Website</span>
+                                    <span>http://menlo.one</span>
+                                </div>
+                                <img src={arrowRight} className="arrow-right" />
+                            </div>
+                        </a>
+                        <a href="http://menlo.one">
+                            <div className="moreinfo-btn">
+                                <img src={globe} className="icon-globe" />
+                                <div className="moreinfo-btn-textwrapper">
+                                    <span>Website</span>
+                                    <span>http://menlo.one</span>
+                                </div>
+                                <img src={arrowRight} className="arrow-right" />
+                            </div>
+                        </a>
                     </div>
                     <div className="moreinfo-social-wrapper">
                         <ul>
@@ -430,7 +450,27 @@ class Profile extends Component {
                                         <h4>Buy ONE Token</h4>
                                     </div>
                                     <div className="block-padding">
-                                    
+                                        <div className="moreinfo-btns-wrapper">
+                                            <a href="http://menlo.one">
+                                                <div className="moreinfo-btn">
+                                                    <img src={paper} className="icon-paper" />
+                                                    <div className="moreinfo-btn-textwrapper">
+                                                        <span>White Paper</span>
+                                                    </div>
+                                                    <img src={arrowRight} className="arrow-right" />
+                                                </div>
+                                            </a>
+                                            <a href="http://menlo.one">
+                                                <div className="moreinfo-btn">
+                                                    <img src={globe} className="icon-globe" />
+                                                    <div className="moreinfo-btn-textwrapper">
+                                                        <span>Website</span>
+                                                        <span>http://menlo.one</span>
+                                                    </div>
+                                                    <img src={arrowRight} className="arrow-right" />
+                                                </div>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

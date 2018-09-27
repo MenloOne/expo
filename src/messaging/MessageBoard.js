@@ -155,6 +155,7 @@ class MessageBoard extends Component {
                             </div>
                         </span>
                     }
+                    
                 </div>
             </div>
         )
