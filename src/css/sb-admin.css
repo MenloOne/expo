@@ -792,14 +792,95 @@ i.fa.fa-circle:before {
 .game-detail-wrapper {
     display: flex;
     justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    padding: 4rem 0;
+}
+
+.game-action-wrapper p {
+    font-size: .8rem;
+    font-family: "Titillium";
 }
 
 .game-action-wrapper {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly
+    justify-content: space-evenly;
 }
+
+.game-detail-wrapper p {
+    font-size: .8rem;
+    width: 85%;
+    line-height: 1.5rem;
+    color: #6B768E;
+    font-family: "Titillium";
+}
+
+.hero-logo-wrapper {
+    display: flex;
+}
+
+img.hero-logo {
+    margin-right: 1rem;
+}
+
+.hero-logo-wrapper {
+    flex: 1;
+    align-items: flex-start;
+}
+
+a.btn {
+    background: black;
+    padding: .2rem .5rem;
+    color: white;
+}
+
+a.btn.btn-big {
+    padding: .8rem 4rem;
+}
+
+a.btn.btn-green {
+    background: #6EB735;
+}
+
+.hero-logo-text-wrapper h1 {
+    font-size: 2.3rem;
+    margin-bottom: .2rem;
+    font-family: "Titillium";
+    font-weight: 600;
+}
+
+.game-action-wrapper h4 {
+    font-size: 1.1rem;
+    font-family: "Titillium";
+    font-weight: 600;
+}
+
+.game-action-wrapper p {
+    font-size: .8rem;
+    font-family: "Titillium";
+}
+
+.game-action-wrapper img {
+    display: block;
+    margin: 0 auto;
+    height: 7rem;
+    margin-bottom: 1rem;
+}
+
+.hero-logo-text-wrapper h3 {
+    font-size: 1.7rem;
+    color: #9B9B9B;
+    font-family: "Titillium";
+}
+
+.hero-logo-text-wrapper h4 {
+    color: #4A90E2;
+    margin-top: 1rem;
+    font-size: 1.3rem;
+    font-family: "Titillium";
+}
+
+
 
 .game-detail h2 {
     font-family: 'Titillium web', 'Helvetica Neue';

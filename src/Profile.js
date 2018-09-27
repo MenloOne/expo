@@ -7,8 +7,6 @@ import ResponsiveEmbed from 'react-responsive-embed'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './css/sb-admin.css'
 
-import assets from 'assets'
-
 const arrowRight = require('./images/arrow-right.svg')
 const globe = require('./images/icon-globe.svg')
 const paper = require('./images/icon-paper.svg')
@@ -28,6 +26,20 @@ const computer = require('./images/ICO_profile_page_svg.svg')
 // const whitePaperIm = require('./images/white-paper.png')
 // const globe = require('./images/globe.png')
 const townhall = require('./images/Townhall_valued_comment_svg.svg')
+
+const metalpay = require('./images/1788.svg')
+const bitmart = require('./images/bitmart.svg')
+const BlockOverflowIcon = require('./images/BlockOverflow-icon.svg')
+const BlockOverflowLogo = require('./images/BlockOverflow-logo.svg')
+const how1 = require('./images/how-1.svg')
+const how2 = require('./images/how-2.svg')
+const how3 = require('./images/how-3.svg')
+const how4 = require('./images/how-4.svg')
+const how5 = require('./images/how-5.svg')
+const how6 = require('./images/how-6.svg')
+const menlo = require('./images/menlo-logo.png')
+const metal = require('./images/metal-pay.svg')
+const shapeshift = require('./images/shapeshift.svg')
 
 class Profile extends Component {
 
@@ -131,26 +143,66 @@ class Profile extends Component {
 
                 <div className="game-token shadow-sm">
                     <div className="container">
-                        <div className="col-md-8 game-detail-wrapper">
-                            <img className="game-img" src={assets.menloFB} alt="" style={{scale: 2}}/>
-                            <div className="game-detail">
-                                <h2>Menlo One</h2>
-                                <p>Menlo One is a powerful framework for building decentralized applications with the speed of a traditional web app. Our decentralized database and Proof-of-Reputation incentive system is the infrastructure that enables the Web 3.0 generation of marketplaces, social media platforms, and future apps to be as fast and performant as their centralized predecessors.</p>
-                                <div className="locaton-tag">
-                                    <span className="location"><i className="fa fa-map-marker"></i> New Jersey</span>
-                                    <span className="tag"><i className="fa fa-tag"></i> Utility Token</span>
+                        <div className="col-md-5 game-detail-wrapper">
+                            <div className="hero-logo-wrapper">
+                                <img className="hero-logo" src={BlockOverflowIcon} />
+                                <div className="hero-logo-text-wrapper">
+                                    <h1>Block Overflow</h1>
+                                    <h3>Share Knowlege,<br />Earn Tokens</h3>
+                                    <h4>Built with Menlo One</h4>
                                 </div>
                             </div>
-                        </div>
-                        <div className="col-md-4 game-action-wrapper">
-                            <div className="header-buttons">
-                                <a href="" className="btn">Watch</a>
-                                <a href="" className="btn">Recommend</a>
+                            <div className="">
+                                <p>Block Overflow is a question and answer site for blockchain programmers and other people from the Menlo One community where users get paid in ONE tokens for providing correct answers.</p>
+                                <a href="" className="btn btn-big btn-green">Sign Up</a>
                             </div>
-                            <div className="committed">
-                                <p className="total-comments">
-                                    <a className="circle-btn" title=""><img src={iconIm} alt="" /></a>
-                                    <span>103 accounts</span>&nbsp;currently hold Menlo ONE tokens&nbsp;</p>
+                        </div>
+                        <div className="col-md-7 game-action-wrapper">
+                            <div className="row">
+                                <div className="col-4">
+                                    <img src={how1} />
+                                    <h4>Ask a question</h4>
+                                    <p>
+                                        Asking a question costs ONE tokens, which goes into a pool to pay the person with the best answer. Then, a 24 hour countdown timer starts.
+                                    </p>
+                                </div>
+                                <div className="col-4">
+                                    <img src={how2} />
+                                    <h4>Users post answers</h4>
+                                    <p>
+                                        When someone replies with an answer, they place ONE tokens into the pool too, in hopes they have the right answer.
+                                    </p>
+                                </div>
+                                <div className="col-4">
+                                    <img src={how3} />
+                                    <h4>The pool grows</h4>
+                                    <p>
+                                        With every answer the pool grows larger, and the 24 hour clock resets.
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-4">
+                                    <img src={how4} />
+                                    <h4>Users vote on answers</h4>
+                                    <p>
+                                        Users vote on answers. They can leave a comments too. If the answer they voted on wins, they get Reputation points.
+                                    </p>
+                                </div>
+                                <div className="col-4">
+                                    <img src={how5} />
+                                    <h4>Top answers win tokens</h4>
+                                    <p>
+                                        When people stop providing answers, the most up-voted answer is the winner. All of the ONE tokens go to the winner.
+                                    </p>
+                                </div>
+                                <div className="col-4">
+                                    <img src={how6} />
+                                    <h4>Plus, totally decentralized</h4>
+                                    <p>
+                                        Furthermore, all of Block Overflow is decentralized. All of the data on this website was read from the blockchain.
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
