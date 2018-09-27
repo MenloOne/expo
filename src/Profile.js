@@ -27,7 +27,6 @@ const computer = require('./images/ICO_profile_page_svg.svg')
 // const globe = require('./images/globe.png')
 const townhall = require('./images/Townhall_valued_comment_svg.svg')
 
-const metalpay = require('./images/1788.svg')
 const bitmart = require('./images/bitmart.svg')
 const BlockOverflowIcon = require('./images/BlockOverflow-icon.svg')
 const BlockOverflowLogo = require('./images/BlockOverflow-logo.svg')
@@ -91,26 +90,6 @@ class Profile extends Component {
                                 <img src={paper} className="icon-paper" />
                                 <div className="moreinfo-btn-textwrapper">
                                     <span>White Paper</span>
-                                </div>
-                                <img src={arrowRight} className="arrow-right" />
-                            </div>
-                        </a>
-                        <a href="http://menlo.one">
-                            <div className="moreinfo-btn">
-                                <img src={globe} className="icon-globe" />
-                                <div className="moreinfo-btn-textwrapper">
-                                    <span>Website</span>
-                                    <span>http://menlo.one</span>
-                                </div>
-                                <img src={arrowRight} className="arrow-right" />
-                            </div>
-                        </a>
-                        <a href="http://menlo.one">
-                            <div className="moreinfo-btn">
-                                <img src={globe} className="icon-globe" />
-                                <div className="moreinfo-btn-textwrapper">
-                                    <span>Website</span>
-                                    <span>http://menlo.one</span>
                                 </div>
                                 <img src={arrowRight} className="arrow-right" />
                             </div>
@@ -453,19 +432,40 @@ class Profile extends Component {
                                         <div className="moreinfo-btns-wrapper">
                                             <a href="http://menlo.one">
                                                 <div className="moreinfo-btn">
-                                                    <img src={paper} className="icon-paper" />
+                                                    <img src={menlo} className="icon-paper" />
                                                     <div className="moreinfo-btn-textwrapper">
-                                                        <span>White Paper</span>
+                                                        <span>Menlo One Token Sale</span>
+                                                        <span>https://tokensale.menlo.one</span>
                                                     </div>
                                                     <img src={arrowRight} className="arrow-right" />
                                                 </div>
                                             </a>
-                                            <a href="http://menlo.one">
+                                                <a href="https://www.bitmart.com">
                                                 <div className="moreinfo-btn">
-                                                    <img src={globe} className="icon-globe" />
+                                                    <img src={bitmart} className="icon-globe" />
                                                     <div className="moreinfo-btn-textwrapper">
-                                                        <span>Website</span>
-                                                        <span>http://menlo.one</span>
+                                                        <span>Bitmart</span>
+                                                        <span>https://www.bitmart.com</span>
+                                                    </div>
+                                                    <img src={arrowRight} className="arrow-right" />
+                                                </div>
+                                            </a>
+                                            <a href="http://shapeshift.io">
+                                                <div className="moreinfo-btn">
+                                                    <img src={shapeshift} className="icon-globe" />
+                                                    <div className="moreinfo-btn-textwrapper">
+                                                        <span>ShapeShift</span>
+                                                        <span>http://shapeshift.io</span>
+                                                    </div>
+                                                    <img src={arrowRight} className="arrow-right" />
+                                                </div>
+                                            </a>
+                                            <a href="https://metalpay.com">
+                                                <div className="moreinfo-btn">
+                                                    <img src={metal} className="icon-globe" />
+                                                    <div className="moreinfo-btn-textwrapper">
+                                                        <span>Metal Pay</span>
+                                                        <span>https://metalpay.com</span>
                                                     </div>
                                                     <img src={arrowRight} className="arrow-right" />
                                                 </div>
