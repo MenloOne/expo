@@ -104,55 +104,58 @@ class MessageBoard extends Component {
     renderLottery(lottery) {
         return (
             <div className='lottery-block right-side'>
-                <h4>{ lottery.name() } Lottery</h4>
-
-                { !lottery.hasEnded &&
-                    <div>
-                        <div className='message'>TIME { this.state.timeExtended ? 'EXTENDED' : 'LEFT' }</div>
-                        <div className='time-left'>
-                            <CountdownTimer date={ new Date(this.state.currentLottery.endTime) }/>
-                        </div>
-                    </div>
-                }
-                { !(lottery.winners && lottery.winners.length > 0) &&
-                    <div className='message' style={{ top: '0.3em', textAlign: 'center' }}>
-                        TOP VOTED POSTERS WIN ONE TOKENS<br/>
-                        NO VOTES YET...
-                    </div>
-                }
-                { lottery.winners && lottery.winners.length > 0 &&
-                    <span>
-                    {  lottery.iWon && !lottery.claimed && <div className='message'>YOU WON!!!</div> }
-                    {  lottery.iWon &&  lottery.claimed && <div className='message'>YOU GOT TOKENS</div> }
-                    { !lottery.iWon && <div className='winners-message'>CURRENT WINNERS</div> }
-
-                    <div className='winners-block'>
-                            <div className='winners'>
-                                {
-                                    lottery.winners.map((a, i) => {
-                                        return (
-                                            <div key={i} className='pedestal'>
-                                                <div className='user-img'>
-                                                    <Blockies seed={a} size={10} scale={3}/>
-                                                </div>
-                                                <div className='rank'>{ this.ranks[i] }</div>
-                                                <div className='tokens'>
-                                                    { Number(lottery.winnings(i)) == 0 ? <span>PAID<br/>OUT</span> : Number(lottery.winnings(i)).toFixed(1) }
-                                                    { Number(lottery.winnings(i)) == 0 ? null : <span><br/>ONE</span> }
-                                                </div>
-                                            </div>
-                                        )
-                                    })
-                                }
+                <div className="block-header">
+                    <h4>{lottery.name()} Lottery</h4>
+                </div>
+                <div className="block-padding">
+                    { !lottery.hasEnded &&
+                        <div>
+                            <div className='message'>TIME { this.state.timeExtended ? 'EXTENDED' : 'LEFT' }</div>
+                            <div className='time-left'>
+                                <CountdownTimer date={ new Date(this.state.currentLottery.endTime) }/>
                             </div>
-                        {   lottery.iWon && !lottery.claimed &&
-                            <div className='claim'>
-                                <button className='btn claim-btn' onClick={this.claimWinnings}>CLAIM { Number(lottery.totalWinnings()).toFixed(2) } ONE TOKENS</button>
-                            </div>
-                        }
                         </div>
-                    </span>
-                }
+                    }
+                    { !(lottery.winners && lottery.winners.length > 0) &&
+                        <div className='message' style={{ top: '0.3em', textAlign: 'center' }}>
+                            TOP VOTED POSTERS WIN ONE TOKENS<br/>
+                            NO VOTES YET...
+                        </div>
+                    }
+                    { lottery.winners && lottery.winners.length > 0 &&
+                        <span>
+                        {  lottery.iWon && !lottery.claimed && <div className='message'>YOU WON!!!</div> }
+                        {  lottery.iWon &&  lottery.claimed && <div className='message'>YOU GOT TOKENS</div> }
+                        { !lottery.iWon && <div className='winners-message'>CURRENT WINNERS</div> }
+
+                        <div className='winners-block'>
+                                <div className='winners'>
+                                    {
+                                        lottery.winners.map((a, i) => {
+                                            return (
+                                                <div key={i} className='pedestal'>
+                                                    <div className='user-img'>
+                                                        <Blockies seed={a} size={10} scale={3}/>
+                                                    </div>
+                                                    <div className='rank'>{ this.ranks[i] }</div>
+                                                    <div className='tokens'>
+                                                        { Number(lottery.winnings(i)) == 0 ? <span>PAID<br/>OUT</span> : Number(lottery.winnings(i)).toFixed(1) }
+                                                        { Number(lottery.winnings(i)) == 0 ? null : <span><br/>ONE</span> }
+                                                    </div>
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </div>
+                            {   lottery.iWon && !lottery.claimed &&
+                                <div className='claim'>
+                                    <button className='btn claim-btn' onClick={this.claimWinnings}>CLAIM { Number(lottery.totalWinnings()).toFixed(2) } ONE TOKENS</button>
+                                </div>
+                            }
+                            </div>
+                        </span>
+                    }
+                </div>
             </div>
         )
     }
@@ -161,42 +164,46 @@ class MessageBoard extends Component {
 
         return (
             <div className="user-stats right-side-box white-bg">
-                <h4>User Metrics</h4>
-                <div className="stats-wrapper">
-                    <div className="stat">
-                        <div className="number-circle">
-                            <span>84%</span>
+                <div className="block-header">
+                    <h4>User Metrics</h4>
+                </div>
+                <div className="block-padding">
+                    <div className="stats-wrapper">
+                        <div className="stat">
+                            <div className="number-circle">
+                                <span>84%</span>
+                            </div>
+                            <div className="stat-label-wrapper">
+                                <span>Your Reputation</span>
+                                <span>3,812 Reviews</span>
+                            </div>
                         </div>
-                        <div className="stat-label-wrapper">
-                            <span>Your Reputation</span>
-                            <span>3,812 Reviews</span>
+                        <div className="stat">
+                            <div className="number-circle">
+                                <span>102</span>
+                            </div>
+                            <div className="stat-label-wrapper">
+                                <span>ONE Tokens Earned</span>
+                                <span>($10 USD)</span>
+                            </div>
                         </div>
-                    </div>
-                    <div className="stat">
-                        <div className="number-circle">
-                            <span>102</span>
+                        <div className="stat">
+                            <div className="number-circle">
+                                <span>12</span>
+                            </div>
+                            <div className="stat-label-wrapper">
+                                <span>Your Posts</span>
+                                <span>See Posts</span>
+                            </div>
                         </div>
-                        <div className="stat-label-wrapper">
-                            <span>ONE Tokens Earned</span>
-                            <span>($10 USD)</span>
-                        </div>
-                    </div>
-                    <div className="stat">
-                        <div className="number-circle">
-                            <span>12</span>
-                        </div>
-                        <div className="stat-label-wrapper">
-                            <span>Your Posts</span>
-                            <span>See Posts</span>
-                        </div>
-                    </div>
-                    <div className="stat">
-                        <div className="number-circle">
-                            <span>9</span>
-                        </div>
-                        <div className="stat-label-wrapper">
-                            <span>Paid Views</span>
-                            <span>Link</span>
+                        <div className="stat">
+                            <div className="number-circle">
+                                <span>9</span>
+                            </div>
+                            <div className="stat-label-wrapper">
+                                <span>Paid Views</span>
+                                <span>Link</span>
+                            </div>
                         </div>
                     </div>
                 </div>

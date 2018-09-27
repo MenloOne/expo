@@ -81,56 +81,60 @@ class Profile extends Component {
     renderMoreInfo() {
         return (
             <div className="user-stats right-side-box white-bg">
-                <h4>More Info</h4>
-                <div className="moreinfo-btns-wrapper">
-                    <a href="http://menlo.one">
-                        <div className="moreinfo-btn">
-                            <img src={paper} className="icon-paper" />
-                            <div className="moreinfo-btn-textwrapper">
-                                <span>White Paper</span>
-                            </div>
-                            <img src={arrowRight} className="arrow-right" />
-                        </div>
-                    </a>
-                    <a href="http://menlo.one">
-                        <div className="moreinfo-btn">
-                            <img src={globe} className="icon-globe" />
-                            <div className="moreinfo-btn-textwrapper">
-                                <span>Website</span>
-                                <span>http://menlo.one</span>
-                            </div>
-                            <img src={arrowRight} className="arrow-right" />
-                        </div>
-                    </a>
+                <div className="block-header">
+                    <h4>More Info</h4>
                 </div>
-                <div className="moreinfo-social-wrapper">
-                    <ul>
-                        <li>
-                            <a href="https://twitter.com/menloone?lang=en" target="_blank">
-                                <img src={twitter} alt="Menlo One Twitter" />
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.facebook.com/menloone/" target="_blank">
-                                <img src={facebook} alt="Menlo One Facebook" />
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://github.com/MenloOne" target="_blank">
-                                <img src={github} alt="Menlo One Github" />
-                            </a>
-                        </li>
-                        {/* <li>
-                            <a href="" target="_blank">
-                                <img src={slack} alt="Menlo One Slack" />
-                            </a>
-                        </li> */}
-                        <li>
-                            <a href="https://t.me/Menloone" target="_blank">
-                                <img src={telegram} alt="Menlo One Telegram" />
-                            </a>
-                        </li>
-                    </ul>
+                <div className="block-padding">
+                    <div className="moreinfo-btns-wrapper">
+                        <a href="http://menlo.one">
+                            <div className="moreinfo-btn">
+                                <img src={paper} className="icon-paper" />
+                                <div className="moreinfo-btn-textwrapper">
+                                    <span>White Paper</span>
+                                </div>
+                                <img src={arrowRight} className="arrow-right" />
+                            </div>
+                        </a>
+                        <a href="http://menlo.one">
+                            <div className="moreinfo-btn">
+                                <img src={globe} className="icon-globe" />
+                                <div className="moreinfo-btn-textwrapper">
+                                    <span>Website</span>
+                                    <span>http://menlo.one</span>
+                                </div>
+                                <img src={arrowRight} className="arrow-right" />
+                            </div>
+                        </a>
+                    </div>
+                    <div className="moreinfo-social-wrapper">
+                        <ul>
+                            <li>
+                                <a href="https://twitter.com/menloone?lang=en" target="_blank">
+                                    <img src={twitter} alt="Menlo One Twitter" />
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.facebook.com/menloone/" target="_blank">
+                                    <img src={facebook} alt="Menlo One Facebook" />
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/MenloOne" target="_blank">
+                                    <img src={github} alt="Menlo One Github" />
+                                </a>
+                            </li>
+                            {/* <li>
+                                <a href="" target="_blank">
+                                    <img src={slack} alt="Menlo One Slack" />
+                                </a>
+                            </li> */}
+                            <li>
+                                <a href="https://t.me/Menloone" target="_blank">
+                                    <img src={telegram} alt="Menlo One Telegram" />
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         )
@@ -362,95 +366,101 @@ class Profile extends Component {
                             </div>
                         <div className="col-md-4">
                             <div className="right-side-box">
-
                                 <div className="green-bg">
-                                    <div className="start-in">CONTENT NODE STATS</div>
-                                    <table className="stats">
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    Node Earnings (In ONE)
-                                                </td>
-                                                <td>
-                                                    34,233  ONE
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Node Earnings (In USD)
-                                                </td>
-                                                <td>
-                                                    $220
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Content Node Cost (mo)
-                                                </td>
-                                                <td>
-                                                    $19
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Content Node Reputation
-                                                </td>
-                                                <td>
-                                                    440 (A+ Grade)
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Node Uptime
-                                                </td>
-                                                <td>
-                                                    99%
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Annual ROI
-                                                </td>
-                                                <td>
-                                                    91.4%
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div className="white-bg content-node">
-                                    <a href="https://tokensale.menlo.one" className="green-btn" title="Buy Tokens">Apply to run a Content Node</a>
-                                    <div>
-                                        <p>
-                                            Menlo One Content Nodes are an<br />alpha stage project. If you would like to run a<br />Content Node, please contact us.
-                                        </p>
+                                    <div className="block-header">
+                                        <h4>ONE Token Metrics</h4>
+                                    </div>
+                                    <div className="block-padding">
+                                        <table className="stats">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        Node Earnings (In ONE)
+                                                    </td>
+                                                    <td>
+                                                        34,233  ONE
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        Node Earnings (In USD)
+                                                    </td>
+                                                    <td>
+                                                        $220
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        Content Node Cost (mo)
+                                                    </td>
+                                                    <td>
+                                                        $19
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        Content Node Reputation
+                                                    </td>
+                                                    <td>
+                                                        440 (A+ Grade)
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        Node Uptime
+                                                    </td>
+                                                    <td>
+                                                        99%
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        Annual ROI
+                                                    </td>
+                                                    <td>
+                                                        91.4%
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
-
+                                <div className="white-bg content-node">
+                                    <div className="block-header">
+                                        <h4>Buy ONE Token</h4>
+                                    </div>
+                                    <div className="block-padding">
+                                    
+                                    </div>
+                                </div>
                             </div>
 
 
 
                             <div className="token-metrics right-side-box white-bg">
-                                <h4>Token Metrics</h4>
-                                <ul>
-                                    <li>
-                                        <div className="name">Tokens in circulation</div>
-                                        <div className="detail">354,000,000</div>
-                                    </li>
-                                    <li>
-                                        <div className="name">Price</div>
-                                        <div className="detail">$0.03</div>
-                                    </li>
-                                    <li>
-                                        <div className="name">Volume</div>
-                                        <div className="detail">34,241</div>
-                                    </li>
-                                    <li>
-                                        <div className="name">Token Supply</div>
-                                        <div className="detail">50% discount</div>
-                                    </li>
-                                </ul>
+                                <div className="block-header">
+                                    <h4>Token Metrics</h4>
+                                </div>
+                                <div className="block-padding">
+                                    <ul>
+                                        <li>
+                                            <div className="name">Tokens in circulation</div>
+                                            <div className="detail">354,000,000</div>
+                                        </li>
+                                        <li>
+                                            <div className="name">Price</div>
+                                            <div className="detail">$0.03</div>
+                                        </li>
+                                        <li>
+                                            <div className="name">Volume</div>
+                                            <div className="detail">34,241</div>
+                                        </li>
+                                        <li>
+                                            <div className="name">Token Supply</div>
+                                            <div className="detail">50% discount</div>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
 
                             {this.renderMoreInfo()}

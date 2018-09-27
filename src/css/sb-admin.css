@@ -1225,9 +1225,22 @@ body {
     margin-bottom: 35px;
 }
 
+.block-padding {
+    padding: 30px 32px;
+}
+
+.block-header h4 {
+    border-bottom: 1px solid #0000000f;
+    font-size: 1rem;
+    padding: .8rem .9rem .6rem;
+    font-weight: 600;
+    font-family: "Titillium";
+    margin: 0;
+    color: #40609A;
+}
+
 .green-bg {
     background-color: #f0f4ff;
-    padding: 30px 32px;
 }
 
 .start-in {
@@ -1414,7 +1427,7 @@ span.sold {
 }
 
 .white-bg {
-    padding: 30px 32px 21px;
+    padding: 0;
 }
 
 .white-bg h3 {
@@ -1450,7 +1463,6 @@ span.sold {
     text-align: center;
     color: #ffffff;
     padding-top: 22px;
-    margin-top: 32px;
 }
 
 .token-cal {
@@ -1523,18 +1535,6 @@ span.sold {
     position: absolute;
     top: 33%;
     right: 16px;
-}
-
-.white-bg h4 {
-    font-family: 'Titillium web', 'Helvetica Neue';
-    font-size: 19px;
-    font-weight: 600;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #2e4168;
-    margin-bottom: 1.5rem;
 }
 
 .token-metrics ul {
