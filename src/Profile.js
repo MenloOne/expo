@@ -315,7 +315,7 @@ class Profile extends Component {
                                 </div>
 
                                 </div>
-                                <div className="left-side">
+                                {/* <div className="left-side">
                                     <div className="left-side-wrapper">
                                         <h2>Build reputation, earn tokens</h2>
                                         <h6>You know it’s secure, because you validate it yourself.</h6>
@@ -360,7 +360,7 @@ class Profile extends Component {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                         <div className="col-md-4">
                             <div className="right-side-box">
