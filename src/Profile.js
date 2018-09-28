@@ -1,13 +1,23 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
+import Blockies from 'react-blockies'
 import TopNav from './TopNav.js'
 import MessageBoard from './messaging/MessageBoard'
 import CountdownTimer from './CountdownTimer'
-import ResponsiveEmbed from 'react-responsive-embed'
+// import ResponsiveEmbed from 'react-responsive-embed'
+import { withEth } from './EthContext'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './css/sb-admin.css'
 
-const arrowRight = require('./images/arrow-right.svg')
+import twitter from './images/twitter.svg'
+import facebook from './images/facebook.svg'
+import github from './images/github.svg'
+// import slack from './images/slack.svg'
+import telegram from './images/telegram.svg'
+
+import arrowRight from './images/arrow-right.svg'
+import globe from './images/icon-globe.svg'
+import paper from './images/icon-paper.svg'
 
 // const screenshot = require('./images/screenshot.png')
 const userIm = require('./images/user-1.png')
@@ -39,15 +49,30 @@ class Profile extends Component {
     constructor() {
         super()
 
+        this.ranks = ['1st', '2nd', '3rd', '4th', '5th']
+
         this.onEditEth = this.onEditEth.bind(this)
         this.onEditTokens = this.onEditTokens.bind(this)
+        this.refreshLotteries = this.refreshLotteries.bind(this)
     }
 
     componentDidMount() {
         this.onEditEth(null)
+        
+        this.props.eth.forumService.subscribeLotteries(this.refreshLotteries)
+        this.refreshLotteries()
     }
 
     componentWillUnmount() {
+    }
+
+    async refreshLotteries() {
+        const svc = this.props.eth.forumService
+        let lotteries = await svc.getLotteries()
+        this.setState({
+            ...lotteries,
+            timeExtended: (lotteries.currentLottery.endTimeServer != lotteries.currentLottery.endTime)
+        })
     }
 
 
@@ -64,6 +89,227 @@ class Profile extends Component {
         let tokens = evt.target.value
         let eth = Math.round((tokens / (12000)) * 100) / 100
         this.setState({eth: eth, tokens: tokens})
+    }
+
+    renderMoreInfo() {
+        return (
+            <div className="user-stats right-side-box white-bg">
+                <div className="block-header">
+                    <h4>More Info</h4>
+                </div>
+                <div className="block-padding">
+                    <div className="moreinfo-btns-wrapper">
+                        <a href="http://menlo.one">
+                            <div className="moreinfo-btn">
+                                <img src={paper} className="icon-paper" />
+                                <div className="moreinfo-btn-textwrapper">
+                                    <span>White Paper</span>
+                                </div>
+                                <img src={arrowRight} className="arrow-right" />
+                            </div>
+                        </a>
+                        <a href="http://menlo.one">
+                            <div className="moreinfo-btn">
+                                <img src={globe} className="icon-globe" />
+                                <div className="moreinfo-btn-textwrapper">
+                                    <span>Website</span>
+                                    <span>http://menlo.one</span>
+                                </div>
+                                <img src={arrowRight} className="arrow-right" />
+                            </div>
+                        </a>
+                    </div>
+                    <div className="moreinfo-social-wrapper">
+                        <ul>
+                            <li>
+                                <a href="https://twitter.com/menloone?lang=en" target="_blank">
+                                    <img src={twitter} alt="Menlo One Twitter" />
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.facebook.com/menloone/" target="_blank">
+                                    <img src={facebook} alt="Menlo One Facebook" />
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/MenloOne" target="_blank">
+                                    <img src={github} alt="Menlo One Github" />
+                                </a>
+                            </li>
+                            {/* <li>
+                                <a href="" target="_blank">
+                                    <img src={slack} alt="Menlo One Slack" />
+                                </a>
+                            </li> */}
+                            <li>
+                                <a href="https://t.me/Menloone" target="_blank">
+                                    <img src={telegram} alt="Menlo One Telegram" />
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
+    renderUserStats() {
+
+        return (
+            <div className="user-stats right-side-box white-bg">
+                <div className="block-header">
+                    <h4>User Metrics</h4>
+                </div>
+                <div className="block-padding">
+                    <div className="stats-wrapper">
+                        <div className="stat">
+                            <div className="number-circle">
+                                <span>84%</span>
+                            </div>
+                            <div className="stat-label-wrapper">
+                                <span>Your Reputation</span>
+                                <span>3,812 Reviews</span>
+                            </div>
+                        </div>
+                        <div className="stat">
+                            <div className="number-circle">
+                                <span>102</span>
+                            </div>
+                            <div className="stat-label-wrapper">
+                                <span>ONE Tokens Earned</span>
+                                <span>($10 USD)</span>
+                            </div>
+                        </div>
+                        <div className="stat">
+                            <div className="number-circle">
+                                <span>12</span>
+                            </div>
+                            <div className="stat-label-wrapper">
+                                <span>Your Posts</span>
+                                <span>See Posts</span>
+                            </div>
+                        </div>
+                        <div className="stat">
+                            <div className="number-circle">
+                                <span>9</span>
+                            </div>
+                            <div className="stat-label-wrapper">
+                                <span>Paid Views</span>
+                                <span>Link</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/* <div className="userstats-countdown-wrapper">
+                    <span className="userstats-countdown-label">Conversation Ends</span>
+                    <div className="userstats-timeblock-wrapper">
+                        <div className="userstats-timeblock">
+                            <div className="userstats-block">00</div>
+                            <div className="userstats-label">Days</div>
+                        </div>
+                        <div className="userstats-divider">
+                            <div className="userstats-block">:</div>
+                            <div className="userstats-label">&nbsp;</div>
+                        </div>
+                        <div className="userstats-timeblock">
+                            <div className="userstats-block">00</div>
+                            <div className="userstats-label">Hours</div>
+                        </div>
+                        <div className="userstats-divider">
+                            <div className="userstats-block">:</div>
+                            <div className="userstats-label">&nbsp;</div>
+                        </div>
+                        <div className="userstats-timeblock">
+                            <div className="userstats-block">00</div>
+                            <div className="userstats-label">Minutes</div>
+                        </div>
+                        <div className="userstats-divider">
+                            <div className="userstats-block">:</div>
+                            <div className="userstats-label">&nbsp;</div>
+                        </div>
+                        <div className="userstats-timeblock">
+                            <div className="userstats-block">00</div>
+                            <div className="userstats-label">Seconds</div>
+                        </div>
+                    </div>
+                </div> */}
+            </div>
+        )
+    }
+
+    renderLottery(lottery) {
+        return (
+            <div className='lottery-block right-side'>
+                <div className="block-header">
+                    <h4>{lottery.name()} Lottery</h4>
+                </div>
+                <div className="block-padding">
+                    {!lottery.hasEnded &&
+                        <div>
+                            <div className='message'>TIME {this.state.timeExtended ? 'EXTENDED' : 'LEFT'}</div>
+                            <div className='time-left'>
+                                <CountdownTimer date={new Date(this.state.currentLottery.endTime)} />
+                            </div>
+                        </div>
+                    }
+                    {!(lottery.winners && lottery.winners.length > 0) &&
+                        <div className='message' style={{ top: '0.3em', textAlign: 'center' }}>
+                            TOP VOTED POSTERS WIN ONE TOKENS<br />
+                            NO VOTES YET...
+                        </div>
+                    }
+                    {lottery.winners && lottery.winners.length > 0 &&
+                        <span>
+                            {lottery.iWon && !lottery.claimed && <div className='message'>YOU WON!!!</div>}
+                            {lottery.iWon && lottery.claimed && <div className='message'>YOU GOT TOKENS</div>}
+                            {!lottery.iWon && <div className='winners-message'>CURRENT WINNERS</div>}
+
+                            <div className='winners-block'>
+                                <div className='winners'>
+                                    {
+                                        lottery.winners.map((a, i) => {
+                                            return (
+                                                <div key={i} className='pedestal'>
+                                                    <div className='user-img'>
+                                                        <Blockies seed={a} size={10} scale={3} />
+                                                    </div>
+                                                    <div className='rank'>{this.ranks[i]}</div>
+                                                    <div className='tokens'>
+                                                        {Number(lottery.winnings(i)) == 0 ? <span>PAID<br />OUT</span> : Number(lottery.winnings(i)).toFixed(1)}
+                                                        {Number(lottery.winnings(i)) == 0 ? null : <span><br />ONE</span>}
+                                                    </div>
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </div>
+                                {lottery.iWon && !lottery.claimed &&
+                                    <div className='claim'>
+                                        <button className='btn claim-btn' onClick={this.claimWinnings}>CLAIM {Number(lottery.totalWinnings()).toFixed(2)} ONE TOKENS</button>
+                                    </div>
+                                }
+                            </div>
+                        </span>
+                    }
+
+                </div>
+            </div>
+        )
+    }
+
+    renderLotteries() {
+
+        let lotteries = [this.state.currentLottery, this.state.priorLottery]
+
+        return lotteries.map((lottery) => {
+            if (!lottery || !lottery.show()) { return null }
+
+            return (
+                <div key={lottery.type} className="lottery right-side-box white-bg">
+                    {this.renderLottery(lottery)}
+                </div>
+            )
+        })
     }
 
     render() {
@@ -142,7 +388,7 @@ class Profile extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-md-8">
-                            <div className="left-side">
+                            {/* <div className="left-side">
                                 <div className="left-side-wrapper">
                                     <div className="top-users" style={{ display: 'none' }}>
                                         <div className="members">
@@ -190,7 +436,7 @@ class Profile extends Component {
                                 <div className="left-side-wrapper">
                                     <ResponsiveEmbed src='https://www.youtube.com/embed/yuohXyDP1pk?rel=0' allowFullScreen />
                                 </div>
-                            </div>
+                            </div> */}
 
                             <div className="team left-side" style={{display: 'none'}}>
                                 <h2>Team</h2>
@@ -289,6 +535,9 @@ class Profile extends Component {
                                         </div>
                                     </div>
                                 </div> */}
+
+
+                                <MessageBoard />
                             </div>
                         <div className="col-md-4">
                             <div className="right-side-box">
@@ -296,7 +545,7 @@ class Profile extends Component {
                                     <div className="block-header">
                                         <h4>ONE Token Metrics</h4>
                                     </div>
-                                    <div className="block-padding">
+                                    <div className="block-padding"> 
                                         <table className="stats">
                                             <tbody>
                                                 <tr>
@@ -404,7 +653,7 @@ class Profile extends Component {
 
 
 
-                            <div className="token-metrics right-side-box white-bg">
+                            {/* <div className="token-metrics right-side-box white-bg">
                                 <div className="block-header">
                                     <h4>Token Metrics</h4>
                                 </div>
@@ -428,14 +677,16 @@ class Profile extends Component {
                                         </li>
                                     </ul>
                                 </div>
-                            </div>
+                            </div> */}
+
+
+                            {this.renderUserStats()}
+                            {this.renderLotteries()}
+                            {this.renderMoreInfo()}
 
                             </div>
 
                         </div>
-
-
-                    <MessageBoard/>
                 </div>
             </div>
         </div>
@@ -443,4 +694,4 @@ class Profile extends Component {
     }
 }
 
-export default Profile
+export default withEth(Profile)

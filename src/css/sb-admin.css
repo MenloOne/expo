@@ -1317,10 +1317,11 @@ body {
 }
 
 .lottery-block .message {
-    text-align: right;
-    top: -3em;
-    position: relative;
+    text-align: center;
+    /* top: -3em; */
+    /* position: relative; */
     margin-bottom: 1em;
+    margin-top: 1rem;
 }
 
 .claim {
@@ -1339,7 +1340,6 @@ body {
 
 .time-left {
     position: relative;
-    top: -1.7em;
 }
 
 .winners-message {
