@@ -301,42 +301,42 @@ class Profile extends Component {
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        Node Earnings (In ONE)
+                                                        Circulating Supply
                                                     </td>
                                                     <td>
-                                                        34,233  ONE
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        Node Earnings (In USD)
-                                                    </td>
-                                                    <td>
-                                                        $220
+                                                        354,000,000
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        Content Node Cost (mo)
+                                                        Total Supply
                                                     </td>
                                                     <td>
-                                                        $19
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        Content Node Reputation
-                                                    </td>
-                                                    <td>
-                                                        440 (A+ Grade)
+                                                        1,000,000,000 ONE
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        Node Uptime
+                                                        Volume (24h)
                                                     </td>
                                                     <td>
-                                                        99%
+                                                        N/A
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        Market Cap
+                                                    </td>
+                                                    <td>
+                                                        $16,000,000
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        Price
+                                                    </td>
+                                                    <td>
+                                                        $0.018083
                                                     </td>
                                                 </tr>
                                                 <tr>
