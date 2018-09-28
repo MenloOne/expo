@@ -8,6 +8,16 @@ import Message from './Message'
 import MessageForm from './MessageForm'
 import CountdownTimer from '../CountdownTimer'
 
+import twitter from '../images/twitter.svg'
+import facebook from '../images/facebook.svg'
+import github from '../images/github.svg'
+// import slack from '../images/slack.svg'
+import telegram from '../images/telegram.svg'
+
+import arrowRight from '../images/arrow-right.svg'
+import globe from '../images/icon-globe.svg'
+import paper from '../images/icon-paper.svg'
+
 import '../css/sb-admin.css'
 
 class MessageBoard extends Component {
@@ -294,6 +304,68 @@ class MessageBoard extends Component {
         })
     }
 
+    renderMoreInfo() {
+        return (
+            <div className="user-stats right-side-box white-bg">
+                <div className="block-header">
+                    <h4>More Info</h4>
+                </div>
+                <div className="block-padding">
+                    <div className="moreinfo-btns-wrapper">
+                        <a href="http://menlo.one">
+                            <div className="moreinfo-btn">
+                                <img src={paper} className="icon-paper" />
+                                <div className="moreinfo-btn-textwrapper">
+                                    <span>White Paper</span>
+                                </div>
+                                <img src={arrowRight} className="arrow-right" />
+                            </div>
+                        </a>
+                        <a href="http://menlo.one">
+                            <div className="moreinfo-btn">
+                                <img src={globe} className="icon-globe" />
+                                <div className="moreinfo-btn-textwrapper">
+                                    <span>Website</span>
+                                    <span>http://menlo.one</span>
+                                </div>
+                                <img src={arrowRight} className="arrow-right" />
+                            </div>
+                        </a>
+                    </div>
+                    <div className="moreinfo-social-wrapper">
+                        <ul>
+                            <li>
+                                <a href="https://twitter.com/menloone?lang=en" target="_blank">
+                                    <img src={twitter} alt="Menlo One Twitter" />
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.facebook.com/menloone/" target="_blank">
+                                    <img src={facebook} alt="Menlo One Facebook" />
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/MenloOne" target="_blank">
+                                    <img src={github} alt="Menlo One Github" />
+                                </a>
+                            </li>
+                            {/* <li>
+                                <a href="" target="_blank">
+                                    <img src={slack} alt="Menlo One Slack" />
+                                </a>
+                            </li> */}
+                            <li>
+                                <a href="https://t.me/Menloone" target="_blank">
+                                    <img src={telegram} alt="Menlo One Telegram" />
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
 
     render() {
         return (
@@ -329,6 +401,7 @@ class MessageBoard extends Component {
                     <div className='right-side'>
                         {this.renderUserStats()}
                         {this.renderLotteries()}
+                        {this.renderMoreInfo()}
                     </div>
                 </div>
             </div>

@@ -8,15 +8,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './css/sb-admin.css'
 
 const arrowRight = require('./images/arrow-right.svg')
-const globe = require('./images/icon-globe.svg')
-const paper = require('./images/icon-paper.svg')
-
-
-const twitter = require('./images/twitter.svg')
-const facebook = require('./images/facebook.svg')
-const github = require('./images/github.svg')
-// const slack = require('./images/slack.svg')
-const telegram = require('./images/telegram.svg')
 
 // const screenshot = require('./images/screenshot.png')
 const userIm = require('./images/user-1.png')
@@ -25,7 +16,6 @@ const iconIm = require('./images/icon.png')
 const computer = require('./images/ICO_profile_page_svg.svg')
 // const whitePaperIm = require('./images/white-paper.png')
 // const globe = require('./images/globe.png')
-const townhall = require('./images/Townhall_valued_comment_svg.svg')
 
 const bitmart = require('./images/bitmart.svg')
 const BlockOverflowIcon = require('./images/BlockOverflow-icon.svg')
@@ -74,68 +64,6 @@ class Profile extends Component {
         let tokens = evt.target.value
         let eth = Math.round((tokens / (12000)) * 100) / 100
         this.setState({eth: eth, tokens: tokens})
-    }
-
-    renderMoreInfo() {
-        return (
-            <div className="user-stats right-side-box white-bg">
-                <div className="block-header">
-                    <h4>More Info</h4>
-                </div>
-                <div className="block-padding">
-                    <div className="moreinfo-btns-wrapper">
-                        <a href="http://menlo.one">
-                            <div className="moreinfo-btn">
-                                <img src={paper} className="icon-paper" />
-                                <div className="moreinfo-btn-textwrapper">
-                                    <span>White Paper</span>
-                                </div>
-                                <img src={arrowRight} className="arrow-right" />
-                            </div>
-                        </a>
-                        <a href="http://menlo.one">
-                            <div className="moreinfo-btn">
-                                <img src={globe} className="icon-globe" />
-                                <div className="moreinfo-btn-textwrapper">
-                                    <span>Website</span>
-                                    <span>http://menlo.one</span>
-                                </div>
-                                <img src={arrowRight} className="arrow-right" />
-                            </div>
-                        </a>
-                    </div>
-                    <div className="moreinfo-social-wrapper">
-                        <ul>
-                            <li>
-                                <a href="https://twitter.com/menloone?lang=en" target="_blank">
-                                    <img src={twitter} alt="Menlo One Twitter" />
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://www.facebook.com/menloone/" target="_blank">
-                                    <img src={facebook} alt="Menlo One Facebook" />
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/MenloOne" target="_blank">
-                                    <img src={github} alt="Menlo One Github" />
-                                </a>
-                            </li>
-                            {/* <li>
-                                <a href="" target="_blank">
-                                    <img src={slack} alt="Menlo One Slack" />
-                                </a>
-                            </li> */}
-                            <li>
-                                <a href="https://t.me/Menloone" target="_blank">
-                                    <img src={telegram} alt="Menlo One Telegram" />
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        )
     }
 
     render() {
@@ -501,8 +429,6 @@ class Profile extends Component {
                                     </ul>
                                 </div>
                             </div>
-
-                            {this.renderMoreInfo()}
 
                             </div>
 
