@@ -588,14 +588,6 @@ class Profile extends Component {
                                                         $0.018083
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td>
-                                                        Annual ROI
-                                                    </td>
-                                                    <td>
-                                                        91.4%
-                                                    </td>
-                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
