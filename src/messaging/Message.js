@@ -16,6 +16,7 @@
  */
 
 import React from 'react'
+import AnimateHeight from 'react-animate-height';
 import Blockies from 'react-blockies'
 import Moment from 'react-moment'
 
@@ -33,23 +34,25 @@ class Message extends React.Component {
             showReplies: true,
             children: [],
             expanded: true,
-            height: 0
+            height: 'auto'
         }
     }
+
+    toggle = () => {
+        const { height } = this.state;
+
+        this.setState({
+            height: height === 200 ? 'auto' : 200,
+        });
+    };
 
     componentDidMount() {
         this.props.forumService.subscribeMessages(this.props.message.id, this.refreshMessages.bind(this))
 
         this.setState({
-            height: this.message.clientHeight
+            height: this.message.clientHeight > 200 ? 200 : 'auto',
+            originalHeight: this.message.clientHeight
         })
-
-        if (this.message.clientHeight > 200) {
-            this.setState({
-                expanded: false
-            })
-
-        }
     }
 
     componentWillUnmount() {
@@ -160,10 +163,10 @@ class Message extends React.Component {
     render() {
         let message = this.props.message
 
+        const { height } = this.state;
+
         return (
-            <li className="borderis message" ref={element => {
-                this.message = element;
-            }}>
+            <li className="borderis message">
                 <div className="comments user-img">
                     <Blockies seed={message.author} size={ 9 } />
                 </div>
@@ -175,23 +178,23 @@ class Message extends React.Component {
                     <span className="time">
                         <Moment fromNow>{message.date}</Moment>
                     </span>
-                    { this.state.expanded &&
-                        <div className="comments-text">
+                    <AnimateHeight
+                        duration={500}
+                        height={height} // see props documentation bellow
+                    >
+                        <div className={"comments-text " + (this.state.expanded ? "" : "limit")} ref={element => {
+                            this.message = element;
+                        }}>
                             {message.body}
                         </div>
-                    }
-                    { !this.state.expanded &&
-                        <div className="comments-text limit">
-                            {message.body}
-                        </div>
-                    }
-                    {this.state.height > 200 && !this.state.expanded &&
-                        <button className="comments-readmore" onClick={() => { this.setState({ expanded: true }) }}>
+                    </AnimateHeight>
+                    {this.state.originalHeight > 200 && this.state.height !== 'auto' &&
+                        <button className="comments-readmore" onClick={ () => this.toggle() }>
                             Read More
                         </button>
                     }
-                    {this.state.height > 200 && this.state.expanded &&
-                        <button className="comments-readmore" onClick={() => { this.setState({ expanded: false }) }}>
+                    {this.state.originalHeight > 200 && this.state.height === 'auto' &&
+                        <button className="comments-readmore" onClick={ () => this.toggle() }>
                             Collapse Comment
                         </button>
                     }
