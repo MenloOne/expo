@@ -335,6 +335,9 @@ class Profile extends Component {
                         </div>
                         <div className="col-md-7 game-action-wrapper">
                             <div className="row">
+                                <div className="col-12 text-center">
+                                    <h6>How Block Overflow Works</h6>
+                                </div>
                                 <div className="col-4">
                                     <img src={how1} />
                                     <h4>Ask a question</h4>
