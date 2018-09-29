@@ -509,7 +509,6 @@ footer.sticky-footer {
 /***************/
 #mainNav {
     background-color: #0942ab !important;
-    height: 55px;
 }
 
 #mainNav .navbar-collapse .navbar-nav > .nav-item.dropdown > .nav-link:after {
@@ -521,9 +520,9 @@ footer.sticky-footer {
     color: #fff !important;
 }
 
-#mainNav span.user-img {
-    width: 40px;
-    height: 40px;
+# span.user-img {
+    width: 30px;
+    height: 30px;
     background: #fff;
     display: inline-block;
     border-radius: 50%;
@@ -611,8 +610,6 @@ i.fa.fa-circle:before {
 }
 
 #mainNav span.name {
-    vertical-align: top;
-    padding-top: 10px;
     display: inline-block;
     max-width: 150px;
     text-overflow: ellipsis;
@@ -620,13 +617,13 @@ i.fa.fa-circle:before {
 }
 
 #mainNav a#messagesDropdown {
-    vertical-align: middle;
     font-family: 'Titillium web', 'Helvetica Neue';
     font-size: 15px;
     font-weight: 300;
     color: #fff;
     padding-top: 0;
     padding-bottom: 0;
+    display: flex;
 }
 
 .nav-item .form-inline {
@@ -696,7 +693,11 @@ i.fa.fa-circle:before {
 .navbar-nav {
     justify-content: center;
     display: flex;
-    height: 55px;
+    align-items: center;
+}
+
+a#messagesDropdown {
+    display: flex;
     align-items: center;
 }
 
@@ -1047,9 +1048,15 @@ span.location {
     display: inline-block;
     border-radius: 50%;
     overflow: hidden;
-    margin-right: 0px;
-    margin-left: -12px;
-    margin-bottom: -8px;
+    margin-right: 10px;
+    border: 1px solid #dfe6f9;
+}
+
+.game-action-wrapper .text-center * {
+    margin-bottom: 1rem;
+    font-family: Titillium;
+    font-size: 1.3rem;
+    font-size: 200
 }
 
 .left-side .top-users {
@@ -1800,7 +1807,6 @@ span.sold {
 .comments .content {
     display: inline-block;
     vertical-align: top;
-    width: calc(100% - 70px);
     margin-bottom: 1em;
 }
 
@@ -1826,8 +1832,13 @@ span.sold {
     line-height: 27px;
     letter-spacing: normal;
     color: #464646;
-    max-width: calc(100% - 200px);
+    width: 580px;
     margin-bottom: 1rem;
+    white-space: pre-wrap;
+}
+
+.comments-text p {
+    margin-bottom: 0;
 }
 
 span.tag {
