@@ -1056,7 +1056,8 @@ span.location {
     margin-bottom: 1rem;
     font-family: Titillium;
     font-size: 1.3rem;
-    font-size: 200
+    font-weight: 600;
+    color: #2E4168;
 }
 
 .left-side .top-users {
