@@ -32,11 +32,24 @@ class Message extends React.Component {
             showReplyForm: false,
             showReplies: true,
             children: [],
+            expanded: true,
+            height: 0
         }
     }
 
     componentDidMount() {
         this.props.forumService.subscribeMessages(this.props.message.id, this.refreshMessages.bind(this))
+
+        this.setState({
+            height: this.message.clientHeight
+        })
+
+        if (this.message.clientHeight > 200) {
+            this.setState({
+                expanded: false
+            })
+
+        }
     }
 
     componentWillUnmount() {
@@ -148,21 +161,40 @@ class Message extends React.Component {
         let message = this.props.message
 
         return (
-            <li className="borderis message">
+            <li className="borderis message" ref={element => {
+                this.message = element;
+            }}>
                 <div className="comments user-img">
                     <Blockies seed={message.author} size={ 9 } />
                 </div>
                 <div className="content">
                     <h3 className="tag-name">
                         {message.author}
-                        <span className="points" style={ { display: 'none' } }>??? points </span>
-                        <span className="time">
-                            <Moment fromNow>{ message.date }</Moment>
-                        </span>
                     </h3>
-                    <div className="comments-text">
-                        {message.body}
-                    </div>
+                    <span className="points" style={{ display: 'none' }}>??? points </span>
+                    <span className="time">
+                        <Moment fromNow>{message.date}</Moment>
+                    </span>
+                    { this.state.expanded &&
+                        <div className="comments-text">
+                            {message.body}
+                        </div>
+                    }
+                    { !this.state.expanded &&
+                        <div className="comments-text limit">
+                            {message.body}
+                        </div>
+                    }
+                    {this.state.height > 200 && !this.state.expanded &&
+                        <button className="comments-readmore" onClick={() => { this.setState({ expanded: true }) }}>
+                            Read More
+                        </button>
+                    }
+                    {this.state.height > 200 && this.state.expanded &&
+                        <button className="comments-readmore" onClick={() => { this.setState({ expanded: false }) }}>
+                            Collapse Comment
+                        </button>
+                    }
                     <div className="comments-votes">
                         <span>{ this.renderVotes() }</span>
                         { (!this.props.message.upvoteDisabled() || !this.props.message.downvoteDisabled()) &&

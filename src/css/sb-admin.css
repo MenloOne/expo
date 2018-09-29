@@ -1060,6 +1060,21 @@ span.location {
     color: #2E4168;
 }
 
+.comments-text.limit {
+    height: 200px;
+    overflow: hidden;
+}
+
+button.comments-readmore {
+    border: none;
+    font-family: Titillium;
+    padding: 0;
+    color: #1944a5;
+    /* font-weight: 600; */
+    font-style: italic;
+    font-size: 1.1rem;
+}
+
 .left-side .top-users {
     display: block;
     float: left;
@@ -1813,15 +1828,19 @@ span.sold {
 
 .comments .tag-name {
     height: 22px;
-    font-family: Open Sans;
     font-size: 12px;
-    font-weight: 600;
     font-style: normal;
     font-stretch: normal;
-    line-height: 3.25;
-    letter-spacing: normal;
+    letter-spacing: .04rem;
+    line-height: 2rem;
     color: #18af41;
-    margin-bottom: 24px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    text-overflow: ellipsis;
+    width: 58px;
+    display: block;
+    overflow: hidden;
+    font-family: monospace;
 }
 
 .comments .comments-text {
@@ -1834,7 +1853,7 @@ span.sold {
     letter-spacing: normal;
     color: #464646;
     width: 580px;
-    margin-bottom: 1rem;
+    margin: 1rem 0;
     white-space: pre-wrap;
 }
 
