@@ -127,8 +127,9 @@ class MessageBoard extends Component {
                 <div className="left-side-wrapper">
                     <div className="expert-reviews-1 left-side white-bg">
                         <h2>Townhall</h2>
-                        <h6>If anyone makes money off your internet activity,<br />it should be you. Build a reputation and profit. </h6>
-                        <p>What is TownHall? Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation </p>
+                        <h6>If anyone makes money off of your internet activity,<br />it should be you. Build a reputation and earn ONE.</h6>
+                        <p>TownHall is the first module of our framework that was released in June 2018. It is powered by ONE and allows users who's commentary, input or solutions are deemed valuable by the community to earn ONE for their input.</p>
+                        <p>This testnet version is a gamified version of how the commenting process could work, where the top 5 posts are awarded ONE for positive contributions.</p>
                         <div className="comments">
                             <ul>
                                 { this.renderMessages() }
