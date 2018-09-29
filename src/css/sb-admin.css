@@ -835,6 +835,7 @@ a.btn.btn-big {
 
 a.btn.btn-green {
     background: #6EB735;
+    color: white;
 }
 
 .hero-logo-text-wrapper h1 {
@@ -1934,7 +1935,7 @@ span.tag {
 }
 
 .field {
-    width: 100%;
+    width: 580px;
     height: 150px;
     border-radius: 6px;
     border: solid 1px #dadae1;
@@ -1974,6 +1975,8 @@ span.tag {
     vertical-align: middle;
     float: right;
     margin-left: 19px;
+    padding-left: 2rem;
+    padding-right: 2rem;
 }
 
 .submit-btn[disabled] {
@@ -1981,7 +1984,7 @@ span.tag {
     color: white;
 }
 
-.cancel-btn {
+a.cancel-btn {
     float: right;
     vertical-align: middle;
     width: 77px;
@@ -1992,6 +1995,8 @@ span.tag {
     border-radius: 3px;
     padding-top: 0;
     margin-left: 19px;
+    background: none;
+    color: black;
 }
 
 .right-side-box.moreinfo {

@@ -126,10 +126,11 @@ class MessageBoard extends Component {
             <div className="left-side">
                 <div className="left-side-wrapper">
                     <div className="expert-reviews-1 left-side white-bg">
-                        <h2>Townhall</h2>
-                        <h6>If anyone makes money off of your internet activity,<br />it should be you. Build a reputation and earn ONE.</h6>
-                        <p>TownHall is the first module of our framework that was released in June 2018. It is powered by ONE and allows users who's commentary, input or solutions are deemed valuable by the community to earn ONE for their input.</p>
-                        <p>This testnet version is a gamified version of how the commenting process could work, where the top 5 posts are awarded ONE for positive contributions.</p>
+                        <h2>Question</h2>
+                        <h6>How does Menlo.one work with relational databases?</h6>
+                        <p>
+                            With the content node infrastructure being Node and Mongo, how can Menlo One store relational data?
+                        </p>
                         <div className="comments">
                             <ul>
                                 { this.renderMessages() }
