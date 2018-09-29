@@ -1032,8 +1032,7 @@ span.location {
 .left-side h6 {
     color: #2E4168;
     font-size: 1.7rem;
-    padding: 1rem 0;
-    line-height: 2.6rem;
+    margin: 0;
 }
 
 .user-img {
@@ -1081,6 +1080,10 @@ button.comments-readmore {
     float: right;
 }
 
+#root .QuestionHeader {
+    border-bottom: 1px solid #f0f4ff;
+}
+
 .left-side .top-users .member-users {
     padding-left: 10px;
     padding-bottom: 15px;
@@ -1113,7 +1116,7 @@ hr {
 
 }
 
-.left-side h2 {
+.small-heading {
     font-family: 'Titillium web', 'Helvetica Neue';
     font-size: 14px;
     font-weight: 600;
@@ -1125,6 +1128,10 @@ hr {
     color: #2e4168;
     text-transform: uppercase;
     padding-top: 16px;
+}
+
+.left-side-wrapper.review-wrapper {
+    padding-top: .8rem;
 }
 
 .left-side p {
@@ -1349,6 +1356,9 @@ body {
 
 .time-watch {
     text-align: center;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
 }
 
 .time-left {
@@ -1370,7 +1380,8 @@ body {
     letter-spacing: normal;
     text-align: center;
     width: auto;
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
     vertical-align: top;
 }
 
@@ -1380,7 +1391,12 @@ body {
     margin: -6px 6px 0;
 }
 
-.time-watch div span {
+.QuestionHeader .time-watch div span:nth-child(1) {
+    line-height: 1rem;
+    padding-top: 12px;
+}
+
+.time-watch div span:nth-child(2) {
     font-family: 'Titillium web', 'Helvetica Neue';
     font-size: 11px;
     font-weight: 400;
@@ -1842,8 +1858,11 @@ span.sold {
     line-height: 27px;
     letter-spacing: normal;
     color: #464646;
-    width: 580px;
     white-space: pre-wrap;
+}
+
+.MessageForm-buttonWrapper, .comments .comments-text, .field {
+    max-width: 580px;
 }
 
 .comments-text p {
@@ -2389,6 +2408,64 @@ table.stats tr td:nth-child(2) {
 .moreinfo-social-wrapper li {
     margin: 1rem 1rem 0 0;
 }
+.QuestionHeader {
+    display: flex;
+    align-items: center;
+    padding: .8rem;
+}
+
+.QuestionHeader h6 {
+    font-size: 1.3rem;
+    line-height: 2rem;
+}
+
+.QuestionHeader-textWrapper {
+    flex: 1;
+    line-height: 0.8rem;
+}
+
+    .QuestionHeader-textWrapper span {
+        margin-right: .8rem;
+        font-size: .9rem;
+    }
+    .QuestionHeader-textWrapper span:nth-of-type(1) {
+        color: #18AF41;
+    }
+    .QuestionHeader-textWrapper span:nth-of-type(2) {
+        color: #2C3035;
+    }
+    .QuestionHeader-textWrapper span:nth-of-type(3) {
+        color: #BDBDBD;
+    }
+
+.QuestionHeader-logoWrapper {
+    padding-right: 1rem;
+}
+
+.QuestionHeader .time-watch div {
+    font-size: 25px;
+    line-height: 15px;
+}
+
+.QuestionHeader .time-watch div.dots {
+    color: #6B768E;
+    width: 16px;
+    margin: -6px 0 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media (min-width: 768px) {
 }

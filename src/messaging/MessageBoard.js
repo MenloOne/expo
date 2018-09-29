@@ -6,8 +6,9 @@ import {withEth} from '../EthContext'
 import Message from './Message'
 import MessageForm from './MessageForm'
 import CountdownTimer from '../CountdownTimer'
-
 import '../css/sb-admin.css'
+
+const questionAvatar = require('../images/question-avatar.svg')
 
 class MessageBoard extends Component {
 
@@ -122,12 +123,24 @@ class MessageBoard extends Component {
 
 
     render() {
+        
         return (
             <div className="left-side">
+                <div className="QuestionHeader">
+                    <div className="QuestionHeader-logoWrapper">
+                        <img src={questionAvatar} />
+                    </div>
+                    <div className="QuestionHeader-textWrapper">
+                        <h6>How does Menlo.one work with relational databases?</h6>
+                        <span>@cypherpunk</span><span>1,337 points</span><span>19 hours ago</span>
+                    </div>
+                    <div className="QuestionHeader-countdown">
+                        {this.props.currentLottery && <CountdownTimer date={new Date(this.props.currentLottery.endTime)} />}
+                    </div>
+                </div>
                 <div className="left-side-wrapper">
                     <div className="expert-reviews-1 left-side white-bg">
-                        <h2>Question</h2>
-                        <h6>How does Menlo.one work with relational databases?</h6>
+                        <span className="small-heading">Question</span>
                         <p>
                             With the content node infrastructure being Node and Mongo, how can Menlo One store relational data?
                         </p>

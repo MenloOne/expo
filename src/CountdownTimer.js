@@ -26,15 +26,27 @@ export default class CountdownTimer extends Component {
             <div className="time-watch">
                 {parseInt(days, 10) > 0 && (
                     <span>
-                        <div>{days}<span>Days</span></div>
+                        <div>
+                            <span>{days}</span>
+                            <span>Days</span>
+                        </div>
                         <div className="dots">:</div>
                     </span>
                 )}
-                <div>{hours}<span>Hours</span></div>
+                <div>
+                    <span>{hours}</span>
+                    <span>Hours</span>
+                </div>
                 <div className="dots">:</div>
-                <div>{minutes}<span>Minutes</span></div>
+                <div>
+                    <span>{minutes}</span>
+                    <span>Minutes</span>
+                </div>
                 <div className="dots">:</div>
-                <div>{seconds}<span>Seconds</span></div>
+                <div>
+                    <span>{seconds}</span>
+                    <span>Seconds</span>
+                </div>
             </div>
         )
     }

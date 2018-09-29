@@ -70,11 +70,13 @@ class MessageForm extends React.Component {
     render() {
         return (
             <form onSubmit={this.onSubmit}>
-                <div className="row">
+                <div>
                     <textarea name="" className="field" id="" cols="30" rows="10" value={this.state.message} onChange={this.onChange}></textarea>
                 </div>
-                <input type="submit" className="btn submit-btn" disabled={this.state.submitting}/>
-                <a href="" className="btn cancel-btn" onClick={this.onCancel}>Cancel</a>
+                <div className="MessageForm-buttonWrapper">
+                    <input type="submit" className="btn submit-btn" disabled={this.state.submitting}/>
+                    <button type="button" className="btn cancel-btn" onClick={this.onCancel}>Cancel</button>
+                </div>
                 {this.state.error && <p className="error new-message">{this.state.error}</p>}
             </form>
         )

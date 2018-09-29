@@ -540,7 +540,7 @@ class Profile extends Component {
                                 </div> */}
 
 
-                                <MessageBoard />
+                                <MessageBoard currentLottery={this.state.currentLottery} />
                             </div>
                         <div className="col-md-4">
                             <div className="right-side-box">
