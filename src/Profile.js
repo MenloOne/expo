@@ -99,7 +99,7 @@ class Profile extends Component {
                 </div>
                 <div className="block-padding">
                     <div className="moreinfo-btns-wrapper">
-                        <a href="http://menlo.one">
+                        <a href="http://menlo.one" target="_blank">
                             <div className="moreinfo-btn">
                                 <img src={paper} className="icon-paper" />
                                 <div className="moreinfo-btn-textwrapper">
@@ -108,7 +108,7 @@ class Profile extends Component {
                                 <img src={arrowRight} className="arrow-right" />
                             </div>
                         </a>
-                        <a href="http://menlo.one">
+                        <a href="http://menlo.one" target="_blank">
                             <div className="moreinfo-btn">
                                 <img src={globe} className="icon-globe" />
                                 <div className="moreinfo-btn-textwrapper">
@@ -601,7 +601,7 @@ class Profile extends Component {
                                     </div>
                                     <div className="block-padding">
                                         <div className="moreinfo-btns-wrapper">
-                                            <a href="http://menlo.one">
+                                            <a href="http://menlo.one" target="_blank">
                                                 <div className="moreinfo-btn">
                                                     <img src={menlo} className="icon-paper" />
                                                     <div className="moreinfo-btn-textwrapper">
@@ -611,7 +611,7 @@ class Profile extends Component {
                                                     <img src={arrowRight} className="arrow-right" />
                                                 </div>
                                             </a>
-                                                <a href="https://www.bitmart.com">
+                                                <a href="https://www.bitmart.com" target="_blank">
                                                 <div className="moreinfo-btn">
                                                     <img src={bitmart} className="icon-globe" />
                                                     <div className="moreinfo-btn-textwrapper">
@@ -621,7 +621,7 @@ class Profile extends Component {
                                                     <img src={arrowRight} className="arrow-right" />
                                                 </div>
                                             </a>
-                                            <a href="http://shapeshift.io">
+                                            <a href="http://shapeshift.io" target="_blank">
                                                 <div className="moreinfo-btn">
                                                     <img src={shapeshift} className="icon-globe" />
                                                     <div className="moreinfo-btn-textwrapper">
@@ -631,7 +631,7 @@ class Profile extends Component {
                                                     <img src={arrowRight} className="arrow-right" />
                                                 </div>
                                             </a>
-                                            <a href="https://metalpay.com">
+                                            <a href="https://metalpay.com" target="_blank">
                                                 <div className="moreinfo-btn">
                                                     <img src={metal} className="icon-globe" />
                                                     <div className="moreinfo-btn-textwrapper">
