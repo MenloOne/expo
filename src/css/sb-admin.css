@@ -777,6 +777,14 @@ a#messagesDropdown {
     padding-left: 77px !important;
 }
 
+.townhall .small-heading {
+    line-height: 0;
+}
+
+.townhall .message-wrapper {
+
+}
+
 .token-one {
     color: #f0f4ff;
 }
@@ -1830,7 +1838,7 @@ span.sold {
 }
 
 .comments {
-    margin: 10px 15px 10px 10px;
+    padding: 1rem 0;
 }
 
 .comments ul > li > ul {
@@ -1855,7 +1863,6 @@ span.sold {
 .comments .content {
     display: inline-block;
     vertical-align: top;
-    margin-bottom: 1em;
 }
 
 .comments .tag-name-dots {
@@ -2245,12 +2252,19 @@ table.stats tr td:nth-child(2) {
     z-index: 0;
 }
 
-.comments .row:nth-child(even) {
+.comments .message-wrapper:nth-child(even) {
     background: #ecf3ff;
+    border-top: 1px solid #ececed;
+    border-bottom: 1px solid #ececed;
 }
 
 .comments li.borderis {
     position: relative;
+    padding: 1rem 0;
+}
+
+.comments .message-wrapper {
+    padding: 0 0 0 77px;
 }
 
 /*********** Discover Page **************/

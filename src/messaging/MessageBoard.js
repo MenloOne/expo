@@ -92,7 +92,7 @@ class MessageBoard extends Component {
     renderMessages() {
         if (this.state.messages.length === 0 && (this.props.eth.status !== 'ok' || !this.props.eth.forumService.synced.isFulfilled())) {
             return (<li className='borderis'>
-                <div style={{ paddingBottom: '3em' }}>
+                <div className="message-wrapper" style={{ paddingBottom: '3em' }}>
                     Loading Discussion...
                 </div>
             </li>)
@@ -100,7 +100,7 @@ class MessageBoard extends Component {
 
         if (this.state.messages.length === 0) {
             return (<li className='borderis'>
-                <div style={{ paddingBottom: '3em' }}>
+                <div className="message-wrapper" style={{ paddingBottom: '3em' }}>
                     Be the first to leave a comment...
                 </div>
             </li>)
@@ -110,7 +110,7 @@ class MessageBoard extends Component {
 
         return messages.map((m, index) => {
             return (
-                <div key={index} className='row'>
+                <div key={index} className='message-wrapper'>
                     <div className='col-12'>
                         <Message key={m.id}
                                  forumService={this.props.eth.forumService}
@@ -206,13 +206,16 @@ class MessageBoard extends Component {
                     <div className="expert-reviews-1">
                         <div>
                             <div className="comments">
+                                <div className="message-wrapper">
+                                    <span className="small-heading">Townhall</span>
+                                </div>
                                 <ul>
                                     { this.renderMessages() }
 
                                     {
                                         this.state.showCompose &&
                                         <li>
-                                            <div className='content'>
+                                            <div className='content message-wrapper'>
                                                 <MessageForm onSubmit={this.onSubmitMessage}/>
                                             </div>
                                         </li>

@@ -25,6 +25,8 @@ import MessageForm from './MessageForm'
 import '../css/sb-admin.css'
 import './Message.css'
 
+const voteTriangle = require('../images/vote-triangle.svg')
+
 class Message extends React.Component {
     constructor(props) {
         super(props)
@@ -168,7 +170,7 @@ class Message extends React.Component {
 
         return (
             <li className="borderis message">
-                <div className="comments user-img">
+                <div className="user-img">
                     <Blockies seed={message.author} size={ 9 } />
                 </div>
                 <div className="content">
@@ -209,13 +211,30 @@ class Message extends React.Component {
                         <span>{ this.renderVotes() }</span>
                         { (!this.props.message.upvoteDisabled() || !this.props.message.downvoteDisabled()) &&
                             <span >
-                                    <a onClick={this.downvote.bind(this)}  disabled={this.props.message.downvoteDisabled()}><span className='item'><i className="fa fa-thumbs-down fa-lg"></i></span></a>
-                                    <a onClick={this.upvote.bind(this)}    disabled={this.props.message.upvoteDisabled()}><span className='item'><i className="fa fa-thumbs-up fa-lg" ></i></span></a>
+                            <a onClick={this.downvote.bind(this)} disabled={this.props.message.downvoteDisabled()}>
+                                <span className="Question-downvote">
+                                    <img src={voteTriangle} className="icon-downvote" />
+                                    Downvote
                                 </span>
+                            </a>
+                            <a onClick={this.upvote.bind(this)} disabled={this.props.message.upvoteDisabled()}><span className="Question-upvote"><img src={voteTriangle} className="icon-upvote" />Upvote</span></a></span>
                         }
                         { (this.state.children.length > 0 || message.parent === '0x0') &&
                         <span className='item'>
-                            { message.parent === '0x0' &&  <a className="reply" onClick={this.showReplyForm.bind(this)}><span>Reply</span></a> }
+                            {message.parent === '0x0' && <a className="reply" onClick={this.showReplyForm.bind(this)}>
+                                <span className="Question-reply">
+                                    Reply
+                                    </span></a>}
+                                <a href="">
+                                    <span className="Question-permalink">
+                                        Permalink
+                                    </span>
+                                </a>
+                                <a href="">
+                                    <span className="Question-report">
+                                        Report
+                                    </span>
+                                </a>
                             {this.state.children.length > 0 &&
                             <span>
                                 {this.state.showReplies &&
