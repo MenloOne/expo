@@ -763,10 +763,16 @@ a#messagesDropdown {
     background: #F2F5FA;
     padding: .33rem;
     display: flex;
+    border-top: 1px solid #e6ebf1;
+    border-bottom: 1px solid #e6ebf1;
+}
+
+.townhall {
+    background: #f7f9fd;
+    border-top: 1px solid #e6ebf1;
 }
 
 .Question-wrapper {
-    background: #f8fdf3;
     padding-left: 77px !important;
 }
 
@@ -1625,7 +1631,6 @@ span.sold {
 /*Raheel css*/
 .expert-reviews {
     border-radius: 6px;
-    background-color: #ffffff;
     border: solid 1px #ececed;
     padding: 34px 37px;
     border-bottom-left-radius: 0;
@@ -1637,7 +1642,6 @@ span.sold {
     border-radius: 6px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-    background-color: #ffffff;
     border: none;
     padding: 0;
 }

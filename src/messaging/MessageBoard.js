@@ -134,7 +134,7 @@ class MessageBoard extends Component {
                     </div>
                     <div className="QuestionHeader-textWrapper">
                         <h6>How does Menlo.one work with relational databases?</h6>
-                        <span>@cypherpunk</span><span>1,337 points</span><span>19 hours ago</span>
+                        <span>@cypherpunk<i class="sX"></i></span><span>104 points</span><span>19 hours ago</span>
                     </div>
                     <div className="QuestionHeader-countdown">
                         {this.props.currentLottery && <CountdownTimer date={new Date(this.props.currentLottery.endTime)} />}
@@ -202,9 +202,9 @@ class MessageBoard extends Component {
                         </a>
                     </p>
                 </div>
-                <div className="left-side-wrapper">
+                <div className="left-side-wrapper townhall">
                     <div className="expert-reviews-1">
-                        <div className="white-bg">
+                        <div>
                             <div className="comments">
                                 <ul>
                                     { this.renderMessages() }
