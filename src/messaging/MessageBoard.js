@@ -9,6 +9,8 @@ import CountdownTimer from '../CountdownTimer'
 import '../css/sb-admin.css'
 
 const questionAvatar = require('../images/question-avatar.svg')
+const voteTriangle = require('../images/vote-triangle.svg')
+
 
 class MessageBoard extends Component {
 
@@ -142,7 +144,26 @@ class MessageBoard extends Component {
                     <span className="small-heading">Question</span>
                     <p>
                         With the content node infrastructure being Node and Mongo, how can Menlo One store relational data?
-                            </p>
+                    </p>
+                    <p>
+                        <span className="Question-upvote">
+                            <img src={voteTriangle} className="icon-upvote" />
+                            Upvote (12)
+                        </span>
+                        <span className="Question-downvote">
+                            <img src={voteTriangle} className="icon-downvote" />
+                            Downvote
+                        </span>
+                        <span className="Question-reply">
+                            Reply
+                        </span>
+                        <span className="Question-permalink">
+                            Permalink
+                        </span>
+                        <span className="Question-report">
+                            Report
+                        </span>
+                    </p>
                 </div>
                 <div className="left-side-wrapper">
                     <div className="expert-reviews-1">
