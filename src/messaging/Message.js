@@ -211,13 +211,14 @@ class Message extends React.Component {
                         <span>{ this.renderVotes() }</span>
                         { (!this.props.message.upvoteDisabled() || !this.props.message.downvoteDisabled()) &&
                             <span >
-                            <a onClick={this.downvote.bind(this)} disabled={this.props.message.downvoteDisabled()}>
-                                <span className="Question-downvote">
-                                    <img src={voteTriangle} className="icon-downvote" />
-                                    Downvote
-                                </span>
-                            </a>
-                            <a onClick={this.upvote.bind(this)} disabled={this.props.message.upvoteDisabled()}><span className="Question-upvote"><img src={voteTriangle} className="icon-upvote" />Upvote</span></a></span>
+                                <a onClick={this.upvote.bind(this)} disabled={this.props.message.upvoteDisabled()}><span className="Question-upvote"><img src={voteTriangle} className="icon-upvote" />Upvote</span></a>
+                                <a onClick={this.downvote.bind(this)} disabled={this.props.message.downvoteDisabled()}>
+                                    <span className="Question-downvote">
+                                        <img src={voteTriangle} className="icon-downvote" />
+                                        Downvote
+                                    </span>
+                                </a>
+                            </span>
                         }
                         { (this.state.children.length > 0 || message.parent === '0x0') &&
                         <span className='item'>

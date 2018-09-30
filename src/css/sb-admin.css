@@ -1060,7 +1060,7 @@ span.location {
 }
 
 .left-side-wrapper {
-    padding: 32px;
+    padding: 0 32px;
 }
 
 .left-side h6 {
@@ -2024,7 +2024,7 @@ span.tag {
     height: 150px;
     border-radius: 6px;
     border: solid 1px #dadae1;
-    margin: 30px 0 34px;
+    margin: 1rem 0;
 }
 
 .btn {
@@ -2069,7 +2069,7 @@ span.tag {
     color: white;
 }
 
-a.cancel-btn {
+.cancel-btn {
     float: right;
     vertical-align: middle;
     width: 77px;
@@ -2080,7 +2080,8 @@ a.cancel-btn {
     border-radius: 3px;
     padding-top: 0;
     margin-left: 19px;
-    background: none;
+    background: none !important;
+    float: right;
     color: black;
 }
 
