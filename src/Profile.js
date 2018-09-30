@@ -561,7 +561,6 @@ class Profile extends Component {
                             <div className="col-md-4">
                                 {this.renderLotteries()}
                                 {this.renderUserStats()}
-                                {this.renderMoreInfo()}
                                 
                                 <div className="right-side-box">
                                     <div className="green-bg">
@@ -693,6 +692,9 @@ class Profile extends Component {
                                         </ul>
                                     </div>
                                 </div> */}
+
+                                {this.renderMoreInfo()}
+                                
                             </div>
                     </div>
                 </div>

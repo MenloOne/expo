@@ -140,6 +140,33 @@ class MessageBoard extends Component {
                         {this.props.currentLottery && <CountdownTimer date={new Date(this.props.currentLottery.endTime)} />}
                     </div>
                 </div>
+                <div className="Question-stats">
+                    <div className="stat">
+                        <div className="number-circle"><span>84%</span></div>
+                        <div className="stat-label-wrapper">
+                            <span>Payout for Winning Answer</span>
+                            <span>1,337 ONE token ($41 USD)</span>
+                        </div>
+                    </div>
+                    <div className="stat">
+                        <div className="number-circle"><span>84%</span></div>
+                        <div className="stat-label-wrapper">
+                            <span>Most Popular</span>
+                            <span>9 Replies</span>
+                        </div>
+                    </div>
+                    <div className="stat">
+                        <div className="stat-label-wrapper">
+                            <span>Total Votes</span>
+                            <span>
+                                <i className="fa fa-fw fa-thumbs-up"></i>
+                                210
+                                <i className="fa fa-fw fa-thumbs-down"></i>
+                                10
+                            </span>
+                        </div>
+                    </div>
+                </div>
                 <div className="Question-wrapper left-side-wrapper">
                     <span className="small-heading">Question</span>
                     <p>

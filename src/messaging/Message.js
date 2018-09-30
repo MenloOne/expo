@@ -173,10 +173,10 @@ class Message extends React.Component {
                 </div>
                 <div className="content">
                     <span className="tag-name-0x">
-                        {message.author.slice(0,2)}
+                        {message.author && message.author.slice(0,2)}
                     </span>
                     <span className="tag-name">
-                        {message.author.slice(2, message.author.length)}
+                        {message.author && message.author.slice(2, message.author.length)}
                     </span>
                     <span className="tag-name-dots">
                         …
