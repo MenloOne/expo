@@ -146,23 +146,33 @@ class MessageBoard extends Component {
                         With the content node infrastructure being Node and Mongo, how can Menlo One store relational data?
                     </p>
                     <p>
-                        <span className="Question-upvote">
-                            <img src={voteTriangle} className="icon-upvote" />
-                            Upvote (12)
-                        </span>
-                        <span className="Question-downvote">
-                            <img src={voteTriangle} className="icon-downvote" />
-                            Downvote
-                        </span>
-                        <span className="Question-reply">
-                            Reply
-                        </span>
-                        <span className="Question-permalink">
-                            Permalink
-                        </span>
-                        <span className="Question-report">
-                            Report
-                        </span>
+                        <a href="">
+                            <span className="Question-upvote">
+                                <img src={voteTriangle} className="icon-upvote" />
+                                Upvote (12)
+                            </span>
+                        </a>
+                        <a href="">
+                            <span className="Question-downvote">
+                                <img src={voteTriangle} className="icon-downvote" />
+                                Downvote
+                            </span>
+                        </a>
+                        <a href="">
+                            <span className="Question-reply">
+                                Reply
+                            </span>
+                        </a>
+                        <a href="">
+                            <span className="Question-permalink">
+                                Permalink
+                            </span>
+                        </a>
+                        <a href="">
+                            <span className="Question-report">
+                                Report
+                            </span>
+                        </a>
                     </p>
                 </div>
                 <div className="left-side-wrapper">
