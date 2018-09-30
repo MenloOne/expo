@@ -763,13 +763,14 @@ a#messagesDropdown {
     background: #F2F5FA;
     padding: .33rem;
     display: flex;
-    border-top: 1px solid #d5d8dc;
-    border-bottom: 1px solid #d5d8dc;
+    border-top: 1px solid #ececed;
+    border-bottom: 1px solid #ececed;
 }
 
 .townhall {
     background: #f7f9fd;
-    border-top: 1px solid #d5d8dc;
+    border-top: 1px solid #ececed;
+    padding: 0 !important;
 }
 
 .Question-wrapper {
@@ -1082,6 +1083,7 @@ span.location {
 button.comments-readmore {
     border: none;
     font-family: Titillium;
+    background: none;
     padding: 0;
     color: #1944a5;
     /* font-weight: 600; */
@@ -2235,12 +2237,16 @@ table.stats tr td:nth-child(2) {
     content: '';
     width: 1px;
     height: calc(100% - 40px);
-    background: #d5d8dc;
+    background: #ececed;
     display: inline-block;
     top: 50px;
     left: 20px;
     position: absolute;
     z-index: 0;
+}
+
+.comments .row:nth-child(even) {
+    background: #ecf3ff;
 }
 
 .comments li.borderis {
