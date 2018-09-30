@@ -763,13 +763,13 @@ a#messagesDropdown {
     background: #F2F5FA;
     padding: .33rem;
     display: flex;
-    border-top: 1px solid #e6ebf1;
-    border-bottom: 1px solid #e6ebf1;
+    border-top: 1px solid #d5d8dc;
+    border-bottom: 1px solid #d5d8dc;
 }
 
 .townhall {
     background: #f7f9fd;
-    border-top: 1px solid #e6ebf1;
+    border-top: 1px solid #d5d8dc;
 }
 
 .Question-wrapper {
@@ -2235,7 +2235,7 @@ table.stats tr td:nth-child(2) {
     content: '';
     width: 1px;
     height: calc(100% - 40px);
-    background: #e2dede;
+    background: #d5d8dc;
     display: inline-block;
     top: 50px;
     left: 20px;
