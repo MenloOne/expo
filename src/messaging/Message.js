@@ -238,10 +238,10 @@ class Message extends React.Component {
                             {this.state.children.length > 0 &&
                             <span>
                                 {this.state.showReplies &&
-                                <a onClick={() => this.showReplies(!this.state.showReplies)}> <em className="blue">Hide
+                                <a className="hideReplies" onClick={() => this.showReplies(!this.state.showReplies)}> <em className="blue">Hide
                                     Replies </em></a>}
                                 {!this.state.showReplies &&
-                                <a onClick={() => this.showReplies(!this.state.showReplies)}> <em className="blue">Show
+                                <a className="showReplies" onClick={() => this.showReplies(!this.state.showReplies)}> <em className="blue">Show
                                     Replies</em> ({message.children.length})</a>}
                                 </span>
                             }
