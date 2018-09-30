@@ -138,25 +138,29 @@ class MessageBoard extends Component {
                         {this.props.currentLottery && <CountdownTimer date={new Date(this.props.currentLottery.endTime)} />}
                     </div>
                 </div>
+                <div className="Question-wrapper left-side-wrapper">
+                    <span className="small-heading">Question</span>
+                    <p>
+                        With the content node infrastructure being Node and Mongo, how can Menlo One store relational data?
+                            </p>
+                </div>
                 <div className="left-side-wrapper">
-                    <div className="expert-reviews-1 left-side white-bg">
-                        <span className="small-heading">Question</span>
-                        <p>
-                            With the content node infrastructure being Node and Mongo, how can Menlo One store relational data?
-                        </p>
-                        <div className="comments">
-                            <ul>
-                                { this.renderMessages() }
+                    <div className="expert-reviews-1">
+                        <div className="white-bg">
+                            <div className="comments">
+                                <ul>
+                                    { this.renderMessages() }
 
-                                {
-                                    this.state.showCompose &&
-                                    <li>
-                                        <div className='content'>
-                                            <MessageForm onSubmit={this.onSubmitMessage}/>
-                                        </div>
-                                    </li>
-                                }
-                            </ul>
+                                    {
+                                        this.state.showCompose &&
+                                        <li>
+                                            <div className='content'>
+                                                <MessageForm onSubmit={this.onSubmitMessage}/>
+                                            </div>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>

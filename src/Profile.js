@@ -556,146 +556,145 @@ class Profile extends Component {
 
                                 <MessageBoard currentLottery={this.state.currentLottery} />
                             </div>
-                        <div className="col-md-4">
-                            <div className="right-side-box">
-                                <div className="green-bg">
-                                    <div className="block-header">
-                                        <h4>ONE Token Metrics</h4>
+
+
+                            <div className="col-md-4">
+                                {this.renderLotteries()}
+                                {this.renderUserStats()}
+                                {this.renderMoreInfo()}
+                                
+                                <div className="right-side-box">
+                                    <div className="green-bg">
+                                        <div className="block-header">
+                                            <h4>ONE Token Metrics</h4>
+                                        </div>
+                                        <div className="block-padding"> 
+                                            <table className="stats">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            Circulating Supply
+                                                        </td>
+                                                        <td>
+                                                            354,000,000
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Total Supply
+                                                        </td>
+                                                        <td>
+                                                            1,000,000,000 ONE
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Volume (24h)
+                                                        </td>
+                                                        <td>
+                                                            N/A
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Market Cap
+                                                        </td>
+                                                        <td>
+                                                            $16,000,000
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Price
+                                                        </td>
+                                                        <td>
+                                                            $0.018083
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
-                                    <div className="block-padding"> 
-                                        <table className="stats">
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        Circulating Supply
-                                                    </td>
-                                                    <td>
-                                                        354,000,000
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        Total Supply
-                                                    </td>
-                                                    <td>
-                                                        1,000,000,000 ONE
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        Volume (24h)
-                                                    </td>
-                                                    <td>
-                                                        N/A
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        Market Cap
-                                                    </td>
-                                                    <td>
-                                                        $16,000,000
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        Price
-                                                    </td>
-                                                    <td>
-                                                        $0.018083
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div className="white-bg content-node">
-                                    <div className="block-header">
-                                        <h4>Buy ONE Token</h4>
-                                    </div>
-                                    <div className="block-padding">
-                                        <div className="moreinfo-btns-wrapper">
-                                            <a href="http://menlo.one" target="_blank">
-                                                <div className="moreinfo-btn">
-                                                    <img src={menlo} className="icon-paper" />
-                                                    <div className="moreinfo-btn-textwrapper">
-                                                        <span>Menlo One Token Sale</span>
-                                                        <span>https://tokensale.menlo.one</span>
+                                    <div className="white-bg content-node">
+                                        <div className="block-header">
+                                            <h4>Buy ONE Token</h4>
+                                        </div>
+                                        <div className="block-padding">
+                                            <div className="moreinfo-btns-wrapper">
+                                                <a href="http://menlo.one" target="_blank">
+                                                    <div className="moreinfo-btn">
+                                                        <img src={menlo} className="icon-paper" />
+                                                        <div className="moreinfo-btn-textwrapper">
+                                                            <span>Menlo One Token Sale</span>
+                                                            <span>https://tokensale.menlo.one</span>
+                                                        </div>
+                                                        <img src={arrowRight} className="arrow-right" />
                                                     </div>
-                                                    <img src={arrowRight} className="arrow-right" />
-                                                </div>
-                                            </a>
-                                                <a href="https://www.bitmart.com" target="_blank">
-                                                <div className="moreinfo-btn">
-                                                    <img src={bitmart} className="icon-globe" />
-                                                    <div className="moreinfo-btn-textwrapper">
-                                                        <span>Bitmart</span>
-                                                        <span>https://www.bitmart.com</span>
+                                                </a>
+                                                    <a href="https://www.bitmart.com" target="_blank">
+                                                    <div className="moreinfo-btn">
+                                                        <img src={bitmart} className="icon-globe" />
+                                                        <div className="moreinfo-btn-textwrapper">
+                                                            <span>Bitmart</span>
+                                                            <span>https://www.bitmart.com</span>
+                                                        </div>
+                                                        <img src={arrowRight} className="arrow-right" />
                                                     </div>
-                                                    <img src={arrowRight} className="arrow-right" />
-                                                </div>
-                                            </a>
-                                            <a href="http://shapeshift.io" target="_blank">
-                                                <div className="moreinfo-btn">
-                                                    <img src={shapeshift} className="icon-globe" />
-                                                    <div className="moreinfo-btn-textwrapper">
-                                                        <span>ShapeShift</span>
-                                                        <span>http://shapeshift.io</span>
+                                                </a>
+                                                <a href="http://shapeshift.io" target="_blank">
+                                                    <div className="moreinfo-btn">
+                                                        <img src={shapeshift} className="icon-globe" />
+                                                        <div className="moreinfo-btn-textwrapper">
+                                                            <span>ShapeShift</span>
+                                                            <span>http://shapeshift.io</span>
+                                                        </div>
+                                                        <img src={arrowRight} className="arrow-right" />
                                                     </div>
-                                                    <img src={arrowRight} className="arrow-right" />
-                                                </div>
-                                            </a>
-                                            <a href="https://metalpay.com" target="_blank">
-                                                <div className="moreinfo-btn">
-                                                    <img src={metal} className="icon-globe" />
-                                                    <div className="moreinfo-btn-textwrapper">
-                                                        <span>Metal Pay</span>
-                                                        <span>https://metalpay.com</span>
+                                                </a>
+                                                <a href="https://metalpay.com" target="_blank">
+                                                    <div className="moreinfo-btn">
+                                                        <img src={metal} className="icon-globe" />
+                                                        <div className="moreinfo-btn-textwrapper">
+                                                            <span>Metal Pay</span>
+                                                            <span>https://metalpay.com</span>
+                                                        </div>
+                                                        <img src={arrowRight} className="arrow-right" />
                                                     </div>
-                                                    <img src={arrowRight} className="arrow-right" />
-                                                </div>
-                                            </a>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+
+
+
+                                {/* <div className="token-metrics right-side-box white-bg">
+                                    <div className="block-header">
+                                        <h4>Token Metrics</h4>
+                                    </div>
+                                    <div className="block-padding">
+                                        <ul>
+                                            <li>
+                                                <div className="name">Tokens in circulation</div>
+                                                <div className="detail">354,000,000</div>
+                                            </li>
+                                            <li>
+                                                <div className="name">Price</div>
+                                                <div className="detail">$0.03</div>
+                                            </li>
+                                            <li>
+                                                <div className="name">Volume</div>
+                                                <div className="detail">34,241</div>
+                                            </li>
+                                            <li>
+                                                <div className="name">Token Supply</div>
+                                                <div className="detail">50% discount</div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div> */}
                             </div>
-
-
-
-                            {/* <div className="token-metrics right-side-box white-bg">
-                                <div className="block-header">
-                                    <h4>Token Metrics</h4>
-                                </div>
-                                <div className="block-padding">
-                                    <ul>
-                                        <li>
-                                            <div className="name">Tokens in circulation</div>
-                                            <div className="detail">354,000,000</div>
-                                        </li>
-                                        <li>
-                                            <div className="name">Price</div>
-                                            <div className="detail">$0.03</div>
-                                        </li>
-                                        <li>
-                                            <div className="name">Volume</div>
-                                            <div className="detail">34,241</div>
-                                        </li>
-                                        <li>
-                                            <div className="name">Token Supply</div>
-                                            <div className="detail">50% discount</div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div> */}
-
-
-                            {this.renderUserStats()}
-                            {this.renderLotteries()}
-                            {this.renderMoreInfo()}
-
-                            </div>
-
-                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -758,6 +758,10 @@ a#messagesDropdown {
     padding-right: 3em;
 }
 
+.Question-wrapper {
+    background: #f8fdf3;
+}
+
 .token-one {
     color: #f0f4ff;
 }
@@ -1131,6 +1135,7 @@ hr {
     font-stretch: normal;
     line-height: normal;
     letter-spacing: 0.7px;
+    line-height: 3rem;
     text-align: justify;
     color: #2e4168;
     text-transform: uppercase;
@@ -1839,7 +1844,13 @@ span.sold {
     margin-bottom: 1em;
 }
 
-.comments .tag-name {
+.comments .tag-name-dots {
+    margin-right: .5rem;
+}
+
+.comments .tag-name,
+.comments .tag-name-0x,
+.comments .tag-name-dots {
     height: 22px;
     font-size: 12px;
     font-style: normal;
@@ -1849,11 +1860,33 @@ span.sold {
     color: #18af41;
     margin-bottom: 0;
     padding-bottom: 0;
-    text-overflow: ellipsis;
-    width: 58px;
-    display: block;
+    text-overflow: clip;
+    width: 48px;
+    display: inline-block;
     overflow: hidden;
     font-family: monospace;
+}
+
+.comments .tag-name-dots, .comments .tag-name-0x {
+    color: #bbb;
+    width: auto;
+}
+
+span.time {
+    height: 22px;
+    font-size: 11px;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: .04rem;
+    line-height: 2rem;
+    font-style: italic;
+    color: #a5a5a5;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    display: inline-block;
+    overflow: hidden;
 }
 
 .comments .comments-text {
@@ -1868,7 +1901,7 @@ span.sold {
     white-space: pre-wrap;
 }
 
-.MessageForm-buttonWrapper, .comments .comments-text, .field {
+.MessageForm-buttonWrapper, .comments .comments-text, .field, .left-side p {
     max-width: 580px;
 }
 

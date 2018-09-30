@@ -172,9 +172,15 @@ class Message extends React.Component {
                     <Blockies seed={message.author} size={ 9 } />
                 </div>
                 <div className="content">
-                    <h3 className="tag-name">
-                        {message.author}
-                    </h3>
+                    <span className="tag-name-0x">
+                        {message.author.slice(0,2)}
+                    </span>
+                    <span className="tag-name">
+                        {message.author.slice(2, message.author.length)}
+                    </span>
+                    <span className="tag-name-dots">
+                        …
+                    </span>
                     <span className="points" style={{ display: 'none' }}>??? points </span>
                     <span className="time">
                         <Moment fromNow>{message.date}</Moment>
