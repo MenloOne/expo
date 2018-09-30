@@ -20,7 +20,7 @@ body.sticky-footer .content-wrapper {
 }
 
 body.fixed-nav {
-    padding-top: 68px;
+    padding-top: 43px;
 }
 
 .error {
@@ -681,7 +681,7 @@ i.fa.fa-circle:before {
 
 .navbar-brand img {
     display: block;
-    height: 20px;
+    height: 13px;
 }
 
 .navbar-nav {
@@ -752,7 +752,7 @@ a#messagesDropdown {
 
 .token-number {
     font-family: 'Titillium web', 'Helvetica Neue';
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 500;
     color: #fff;
     padding-right: 3em;
@@ -800,6 +800,7 @@ a#messagesDropdown {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    zoom: .9;
 }
 
 .game-detail-wrapper p {
@@ -831,11 +832,17 @@ a.btn {
 
 a.btn.btn-big {
     padding: .8rem 4rem;
+    margin-right: 1rem;
 }
 
 a.btn.btn-green {
     background: #6EB735;
     color: white;
+}
+
+a.btn.btn-grey {
+    background: none;
+    color: black;
 }
 
 .hero-logo-text-wrapper h1 {
@@ -1036,8 +1043,8 @@ span.location {
 }
 
 .user-img {
-    width: 35px;
-    height: 35px;
+    width: 25px;
+    height: 25px;
     background: #f9f9f9;
     display: inline-block;
     border-radius: 50%;
@@ -2425,7 +2432,7 @@ table.stats tr td:nth-child(2) {
 }
 
     .QuestionHeader-textWrapper span {
-        margin-right: .8rem;
+        margin-right: .4rem;
         font-size: .9rem;
     }
     .QuestionHeader-textWrapper span:nth-of-type(1) {

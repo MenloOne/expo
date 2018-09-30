@@ -164,6 +164,7 @@ class Message extends React.Component {
         let message = this.props.message
 
         const { height } = this.state;
+        
 
         return (
             <li className="borderis message">

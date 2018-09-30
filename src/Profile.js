@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import Blockies from 'react-blockies'
+import AnimateHeight from 'react-animate-height';
+
 import TopNav from './TopNav.js'
 import MessageBoard from './messaging/MessageBoard'
 import CountdownTimer from './CountdownTimer'
@@ -44,6 +46,7 @@ class Profile extends Component {
     state = {
         eth: 1,
         tokens: 0,
+        howToHeight: 0
     }
 
     constructor() {
@@ -313,84 +316,95 @@ class Profile extends Component {
     }
 
     render() {
+        const { howToHeight } = this.state;
+
         return (
             <div>
                 <TopNav/>
 
+                <AnimateHeight
+                    duration={500}
+                    height={howToHeight} // see props documentation bellow
+                >
                 <div className="game-token shadow-sm">
                     <div className="container">
-                        <div className="col-md-5 game-detail-wrapper">
-                            <div className="hero-logo-wrapper">
-                                <img className="hero-logo" src={BlockOverflowIcon} />
-                                <div className="hero-logo-text-wrapper">
-                                    <h1>Block Overflow</h1>
-                                    <h3>Share Knowlege,<br />Earn Tokens</h3>
-                                    <h4>Built with Menlo One</h4>
+                            <div className="col-md-5 game-detail-wrapper">
+                                <div className="hero-logo-wrapper">
+                                    <img className="hero-logo" src={BlockOverflowIcon} />
+                                    <div className="hero-logo-text-wrapper">
+                                        <h1>Block Overflow</h1>
+                                        <h3>Share Knowlege,<br />Earn Tokens</h3>
+                                        <h4>Built with Menlo One</h4>
+                                    </div>
+                                </div>
+                                <div className="">
+                                    <p>Block Overflow is a question and answer site for blockchain programmers and other people from the Menlo One community where users get paid in ONE tokens for providing correct answers.</p>
+                                    <a href="" className="btn btn-big btn-green">Sign Up</a>
+                                    <a href="" className="btn btn-big btn-grey" onClick={this.closeInstructions}>Close  </a>
                                 </div>
                             </div>
-                            <div className="">
-                                <p>Block Overflow is a question and answer site for blockchain programmers and other people from the Menlo One community where users get paid in ONE tokens for providing correct answers.</p>
-                                <a href="" className="btn btn-big btn-green">Sign Up</a>
-                            </div>
-                        </div>
-                        <div className="col-md-7 game-action-wrapper">
-                            <div className="row">
-                                <div className="col-12 text-center">
-                                    <h6>How Block Overflow Works</h6>
+                            <div className="game-action-wrapper">
+                                <div className="row">
+                                    <div className="col-12 text-center">
+                                        <h6>How Block Overflow Works</h6>
+                                    </div>
+                                    <div className="col-4">
+                                        <img src={how1} />
+                                        <h4>Ask a question</h4>
+                                        <p>
+                                            Asking a question costs ONE tokens, which goes into a pool to pay the person with the best answer. Then, a 24 hour countdown timer starts.
+                                        </p>
+                                    </div>
+                                    <div className="col-4">
+                                        <img src={how2} />
+                                        <h4>Users post answers</h4>
+                                        <p>
+                                            When someone replies with an answer, they place ONE tokens into the pool too, in hopes they have the right answer.
+                                        </p>
+                                    </div>
+                                    <div className="col-4">
+                                        <img src={how3} />
+                                        <h4>The pool grows</h4>
+                                        <p>
+                                            With every answer the pool grows larger, and the 24 hour clock resets.
+                                        </p>
+                                    </div>
                                 </div>
-                                <div className="col-4">
-                                    <img src={how1} />
-                                    <h4>Ask a question</h4>
-                                    <p>
-                                        Asking a question costs ONE tokens, which goes into a pool to pay the person with the best answer. Then, a 24 hour countdown timer starts.
-                                    </p>
-                                </div>
-                                <div className="col-4">
-                                    <img src={how2} />
-                                    <h4>Users post answers</h4>
-                                    <p>
-                                        When someone replies with an answer, they place ONE tokens into the pool too, in hopes they have the right answer.
-                                    </p>
-                                </div>
-                                <div className="col-4">
-                                    <img src={how3} />
-                                    <h4>The pool grows</h4>
-                                    <p>
-                                        With every answer the pool grows larger, and the 24 hour clock resets.
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col-4">
-                                    <img src={how4} />
-                                    <h4>Users vote on answers</h4>
-                                    <p>
-                                        Users vote on answers. They can leave a comments too. If the answer they voted on wins, they get Reputation points.
-                                    </p>
-                                </div>
-                                <div className="col-4">
-                                    <img src={how5} />
-                                    <h4>Top answers win tokens</h4>
-                                    <p>
-                                        When people stop providing answers, the most up-voted answer is the winner. All of the ONE tokens go to the winner.
-                                    </p>
-                                </div>
-                                <div className="col-4">
-                                    <img src={how6} />
-                                    <h4>Plus, totally decentralized</h4>
-                                    <p>
-                                        Furthermore, all of Block Overflow is decentralized. All of the data on this website was read from the blockchain.
-                                    </p>
+                                <div className="row">
+                                    <div className="col-4">
+                                        <img src={how4} />
+                                        <h4>Users vote on answers</h4>
+                                        <p>
+                                            Users vote on answers. They can leave a comments too. If the answer they voted on wins, they get Reputation points.
+                                        </p>
+                                    </div>
+                                    <div className="col-4">
+                                        <img src={how5} />
+                                        <h4>Top answers win tokens</h4>
+                                        <p>
+                                            When people stop providing answers, the most up-voted answer is the winner. All of the ONE tokens go to the winner.
+                                        </p>
+                                    </div>
+                                    <div className="col-4">
+                                        <img src={how6} />
+                                        <h4>Plus, totally decentralized</h4>
+                                        <p>
+                                            Furthermore, all of Block Overflow is decentralized. All of the data on this website was read from the blockchain.
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </AnimateHeight>
 
                 <div className="content-wrapper">
                     <div className="container">
                         <div className="row">
                             <div className="col-md-8">
+                                <p>
+                                    <a href="">&laquo; Back to Topics</a>
+                                </p>
                             {/* <div className="left-side">
                                 <div className="left-side-wrapper">
                                     <div className="top-users" style={{ display: 'none' }}>
