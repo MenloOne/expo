@@ -1648,7 +1648,6 @@ span.sold {
 }
 
 .expert-reviews-1 {
-    margin-bottom: 60px;
     border-radius: 6px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
@@ -1865,31 +1864,33 @@ span.sold {
     vertical-align: top;
 }
 
-.comments .tag-name-dots {
-    margin-right: .5rem;
-}
-
-.comments .tag-name,
-.comments .tag-name-0x,
-.comments .tag-name-dots {
-    height: 22px;
+.tag-name,
+.tag-name-0x,
+.tag-name-dots {
     font-size: 12px;
     font-style: normal;
     font-stretch: normal;
     letter-spacing: .04rem;
-    line-height: 2rem;
-    color: #18af41;
+    line-height: 1rem;
+    color: #bbb;
     margin-bottom: 0;
     padding-bottom: 0;
     text-overflow: clip;
     width: 48px;
-    display: inline-block;
+    display: inline-flex;
     overflow: hidden;
     font-family: monospace;
 }
 
-.comments .tag-name-dots, .comments .tag-name-0x {
-    color: #bbb;
+.tag-name {
+    color: #18af41;
+}
+
+.Page-permalink .tag-name {
+    color: #1944a5;
+}
+
+.tag-name-dots, .tag-name-0x {
     width: auto;
 }
 
@@ -1934,7 +1935,7 @@ span.tag {
     flex: 1;
 }
 
-.comments .tag-name .btn {
+.tag-name .btn {
     font-family: 'Titillium web', 'Helvetica Neue';
     font-size: 13px;
 
@@ -2556,7 +2557,10 @@ table.stats tr td:nth-child(2) {
     color: #6B768E;
     font-family: Open Sans;
     font-weight: 600;
-    margin-right: 2rem;
+}
+
+.Question-action {
+    margin-right: 1.5rem;
 }
 
 .Question-upvote {
@@ -2571,6 +2575,33 @@ table.stats tr td:nth-child(2) {
 .Question-permalink {
 
 }
+
+.Page-permalink {
+    font-family: Titillium;
+    font-size: .94rem;
+}
+
+.Page-permalink-divider {
+    margin: 0 .33rem;
+}
+
+.Page-permalink a {
+    color: #2E4168;
+}
+
+.tag-name-container {
+    margin-right: .5rem;
+    display: inline-block;
+}
+
+.tag-name-wrapper {
+    display: inline-block;
+    background: #f0f4ff;
+    padding: 0 .2rem;
+    border: 1px solid #ececed;
+    border-radius: 3px;
+}
+
 .Question-report {
 
 }

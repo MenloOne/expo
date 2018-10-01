@@ -431,7 +431,7 @@ class ForumService {
                 tokens:  result.args._tokens.toNumber(),
                 user:    result.args._user
             }
-            console.log('[[ Payout ]] ', payout)
+            console.info('[[ Payout ]] ', payout)
 
             if (payout.lottery < self.priorLottery.lotteryID) {
                 return
@@ -459,7 +459,7 @@ class ForumService {
 
             const bn = result.args._offset
             const offset = bn.toNumber()
-            console.log('[[ Vote ]]  ',offset)
+            console.info('[[ Vote ]]  ',offset)
 
             const message = this.messages.get(self.topicHashes[offset])
             if (message) {
@@ -739,7 +739,7 @@ class ForumService {
         ])
         this.calcLotteriesTimer = null
 
-        console.log('Lotteries: ', [this.priorLottery, this.currentLottery])
+        console.info('Lotteries: ', [this.priorLottery, this.currentLottery])
         if (this.lotteriesCallback) {
             this.lotteriesCallback()
         }
@@ -802,7 +802,7 @@ class ForumService {
             // Send it to Blockchain
             let tokenCost = await this.forum.postCost.call()
             let result = await this.token.transferAndCall(this.forum.address, tokenCost, this.actions.post, [parentHashSolidity, hashSolidity])
-            console.log(result)
+            console.info(result)
 
             return {
                 id: ipfsHash,

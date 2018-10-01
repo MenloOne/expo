@@ -21,6 +21,7 @@ import Blockies from 'react-blockies'
 import Moment from 'react-moment'
 
 import MessageForm from './MessageForm'
+import authors from './Authors'
 
 import '../css/sb-admin.css'
 import './Message.css'
@@ -49,12 +50,15 @@ class Message extends React.Component {
     };
 
     componentDidMount() {
+        
+
         this.props.forumService.subscribeMessages(this.props.message.id, this.refreshMessages.bind(this))
 
         this.setState({
             height: this.message.clientHeight > 200 ? 200 : 'auto',
             originalHeight: this.message.clientHeight
         })
+
     }
 
     componentWillUnmount() {
@@ -69,6 +73,19 @@ class Message extends React.Component {
         let message = this.props.message
 
         let replies = await this.props.forumService.getChildrenMessages(message.id)
+
+
+        replies = replies.map((msg, i) => {
+            if (!authors[msg.author]) {
+                authors[msg.author] = ['s110', 's115', 's20', 's43', 's52', 's56', 's62', 's68', 's7', 's74', 's80', 's84', 's88', 's92', 's96', 's11', 's116', 's14', 's17', 's24', 's27', 's34', 's37', 's40', 's47', 's50', 's60', 's66', 's72', 's78', 's111', 's117', 's21', 's29', 's32', 's44', 's53', 's57', 's63', 's69', 's75', 's8', 's81', 's85', 's89', 's93', 's97', 's112', 's119', 's22', 's45', 's54', 's58', 's64', 's70', 's76', 's82', 's86', 's9', 's90', 's94', 's98', 's118', 's12', 's15', 's18', 's25', 's28', 's35', 's38', 's41', 's48', 's51', 's61', 's67', 's73', 's79', 's10', 's113', 's120', 's23', 's30', 's33', 's46', 's55', 's59', 's65', 's71', 's77', 's83', 's87', 's91', 's95', 's99', 's1'].randomElement()
+                console.log('daf', msg.author, authors[msg.author]);
+            }
+
+            msg.star = authors[msg.author];
+
+            return msg
+        })
+
         this.setState({ children: replies })
     }
 
@@ -156,8 +173,9 @@ class Message extends React.Component {
         return this.state.children.map(m => {
             return (
                 <Message key={m.id}
-                         message={m}
-                         forumService={this.props.forumService}/>
+                    message={m}
+                    forumService={this.props.forumService}
+                />
             )
         })
     }
@@ -174,15 +192,20 @@ class Message extends React.Component {
                     <Blockies seed={message.author} size={ 9 } />
                 </div>
                 <div className="content">
-                    <span className="tag-name-0x">
-                        {message.author && message.author.slice(0,2)}
-                    </span>
-                    <span className="tag-name">
-                        {message.author && message.author.slice(2, message.author.length)}
-                    </span>
-                    <span className="tag-name-dots">
-                        …
-                    </span>
+                    <div className="tag-name-container">
+                        <div className="tag-name-wrapper">
+                            <span className="tag-name-0x">
+                                {message.author && message.author.slice(0,2)}
+                            </span>
+                            <span className="tag-name">
+                                {message.author && message.author.slice(2, message.author.length)}
+                            </span>
+                            <span className="tag-name-dots">
+                                …
+                            </span>
+                        </div>
+                        <i className={`sX ${this.props.message.star}`}></i>
+                    </div>
                     <span className="points" style={{ display: 'none' }}>??? points </span>
                     <span className="time">
                         <Moment fromNow>{message.date}</Moment>
@@ -211,9 +234,9 @@ class Message extends React.Component {
                         <span>{ this.renderVotes() }</span>
                         { (!this.props.message.upvoteDisabled() || !this.props.message.downvoteDisabled()) &&
                             <span >
-                                <a onClick={this.upvote.bind(this)} disabled={this.props.message.upvoteDisabled()}><span className="Question-upvote"><img src={voteTriangle} className="icon-upvote" />Upvote</span></a>
+                            <a onClick={this.upvote.bind(this)} disabled={this.props.message.upvoteDisabled()}><span className="Question-upvote Question-action"><img src={voteTriangle} className="icon-upvote" />Upvote</span></a>
                                 <a onClick={this.downvote.bind(this)} disabled={this.props.message.downvoteDisabled()}>
-                                    <span className="Question-downvote">
+                                <span className="Question-downvote Question-action">
                                         <img src={voteTriangle} className="icon-downvote" />
                                         Downvote
                                     </span>
@@ -223,15 +246,15 @@ class Message extends React.Component {
                         { (this.state.children.length > 0 || message.parent === '0x0') &&
                         <span className='item'>
                             {message.parent === '0x0' && <a className="reply" onClick={this.showReplyForm.bind(this)}>
-                                <span className="Question-reply">
+                                <span className="Question-reply Question-action">
                                     Reply
                                     </span></a>}
-                                <a href="">
+                                <a href="" className="Question-action">
                                     <span className="Question-permalink">
                                         Permalink
                                     </span>
                                 </a>
-                                <a href="">
+                                <a href="" className="Question-action">
                                     <span className="Question-report">
                                         Report
                                     </span>

@@ -5,12 +5,16 @@ import BigNumber from 'bignumber.js'
 import {withEth} from '../EthContext'
 import Message from './Message'
 import MessageForm from './MessageForm'
+import authors from './Authors'
 import CountdownTimer from '../CountdownTimer'
 import '../css/sb-admin.css'
 
 const questionAvatar = require('../images/question-avatar.svg')
 const voteTriangle = require('../images/vote-triangle.svg')
 
+Array.prototype.randomElement = function () {
+    return this[Math.floor(Math.random() * this.length)]
+}
 
 class MessageBoard extends Component {
 
@@ -44,7 +48,20 @@ class MessageBoard extends Component {
     }
 
     async refreshMessages() {
-        const messages = await this.props.eth.forumService.getChildrenMessages('0x0')
+        let messages = await this.props.eth.forumService.getChildrenMessages('0x0')
+
+        messages = messages.map((msg, i) => {
+            if (!authors[msg.author]) {
+                authors[msg.author] = ['s110', 's115', 's20', 's43', 's52', 's56', 's62', 's68', 's7', 's74', 's80', 's84', 's88', 's92', 's96', 's11', 's116', 's14', 's17', 's24', 's27', 's34', 's37', 's40', 's47', 's50', 's60', 's66', 's72', 's78', 's111', 's117', 's21', 's29', 's32', 's44', 's53', 's57', 's63', 's69', 's75', 's8', 's81', 's85', 's89', 's93', 's97', 's112', 's119', 's22', 's45', 's54', 's58', 's64', 's70', 's76', 's82', 's86', 's9', 's90', 's94', 's98', 's118', 's12', 's15', 's18', 's25', 's28', 's35', 's38', 's41', 's48', 's51', 's61', 's67', 's73', 's79', 's10', 's113', 's120', 's23', 's30', 's33', 's46', 's55', 's59', 's65', 's71', 's77', 's83', 's87', 's91', 's95', 's99', 's1'].randomElement()
+                console.log('daf', msg.author, authors[msg.author]);
+            }
+
+            msg.star = authors[msg.author];
+
+            return msg
+        })
+        
+
         this.setState({messages})
     }
 
@@ -113,9 +130,10 @@ class MessageBoard extends Component {
                 <div key={index} className='message-wrapper'>
                     <div className='col-12'>
                         <Message key={m.id}
-                                 forumService={this.props.eth.forumService}
-                                 message={m}
-                                 onChangeReplying={this.onChangeReplying}
+                            forumService={this.props.eth.forumService}
+                            message={m}
+                            onChangeReplying={this.onChangeReplying}
+                            authors={authors}
                         />
                     </div>
                 </div>
@@ -134,7 +152,7 @@ class MessageBoard extends Component {
                     </div>
                     <div className="QuestionHeader-textWrapper">
                         <h6>How does Menlo.one work with relational databases?</h6>
-                        <span>@cypherpunk<i class="sX"></i></span><span>104 points</span><span>19 hours ago</span>
+                        <span>@cypherpunk<i className="sX"></i></span><span>104 points</span><span>19 hours ago</span>
                     </div>
                     <div className="QuestionHeader-countdown">
                         {this.props.currentLottery && <CountdownTimer date={new Date(this.props.currentLottery.endTime)} />}
@@ -173,29 +191,29 @@ class MessageBoard extends Component {
                         With the content node infrastructure being Node and Mongo, how can Menlo One store relational data?
                     </p>
                     <p>
-                        <a href="">
+                        <a href="" className="Question-action">
                             <span className="Question-upvote">
                                 <img src={voteTriangle} className="icon-upvote" />
                                 Upvote (12)
                             </span>
                         </a>
-                        <a href="">
+                        <a href="" className="Question-action">
                             <span className="Question-downvote">
                                 <img src={voteTriangle} className="icon-downvote" />
                                 Downvote
                             </span>
                         </a>
-                        <a href="">
+                        <a href="" className="Question-action">
                             <span className="Question-reply">
                                 Reply
                             </span>
                         </a>
-                        <a href="">
+                        <a href="" className="Question-action">
                             <span className="Question-permalink">
                                 Permalink
                             </span>
                         </a>
-                        <a href="">
+                        <a href="" className="Question-action">
                             <span className="Question-report">
                                 Report
                             </span>
