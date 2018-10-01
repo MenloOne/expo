@@ -1882,6 +1882,10 @@ span.sold {
     font-family: monospace;
 }
 
+.tag-name-dots,  {
+    user-select: none;
+}
+
 .tag-name {
     color: #18af41;
 }
@@ -1909,6 +1913,7 @@ span.time {
     text-overflow: ellipsis;
     display: inline-block;
     overflow: hidden;
+    user-select: none;
 }
 
 .comments .comments-text {
